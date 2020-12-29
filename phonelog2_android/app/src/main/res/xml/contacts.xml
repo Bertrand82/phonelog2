@@ -1,0 +1,9 @@
+
+<ContactsSource xmlns:android="http://schemas.android.com/apk/res/android">
+	<ContactsDataKind
+		android:icon="@drawable/ic_launcher"
+		android:mimeType="vnd.android.cursor.item/vnd.bg.android_phone_log.activity_log_detail"
+		android:summaryColumn="data2"
+		android:detailColumn="data3"
+		android:detailSocialSummary="true" />
+</ContactsSource> 

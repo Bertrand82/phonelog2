@@ -1,0 +1,55 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/action_display_logs"
+        android:title="@string/title_activity_display_logs"/> 
+    <item
+        android:id="@+id/action_add_event"
+        android:title="@string/title_activity_display_add_event"/> 
+   <item
+        android:id="@+id/action_search_contact"
+        android:title="@string/title_activity_search_contact"/> 
+    <item
+        android:id="@+id/action_display_calendars"
+        android:title="@string/title_activity_display_calendars"/> 
+    
+    <item
+        android:id="@+id/action_CommentLastCall"
+        android:title="@string/title_activity_last_call"/>
+   
+    <item
+        android:id="@+id/action_display_private_list"
+        android:title="@string/title_activity_display_private_list"/>
+    
+    <item
+        android:id="@+id/action_list_calendar"
+        android:title="@string/title_list_calendars"/>
+   <item
+        android:id="@+id/action_setting_preferences"
+        android:title="@string/title_setting"/>
+  <item
+        android:id="@+id/action_setting_preferences_mail_smtp"
+        android:title="@string/title_setting_mail_smtp"/>
+   <item
+        android:id="@+id/action_setting_imports"
+        android:title="@string/title_imports"> 
+        <menu>
+       		  <item
+       			 	android:id="@+id/action_import_contact"
+        			android:title="@string/title_import_contacts"/>
+            	<item
+        			android:id="@+id/action_import_event_crm"
+       				android:title="@string/title_import_events_crm"/>
+ 		 </menu>
+     </item>
+     <item
+        android:id="@+id/action_send_cafe_crm_link_by_sms"
+        android:title="@string/send_cafe_crm_link_by_sms_title"/>
+     <item
+        android:id="@+id/action_trace_debug"
+        android:title="@string/action_trace_debug_title"/>
+     <item
+        android:id="@+id/action_about"
+        android:title="@string/about_title"/>
+
+</menu>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="5dp" >
+
+   
+     
+    <com.beardedhen.androidbootstrap.FontAwesomeText
+       android:id="@+id/logoType"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_marginRight="3dp" 
+	    android:textSize="12sp"
+	    android:layout_toLeftOf="@+id/logoPhoneOuMessage"
+	/>
+     <com.beardedhen.androidbootstrap.FontAwesomeText
+       android:id="@+id/logoPhoneOuMessage"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content" 
+	    android:layout_marginRight="3dp" 
+	    android:textSize="12sp"
+		android:layout_toLeftOf="@+id/labelDDate"
+	/>
+    <TextView
+        android:id="@+id/labelDDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textSize="12sp"
+        android:textColor="#CCC"
+        android:layout_alignParentRight="true"
+        />
+    
+    
+
+    <TextView
+        android:id="@+id/labelComment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"        
+        android:layout_marginTop="10dp"
+        android:text="@string/comment_add"
+        android:textSize="20sp" 
+        android:layout_below="@+id/labelDDate"
+        />
+     <TextView
+        android:id="@+id/labelDay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="50dp"
+        android:layout_marginTop="11dp"
+        android:text="@+id/labelDay"
+        android:textSize="12sp" />
+</RelativeLayout>

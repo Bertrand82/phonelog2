@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#ffffff"
+    android:orientation="horizontal" >
+
+    <ImageView
+        android:id="@+id/logo_Logs"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp"
+        android:contentDescription="@string/TitreLogs"
+        android:src="@drawable/logo_logs" />
+
+    <Button
+        android:id="@+id/buttonLogs"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp"
+        android:background="#ccffffff"
+        android:paddingTop="38dp"
+        android:text="@string/TitreLogs"
+        android:textColor="#000000" />
+   
+     <ImageView
+        android:id="@+id/logo_lastcall"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_toRightOf="@+id/buttonLogs"
+        android:contentDescription="@string/TitreLastCall"
+        android:src="@drawable/logo_lastcall" />
+
+    <Button
+        android:id="@+id/buttonLastCall"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_toRightOf="@+id/buttonLogs"
+        android:background="#ccffffff"
+        android:paddingTop="38dp"
+        android:text="@string/TitreLastCall"
+        android:textColor="#000000" />
+
+   
+    <ImageView
+        android:id="@+id/logo_Private"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_toRightOf="@+id/buttonLastCall"
+        android:contentDescription="@string/TitreNumPrivate"
+        android:src="@drawable/logo_private" />
+
+    <Button
+        android:id="@+id/buttonPrivateList"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_toRightOf="@+id/buttonLastCall"
+        android:background="#ccffffff"
+        android:paddingTop="38dp"
+        android:text="@string/TitreNumPrivate"
+        android:textColor="#000000" />
+<!--  
+    <ImageView
+        android:id="@+id/logo_Setting"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_toRightOf="@+id/buttonPrivateList"
+        android:contentDescription="@string/TitreOptions"
+        android:src="@drawable/logo_setting" />
+
+    <Button
+        android:id="@+id/buttonOptions"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_toRightOf="@+id/buttonPrivateList"
+        android:background="#ccffffff"
+        android:paddingTop="38dp"
+        android:text="@string/TitreOptions"
+        android:textColor="#000000" />
+-->
+    <ImageView
+        android:id="@+id/logo_androidPhoneSystem"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_toRightOf="@+id/buttonPrivateList"
+        android:contentDescription="@string/TitreAndroidPhoneSystem"
+        android:src="@drawable/logo_dialer" />
+
+    <Button
+        android:id="@+id/buttonAndroidPhoneSystem"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_toRightOf="@+id/buttonPrivateList"
+        android:background="#ccffffff"
+        android:paddingTop="38dp"
+        android:text="@string/TitreAndroidPhoneSystem"
+        android:textColor="#000000" />
+
+</RelativeLayout>

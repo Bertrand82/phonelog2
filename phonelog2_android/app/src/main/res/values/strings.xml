@@ -1,3 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Phonelog2</string>
+
+    <color name="bg">#ffffff</color>
+    <color name="bg_incoming">#ffffff</color>
+    <color name="bg_outgoing">#ffffff</color>
+
+    <string name="main_url" translatable="false">http://phone-log.appspot.com</string>
+    <string name="activity_comment_title" translatable="true">Comments</string>
+    <string name="title_home" translatable="false">Home</string>
+
+    <!-- Application -->
+    <string name="app_name">Cafe-crm-2</string>
+    <string name="view_diary">Log</string>
+    <string name="ACCOUNT_TYPE" translatable="false">com.cafe_crm.account</string>
+
+    <!-- Contact Contrat -->
+    <string name="MIMETYPE_PHONELOG" translatable="false">vnd.android.cursor.item/vnd.bg.android_phone_log.activity_log_detail</string>
+
+    <!-- General -->
+    <string name="about" translatable="false">G Consulting </string>
+    <string name="about_title" translatable="false">About</string>
+    <string name="action_trace_debug_title" translatable="false">Trace Debug</string>
+    <string name="aboutVersion" translatable="false">V Beta 54</string>
+    <string name="aboutSendComment">Send</string>
+    <string name="aboutMessageLabel">Please, send us a message (bug report, suggestions for improvement, encouragement ..)</string>
+    <string name="aboutCommentWrite">Write your message</string>
+    <string name="hintClientId">Write Client Id</string>
+    <string name="action_settings">Settings</string>
+    <string name="authenticating">Authenticating</string>
+    <string name="main_tittle">Phone Log</string>
+    <string name="main_presentation">This application log incomming and outcomming calls on a server.</string>
+    <string name="main_presentation_2">Consult logs on the website:</string>
+    <string name="activity_comment_send_comment">Add Comment</string>
+    <string name="activity_comment_edit_contact">Edit Contact</string>
+    <string name="save_contact">Save</string>
+    <string name="activity_comment_add_to_private_list">Add to private list</string>
+    <string name="activity_comment_call_again">Call</string>
+    <string name="activity_comment_remove_from_private_list">Remove from private list</string>
+    <string name="activity_comment_contact">Contact</string>
+    <string name="activity_comment_url_server">http://phone-log.appspot.com</string>
+    <string name="activity_comment_number">Number</string>
+    <string name="activity_first_time_1_title">Welcome to Phone-Log</string>
+    <string name="activity_first_time_2_title">Welcome (2)</string>
+    <string name="activity_first_time_3_title">Welcome (3)</string>
+    <string name="activity_first_time_4_title">Welcome (4)</string>
+    <string name="activity_first_time_1_1">It is the first time you use Log-phone. You must configure your e-mail</string>
+    <string name="activity_first_time_2_1">This email will help you find the log of your calls by internet</string>
+    <string name="activity_first_time_3_1">You may have a pass phrase to crypt yours personnal data inside database</string>
+    <string name="activity_first_time_4_1">Thankyou</string>
+    <string name="activity_first_time_4_2">Application is ready to work.</string>
+    <string name="title_next">Next</string>
+    <string name="phone_log_appspot_com_bg">http://phone-log.appspot.com</string>
+    <string name="title_activity_settings">Preferences</string>
+    <string name="title_activity_last_call">Last Call</string>
+    <string name="title_activity_welcome">Welcome</string>
+    <string name="title_activity_display_private_list">Private List</string>
+    <string name="title_activity_display_logs">Logs</string>
+    <string name="title_activity_display_add_event">Add Event</string>
+    <string name="title_activity_display_calendars">Calendars</string>
+    <string name="title_fetch_historic_on_server">Upload Historic</string>
+    <string name="title_list_calendars">List Calendar</string>
+    <string name="title_setting">Settings</string>
+    <string name="title_setting_mail_smtp">Settings Mail Sender</string>
+    <string name="title_imports">Imports</string>
+    <string name="title_import_contacts">Import Contacts</string>
+    <string name="title_import_events_crm">Import Events</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_main_confirm_send">Confirmation</string>
+    <string name="confirmSend_confirm">Message </string>
+    <string name="incoming_call">Incoming Call</string>
+    <string name="outgoing_call">Outgoing Call</string>
+    <string name="title_activity_activity_logs">Diary</string>
+    <string name="title_activity_activity_log_detail">ActivityLogDetail</string>
+    <string name="Call">Call</string>
+    <string name="AddReminderButton">Reminder</string>
+    <string name="Logs">Logs</string>
+    <string name="TitreLogs">LOGS</string>
+    <string name="TitreNumPrivate">PRIVATE</string>
+    <string name="TitreAndroidPhoneSystem">PHONE</string>
+    <string name="TitreOptions">OPTIONS</string>
+    <string name="TitreLastCall">LAST</string>
+    <string name="title_activity_activity_edit_contact">ActivityEditContact</string>
+    <string name="password">Password</string>
+    <string name="email">E-Mail</string>
+    <string name="phrase_crypt">Cripting Phrase</string>
+    <string name="title_activity_activity_preference3">Setting</string>
+    <string name="Save">Save</string>
+    <string name="Blanc"></string>
+    <string name="Preferences">Preferences</string>
+    <string name="action_edit">Edit</string>
+    <string name="action_call">Call</string>
+    <string name="comment_add">Add a comment</string>
+    <string name="comment_write">Write your comment</string>
+    <string name="title_activity_activity_upload_historic">ActivityUploadHistoric</string>
+    <string name="Next">Next</string>
+    <string name="Previous">Previous</string>
+    <string name="labelCRM" translatable="false">CRM</string>
+    <string name="labeFiltreCommmnentedOnly" translatable="false">FILTRE</string>
+    <string name="labelMAIL" translatable="false">MAILS</string>
+    <string name="please_select_calendar">Select at least one Calendar</string>
+    <string name="buttonDisplayLogs">Next</string>
+    <string name="title_import_contacts_description">Import Contacts from file </string>
+    <string name="title_import_events_crm_description">Import Events from file to Selected Calendar</string>
+    <string name="title_activity_choose_file">Choose File</string>
+    <string name="title_activity_choose_url">Import URL</string>
+    <string name="title_button_help_demo">Help Demo</string>
+    <string name="title_activity_activity_import_events_crm">ActivityImportEventsCRM</string>
+    <string name="title_activity_activity_import_contacts">Import Contacts</string>
+    <string name="title_activity_activity_about">About Cafe-CRM</string>
+    <string name="title_activity_search_contact">Chercher Contact</string>
+    <string name="photo" translatable="false">Photo</string>
+    <string name="accountName">Account Name</string>
+    <string name="signIn">Sign In</string>
+    <string name="labelLoginPrompt">Enter your name:</string>
+    <string name="title_activity_activity_form_client_id">Form Id Client</string>
+    <string name="buttonSendForm">Send</string>
+    <string name="buttonEditClientIdLabel">Edit Id</string>
+    <string name="labelEditClientId" translatable="false">Id Client</string>
+    <string name="buttonMaskLabel">Cancel</string>
+    <string name="buttonSearchContact">Search Contact</string>
+    <string name="pref_title_mailUser">User</string>
+    <string name="pref_title_mailPassword">Password</string>
+    <string name="pref_title_mailPort">Port</string>
+    <string name="pref_title_mailTo">Mail To</string>
+    <string name="title_activity_activity_add_event">Add Event</string>
+    <string name="labelButtonAddEvent">Add Event</string>
+    <string name="title_activity_activity_search_contact">Search Contact</string>
+    <string name="search">Search</string>
+    <string name="hint_search">phone number or name </string>
+    <string name="send_cafe_crm_link_by_sms_title">Send cafe-crm by sms</string>
+
 </resources>

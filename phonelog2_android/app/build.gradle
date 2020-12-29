@@ -26,6 +26,28 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/ASL2.0'
+        exclude("META-INF/*.kotlin_module")
+    }
+
+    configurations {
+        all {
+            exclude group: "com.google.android.gms",module:"play-services-measurement-impl"
+            exclude group: "com.google.android.gms",module:"play-services-tagmanager-api"
+            // exclude group: "io.segment.android",module:"analytics"
+            //  exclude group: "com.android.support",module:"upport-v4"
+        }
+    }
+
 }
 
 dependencies {
@@ -34,7 +56,28 @@ dependencies {
     implementation 'com.google.android.material:material:1.2.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation 'com.beardedhen:androidbootstrap:2.3.2'
-    testImplementation 'junit:junit:4.+'
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.preference:preference:1.1.1'
+    implementation 'com.android.support.constraint:constraint-layout:2.0.4'
+    implementation 'javax.mail:mail:1.5.0-b01'
+    implementation 'javax.activation:activation:1.1.1'
+    implementation 'org.apache.httpcomponents:httpclient:4.5.13'
+
+    implementation 'com.google.android.gms:play-services-base:17.5.0'
+    implementation 'com.google.android.gms:play-services-tagmanager:17.0.0'
+    implementation 'com.google.android.gms:play-services-auth:19.0.0'
+    implementation 'com.google.android.gms:play-services-base:17.5.0'
+    implementation 'com.google.android.gms:play-services:12.0.1'
+
+    //implementation 'com.android.support:appcompat-v7:28.0.0'
+    //implementation 'com.android.support:support-v13:28.0.0'
+    //implementation 'com.google.android.gms:play-services-gcm:17.0.0'
+    // implementation 'com.google.android.gms:play-services-analytics:17.0.0'
+    //implementation 'com.google.android.gms:play-services-tagmanager:17.0.0'
+
+
+
+    testImplementation 'junit:junit:4.13.1'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 }

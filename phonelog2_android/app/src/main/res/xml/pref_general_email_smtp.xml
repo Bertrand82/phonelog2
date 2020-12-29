@@ -1,0 +1,61 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+     
+    
+    <CheckBoxPreference
+        android:defaultValue="true"
+        android:key="mode_send_email_for_miss_call"
+        android:summary="@string/pref_description_mode_send_email_all_call"
+        android:title="@string/pref_title_mode_send_email_for_miss_call" />
+
+   <CheckBoxPreference
+        android:defaultValue="true"
+        android:key="mode_send_email_for_all_call"
+        android:summary="@string/pref_description_mode_send_email_miss_call"
+        android:title="@string/pref_title_mode_send_email_for_all_call" />
+
+    
+      <EditTextPreference
+          
+        android:defaultValue="smtp.gmail.com"
+        android:key="mailHost"
+        android:summary="@string/pref_description_mailHost"
+        android:title="@string/pref_title_mailHost" 
+         android:state_expanded="true"
+        
+       />
+
+       <EditTextPreference
+        android:defaultValue="465"
+        android:key="mailPort"
+        android:summary="@string/pref_description_mailPort"
+        android:title="@string/pref_title_mailPort" 
+        android:state_expanded="true"
+       />
+      
+       <EditTextPreference
+        android:defaultValue=""
+        android:key="mailUser"
+        android:summary="@string/pref_description_mailUser"
+        android:title="@string/pref_title_mailUser" 
+         android:state_expanded="true"
+       />
+      
+        <EditTextPreference
+       android:password="true" 
+        android:key="mailPassword"
+        android:summary="@string/pref_description_mailPassword"
+        android:title="@string/pref_title_mailPassword" 
+         android:state_expanded="true"
+       />
+        
+        <EditTextPreference
+           android:defaultValue=""
+           android:key="mailTo"
+           android:summary="@string/pref_description_mailTo"
+           android:title="@string/pref_title_mailTo"
+           android:state_expanded="true"
+            />
+    
+       
+</PreferenceScreen>

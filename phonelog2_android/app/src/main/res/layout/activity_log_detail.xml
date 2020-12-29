@@ -1,0 +1,137 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="5dp"
+    tools:context=".ActivityLogDetail" >
+
+
+    <ImageView
+        android:id="@+id/logoPhoto"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginRight="6dip"
+        android:src="@drawable/default_contact_logo"
+        android:contentDescription="@+id/photo"
+        android:visibility="invisible"
+         />
+      <TextView
+        android:id="@+id/logoPhotoText"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginRight="6dip"
+         android:textSize="70dp"
+         android:text="B"
+         android:background="#ff0000"
+         />
+
+    <TextView
+        android:id="@+id/labelContact"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"        
+        android:text="@+id/label"
+        android:textSize="20sp" 
+        android:layout_toRightOf="@+id/logoPhoto"
+        android:singleLine="true"
+        />
+   
+    
+    <TextView
+        android:id="@+id/labelNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/labelContact"
+        android:layout_toRightOf="@+id/logoPhoto"
+        android:text="@string/labelCRM"
+        android:textSize="14sp" 
+        android:textColor="#bbb"
+        android:singleLine="true"
+        />
+   
+
+    <Button 
+        android:id="@+id/buttonCRM"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/labelNumber"
+        android:layout_toRightOf="@+id/logoPhoto"
+        android:text="@string/labelCRM"
+        android:singleLine="true"
+        
+        />
+     <Button 
+        android:id="@+id/buttonFiltreCommentedOnly"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/labelNumber"
+        android:layout_toRightOf="@+id/buttonCRM"
+        android:text="@string/labeFiltreCommmnentedOnly"
+        android:singleLine="true"
+        />
+     
+      <Button 
+        android:id="@+id/buttonPhoneCall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/labelNumber"
+        android:layout_toRightOf="@+id/buttonFiltreCommentedOnly"
+        android:text="@string/Call"
+        android:singleLine="true"
+        />
+      
+    <Button 
+        android:id="@+id/buttonEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/labelNumber"
+        android:layout_toRightOf="@+id/buttonPhoneCall"
+        android:text="@string/labelMAIL"
+        android:singleLine="true"
+        android:visibility="invisible"
+        />
+   
+    
+     <Button 
+        android:id="@+id/buttonEditClientId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/buttonCRM"
+        android:layout_toRightOf="@+id/logoPhoto"
+        android:text="@string/buttonEditClientIdLabel"
+        android:singleLine="true"
+        android:textSize="12sp" 
+        android:visibility="invisible"
+        />
+     <TextView
+        android:id="@+id/textViewClientId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/buttonCRM"
+        android:layout_toRightOf="@+id/buttonEditClientId"
+        android:text=""
+        android:textSize="12sp" 
+        android:textColor="#bbb"
+        android:singleLine="true"
+        />
+   <Button  
+       android:id="@+id/buttonSearchContact"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/logoPhoto"
+        android:text="@string/buttonSearchContact"
+        android:singleLine="true"
+        android:textSize="12sp" 
+        android:visibility="gone"
+       />
+    
+    <ListView
+        android:id="@android:id/list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/logoPhoto" />
+
+   
+
+</RelativeLayout>

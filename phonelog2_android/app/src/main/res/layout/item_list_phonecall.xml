@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="5dp" >
+
+    <ImageView
+        android:id="@+id/logoPhoto"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignTop="@+id/labelName"
+        android:layout_marginRight="6dip"
+        android:src="@drawable/default_contact_logo" />
+
+    <TextView
+        android:id="@+id/logoPhotoText"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignTop="@+id/labelName"
+        android:layout_marginRight="6dip"
+        android:background="#ff0000"
+        android:gravity="center"
+        android:text="B"
+        android:textSize="40dp"
+        android:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/labelName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/labelDay"
+        android:layout_toRightOf="@+id/logoPhoto"
+        android:text="@+id/label"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/labelNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/labelName"
+        android:layout_toRightOf="@+id/logoPhoto"
+        android:text="@+id/labelNumber"
+        android:textColor="#CCC"
+        android:textSize="12sp" />
+
+    <com.beardedhen.androidbootstrap.FontAwesomeText
+        android:id="@+id/logoType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/labelName"
+        android:layout_marginRight="3dp"
+        android:layout_toLeftOf="@+id/logoPhoneOuMessage"
+        android:textSize="12sp" />
+
+    <com.beardedhen.androidbootstrap.FontAwesomeText
+        android:id="@+id/logoPhoneOuMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/labelName"
+        android:layout_marginRight="3dp"
+        android:layout_toLeftOf="@+id/labelDDate"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/labelDDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/labelName"
+        android:layout_alignParentRight="true"
+        android:text=""
+        android:textColor="#000"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/labelComment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/labelNumber"
+        android:layout_marginTop="5dp"
+        android:layout_toRightOf="@+id/logoPhoto"
+        android:text="@+id/labelComment"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/labelDay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="50dp"
+        android:text="@+id/labelDay"
+        android:textSize="12sp" />
+
+</RelativeLayout>

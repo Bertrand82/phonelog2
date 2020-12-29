@@ -1,0 +1,131 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bootstrapbutton="http://schemas.android.com/apk/res-auto"
+    xmlns:fontawesometext="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content" >
+
+    <RelativeLayout
+        android:id="@+id/layoutComment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="5dp" >
+
+        <ImageView
+            android:id="@+id/logoPhoto"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_alignTop="@+id/labelNumber"
+            android:layout_marginRight="6dip"
+            android:src="@drawable/default_contact_logo" />
+
+        <TextView
+            android:id="@+id/logoPhotoText"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_alignTop="@+id/labelNumber"
+            android:layout_marginRight="6dip"
+            android:background="#ff0000"
+            android:text="@+id/labelNumber"
+            android:textSize="80sp" />
+
+        <TextView
+            android:id="@+id/labelNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/logoPhoto"
+            android:text="@+id/labelNumber"
+            android:textColor="#bbb"
+            android:textSize="14sp" />
+
+        <com.beardedhen.androidbootstrap.FontAwesomeText
+            android:id="@+id/logoType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/labelNumber"
+            android:layout_marginRight="3dp"
+            android:layout_toLeftOf="@+id/logoPhoneOuMessage"
+            android:textSize="12sp" />
+
+        <com.beardedhen.androidbootstrap.FontAwesomeText
+            android:id="@+id/logoPhoneOuMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/labelNumber"
+            android:layout_marginRight="3dp"
+            android:layout_toLeftOf="@+id/labelTime"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/labelTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/labelNumber"
+            android:layout_alignParentRight="true"
+            android:text=""
+            android:textColor="#bbb"
+            android:textSize="12sp" />
+
+        <Button
+            android:id="@+id/buttonMask"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/labelNumber"
+            android:layout_toRightOf="@+id/logoPhoto"
+            android:text="@string/buttonMaskLabel" />
+
+        <TextView
+            android:id="@+id/labelContact"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/logoPhoto"
+            android:text="@+id/label"
+            android:textSize="32sp" />
+
+        <com.beardedhen.androidbootstrap.BootstrapEditText
+            android:id="@+id/editText1"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/labelContact"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:hint="@string/comment_write"
+            android:lines="2"
+            android:textSize="24sp"
+
+            />
+
+        <LinearLayout
+           	android:layout_width="fill_parent"
+    		android:layout_height="wrap_content"
+    		android:layout_gravity="center_horizontal"
+    		android:layout_below="@+id/editText1"
+    		android:orientation="vertical" >
+
+            <com.beardedhen.androidbootstrap.BootstrapButton
+                android:id="@+id/button_envoi"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="@string/activity_comment_send_comment"/>
+
+            <com.beardedhen.androidbootstrap.BootstrapButton
+                android:id="@+id/button_add_remove_from_private_list"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="@string/activity_comment_add_to_private_list"/>
+
+            <com.beardedhen.androidbootstrap.BootstrapButton
+                android:id="@+id/button_call_again"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="@string/activity_comment_call_again"
+                />
+        </LinearLayout>
+
+        <requestFocus />
+    </RelativeLayout>
+
+</ScrollView>

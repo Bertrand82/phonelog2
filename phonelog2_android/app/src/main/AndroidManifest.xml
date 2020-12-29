@@ -46,23 +46,68 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
-        android:name=".ApplicationBg"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Phonelog2">
-        <activity android:name=".MainActivity">
+        android:theme="@style/Theme.BgFirst2">
+
+        <activity
+            android:name=".MainActivity"
+
+            android:allowBackup="true"
+            android:icon="@drawable/ic_launcher"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme" >
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ActivitySettingsBg" android:label="Settings">
+        <activity
+            android:name=".ActivityLogin"
+            android:label="@string/app_name" />
+        <activity
+            android:name=".RegisterActivity"
+            android:label="@string/app_name" />
+        <activity
+            android:name=".ActivityComment"
+            android:label="@string/activity_comment_title" />
+        <activity
+            android:name=".ActivityDisplayPrivateList"
+            android:label="@string/title_activity_display_private_list" />
+        <activity
+            android:name=".ActivityConfirmSend"
+            android:label="@string/title_activity_main_confirm_send" />
+        <activity
+            android:name=".ActivityLogs"
+            android:label="@string/title_activity_activity_logs" />
+        <activity
+            android:name=".ActivityLogDetail"
+            android:label="@string/title_activity_activity_log_detail"
+            android:parentActivityName=".ActivityLogs" >
 
+            <!-- Parent activity meta-data to support API level 7+ -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ActivityLogs" />
+
+            <!-- intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:mimeType="@string/MIMETYPE_PHONELOG" />
+            </intent-filter-->
         </activity>
+        <activity
+            android:name=".ActivityListCalendars"
+            android:label="@string/app_name" />
+        <!-- Receivers -->
+
         <receiver
             android:name=".receivers.IncomingCallReciever"
             android:enabled="true" >
@@ -74,7 +119,9 @@
                 <action android:name="android.permission.READ_SMS" />
             </intent-filter>
         </receiver>
-        <service android:name=".sms.SmsSendService" />
+
+        <!-- Services -->
+
         <service android:name=".sms.SmsSendService" />
         <service android:name=".services.call.PhoneCallService" />
         <service
@@ -106,12 +153,48 @@
                 android:name="android.provider.CONTACTS_STRUCTURE"
                 android:resource="@xml/contacts" />
         </service>
+
+        <activity
+            android:name=".ActivityUploadHistoric"
+            android:label="@string/title_activity_activity_upload_historic" >
+        </activity>
+        <activity
+            android:name=".ActivitySetting"
+            android:label="@string/title_activity_setting" >
+        </activity>
+        <activity
+            android:name=".ActivitySettingEmailSMTP"
+            android:label="@string/title_activity_setting_email_smtp" >
+        </activity>
+        <activity
+            android:name=".ActivityImportContacts"
+            android:label="@string/title_activity_activity_import_contacts"
+            android:parentActivityName=".AbstractActivityCrm" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="phone.trace.AbstractActivityCrm" />
+        </activity>
+        <activity
+            android:name=".ActivityImportEventsCRM"
+            android:label="@string/title_activity_activity_import_events_crm" >
+        </activity>
+        <activity
+            android:name=".ActivityAbout"
+            android:label="@string/title_activity_activity_about" >
+        </activity>
+        <activity
+            android:name=".ActivityFormClientId"
+            android:label="@string/title_activity_activity_form_client_id" >
+        </activity>
+        <activity
+            android:name=".ActivityAddEvent"
+            android:label="@string/title_activity_activity_add_event" >
+        </activity>
+        <activity
+            android:name=".ActivitySearchContact"
+            android:label="@string/title_activity_activity_search_contact" >
+        </activity>
     </application>
-    <!-- Receivers -->
-
-
-
-    <!-- Services -->
 
 
 </manifest>

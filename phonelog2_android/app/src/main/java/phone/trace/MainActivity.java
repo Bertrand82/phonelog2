@@ -31,52 +31,60 @@ public class MainActivity extends AppCompatActivity {
     public static final String SERVICE_URL_CAFE_CRM = "http://phone-log.appspot.com/r/phonecall";
     ApplicationBg applicationBg;
 
+    private String[] permissions = {
+            android.Manifest.permission.READ_CONTACTS,
+            android.Manifest.permission.WRITE_CONTACTS,
+            android.Manifest.permission.READ_CALENDAR,
+            android.Manifest.permission.WRITE_CALENDAR,
+            android.Manifest.permission.READ_CONTACTS,
+            android.Manifest.permission.READ_PHONE_STATE,
+            android.Manifest.permission.READ_CALL_LOG,
+            android.Manifest.permission.WRITE_CALL_LOG,
+            android.Manifest.permission.ACCESS_NETWORK_STATE,
+            android.Manifest.permission.INTERNET,
+            android.Manifest.permission.GET_ACCOUNTS,
+            android.Manifest.permission.ACCOUNT_MANAGER,
+            android.Manifest.permission.INTERNET,
+            android.Manifest.permission.READ_SYNC_SETTINGS,
+            android.Manifest.permission.WRITE_CONTACTS,
+            android.Manifest.permission.READ_CONTACTS,
+            android.Manifest.permission.READ_PHONE_STATE,
+            android.Manifest.permission.READ_SMS,
+            android.Manifest.permission.SEND_SMS,
+            android.Manifest.permission.RECEIVE_SMS,
+            android.Manifest.permission.WAKE_LOCK,
+            android.Manifest.permission.WRITE_EXTERNAL_STORAGE
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        String[] permissions = {
-                android.Manifest.permission.READ_CONTACTS,
-                android.Manifest.permission.WRITE_CONTACTS,
-                android.Manifest.permission.READ_CALENDAR,
-                android.Manifest.permission.WRITE_CALENDAR,
-                android.Manifest.permission.READ_CONTACTS,
-                android.Manifest.permission.READ_PHONE_STATE,
-                android.Manifest.permission.READ_CALL_LOG,
-                android.Manifest.permission.WRITE_CALL_LOG,
-                android.Manifest.permission.ACCESS_NETWORK_STATE,
-                android.Manifest.permission.INTERNET,
-                android.Manifest.permission.GET_ACCOUNTS,
-                android.Manifest.permission.ACCOUNT_MANAGER,
-                android.Manifest.permission.INTERNET,
-                android.Manifest.permission.READ_SYNC_SETTINGS,
-                android.Manifest.permission.WRITE_CONTACTS,
-                android.Manifest.permission.READ_CONTACTS,
-                android.Manifest.permission.READ_PHONE_STATE
-        };
-
+        Log.w(TAG,"OnCreate 1");
         String[] permissionsToRequest  = getListPermissionToRequest( permissions);
         ActivityCompat.requestPermissions(this, permissionsToRequest, REQUEST_RUNTIME_PERMISSION);
 
-
+        Log.w(TAG,"OnCreate 2");
         this.applicationBg = (ApplicationBg) this.getApplication();
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-
+        Log.w(TAG,"OnCreate 3");
 
         AccountManager accountManager = AccountManager.get(applicationBg);
         Account[] accounts = accountManager.getAccountsByType(applicationBg.ACCOUNT_TYPE);
-
-        Log.i(TAG,accounts.toString());
+        Log.w(TAG,"OnCreate 4");
+        Log.i(TAG,"accounts: "+toString(accounts));
 
         if (accounts.length == 0) { // Il n'y a pas de compte de type cafe-crm
+            Log.w(TAG,"OnCreate 5 Start Login");
             startLoginIntent();
 
         } else {
+            Log.w(TAG,"MainActivity OnCreate 6 Start ");
             try {
                 AppAccount appAccount = applicationBg.getDb().getAppAccount().getBy(AppAccountTable.KEY_MAIL, accounts[0].name);
 
                 applicationBg.setAccount(appAccount);
-                Log.i(TAG,accounts[0].toString());
-                Log.i(TAG,appAccount.toString());
+                Log.i(TAG,"accounts[0] :"+accounts[0]);
+                Log.i(TAG,"appAccount : "+appAccount);
                 Intent intent = new Intent(this, ActivityLogs.class);
                 startActivity(intent);
             } catch (Exception e) {
@@ -115,4 +123,14 @@ public class MainActivity extends AppCompatActivity {
         return strArray;
     }
 
+    private String  toString(Object[] oo){
+        if (oo == null){
+            return null;
+        }
+        String s ="";
+        for(Object o : oo){
+            s += " "+o+";";
+        }
+        return s;
+    }
 }

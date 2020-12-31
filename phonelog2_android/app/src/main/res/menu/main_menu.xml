@@ -1,35 +1,53 @@
-<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+<menu xmlns:android="http://schemas.android.com/apk/res/android"  xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
         android:id="@+id/action_display_logs"
-        android:title="@string/title_activity_display_logs"/> 
+        android:title="@string/title_activity_display_logs"
+        app:showAsAction="ifRoom"
+        />
     <item
         android:id="@+id/action_add_event"
-        android:title="@string/title_activity_display_add_event"/> 
+        android:title="@string/title_activity_display_add_event"
+        app:showAsAction="ifRoom"
+        />
    <item
         android:id="@+id/action_search_contact"
-        android:title="@string/title_activity_search_contact"/> 
+        android:title="@string/title_activity_search_contact"
+        app:showAsAction="ifRoom"
+       />
     <item
         android:id="@+id/action_display_calendars"
-        android:title="@string/title_activity_display_calendars"/> 
+        android:title="@string/title_activity_display_calendars"
+        app:showAsAction="ifRoom"
+        />
     
     <item
         android:id="@+id/action_CommentLastCall"
-        android:title="@string/title_activity_last_call"/>
+        android:title="@string/title_activity_last_call"
+        app:showAsAction="ifRoom"
+        />
    
     <item
         android:id="@+id/action_display_private_list"
-        android:title="@string/title_activity_display_private_list"/>
+        android:title="@string/title_activity_display_private_list"
+        app:showAsAction="ifRoom"
+        />
     
     <item
         android:id="@+id/action_list_calendar"
-        android:title="@string/title_list_calendars"/>
+        android:title="@string/title_list_calendars"
+        app:showAsAction="ifRoom"
+        />
    <item
         android:id="@+id/action_setting_preferences"
-        android:title="@string/title_setting"/>
+        android:title="@string/title_setting"
+       app:showAsAction="ifRoom"
+       />
   <item
         android:id="@+id/action_setting_preferences_mail_smtp"
-        android:title="@string/title_setting_mail_smtp"/>
+        android:title="@string/title_setting_mail_smtp"
+      app:showAsAction="ifRoom"
+      />
    <item
         android:id="@+id/action_setting_imports"
         android:title="@string/title_imports"> 
@@ -41,15 +59,22 @@
         			android:id="@+id/action_import_event_crm"
        				android:title="@string/title_import_events_crm"/>
  		 </menu>
+       app:showAsAction="ifRoom"
      </item>
      <item
         android:id="@+id/action_send_cafe_crm_link_by_sms"
-        android:title="@string/send_cafe_crm_link_by_sms_title"/>
+        android:title="@string/send_cafe_crm_link_by_sms_title"
+         app:showAsAction="ifRoom"
+         />
      <item
         android:id="@+id/action_trace_debug"
-        android:title="@string/action_trace_debug_title"/>
+        android:title="@string/action_trace_debug_title"
+         app:showAsAction="ifRoom"
+         />
      <item
         android:id="@+id/action_about"
-        android:title="@string/about_title"/>
+        android:title="@string/about_title"
+         app:showAsAction="ifRoom"
+         />
 
 </menu>

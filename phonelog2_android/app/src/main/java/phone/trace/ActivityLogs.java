@@ -9,6 +9,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
 
+import androidx.appcompat.widget.Toolbar;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -20,7 +22,7 @@ import phone.trace.model.Event;
 
 public class ActivityLogs extends AbstractListActivityCrm {
 
-	private static final String TAG = "bg2";
+	private static final String TAG = "bg2 ActivityLogs";
 	private PhoneCallLArrayAdapter adapter;
 	private Spinner spinner;
 	public static String TAG_BDD_LOCALE_ = "Data Base Android";
@@ -31,7 +33,10 @@ public class ActivityLogs extends AbstractListActivityCrm {
 	protected void onCreate(Bundle savedInstanceState) {
 
 		super.onCreate(savedInstanceState);
+		Log.i("bg2", "ActivityLogs.onCreate hashcode: " + this.hashCode());
 		setContentView(R.layout.activity_logs);
+		//Toolbar toolbar = findViewById(R.id.toolbar);
+		//setSupportActionBar(toolbar);
 		applicationBg = (ApplicationBg) getApplication();
 		this.initSpinner();
 		this.logsSelected();
@@ -47,7 +52,7 @@ public class ActivityLogs extends AbstractListActivityCrm {
 			public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
 				int n = firstVisibleItem + visibleItemCount;
 				if (n >= totalItemCount){
-					Log.i("bg2","Fin de page firstVisibleItem "+firstVisibleItem+" visibleItemCount "+visibleItemCount+"  "+(firstVisibleItem+visibleItemCount)+" totalItemCount :"+totalItemCount);
+					Log.i("bg2","ActivityLogs Fin de page firstVisibleItem "+firstVisibleItem+" visibleItemCount "+visibleItemCount+"  "+(firstVisibleItem+visibleItemCount)+" totalItemCount :"+totalItemCount);
 					appendNexPage();
 				}
 			}
@@ -154,7 +159,7 @@ public class ActivityLogs extends AbstractListActivityCrm {
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
-		Log.i("bg2", "Ondestroy ACtivityLog " + this.hashCode());
+		Log.i("bg2", "ActivityLogs.ondestroy" + this.hashCode());
 	}
 
 	/*
@@ -165,7 +170,7 @@ public class ActivityLogs extends AbstractListActivityCrm {
 	@Override
 	protected void onRestart() {
 		super.onRestart();
-		Log.i("bg2", "onRestart ACtivityLog " + this.hashCode());
+		Log.i("bg2", "ActivityLogs.onRestart  " + this.hashCode());
 	}
 
 	@Override
@@ -177,7 +182,7 @@ public class ActivityLogs extends AbstractListActivityCrm {
 	
 
 	private void appendNexPage() {
-		Log.i("bg2","appendNexPage  page : "+page);
+		Log.i("bg2","ActivityLogs.appendNexPage  page : "+page);
 		Object o = spinner.getSelectedItem();
 		BgCalendar bgCalendar = (BgCalendar) o;
 		page ++;

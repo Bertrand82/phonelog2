@@ -40,7 +40,7 @@ public class ActivityLogin extends AccountAuthenticatorActivityBg {
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-		Log.i(TAG, "Start Login ");
+		Log.i(TAG, "ActivityLogin 1 onCreate ");
 		super.onCreate(savedInstanceState);
 		context = (ApplicationBg) this.getApplication();
 		AccountManager accountManager = AccountManager.get(context);
@@ -48,7 +48,7 @@ public class ActivityLogin extends AccountAuthenticatorActivityBg {
 		TagManager tagManager = TagManager.getInstance(this);
 		tagManager.setVerboseLoggingEnabled(true);
 		//ContainerOpener.openContainer(tagManager, CONTAINER_ID, OpenType.PREFER_NON_DEFAULT, null);
-
+		Log.i(TAG, "ActivityLogin 2 accounts.length  "+accounts.length);
 		if (accounts.length == 0) {
 			setContentView(R.layout.activity_login);
 			editTextAccountName = (EditText) findViewById(R.id.accountName);
@@ -68,8 +68,8 @@ public class ActivityLogin extends AccountAuthenticatorActivityBg {
 			mLoginButton.setOnClickListener(new OnClickListener() {
 				public void onClick(View v) {
 					boolean isValidLogin = isValidLogin(("" + editTextAccountName.getText()).trim());
-					Log.i(TAG, " On Click AAA isValidEmail >" + editTextAccountName.getText());
-					Log.i(TAG, " On Click BBB isValidEmail " + isValidLogin);
+					Log.i(TAG, "ActivityLogin On Click  isValidEmail >" + editTextAccountName.getText());
+					Log.i(TAG, "ActivityLogin  On Click  isValidEmail " + isValidLogin);
 					if (isValidLogin) {
 						String mail = editTextAccountName.getText().toString().trim();
 						String password = "xxx";
@@ -88,6 +88,7 @@ public class ActivityLogin extends AccountAuthenticatorActivityBg {
 					}
 				}
 			});
+			Log.i(TAG, "ActivityLogin 3 ");
 		} else {// accounts.length != 0
 			CharSequence text = "You already have an account on this phone!";
 			int duration = Toast.LENGTH_LONG;
@@ -98,7 +99,7 @@ public class ActivityLogin extends AccountAuthenticatorActivityBg {
 	}
 
 	private Boolean createAccountOnDevice(AppAccount appAccount) {
-		Log.i(TAG, "createAccountOnDevice " + appAccount);
+		Log.i(TAG, "ActivityLogin createAccountOnDevice appAccount :" + appAccount);
 		appAccount = context.getDb().getAppAccount().insert(appAccount);
 		Bundle result = null;
 		Account account = new Account(appAccount.getMail(), context.getString(R.string.ACCOUNT_TYPE));
@@ -118,7 +119,7 @@ public class ActivityLogin extends AccountAuthenticatorActivityBg {
 		} else {
 			isAccountAdded = false;
 		}
-		Log.i(TAG, "isAccountAdded " + isAccountAdded);
+		Log.i(TAG, "ActivityLogin isAccountAdded " + isAccountAdded);
 		return isAccountAdded;
 	}
 

@@ -65,7 +65,7 @@ public class UtilActivitiesCommon {
     }
 
     public static void openLogs(Activity activity) {
-        Intent intent = new Intent(activity, ActivityLogs.class);
+        Intent intent = new Intent(activity, ActivityLogs2.class);
         // intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);// Ne met pas
         // a jour la liste des Calendar dans spinner
         activity.startActivity(intent);

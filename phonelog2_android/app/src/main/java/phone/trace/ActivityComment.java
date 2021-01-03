@@ -54,7 +54,7 @@ public class ActivityComment extends AbstractActivityCrm {
 
 		// if no phonecall, we redirect the user to the logs
 		if (applicationBg.getPhoneCall() == null) {
-			Intent intent = new Intent(this, ActivityLogs.class);
+			Intent intent = new Intent(this, ActivityLogs2.class);
 			startActivity(intent);
 		} else {
 			int currentapiVersion = android.os.Build.VERSION.SDK_INT;

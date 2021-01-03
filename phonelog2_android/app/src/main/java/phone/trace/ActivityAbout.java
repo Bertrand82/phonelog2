@@ -139,7 +139,7 @@ public class ActivityAbout extends AbstractActivityCrm {
 				}
 			}
 			setEnable(true);
-			UtilActivitiesCommon.popUp(ActivityAbout.this, "Message send : code " + response.getStatusLine().getStatusCode(), messageSend,"OK", ActivityLogs.class);
+			UtilActivitiesCommon.popUp(ActivityAbout.this, "Message send : code " + response.getStatusLine().getStatusCode(), messageSend,"OK", ActivityLogs2.class);
 		}
 	}
 

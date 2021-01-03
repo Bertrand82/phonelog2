@@ -2,25 +2,32 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
-
+    <Spinner
+        android:id="@+id/bdd_spinner2"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"/>
     <ListView
         android:id="@android:id/list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true" />
+        android:layout_below="@+id/bdd_spinner2" />
 
     <TextView
-        android:id="@+id/textview_first"
+        android:id="@+id/comment_first"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/hello_first_fragment"
-     />
+        android:text="TextViewFramentFirstZZZ"
+        android:layout_below="@android:id/list"
+        />
 
     <Button
         android:id="@+id/button_first"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/next"
-         />
+        android:text="Fragment.first.buttonAAA"
+        android:layout_below="@+id/comment_first"
+        />
 </RelativeLayout>

@@ -16,6 +16,7 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
@@ -31,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String SERVICE_URL_CAFE_CRM = "http://phone-log.appspot.com/r/phonecall";
     ApplicationBg applicationBg;
 
-    private String[] permissions = {
+    private static String[] permissions = {
             android.Manifest.permission.READ_CONTACTS,
             android.Manifest.permission.WRITE_CONTACTS,
             android.Manifest.permission.READ_CALENDAR,
@@ -62,7 +63,9 @@ public class MainActivity extends AppCompatActivity {
         Log.w(TAG,"OnCreate 1");
         String[] permissionsToRequest  = getListPermissionToRequest( permissions);
         ActivityCompat.requestPermissions(this, permissionsToRequest, REQUEST_RUNTIME_PERMISSION);
-
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        setContentView(R.layout.activity_main);
         Log.w(TAG,"OnCreate 2");
         this.applicationBg = (ApplicationBg) this.getApplication();
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
@@ -85,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
                 applicationBg.setAccount(appAccount);
                 Log.i(TAG,"accounts[0] :"+accounts[0]);
                 Log.i(TAG,"appAccount : "+appAccount);
-                Intent intent = new Intent(this, ActivityLogs.class);
+                Intent intent = new Intent(this, ActivityLogs2.class);
                 startActivity(intent);
             } catch (Exception e) {
                 Log.w("bg2","ExcepXX",e);

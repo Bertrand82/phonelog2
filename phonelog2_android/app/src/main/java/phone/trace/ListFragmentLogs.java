@@ -2,14 +2,16 @@ package phone.trace;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
 
-import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.ListFragment;
 
 import java.io.Serializable;
 import java.util.List;
@@ -18,11 +20,11 @@ import phone.trace.model.Contact;
 import phone.trace.model.Event;
 
 //import android.widget.ListView;
-//@deprecated Use  ActivityLogs2
-@Deprecated
-public class ActivityLogs extends AbstractListActivityCrm {
 
-	private static final String TAG = "bg2 ActivityLogs";
+
+public class ListFragmentLogs extends ListFragment {
+
+	private static final String TAG = "bg22 ActivityLogs2";
 	private PhoneCallLArrayAdapter adapter;
 	private Spinner spinner;
 	public static String TAG_BDD_LOCALE_ = "Data Base Android";
@@ -30,12 +32,11 @@ public class ActivityLogs extends AbstractListActivityCrm {
 	private ApplicationBg applicationBg;
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	public void onCreate(Bundle savedInstanceState) {
 
 		super.onCreate(savedInstanceState);
 		Log.i("bg2", "ActivityLogs.onCreate hashcode: " + this.hashCode());
-		setContentView(R.layout.activity_logs);
-		applicationBg = (ApplicationBg) getApplication();
+		applicationBg = (ApplicationBg)this.getActivity(). getApplication();
 		this.initSpinner();
 		this.logsSelected();
 		ListView listView = getListView();
@@ -58,8 +59,21 @@ public class ActivityLogs extends AbstractListActivityCrm {
 		});
 	}
 
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+							 Bundle savedInstanceState) {
+		return inflater.inflate(R.layout.activity_logs, container, false);
+	}
+
+	@Override
+	public void onActivityCreated(Bundle savedInstanceState) {
+		super.onActivityCreated(savedInstanceState);
+		initSpinner();
+		setListAdapter(this.adapter);
+	}
+
 	private void initSpinner() {
-		spinner = (Spinner) findViewById(R.id.bdd_spinner);
+		this.spinner = (Spinner) getActivity().findViewById(R.id.bdd_spinner);
 		@SuppressWarnings("rawtypes")
 		List lisBgCalendarsSelected = applicationBg.getListCalendarsSelected();
 		Object storageDefault = applicationBg.getStorage();
@@ -72,7 +86,7 @@ public class ActivityLogs extends AbstractListActivityCrm {
 			i++;
 		}
 
-		ArrayAdapter<Object> adapterComboBox = new ArrayAdapter<Object>(this, android.R.layout.simple_spinner_item, lisBgCalendarsSelected.toArray());
+		ArrayAdapter<Object> adapterComboBox = new ArrayAdapter<Object>(this.getActivity(), android.R.layout.simple_spinner_item, lisBgCalendarsSelected.toArray());
 		spinner.setAdapter(adapterComboBox);
 		spinner.setSelection(positionSelected);
 		AdapterView.OnItemSelectedListener onItemSelectedListener = new AdapterView.OnItemSelectedListener() {
@@ -97,7 +111,7 @@ public class ActivityLogs extends AbstractListActivityCrm {
 
 	private void initListDisplayed(List<Event> listPhoneCAll) {
 		if (this.adapter == null) {
-			this.adapter = new PhoneCallLArrayAdapter(this, listPhoneCAll);
+			this.adapter = new PhoneCallLArrayAdapter(this.getContext(), listPhoneCAll);
 			setListAdapter(this.adapter);
 			
 		} else {
@@ -110,7 +124,7 @@ public class ActivityLogs extends AbstractListActivityCrm {
 	}
 
 	@Override
-	protected void onListItemClick(ListView listView, View v, int position, long id) {
+	public void onListItemClick(ListView listView, View v, int position, long id) {
 
 		super.onListItemClick(listView, v, position, id);
 
@@ -127,7 +141,7 @@ public class ActivityLogs extends AbstractListActivityCrm {
 
 	private void displayActivityLogDetail(Contact contact) {
 		Serializable storage = (Serializable) this.spinner.getSelectedItem();
-		UtilActivitiesCommon.displayActivityLogDetatil(this, contact, storage, false);
+		UtilActivitiesCommon.displayActivityLogDetatil(this.getActivity(), contact, storage, false);
 	}
 
 	
@@ -140,7 +154,7 @@ public class ActivityLogs extends AbstractListActivityCrm {
 
 		Object o = spinner.getSelectedItem();
 		BgCalendar bgCalendar = (BgCalendar) o;
-		List<Event> communicationList = UtilCalendar.getListEvent(this, bgCalendar, page);
+		List<Event> communicationList = UtilCalendar.getListEvent(this.getActivity(), bgCalendar, page);
 		initListDisplayed(communicationList);
 		applicationBg.setStorage(bgCalendar);
 	}
@@ -155,24 +169,15 @@ public class ActivityLogs extends AbstractListActivityCrm {
 	 * @see android.app.ListActivity#onDestroy()
 	 */
 	@Override
-	protected void onDestroy() {
+	public void onDestroy() {
 		super.onDestroy();
-		Log.i("bg2", "ActivityLogs.ondestroy" + this.hashCode());
+		Log.i(TAG, "ActivityLogs.ondestroy" + this.hashCode());
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see android.app.Activity#onRestart()
-	 */
-	@Override
-	protected void onRestart() {
-		super.onRestart();
-		Log.i("bg2", "ActivityLogs.onRestart  " + this.hashCode());
-	}
+
 
 	@Override
-	protected void onResume() {
+	public void onResume() {
 		super.onResume();
 		logsSelected();
 		adapter.notifyDataSetChanged();
@@ -184,7 +189,7 @@ public class ActivityLogs extends AbstractListActivityCrm {
 		Object o = spinner.getSelectedItem();
 		BgCalendar bgCalendar = (BgCalendar) o;
 		page ++;
-		List<Event> communicationList = UtilCalendar.getListEvent(this, bgCalendar, page);
+		List<Event> communicationList = UtilCalendar.getListEvent(this.getActivity(), bgCalendar, page);
 		if(communicationList.size()==0){
 			page--;
 		}

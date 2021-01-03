@@ -59,7 +59,7 @@
             android:allowBackup="true"
             android:icon="@drawable/ic_launcher"
             android:label="@string/app_name"
-            android:theme="@style/Theme.AppCompat.Light" >
+            android:theme="@style/NoActionBar" >
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -83,19 +83,19 @@
             android:name=".ActivityConfirmSend"
             android:label="@string/title_activity_main_confirm_send" />
         <activity
-            android:name=".ActivityLogs"
+            android:name=".ActivityLogs2"
             android:label="@string/title_activity_activity_logs"
             android:theme="@style/NoActionBar"
             />
         <activity
             android:name=".ActivityLogDetail"
             android:label="@string/title_activity_activity_log_detail"
-            android:parentActivityName=".ActivityLogs" >
+            android:parentActivityName=".ActivityLogs2" >
 
             <!-- Parent activity meta-data to support API level 7+ -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ActivityLogs" />
+                android:value=".ActivityLogs2" />
 
             <!-- intent-filter>
                 <action android:name="android.intent.action.VIEW" />

@@ -10,10 +10,10 @@ public class Navigation {
 
     public static boolean onOptionsItemSelected(View item, Activity activity) {
         Log.i(TAG,"activity "+activity);
-        if (item.getId() == R.id.buttonSettings) {
+       /*if (item.getId() == R.id.buttonSettings) {
             Navigation.openSettings(activity);
             return true;
-        }
+        }*/
         return true;
     }
 

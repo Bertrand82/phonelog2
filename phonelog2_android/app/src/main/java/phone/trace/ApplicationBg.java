@@ -98,7 +98,7 @@ public class ApplicationBg extends Application {
 		}finally{
 			Log.i(TAG," initStoragePreference storage "+storage);
 			if (storage==null){
-				Log.e(TAG,"Storage is Null!!!!!!!");
+				Log.e(TAG,"ApplicationBg initStoragePreference Storage is Null!!!!!!!");
 			}
 		}
 

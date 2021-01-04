@@ -38,6 +38,14 @@ import com.beardedhen.androidbootstrap.font.MaterialIcons;
 import com.beardedhen.androidbootstrap.font.Typicon;
 
 public class UtilActivitiesCommon {
+    static {
+        TypefaceProvider.registerDefaultIconSets();
+        logIconSet_();
+    }
+    final static boolean editMode = true;
+    final static IconSet fontAwesome = TypefaceProvider.retrieveRegisteredIconSet(FontAwesome.FONT_PATH, editMode);
+    final static IconSet typicon = TypefaceProvider.retrieveRegisteredIconSet(Typicon.FONT_PATH, editMode);
+    final static IconSet materialIcons = TypefaceProvider.retrieveRegisteredIconSet(MaterialIcons.FONT_PATH, editMode);
 
     private static String TAG = "UtilActivitiesCommon";
 
@@ -304,7 +312,12 @@ public class UtilActivitiesCommon {
     }
 
     public static void setImage(int type, AwesomeTextView faText) {
-        if (type == PhoneCall.TYPE_INCOMING_CALL) {// 1
+        Log.i("bg2"," setImage:  "+type+" | faText:"+faText);
+        Log.i("bg2"," setImage:     fontAwesome :"+fontAwesome);
+        logIconSet_();
+        if (faText == null) {
+            Log.e("bg2","setImage Oups! faText is null  Should never happen");
+        }else if (type == PhoneCall.TYPE_INCOMING_CALL) {// 1
             faText.setIcon("fa-level-down",fontAwesome);
             faText.setTextColor(Color.parseColor("#ff428bca"));
         } else if (type == PhoneCall.TYPE_OUTGOING_CALL) {// 2
@@ -320,16 +333,24 @@ public class UtilActivitiesCommon {
             faText.setIcon("fa-level-up",fontAwesome);
             faText.setTextColor(Color.parseColor("#ff5cb85c"));
         } else {
-            faText.setIcon("",fontAwesome);
+           faText.setIcon("",fontAwesome);
         }
     }
-    final static boolean editMode = true;
-    final static IconSet fontAwesome = TypefaceProvider.retrieveRegisteredIconSet(FontAwesome.FONT_PATH, editMode);
-    final static IconSet typicon = TypefaceProvider.retrieveRegisteredIconSet(Typicon.FONT_PATH, editMode);
-    final static IconSet materialIcons = TypefaceProvider.retrieveRegisteredIconSet(MaterialIcons.FONT_PATH, editMode);
+
+    static void logIconSet_ (){
+       Log.i("bg2", "IconSet2 logIconSet TypefaceProvider.getRegisteredIconSets().size "+TypefaceProvider.getRegisteredIconSets().size());
+       for(IconSet iconSet : TypefaceProvider.getRegisteredIconSets()){
+           Log.i("bg2", "logIconSet "+iconSet);
+       }
+    }
+
+
 
     public static void setImagePhoneOuMessage(int type,AwesomeTextView faText) {
-        if (type == PhoneCall.TYPE_INCOMING_CALL) {// 1
+        if (fontAwesome == null){
+            Log.w("bg2"," setImagePhoneOuMessage fontAwesome null"+fontAwesome);
+            logIconSet_();
+        }else if (type == PhoneCall.TYPE_INCOMING_CALL) {// 1
             faText.setIcon("fa-phone",fontAwesome);
         } else if (type == PhoneCall.TYPE_OUTGOING_CALL) {// 2
             faText.setIcon("fa-phone",fontAwesome);

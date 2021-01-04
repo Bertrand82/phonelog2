@@ -130,4 +130,5 @@
     <string name="hint_search">phone number or name </string>
     <string name="send_cafe_crm_link_by_sms_title">Send cafe-crm by sms</string>
     <string name="toolbar_title">ZOOORG</string>
+    <string name="buttonOK">OK</string>
 </resources>

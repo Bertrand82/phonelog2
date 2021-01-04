@@ -24,7 +24,7 @@ import com.google.android.gms.instantapps.PackageManagerCompat;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import com.beardedhen.androidbootstrap.AwesomeTextView;
 public class MainActivity extends AppCompatActivity {
 
     private String TAG = "bg "+getClass().getSimpleName();
@@ -45,11 +45,11 @@ public class MainActivity extends AppCompatActivity {
             android.Manifest.permission.INTERNET,
             android.Manifest.permission.GET_ACCOUNTS,
             android.Manifest.permission.ACCOUNT_MANAGER,
-            android.Manifest.permission.INTERNET,
             android.Manifest.permission.READ_SYNC_SETTINGS,
             android.Manifest.permission.WRITE_CONTACTS,
             android.Manifest.permission.READ_CONTACTS,
             android.Manifest.permission.READ_PHONE_STATE,
+            android.Manifest.permission.READ_PHONE_NUMBERS,
             android.Manifest.permission.READ_SMS,
             android.Manifest.permission.SEND_SMS,
             android.Manifest.permission.RECEIVE_SMS,

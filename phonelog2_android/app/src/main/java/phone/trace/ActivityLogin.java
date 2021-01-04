@@ -1,7 +1,6 @@
 package phone.trace;
 
 import android.accounts.Account;
-import android.accounts.AccountAuthenticatorActivity;
 import android.accounts.AccountManager;
 import android.content.Intent;
 import android.os.Bundle;
@@ -111,7 +110,7 @@ public class ActivityLogin extends AccountAuthenticatorActivityBg {
 			result.putString(AccountManager.KEY_ACCOUNT_TYPE, account.type);
 			setAccountAuthenticatorResult(result);
 
-			Intent intent = new Intent(context, ActivityListCalendars.class);
+			Intent intent = new Intent(context, ActivityListCalendars2.class);
 			startActivity(intent);
 
 			isAccountAdded = true;

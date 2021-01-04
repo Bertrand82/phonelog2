@@ -20,9 +20,9 @@ import phone.trace.model.Event;
 //import android.widget.ListView;
 //@deprecated Use  ActivityLogs2
 @Deprecated
-public class ActivityLogs extends AbstractListActivityCrm {
+public class ActivityLogs___OLD extends AbstractListActivityCrm {
 
-	private static final String TAG = "bg2 ActivityLogs";
+	private static final String TAG = "bg2 ActivityLogs___OLD";
 	private PhoneCallLArrayAdapter adapter;
 	private Spinner spinner;
 	public static String TAG_BDD_LOCALE_ = "Data Base Android";
@@ -33,7 +33,7 @@ public class ActivityLogs extends AbstractListActivityCrm {
 	protected void onCreate(Bundle savedInstanceState) {
 
 		super.onCreate(savedInstanceState);
-		Log.i("bg2", "ActivityLogs.onCreate hashcode: " + this.hashCode());
+		Log.i("bg2", "ActivityLogs___OLD.onCreate hashcode: " + this.hashCode());
 		setContentView(R.layout.activity_logs);
 		applicationBg = (ApplicationBg) getApplication();
 		this.initSpinner();
@@ -50,7 +50,7 @@ public class ActivityLogs extends AbstractListActivityCrm {
 			public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
 				int n = firstVisibleItem + visibleItemCount;
 				if (n >= totalItemCount){
-					Log.i("bg2","ActivityLogs Fin de page firstVisibleItem "+firstVisibleItem+" visibleItemCount "+visibleItemCount+"  "+(firstVisibleItem+visibleItemCount)+" totalItemCount :"+totalItemCount);
+					Log.i("bg2","ActivityLogs___OLD Fin de page firstVisibleItem "+firstVisibleItem+" visibleItemCount "+visibleItemCount+"  "+(firstVisibleItem+visibleItemCount)+" totalItemCount :"+totalItemCount);
 					appendNexPage();
 				}
 			}
@@ -120,7 +120,7 @@ public class ActivityLogs extends AbstractListActivityCrm {
 		// ListView Clicked item value
 		Event itemValue = (Event) listView.getItemAtPosition(position);
 
-		Log.i(TAG, "ActivityLogs.onListItemClick :   Position :" + itemPosition + "   ListItem : " + itemValue);
+		Log.i(TAG, "ActivityLogs___OLD.onListItemClick :   Position :" + itemPosition + "   ListItem : " + itemValue);
 		displayActivityLogDetail((Contact) itemValue.getContact());
 
 	}
@@ -157,7 +157,7 @@ public class ActivityLogs extends AbstractListActivityCrm {
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
-		Log.i("bg2", "ActivityLogs.ondestroy" + this.hashCode());
+		Log.i("bg2", "ActivityLogs___OLD.ondestroy" + this.hashCode());
 	}
 
 	/*
@@ -168,7 +168,7 @@ public class ActivityLogs extends AbstractListActivityCrm {
 	@Override
 	protected void onRestart() {
 		super.onRestart();
-		Log.i("bg2", "ActivityLogs.onRestart  " + this.hashCode());
+		Log.i("bg2", "ActivityLogs___OLD.onRestart  " + this.hashCode());
 	}
 
 	@Override
@@ -180,7 +180,7 @@ public class ActivityLogs extends AbstractListActivityCrm {
 	
 
 	private void appendNexPage() {
-		Log.i("bg2","ActivityLogs.appendNexPage  page : "+page);
+		Log.i("bg2","ActivityLogs___OLD.appendNexPage  page : "+page);
 		Object o = spinner.getSelectedItem();
 		BgCalendar bgCalendar = (BgCalendar) o;
 		page ++;

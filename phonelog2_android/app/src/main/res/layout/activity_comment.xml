@@ -38,7 +38,7 @@
             android:textColor="#bbb"
             android:textSize="14sp" />
 
-        <com.beardedhen.androidbootstrap.FontAwesomeText
+        <com.beardedhen.androidbootstrap.AwesomeTextView
             android:id="@+id/logoType"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -47,7 +47,7 @@
             android:layout_toLeftOf="@+id/logoPhoneOuMessage"
             android:textSize="12sp" />
 
-        <com.beardedhen.androidbootstrap.FontAwesomeText
+        <com.beardedhen.androidbootstrap.AwesomeTextView
             android:id="@+id/logoPhoneOuMessage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

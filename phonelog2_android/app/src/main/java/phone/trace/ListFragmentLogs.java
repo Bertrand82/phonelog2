@@ -35,7 +35,7 @@ public class ListFragmentLogs extends ListFragment {
 	public void onCreate(Bundle savedInstanceState) {
 
 		super.onCreate(savedInstanceState);
-		Log.i("bg2", "ActivityLogs.onCreate hashcode: " + this.hashCode());
+		Log.i("bg2", "ActivityLogs___OLD.onCreate hashcode: " + this.hashCode());
 		applicationBg = (ApplicationBg)this.getActivity(). getApplication();
 		this.initSpinner();
 		this.logsSelected();
@@ -51,7 +51,7 @@ public class ListFragmentLogs extends ListFragment {
 			public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
 				int n = firstVisibleItem + visibleItemCount;
 				if (n >= totalItemCount){
-					Log.i("bg2","ActivityLogs Fin de page firstVisibleItem "+firstVisibleItem+" visibleItemCount "+visibleItemCount+"  "+(firstVisibleItem+visibleItemCount)+" totalItemCount :"+totalItemCount);
+					Log.i("bg2","ActivityLogs___OLD Fin de page firstVisibleItem "+firstVisibleItem+" visibleItemCount "+visibleItemCount+"  "+(firstVisibleItem+visibleItemCount)+" totalItemCount :"+totalItemCount);
 					appendNexPage();
 				}
 			}
@@ -134,7 +134,7 @@ public class ListFragmentLogs extends ListFragment {
 		// ListView Clicked item value
 		Event itemValue = (Event) listView.getItemAtPosition(position);
 
-		Log.i(TAG, "ActivityLogs.onListItemClick :   Position :" + itemPosition + "   ListItem : " + itemValue);
+		Log.i(TAG, "ActivityLogs___OLD.onListItemClick :   Position :" + itemPosition + "   ListItem : " + itemValue);
 		displayActivityLogDetail((Contact) itemValue.getContact());
 
 	}
@@ -171,7 +171,7 @@ public class ListFragmentLogs extends ListFragment {
 	@Override
 	public void onDestroy() {
 		super.onDestroy();
-		Log.i(TAG, "ActivityLogs.ondestroy" + this.hashCode());
+		Log.i(TAG, "ActivityLogs___OLD.ondestroy" + this.hashCode());
 	}
 
 
@@ -185,7 +185,7 @@ public class ListFragmentLogs extends ListFragment {
 	
 
 	private void appendNexPage() {
-		Log.i("bg2","ActivityLogs.appendNexPage  page : "+page);
+		Log.i("bg2","ActivityLogs___OLD.appendNexPage  page : "+page);
 		Object o = spinner.getSelectedItem();
 		BgCalendar bgCalendar = (BgCalendar) o;
 		page ++;

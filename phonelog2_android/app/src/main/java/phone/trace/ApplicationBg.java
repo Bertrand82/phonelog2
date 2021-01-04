@@ -3,6 +3,7 @@ package phone.trace;
 
 import android.accounts.Account;
 import android.accounts.AccountManager;
+import android.annotation.SuppressLint;
 import android.app.Application;
 import android.content.ComponentName;
 import android.content.Context;
@@ -51,7 +52,9 @@ public class ApplicationBg extends Application {
 
 
 	public ApplicationBg() {
+
 		super();
+		this.callManager=new CallManager(this);
 	}
 
 	@Override
@@ -64,6 +67,7 @@ public class ApplicationBg extends Application {
 		Log.i(TAG,"PhoneCallService started   componentNamePhoneCall :"+componentNamePhoneCall);
 		// Recupere la liste des Calendar du Telephone
 		UtilCalendar.runQueryListCalendar(listCalendars, getContentResolver());
+		Log.i(TAG,"listCalendars size : "+listCalendars.size());
 		// Regarde si dans cette liste des calendars sont selected
 		this.db.getCalendarsSelected().setSelectedParam(this.listCalendars);
 		this.initStoragePreference();
@@ -90,9 +94,12 @@ public class ApplicationBg extends Application {
 			}
 
 		} catch (Exception e) {
-			Log.w(TAG," initStoragePreference Exception "+e.getMessage());
+			Log.e(TAG," initStoragePreference Exception "+e.getMessage());
 		}finally{
 			Log.i(TAG," initStoragePreference storage "+storage);
+			if (storage==null){
+				Log.e(TAG,"Storage is Null!!!!!!!");
+			}
 		}
 
 	}
@@ -140,6 +147,7 @@ public class ApplicationBg extends Application {
 	public void setDb(DbHelper db) {
 		this.db = db;
 	}
+
 
 
 

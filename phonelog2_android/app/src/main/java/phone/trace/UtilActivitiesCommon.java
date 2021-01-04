@@ -94,7 +94,7 @@ public class UtilActivitiesCommon {
     }
 
     public static void openListCalendars(Activity activity) {
-        Intent intent = new Intent(activity, ActivityListCalendars.class);
+        Intent intent = new Intent(activity, ActivityListCalendars2.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
 
         activity.startActivity(intent);
@@ -430,7 +430,7 @@ public class UtilActivitiesCommon {
 
     private static void displayActivity(Context context, Contact contact, Serializable storage, boolean newActivity, @SuppressWarnings("rawtypes") Class clazz) {
 
-        Log.i("bg2", "ActivityLogs.displayActivityLogDetail " + contact + "  Storage:" + storage + "   class: " + clazz);
+        Log.i("bg2", "ActivityLogs___OLD.displayActivityLogDetail " + contact + "  Storage:" + storage + "   class: " + clazz);
 
         Intent intent = new Intent(context, clazz);
         Bundle b = new Bundle();

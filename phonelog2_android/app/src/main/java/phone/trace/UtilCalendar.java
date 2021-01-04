@@ -154,6 +154,7 @@ public class UtilCalendar {
 			// Use the cursor to step through the returned records
 			listCalendars.clear();
 			while (cur.moveToNext()) {
+				Log.i("bg2","runQueryListCalendar i:"+i);
 				i++;
 
 				// Get the field values
@@ -168,7 +169,7 @@ public class UtilCalendar {
 				listCalendars.add(bgCalendar);
 			}
 			cur.close();
-			
+			Log.i("bg2","runQueryListCalendar nb de result :"+i);
 		} catch (Exception e) {
 			Log.w("bg2", "runQueryListCalendar Exception", e);
 		}

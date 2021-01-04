@@ -307,7 +307,7 @@ public class ActivityLogDetail extends AbstractListActivityCrm {
 		} else if (display == DISPLAY_PHONE_LIST) {
 			this.buttonDisplayCRM_.setText("CRM");
 		}
-		// ActivityLogs.displayActivity(this, contact, storage, false,
+		// ActivityLogs___OLD.displayActivity(this, contact, storage, false,
 		// ActivityDisplayCRM________________DEPRECATED.class);
 		setListEvents();
 		adapter.notifyDataSetChanged();

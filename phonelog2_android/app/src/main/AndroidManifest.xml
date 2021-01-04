@@ -24,6 +24,7 @@
 
     <!-- Phone -->
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_NUMBERS" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.READ_CALL_LOG" />
     <uses-permission android:name="android.permission.WRITE_CALL_LOG" />
@@ -106,8 +107,9 @@
             </intent-filter-->
         </activity>
         <activity
-            android:name=".ActivityListCalendars"
-            android:label="@string/app_name" />
+            android:name=".ActivityListCalendars2"
+            android:label="@string/app_name"
+            android:theme="@style/NoActionBar"/>
         <!-- Receivers -->
 
         <receiver

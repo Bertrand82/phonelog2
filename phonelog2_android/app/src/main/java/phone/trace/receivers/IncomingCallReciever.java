@@ -28,18 +28,20 @@ public class IncomingCallReciever extends BroadcastReceiver {
 
 	@Override
 	public void onReceive(Context context, Intent intent) {
+		Log.v("bg2","IncomingCallReciever.onReceive ----------- Start");
 		this.applicationBg = (ApplicationBg) context.getApplicationContext();
 		if ("android.provider.Telephony.SMS_RECEIVED".equals(intent.getAction())) {
-			processSmsREceived(context, intent);
+			processSmsReceived(context, intent);
 		}
 		if ("android.intent.action.PHONE_STATE".equals(intent.getAction())) {
 			this.applicationBg.getCallManager().processTelephone(context,intent);
-		}	
+		}
+		Log.v("bg2","IncomingCallReciever.onReceive ----------- End");
 	}
 
 	
 
-	private void processSmsREceived(Context context, Intent intent) {
+	private void processSmsReceived(Context context, Intent intent) {
 		Log.i(TAG, "SMS_RECEIVED");
 		Bundle bundle = intent.getExtras(); // ---get the SMS message passed
 											// in---

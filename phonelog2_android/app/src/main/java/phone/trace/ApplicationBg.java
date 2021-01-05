@@ -10,6 +10,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 
@@ -24,6 +25,7 @@ import phone.trace.model.AppAccount;
 import phone.trace.model.Contact;
 import phone.trace.model.PhoneCall;
 import phone.trace.receivers.CallManager;
+import phone.trace.receivers2.PhoneStateListener2;
 import phone.trace.services.call.PhoneCallService;
 import phone.trace.sms.SmsObserver;
 import phone.trace.sms.SmsSendService;
@@ -45,6 +47,8 @@ public class ApplicationBg extends Application {
 	private List<BgCalendar> listCalendars = new ArrayList<BgCalendar>();
 	private long time_HOOK =0;
 	private SmsObserver smsObserverBg__;
+	private TelephonyManager  telephonyManager =null;
+	private PhoneStateListener2 phoneListener=null;
 
 	private CallManager callManager ;
 
@@ -61,7 +65,10 @@ public class ApplicationBg extends Application {
 	public void onCreate() {
 		super.onCreate();
 		this.db = new DbHelper(this);
-
+		this.telephonyManager= (TelephonyManager) this.getSystemService(Context.TELEPHONY_SERVICE);
+		phoneListener = new PhoneStateListener2(this);
+		// Register listener for LISTEN_CALL_STATE
+		telephonyManager.listen(phoneListener, PhoneStateListener2.LISTEN_CALL_STATE);
 		ComponentName componentNameSms = startService(new Intent(this, SmsSendService.class));
 		ComponentName componentNamePhoneCall =startService(new Intent(this, PhoneCallService.class));
 		Log.i(TAG,"PhoneCallService started   componentNamePhoneCall :"+componentNamePhoneCall);
@@ -106,7 +113,9 @@ public class ApplicationBg extends Application {
 
 	@Override
 	public void onTerminate() {
-
+		if (telephonyManager!= null) {
+			this.telephonyManager.listen(this.phoneListener, PhoneStateListener.LISTEN_NONE);
+		}
 		super.onTerminate();
 	}
 

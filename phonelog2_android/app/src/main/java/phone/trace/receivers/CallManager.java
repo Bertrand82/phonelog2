@@ -29,6 +29,7 @@ public class CallManager {
 			
 	}
 
+	@Deprecated
 	public void processTelephone(Context context, Intent intent) {
 		String stateTelephonyManager = intent.getStringExtra(TelephonyManager.EXTRA_STATE);
 		//Log.i(TAG, "CallManager.stateTelephonyManager  :  " + stateTelephonyManager + "   Z_1 : " + stateTelephonyManager_Z_1);

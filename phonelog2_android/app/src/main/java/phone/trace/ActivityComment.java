@@ -43,17 +43,20 @@ public class ActivityComment extends AbstractActivityCrm {
 	protected void onCreate(Bundle savedInstanceState) {
 
 		super.onCreate(savedInstanceState);
+		Log.i("bg2","ActivityComment onCreate");
 		this.applicationBg = this.getApplicationBg();
-		Bundle b = getIntent().getExtras();
-		if (b == null) {
+		Bundle bundle = getIntent().getExtras();
+		Log.i("bg2","ActivityComment onCreate bundle : "+bundle);
+		if (bundle == null) {
 			this.storage = null;
 		} else {
-			this.storage = (BgCalendar) b.getSerializable("storage");
-			this.mailSent=b.getBoolean(KEY_SENT_MAIL, false);
+			this.storage = (BgCalendar) bundle.getSerializable("storage");
+			this.mailSent=bundle.getBoolean(KEY_SENT_MAIL, false);
 		}
 
 		// if no phonecall, we redirect the user to the logs
 		if (applicationBg.getPhoneCall() == null) {
+			Log.i("bg2","ActivityComment NoPhoneCall redirect on logs");
 			Intent intent = new Intent(this, ActivityLogs2.class);
 			startActivity(intent);
 		} else {

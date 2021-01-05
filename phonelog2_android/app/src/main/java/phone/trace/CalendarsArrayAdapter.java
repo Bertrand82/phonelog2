@@ -36,8 +36,7 @@ public class CalendarsArrayAdapter extends ArrayAdapter<BgCalendar>{
 		View rowView =  inflater.inflate(R.layout.item_list_calendar, parent, false);
 		try {
 			final BgCalendar calendar = listCalendars.get(position);
-			Log.i("bg2"," getView calendar : "+calendar.isSelected());
-			
+
 			final CheckBox checkBox = (CheckBox) rowView.findViewById(R.id.calendarSelected);
 			checkBox.setChecked(calendar.isSelected());
 			checkBox.setOnClickListener(new View.OnClickListener() {

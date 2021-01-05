@@ -19,6 +19,9 @@ import phone.trace.model.AppAccount;
 import phone.trace.model.Contact;
 import phone.trace.model.PhoneCall;
 
+/**
+ * Observe la base de données ou sont stockés les appels.
+ */
 public class PhoneCallObserver extends ContentObserver {
 	
 	private static String TAG = "bg2";
@@ -65,9 +68,9 @@ public class PhoneCallObserver extends ContentObserver {
 		} else if (number.equals(number_Z_1) && (phoneCall.getDate() == timeStart_Z_1) ) {
 			Log.w(TAG, "PhoneCallObserver queryPhoneCall already processed " + phoneCall);
 		} else {
-			Log.w(TAG, "PhoneCallObserver queryPhoneCall ok process :" + phoneCall);
-			phoneCall.setId(0);// Si Id !0, il ne sera pas inser�. // TODO
-								// GArder l'id de la table CALLS
+			Log.w(TAG, "PhoneCallObserver queryPhoneCall ok process ");
+			phoneCall.setId(0);// Si Id !0, il ne sera pas inseré. // TODO
+								// Garder l'id de la table CALLS
 			processPhoneCall(phoneCall);
 			id_Z_1 = phoneCall.getId();
 			timeStart_Z_1 = phoneCall.getDate();
@@ -82,14 +85,19 @@ public class PhoneCallObserver extends ContentObserver {
 	}
 	
 	private void processPhoneCall(PhoneCall phoneCall){
+
 		String number = phoneCall.getContact().getNumber();
 		boolean  isPrivate = this.applicationBg_.getDb().getContact().isPrivateByNumber(number);
+		Log.i(TAG,"PhoneCallObserver processPhoneCall number :"+number+" isPrivate :"+isPrivate);
 		phoneCall.getContact().setPrivate(isPrivate);
 		long age = System.currentTimeMillis()  -(phoneCall.getDate()+phoneCall.getDuration_ms());
 		if (age >60L*1000L){
-			// C'est un bug. Il ya des fauuses  alertes parfois
+			Log.i(TAG,"PhoneCallObserver processPhoneCall Fausse Alerte");
+			// C'est un bug. Il ya des fausses  alertes parfois
 		} else if (phoneCall.getContact().isPrivate(this.applicationBg_)) {
+			Log.i(TAG,"PhoneCallObserver processPhoneCall isPrivate");
 		} else if (phoneCall.equals2(phoneCall_Z_1)) {
+			Log.i(TAG,"PhoneCallObserver processPhoneCall equals Z_1");
 		}else{
 			//applicationBg_.getDb().getPhoneCall().insert(phoneCall);
 			HashMap<BgCalendar,  Long> hIds = UtilCalendar.insertEventInSelectedCalendars(applicationBg_, phoneCall);
@@ -141,15 +149,19 @@ public class PhoneCallObserver extends ContentObserver {
 	}
 	
 	private void showPhoneCallDialog_( PhoneCall phoneCall) {
+		Log.i(TAG,"processPhoneCall showPhoneCallDialog debut");
 		phoneCall_Z_1=phoneCall;
-		Log.v(TAG, "showAlertDialog PhoneCall :" + phoneCall);
+		Log.v(TAG, "processPhoneCall showAlertDialog PhoneCall :" + phoneCall);
 		this.applicationBg_.setPhoneCall(phoneCall);
-		Log.v(TAG, "startAlertDialog NotificationActivated : "+applicationBg_.getNotificationActivated());
+		Log.v(TAG, "processPhoneCall startAlertDialog NotificationActivated : "+applicationBg_.getNotificationActivated());
 		if (applicationBg_.getNotificationActivated()){
+			Log.i(TAG,"processPhoneCall showPhoneCallDialog startActivity");
 			Intent intent = new Intent(applicationBg_, ActivityComment.class);
 			intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 			intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
 			applicationBg_.startActivity(intent);
+		}else {
+			Log.v(TAG, "processPhoneCall No Phone AlertDialog ActivityComment No Activated");
 		}
 		//SenderMail senderMAil = new SenderMail(applicationBg_,  "Phone Call "+phoneCall, "Historic ");
 		//senderMAil.execute("");

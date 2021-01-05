@@ -40,7 +40,10 @@ import com.beardedhen.androidbootstrap.font.Typicon;
 public class UtilActivitiesCommon {
     static {
         TypefaceProvider.registerDefaultIconSets();
-        logIconSet_();
+        Log.i("bg2", "IconSet logIconSet TypefaceProvider.getRegisteredIconSets().size "+TypefaceProvider.getRegisteredIconSets().size());
+        for(IconSet iconSet : TypefaceProvider.getRegisteredIconSets()){
+            Log.i("bg2", "logIconSet "+iconSet);
+        }
     }
     final static boolean editMode = true;
     final static IconSet fontAwesome = TypefaceProvider.retrieveRegisteredIconSet(FontAwesome.FONT_PATH, editMode);
@@ -312,9 +315,6 @@ public class UtilActivitiesCommon {
     }
 
     public static void setImage(int type, AwesomeTextView faText) {
-        Log.i("bg2"," setImage:  "+type+" | faText:"+faText);
-        Log.i("bg2"," setImage:     fontAwesome :"+fontAwesome);
-        logIconSet_();
         if (faText == null) {
             Log.e("bg2","setImage Oups! faText is null  Should never happen");
         }else if (type == PhoneCall.TYPE_INCOMING_CALL) {// 1
@@ -327,7 +327,7 @@ public class UtilActivitiesCommon {
             faText.setIcon("fa-level-down",fontAwesome);
             faText.setTextColor(Color.parseColor("#ffd9534f"));
         } else if (type == PhoneCall.TYPE_INCOMING_SMS) {// 3
-            faText.setIcon("fa-level-down",null);
+            faText.setIcon("fa-level-down",fontAwesome);
             faText.setTextColor(Color.parseColor("#ff428bca"));
         } else if (type == PhoneCall.TYPE_OUTGOING_SMS) {// 3
             faText.setIcon("fa-level-up",fontAwesome);
@@ -337,19 +337,13 @@ public class UtilActivitiesCommon {
         }
     }
 
-    static void logIconSet_ (){
-       Log.i("bg2", "IconSet2 logIconSet TypefaceProvider.getRegisteredIconSets().size "+TypefaceProvider.getRegisteredIconSets().size());
-       for(IconSet iconSet : TypefaceProvider.getRegisteredIconSets()){
-           Log.i("bg2", "logIconSet "+iconSet);
-       }
-    }
+
 
 
 
     public static void setImagePhoneOuMessage(int type,AwesomeTextView faText) {
         if (fontAwesome == null){
-            Log.w("bg2"," setImagePhoneOuMessage fontAwesome null"+fontAwesome);
-            logIconSet_();
+            Log.w("bg2"," setImagePhoneOuMessage fontAwesome null  !! Should never happen");
         }else if (type == PhoneCall.TYPE_INCOMING_CALL) {// 1
             faText.setIcon("fa-phone",fontAwesome);
         } else if (type == PhoneCall.TYPE_OUTGOING_CALL) {// 2
@@ -366,7 +360,7 @@ public class UtilActivitiesCommon {
     }
 
     public static void popUp(Context context, String title, String message) {
-        Log.i("bg2", "Pop up");
+        Log.i("bg2", "Pop up "+title+" message "+message);
         AlertDialog alertDialog = new AlertDialog.Builder(context).create();
         alertDialog.setTitle(title);
         alertDialog.setMessage(message);
@@ -451,7 +445,7 @@ public class UtilActivitiesCommon {
 
     private static void displayActivity(Context context, Contact contact, Serializable storage, boolean newActivity, @SuppressWarnings("rawtypes") Class clazz) {
 
-        Log.i("bg2", "ActivityLogs___OLD.displayActivityLogDetail " + contact + "  Storage:" + storage + "   class: " + clazz);
+        Log.i("bg2", "ActivityLogs2.displayActivityLogDetail " + contact + "  Storage:" + storage + "   class: " + clazz);
 
         Intent intent = new Intent(context, clazz);
         Bundle b = new Bundle();

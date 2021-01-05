@@ -54,7 +54,11 @@ public class MainActivity extends AppCompatActivity {
             android.Manifest.permission.SEND_SMS,
             android.Manifest.permission.RECEIVE_SMS,
             android.Manifest.permission.WAKE_LOCK,
-            android.Manifest.permission.WRITE_EXTERNAL_STORAGE
+            android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            android.Manifest.permission.CALL_PHONE,
+            android.Manifest.permission.REORDER_TASKS
+          //  Manifest.permission.CALL_PRIVILEGED
+
     };
 
     @Override

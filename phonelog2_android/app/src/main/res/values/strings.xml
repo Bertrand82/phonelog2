@@ -10,7 +10,7 @@
     <string name="title_home" translatable="false">Home</string>
 
     <!-- Application -->
-    <string name="app_name">Cafe-crm-2</string>
+    <string name="app_name">Petit\'crm</string>
     <string name="view_diary">Log</string>
     <string name="ACCOUNT_TYPE" translatable="false">com.cafe_crm.account</string>
 

@@ -59,11 +59,11 @@ public class ActivityComment extends AbstractActivityCrm {
 			Log.i("bg2","ActivityComment NoPhoneCall redirect on logs");
 			Intent intent = new Intent(this, ActivityLogs2.class);
 			startActivity(intent);
-		} else {
-			int currentapiVersion = android.os.Build.VERSION.SDK_INT;
+		} else {// Il y a un phone call
+			/*int currentapiVersion = android.os.Build.VERSION.SDK_INT;
 			if (currentapiVersion >= 11) {
 				getActionBar().setDisplayHomeAsUpEnabled(true);
-			}
+			}*/
 
 			phoneCall = applicationBg.getPhoneCall();
 

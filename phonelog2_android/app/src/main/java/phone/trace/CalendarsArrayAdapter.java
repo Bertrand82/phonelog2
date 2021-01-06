@@ -55,9 +55,13 @@ public class CalendarsArrayAdapter extends ArrayAdapter<BgCalendar>{
 			
 			TextView textViewNumber = (TextView) rowView.findViewById(R.id.accountName);
 			textViewNumber.setText(calendar.getAccountName());
-			
+			// On ne met pas 2 fois le même nom
+			String ownerName = calendar.getOwnerName();
+			if ((""+ownerName.trim()).equals((""+calendar.getDisplayName()).trim())){
+				ownerName="";
+			}
 			TextView textViewDate = (TextView) rowView.findViewById(R.id.ownerName);
-			textViewDate.setText(calendar.getOwnerName());
+			textViewDate.setText(ownerName);
 		} catch (Exception e) {
 			Log.w("bg2"," getView Exception ",e);
 		}

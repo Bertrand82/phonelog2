@@ -149,13 +149,14 @@ public class PhoneCallObserver extends ContentObserver {
 	}
 	
 	private void showPhoneCallDialog_( PhoneCall phoneCall) {
-		Log.i(TAG,"processPhoneCall showPhoneCallDialog debut");
+		Log.i(TAG,"processPhoneCall showPhoneCallDialog debut isForeground :"+applicationBg_.isForeground());
 		phoneCall_Z_1=phoneCall;
 		Log.v(TAG, "processPhoneCall showAlertDialog PhoneCall :" + phoneCall);
 		this.applicationBg_.setPhoneCall(phoneCall);
 		Log.v(TAG, "processPhoneCall startAlertDialog NotificationActivated : "+applicationBg_.getNotificationActivated());
 		if (applicationBg_.getNotificationActivated()){
-			Log.i(TAG,"processPhoneCall showPhoneCallDialog startActivity");
+
+			Log.i(TAG,"processPhoneCall showPhoneCallDialog startActivity isForeground :"+applicationBg_.isForeground());
 			Intent intent = new Intent(applicationBg_, ActivityComment.class);
 			intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 			intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);

@@ -154,7 +154,7 @@ public class UtilCalendar {
 			// Use the cursor to step through the returned records
 			listCalendars.clear();
 			while (cur.moveToNext()) {
-				Log.i("bg2","runQueryListCalendar i:"+i);
+
 				i++;
 
 				// Get the field values
@@ -163,10 +163,14 @@ public class UtilCalendar {
 				String accountName = cur.getString(PROJECTION_ACCOUNT_NAME_INDEX);
 				String ownerName = cur.getString(PROJECTION_OWNER_ACCOUNT_INDEX);
 				String accountType = cur.getString(PROJECTION_ACCOUNT_TYPE);
-
+				Log.i("bg2","runQueryListCalendar i:"+i+" displayName :"+displayName+"  accountName :"+accountName+" ownerName :"+ownerName+"  accountType: " +accountType);
 				// Do something with the values...
-				BgCalendar bgCalendar = new BgCalendar(displayName, accountName, ownerName, calID, accountType);
-				listCalendars.add(bgCalendar);
+				if (CalendarContract.ACCOUNT_TYPE_LOCAL.equals(accountType)) {
+					// A priori on elimine ce type de calendar. (Voir javadoc sur ACCOUNT_TYPE_LOCAL)
+				}else {
+					BgCalendar bgCalendar = new BgCalendar(displayName, accountName, ownerName, calID, accountType);
+					listCalendars.add(bgCalendar);
+				}
 			}
 			cur.close();
 			Log.i("bg2","runQueryListCalendar nb de result :"+i);

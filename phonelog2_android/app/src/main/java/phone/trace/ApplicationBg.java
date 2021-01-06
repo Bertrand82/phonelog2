@@ -14,6 +14,11 @@ import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 
+import androidx.lifecycle.Lifecycle;
+import androidx.lifecycle.LifecycleObserver;
+import androidx.lifecycle.OnLifecycleEvent;
+import androidx.lifecycle.ProcessLifecycleOwner;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -31,7 +36,7 @@ import phone.trace.sms.SmsObserver;
 import phone.trace.sms.SmsSendService;
 
 
-public class ApplicationBg extends Application {
+public class ApplicationBg extends Application  implements LifecycleObserver {
 
 
 	private String TAG = "bg2";
@@ -49,6 +54,7 @@ public class ApplicationBg extends Application {
 	private SmsObserver smsObserverBg__;
 	private TelephonyManager  telephonyManager =null;
 	private PhoneStateListener2 phoneListener=null;
+	private boolean isForeground= false;
 
 	private CallManager callManager ;
 
@@ -64,6 +70,7 @@ public class ApplicationBg extends Application {
 	@Override
 	public void onCreate() {
 		super.onCreate();
+		ProcessLifecycleOwner.get().getLifecycle().addObserver(this);
 		this.db = new DbHelper(this);
 		this.telephonyManager= (TelephonyManager) this.getSystemService(Context.TELEPHONY_SERVICE);
 		phoneListener = new PhoneStateListener2(this);
@@ -296,7 +303,21 @@ public class ApplicationBg extends Application {
 		this.contactCurrent = contactCurrent;
 	}
 
+	@OnLifecycleEvent(Lifecycle.Event.ON_STOP)
+	public void onAppBackgrounded() {
+		//App in background
+		isForeground=false;
+	}
 
+	@OnLifecycleEvent(Lifecycle.Event.ON_START)
+	public void onAppForegrounded() {
+		// App in foreground
+		isForeground=true;
+	}
+
+	public boolean isForeground() {
+		return isForeground;
+	}
 
 	class TraceDebug{
 		String message="";

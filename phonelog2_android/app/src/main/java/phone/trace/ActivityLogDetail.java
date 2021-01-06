@@ -55,10 +55,10 @@ public class ActivityLogDetail extends AbstractListActivityCrm {
 		Boolean isMaskable = b.getBoolean(KEY_MASKABLE, false);
 		Log.i("bg2", "ActivityLogDetail    contact : " + contact + "  storage " + storage);
 		int currentapiVersion = android.os.Build.VERSION.SDK_INT;
-		if (currentapiVersion >= 11) {
+		/*if (currentapiVersion >= 11) {
 			ActionBar actionBar = super.getActionBar();
 			actionBar.setDisplayHomeAsUpEnabled(true);
-		}
+		}*/
 
 		setContentView(R.layout.activity_log_detail);
 		

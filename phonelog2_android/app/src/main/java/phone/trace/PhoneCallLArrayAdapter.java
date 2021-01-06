@@ -34,6 +34,7 @@ public class PhoneCallLArrayAdapter extends ArrayAdapter<Event> {
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
+
 		if (position >= listEvents.size()) {
 			Log.w(TAG, "PhoneCallArrayAdapter getView position>= listEvents.size !!! position: " + position + "  listEvents.size :" + listEvents.size() + " " + listEvents);
 			TextView textView = new TextView(context);
@@ -47,9 +48,12 @@ public class PhoneCallLArrayAdapter extends ArrayAdapter<Event> {
 
 		TextView textViewName = (TextView) rowView.findViewById(R.id.labelName);
 		textViewName.setText(event.getContact().getExtra(context).getDisplayName());
+		textViewName.setTag(event.getContact());
+
 
 		TextView textViewNumber = (TextView) rowView.findViewById(R.id.labelNumber);
 		textViewNumber.setText(event.getContact().getNumber());
+		textViewNumber.setTag(event.getContact());
 
 		TextView textViewDate = (TextView) rowView.findViewById(R.id.labelDDate);
 		String dateAsHour  = ""+event.getDateAsHour();
@@ -78,6 +82,7 @@ public class PhoneCallLArrayAdapter extends ArrayAdapter<Event> {
 
 		TextView textViewPhoto = (TextView) rowView.findViewById(R.id.logoPhotoText);
 		ImageView imageViewPhoto = (ImageView) rowView.findViewById(R.id.logoPhoto);
+		textViewPhoto.setTag(event.getContact());
 		UtilLogoPhoto.init(context, textViewPhoto,imageViewPhoto,event.getContact());
 
 		AwesomeTextView imageViewType = (AwesomeTextView) rowView.findViewById(R.id.logoType);
@@ -107,6 +112,9 @@ public class PhoneCallLArrayAdapter extends ArrayAdapter<Event> {
 	public void setDropDownViewResource(int resource) {
 		super.setDropDownViewResource(resource);
 	}
+
+
+
 
 	
 }

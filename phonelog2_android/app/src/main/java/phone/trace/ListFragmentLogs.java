@@ -35,7 +35,7 @@ public class ListFragmentLogs extends ListFragment {
 	public void onCreate(Bundle savedInstanceState) {
 
 		super.onCreate(savedInstanceState);
-		Log.i("bg2", "ActivityLogs___OLD.onCreate hashcode: " + this.hashCode());
+		Log.i("bg2", "ListFragmentLogs.onCreate hashcode: " + this.hashCode());
 		applicationBg = (ApplicationBg)this.getActivity(). getApplication();
 		this.initSpinner();
 		this.logsSelected();
@@ -57,6 +57,7 @@ public class ListFragmentLogs extends ListFragment {
 			}
 
 		});
+
 	}
 
 	@Override
@@ -125,7 +126,7 @@ public class ListFragmentLogs extends ListFragment {
 
 	@Override
 	public void onListItemClick(ListView listView, View v, int position, long id) {
-
+		Log.e(TAG,"BINGO POUET");
 		super.onListItemClick(listView, v, position, id);
 
 		// ListView Clicked item index
@@ -134,7 +135,7 @@ public class ListFragmentLogs extends ListFragment {
 		// ListView Clicked item value
 		Event itemValue = (Event) listView.getItemAtPosition(position);
 
-		Log.i(TAG, "ActivityLogs___OLD.onListItemClick :   Position :" + itemPosition + "   ListItem : " + itemValue);
+		Log.i(TAG, "ActivityLogs.onListItemClick :   Position :" + itemPosition + "   ListItem : " + itemValue);
 		displayActivityLogDetail((Contact) itemValue.getContact());
 
 	}
@@ -195,6 +196,9 @@ public class ListFragmentLogs extends ListFragment {
 		}
 		this.adapter.getListEvents().addAll(communicationList);
 		this.adapter.notifyDataSetChanged();
+
 	}
+
+
 
 }

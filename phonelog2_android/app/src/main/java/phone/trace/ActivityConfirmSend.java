@@ -89,7 +89,7 @@ public class ActivityConfirmSend extends AbstractFragmentActivity {
 	}
 
 	private void setReminderRequest() {
-		Log.i("bg2", "buttonSetReminder on click");
+		Log.i("bg2", "ActivityConfirmSend buttonSetReminder on click");
 		IDateTimeListener listener = new IDateTimeListener() {
 
 			@Override
@@ -100,8 +100,11 @@ public class ActivityConfirmSend extends AbstractFragmentActivity {
 		};
 		DateTimeManager dateTimeManager = new DateTimeManager(buttonSetReminder, listener);
 		FragmentManager sf = getSupportFragmentManager();
+		Log.i("bg2", "ActivityConfirmSend dateTimeManager.show");
 		dateTimeManager.show(sf);
-		// UtilReminder.setReminder(bgCalendar,number,message,contact);
+		Log.i("bg2", "ActivityConfirmSend buttonSetReminder BBBBBBBBBBBBB");
+		BgCalendar bgCalendar =((ApplicationBg)this.getApplication()).getStorageCalendar();
+		//UtilReminder.setReminder(bgCalendar,number,message,contact);
 	}
 
 	private void setReminder(Date date) {

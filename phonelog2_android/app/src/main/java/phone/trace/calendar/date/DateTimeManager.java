@@ -31,10 +31,11 @@ public class DateTimeManager  implements DatePickerDialog.OnDateSetListener, OnT
 	}
 	
 	public void show(FragmentManager sf) {
-		//fragmentTime.show(sf, "timePicker");
-		Log.i("bg2", "EEEEEEEEEEEEEEEEEEEE  ATTENTION COMMENTED BG");
-		//fragmentDate.show(sf, "datePicker");
-		Log.i("bg2", "FFFFFFFFFFFFFFFFFFFFF");
+		Log.i("bg2", "DateTimeManager  show");
+		fragmentTime.show(sf, "timePicker");
+		Log.i("bg2", "DateTimeManager   show midle");
+		fragmentDate.show(sf, "datePicker");
+		Log.i("bg2", "DateTimeManager show end ");
 	}
 
 	

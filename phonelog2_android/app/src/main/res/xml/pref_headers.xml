@@ -3,7 +3,7 @@
     <!-- These settings headers are only used on tablets. -->
 
     <header
-        android:fragment="phone.trace.ActivitySetting$GeneralPreferenceFragment"
+        android:fragment="phone.crm2.ActivitySetting$GeneralPreferenceFragment"
         android:title="@string/pref_header_general" />
  
 

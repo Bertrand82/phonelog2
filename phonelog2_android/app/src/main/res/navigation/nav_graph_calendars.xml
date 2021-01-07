@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/FirstFragmentCalendar"
-        android:name="phone.trace.FirstFragmentCalendar"
+        android:name="phone.crm2.FirstFragmentCalendar"
         android:label="labelxxxx"
         tools:layout="@layout/fragment_calendars"/>
 

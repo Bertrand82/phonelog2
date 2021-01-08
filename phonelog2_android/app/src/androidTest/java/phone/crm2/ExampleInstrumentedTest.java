@@ -14,6 +14,7 @@ import static org.junit.Assert.*;
  * Instrumented test, which will execute on an Android device.
  *
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
+ * Warning Ne compile pas si Build Variants est sur release bg
  */
 @RunWith(AndroidJUnit4.class)
 public class ExampleInstrumentedTest {
@@ -21,6 +22,6 @@ public class ExampleInstrumentedTest {
     public void useAppContext() {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        assertEquals("phone.petit.crm2", appContext.getPackageName());
+        assertEquals("phone.crm2", appContext.getPackageName());
     }
 }

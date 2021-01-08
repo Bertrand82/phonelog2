@@ -65,7 +65,7 @@ public class SmsObserver extends ContentObserver {
 		if(!contact.isPrivate(applicationBg_)){
 		
 			if (type== TYPE_SMS_RECEIVED){
-				// do nothing, already doine inside phone.petit.crm2.receivers.IncomingCallReciever
+				// do nothing, already doine inside phone.crm2.receivers.IncomingCallReciever
 			}else if (type == TYPE_SMS_SENT){
 				Log.i(TAG,"SMS sent");
 				AppAccount account = applicationBg_.getAppAccount();

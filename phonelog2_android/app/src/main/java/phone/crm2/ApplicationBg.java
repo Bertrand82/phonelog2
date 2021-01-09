@@ -149,6 +149,7 @@ public class ApplicationBg extends Application  implements LifecycleObserver {
 
 
 
+
 	/**
 	 * @return the db
 	 */

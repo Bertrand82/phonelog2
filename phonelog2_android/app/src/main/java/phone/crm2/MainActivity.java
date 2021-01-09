@@ -20,7 +20,7 @@ import androidx.core.content.ContextCompat;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends  AbstractActivityCrm {
 
     private String TAG = "bg "+getClass().getSimpleName();
     private static final int REQUEST_RUNTIME_PERMISSION = 123;
@@ -62,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
         Log.w(TAG,"OnCreate 1");
         String[] permissionsToRequest  = getListPermissionToRequest( permissions);
         ActivityCompat.requestPermissions(this, permissionsToRequest, REQUEST_RUNTIME_PERMISSION);
+        setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         setContentView(R.layout.activity_main);
@@ -83,20 +84,25 @@ public class MainActivity extends AppCompatActivity {
             Log.w(TAG,"MainActivity OnCreate 6 Start ");
             try {
                 AppAccount appAccount = applicationBg.getDb().getAppAccount().getBy(AppAccountTable.KEY_MAIL, accounts[0].name);
-
-                applicationBg.setAccount(appAccount);
-                Log.i(TAG,"accounts[0] :"+accounts[0]);
-                Log.i(TAG,"appAccount : "+appAccount);
-                Intent intent = new Intent(this, ActivityLogs2.class);
-                startActivity(intent);
+                startLogsIntent(appAccount);
             } catch (Exception e) {
-                Log.w("bg2","ExcepXX",e);
+                Log.e("bg2","ExcepXX",e);
                 startLoginIntent();
             }
         }
 
     }
-
+    private void startLogsIntent(AppAccount appAccount) {
+        try {
+            applicationBg.setAccount(appAccount);
+            Log.i(TAG,"appAccount : "+appAccount);
+            Intent intent = new Intent(this, ActivityLogs2.class);
+            startActivity(intent);
+        } catch (Exception e) {
+            Log.w("bg2","ExcepXX",e);
+            startLoginIntent();
+        }
+    }
     private void startLoginIntent() {
         Intent intent = new Intent(this, ActivityLogin.class);
         startActivity(intent);

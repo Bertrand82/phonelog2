@@ -55,7 +55,7 @@ public class ActivityComment extends AbstractActivityCrm {
 
 		// if no phonecall, we redirect the user to the logs
 		if (applicationBg.getPhoneCall() == null) {
-			Log.i("bg2","ActivityComment NoPhoneCall redirect on logs");
+			Log.i("bg2","ActivityComment No last PhoneCall redirect on logs");
 			Intent intent = new Intent(this, ActivityLogs2.class);
 			startActivity(intent);
 		} else {// Il y a un phone call

@@ -60,15 +60,13 @@
 
         <activity
             android:name="phone.crm2.MainActivity"
-
             android:allowBackup="true"
             android:icon="@drawable/ic_launcher"
             android:label="@string/app_name"
-            android:theme="@style/NoActionBar" >
-
+            android:theme="@style/NoActionBar"
+           >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -115,7 +113,7 @@
         </activity>
         <activity
             android:name=".ActivityListCalendars2"
-            android:label="@string/app_name"
+            android:label="@string/label_list_calendars"
             android:theme="@style/NoActionBar"/>
         <!-- Receivers -->
 
@@ -204,7 +202,8 @@
         </activity>
         <activity
             android:name=".ActivityAddEvent"
-            android:label="@string/title_activity_activity_add_event" >
+            android:label="@string/title_activity_activity_add_event"
+            android:theme="@style/NoActionBar">
         </activity>
         <activity
             android:name=".ActivitySearchContact"

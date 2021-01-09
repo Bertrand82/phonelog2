@@ -197,9 +197,6 @@ public class UtilActivitiesCommon {
             UtilActivitiesCommon.openSearchContact(activity);
             return true;
 
-        } else if (item.getItemId() == R.id.action_send_cafe_crm_link_by_sms) {
-            UtilActivitiesCommon.sendSms("http://cafe-crm.appspot.com");
-            return true;
         } else {
             Log.i("bg2", "onOptionsItemSelected  false");
             return false;
@@ -208,6 +205,7 @@ public class UtilActivitiesCommon {
     }
 
     private static void sendSms(String msg) {
+        Log.e("bg2","Send sms no implemented yet");
         SmsManager sm = SmsManager.getDefault();
         sm.sendTextMessage(null, null, msg, null, null);
     }

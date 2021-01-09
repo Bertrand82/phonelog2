@@ -59,26 +59,29 @@ public class ActivityAddEvent extends AbstractActivityCrm {
 		this.storage = applicationBg.getStorage();
 		Log.i("bg2", "ActivityLogDetail    contact : " + contact_ + "  storage " + storage);
 		int currentapiVersion = android.os.Build.VERSION.SDK_INT;
-		if (currentapiVersion >= 11) {
-			ActionBar actionBar = super.getActionBar();
-			actionBar.setDisplayHomeAsUpEnabled(true);
-		}
+
 
 		
 		textViewClientId_.setText("");
+		String displayName;
+		String normalisedNumber;
+        if (contact_==null){
+        	displayName="No Name";
+			normalisedNumber="";
+		}else {
+			 displayName = contact_.getExtra(applicationBg).getDisplayName();
+			if (displayName == null) {
+				displayName = contact_.getContactNameOrNumber();
+			}
+			normalisedNumber = contact_.getExtra(applicationBg).getNormalizedNumber();
+			if (normalisedNumber == null) {
+				normalisedNumber = contact_.getNumber();
+			}
+			UtilLogoPhoto.init(this, textViewPhoto_, imageViewPhoto, contact_);
 
-		String displayName = contact_.getExtra(applicationBg).getDisplayName();
-		if (displayName == null) {
-			displayName = contact_.getContactNameOrNumber();
 		}
 		setTitle(displayName);
-
 		textViewContact.setText(displayName);
-
-		String normalisedNumber = contact_.getExtra(applicationBg).getNormalizedNumber();
-		if (normalisedNumber == null) {
-			normalisedNumber = contact_.getNumber();
-		}
 		textViewDetailNumber.setText(normalisedNumber);
 
 		OnClickListener listenerPhoto = new OnClickListener() {
@@ -89,7 +92,7 @@ public class ActivityAddEvent extends AbstractActivityCrm {
 			}
 		};
 		imageViewPhoto.setOnClickListener(listenerPhoto);
-		UtilLogoPhoto.init(this, textViewPhoto_, imageViewPhoto, contact_);
+
 
 		textViewPhoto_.setOnClickListener(listenerPhoto);
 		

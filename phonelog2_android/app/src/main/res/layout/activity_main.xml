@@ -4,6 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
 
+
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -23,6 +24,8 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
+
+
         <TextView android:id="@+id/welcomeTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -30,15 +33,20 @@
             android:layout_centerVertical="true"
             android:text="Welcome"
             android:singleLine="true"
-            android:textSize="50sp"/>
+            android:textSize="50sp"
+             />
 
-    <TextView android:id="@+id/ptitcrm"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/welcomeTextView"
-        android:layout_centerHorizontal="true"
-        android:text="Ptit'crm"
-        android:textSize="40sp"/>
+        <TextView android:id="@+id/ptitcrm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/welcomeTextView"
+            android:layout_centerHorizontal="true"
+            android:text="Ptit'crm"
+            android:textSize="40sp"
+            tools:ignore="MissingConstraints" />
+
+
+
 
 
 </RelativeLayout>

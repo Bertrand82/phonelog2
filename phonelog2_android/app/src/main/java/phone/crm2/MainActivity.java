@@ -65,7 +65,7 @@ public class MainActivity extends  AbstractActivityCrm {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        setContentView(R.layout.activity_main);
+        getSupportActionBar().setTitle("Starting");
         Log.w(TAG,"OnCreate 2");
         this.applicationBg = (ApplicationBg) this.getApplication();
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
@@ -98,6 +98,7 @@ public class MainActivity extends  AbstractActivityCrm {
             Log.i(TAG,"appAccount : "+appAccount);
             Intent intent = new Intent(this, ActivityLogs2.class);
             startActivity(intent);
+            finish();
         } catch (Exception e) {
             Log.w("bg2","ExcepXX",e);
             startLoginIntent();
@@ -106,6 +107,7 @@ public class MainActivity extends  AbstractActivityCrm {
     private void startLoginIntent() {
         Intent intent = new Intent(this, ActivityLogin.class);
         startActivity(intent);
+        finish();
     }
 
     private String[] getListPermissionToRequest( String[] permissions) {

@@ -61,11 +61,7 @@
  		 </menu>
        app:showAsAction="ifRoom"
      </item>
-     <item
-        android:id="@+id/action_send_cafe_crm_link_by_sms"
-        android:title="@string/send_cafe_crm_link_by_sms_title"
-         app:showAsAction="ifRoom"
-         />
+
      <item
         android:id="@+id/action_trace_debug"
         android:title="@string/action_trace_debug_title"

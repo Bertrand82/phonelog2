@@ -10,7 +10,7 @@
     <string name="title_home" translatable="false">Home</string>
 
     <!-- Application -->
-    <string name="app_name">Petit\'crm</string>
+    <string name="app_name">Ptit\'crm</string>
     <string name="view_diary">Log</string>
     <string name="ACCOUNT_TYPE" translatable="false">com.cafe_crm.account</string>
 
@@ -97,6 +97,7 @@
     <string name="Previous">Previous</string>
     <string name="labelCRM" translatable="false">CRM</string>
     <string name="labeFiltreCommmnentedOnly" translatable="false">FILTRE</string>
+    <string name="labeFiltreCommmnentedOnlyAll" translatable="false">All</string>
     <string name="labelMAIL" translatable="false">MAILS</string>
     <string name="please_select_calendar">Select at least one Calendar</string>
     <string name="buttonDisplayLogs">Next</string>

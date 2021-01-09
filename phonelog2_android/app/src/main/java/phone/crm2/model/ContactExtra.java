@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.provider.ContactsContract.PhoneLookup;
 import android.provider.ContactsContract.RawContacts;
+import android.util.Log;
 
 import java.io.Serializable;
 
@@ -21,9 +22,7 @@ public class ContactExtra implements Serializable{
 	private Long _id;
 	private String lookup_key;
 	
-	public ContactExtra() {
-	}
-	
+
 	public ContactExtra(Context context, String phoneNumber) {
 		 
 		Uri uri = Uri.withAppendedPath(PhoneLookup.CONTENT_FILTER_URI, Uri.encode(phoneNumber));
@@ -31,18 +30,18 @@ public class ContactExtra implements Serializable{
 		Cursor cursor = context.getContentResolver().query(uri, params ,null,null,null);
 		// TODO Caused by:android 4.2.2 java.lang.IllegalArgumentException: Invalid column raw_contact_id
 		if (cursor.moveToFirst()) {
-				displayName = cursor.getString(cursor.getColumnIndex(PhoneLookup.DISPLAY_NAME));
+				this.displayName = cursor.getString(cursor.getColumnIndex(PhoneLookup.DISPLAY_NAME));
 				String uriString = cursor.getString(cursor.getColumnIndex(PhoneLookup.PHOTO_URI));
 				if (uriString == null){
-					photoUri = null;
+					this.photoUri = null;
 				}else {
-					photoUri =  Uri.parse(uriString);
+					this.photoUri =  Uri.parse(uriString);
 				}
-				normalizedNumber = cursor.getString(cursor.getColumnIndex(PhoneLookup.NORMALIZED_NUMBER));
+				this.normalizedNumber = cursor.getString(cursor.getColumnIndex(PhoneLookup.NORMALIZED_NUMBER));
 				
 				//raw_contact_id = cursor.getInt(cursor.getColumnIndex(Data.RAW_CONTACT_ID));
-				lookup_key = cursor.getString(cursor.getColumnIndex(PhoneLookup.LOOKUP_KEY));
-				_id = cursor.getLong(cursor.getColumnIndex(PhoneLookup._ID));
+				this.lookup_key = cursor.getString(cursor.getColumnIndex(PhoneLookup.LOOKUP_KEY));
+				this._id = cursor.getLong(cursor.getColumnIndex(PhoneLookup._ID));
 				// Adding PhoneCall to list
 		}
 		cursor.close();

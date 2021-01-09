@@ -24,8 +24,8 @@ public class ActivityDisplayPrivateList extends AbstractActivityCrm {
 	
 	private ListView listView;
 	private TextView textViewNbPrivate;
-	List<Contact> listPrivateContacts;
-	ApplicationBg applicationBg;
+	private List<Contact> listPrivateContacts;
+	private ApplicationBg applicationBg;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

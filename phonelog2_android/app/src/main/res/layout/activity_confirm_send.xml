@@ -54,7 +54,7 @@
             android:id="@+id/labelTime"
             android:layout_width="233dp"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/labelNumber"           
+            android:layout_below="@+id/labelNumber"
             android:text="@string/activity_comment_contact"
             />
 

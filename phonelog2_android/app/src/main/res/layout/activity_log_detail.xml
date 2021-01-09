@@ -32,7 +32,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"        
         android:text="@+id/label"
-        android:textSize="20sp" 
+        android:textSize="20sp"
         android:layout_toRightOf="@+id/logoPhoto"
         android:singleLine="true"
         />
@@ -52,11 +52,11 @@
    
 
     <Button 
-        android:id="@+id/buttonCRM"
+        android:id="@+id/buttonCRM___________________________________________xxxxxx"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/labelNumber"
-        android:layout_toRightOf="@+id/logoPhoto"
+        android:layout_below="@+id/logoPhoto"
+        android:layout_marginRight="6dip"
         android:text="@string/labelCRM"
         android:singleLine="true"
         
@@ -65,9 +65,9 @@
         android:id="@+id/buttonFiltreCommentedOnly"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/labelNumber"
-        android:layout_toRightOf="@+id/buttonCRM"
-        android:text="@string/labeFiltreCommmnentedOnly"
+         android:layout_below="@+id/logoPhoto"
+         android:layout_marginRight="6dip"
+         android:text="@string/labeFiltreCommmnentedOnly"
         android:singleLine="true"
         />
      
@@ -75,7 +75,7 @@
         android:id="@+id/buttonPhoneCall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/labelNumber"
+          android:layout_below="@+id/logoPhoto"
         android:layout_toRightOf="@+id/buttonFiltreCommentedOnly"
         android:text="@string/Call"
         android:singleLine="true"
@@ -85,31 +85,20 @@
         android:id="@+id/buttonEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/labelNumber"
+        android:layout_below="@+id/logoPhoto"
         android:layout_toRightOf="@+id/buttonPhoneCall"
         android:text="@string/labelMAIL"
         android:singleLine="true"
-        android:visibility="invisible"
         />
    
     
-     <Button 
-        android:id="@+id/buttonEditClientId"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/buttonCRM"
-        android:layout_toRightOf="@+id/logoPhoto"
-        android:text="@string/buttonEditClientIdLabel"
-        android:singleLine="true"
-        android:textSize="12sp" 
-        android:visibility="invisible"
-        />
+
      <TextView
         android:id="@+id/textViewClientId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/buttonCRM"
-        android:layout_toRightOf="@+id/buttonEditClientId"
+        android:layout_below="@+id/buttonFiltreCommentedOnly"
+        android:layout_toRightOf="@+id/buttonEmail"
         android:text=""
         android:textSize="12sp" 
         android:textColor="#bbb"
@@ -125,12 +114,20 @@
         android:textSize="12sp" 
         android:visibility="gone"
        />
-    
+
+    <TextView android:id="@android:id/empty"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#000000"
+        android:layout_below="@+id/buttonFiltreCommentedOnly"
+        android:text="No data"/>
+
     <ListView
         android:id="@android:id/list"
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/logoPhoto" />
+        android:layout_below="@+id/buttonFiltreCommentedOnly" />
 
    
 

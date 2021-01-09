@@ -156,7 +156,7 @@ public final class Contact implements Serializable {
 	}
 
 	public String getClientId(Context context) {
-		if (clientId == null) {
+		if (this.clientId == null) {
 			getExtra(context);
 			if (this.extra == null) {
 					return null;
@@ -166,9 +166,9 @@ public final class Contact implements Serializable {
 					// PAs de contact !!!
 					return null;
 				} else {
-					Log.i("bg2", "getClientId  raw_contact_id " + raw_contact_id);
+					Log.i("bg2", "Contact getClientId  raw_contact_id " + raw_contact_id);
 					this.clientId = ContactTable.getCustomField3(context, raw_contact_id);
-					Log.i("bg2", "getClientId  raw_contact_id " + raw_contact_id+" clientId :"+clientId);
+					Log.i("bg2", "Contact getClientId  raw_contact_id " + raw_contact_id+" clientId :"+clientId);
 				}
 			}
 		}

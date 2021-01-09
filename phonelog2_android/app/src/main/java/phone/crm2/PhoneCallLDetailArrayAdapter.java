@@ -102,7 +102,7 @@ public class PhoneCallLDetailArrayAdapter extends ArrayAdapter<Event>{
 
 	@Override
 	public void notifyDataSetChanged() {
-		Log.i("bg2", "PhoneCallDetailArrayAdapter.notifyDataSetChanged  BBB");
+		Log.i("bg2", "PhoneCallDetailArrayAdapter.notifyDataSetChanged  BBB events "+toStringList(events));
 		super.notifyDataSetChanged();
 	}
 	
@@ -120,6 +120,13 @@ public class PhoneCallLDetailArrayAdapter extends ArrayAdapter<Event>{
 
 	public void setEvents(List<Event> events) {
 		this.events = events;
+	}
+
+	private String toStringList(List<?> list){
+		if (list == null){
+			return null;
+		}
+		return " size: "+list.size();
 	}
 
 }

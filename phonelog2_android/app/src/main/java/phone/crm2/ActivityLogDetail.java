@@ -25,14 +25,12 @@ import phone.crm2.receivers.CallManager;
 
 public class ActivityLogDetail extends AbstractListActivityCrm {
 
-	private static final int DISPLAY_PHONE_LIST = 0;
-	private static final int DISPLAY_CRM = 1; 
-	private static final int DISPLAY_PHONE_LIST_COMMENTED_ONLY__ =2;
+	enum DISPLAY  {PHONE_LIST, DISPLAY_CRM, PHONE_LIST_COMMENTED_ONLY};
+
 	public static final String KEY_MASKABLE = "KEY_MASKABLE";
 	
-	private int displayed = DISPLAY_PHONE_LIST;
+	private DISPLAY displayed = DISPLAY.PHONE_LIST;
 	private String TAG = "bg2";
-	private Button buttonDisplayCRM_;
 	private ApplicationBg applicationBg;
 	private PhoneCallLDetailArrayAdapter adapter;
 	private Contact contact;
@@ -54,10 +52,6 @@ public class ActivityLogDetail extends AbstractListActivityCrm {
 		Boolean isMaskable = b.getBoolean(KEY_MASKABLE, false);
 		Log.i("bg2", "ActivityLogDetail    contact : " + contact + "  storage " + storage);
 		int currentapiVersion = android.os.Build.VERSION.SDK_INT;
-		/*if (currentapiVersion >= 11) {
-			ActionBar actionBar = super.getActionBar();
-			actionBar.setDisplayHomeAsUpEnabled(true);
-		}*/
 
 		setContentView(R.layout.activity_log_detail);
 		
@@ -75,15 +69,6 @@ public class ActivityLogDetail extends AbstractListActivityCrm {
 				}
 			});
 		}
-		buttonEditClientId = (Button) findViewById(R.id.buttonEditClientId);
-		buttonEditClientId.setVisibility(View.INVISIBLE);
-		buttonEditClientId.setEnabled(false);;
-		buttonEditClientId.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				displayActivityFormClientId();
-			}
-		});
 
 		Button buttonPhoneCall = (Button) findViewById(R.id.buttonPhoneCall);
 		buttonPhoneCall.setOnClickListener(new OnClickListener() {
@@ -105,12 +90,6 @@ public class ActivityLogDetail extends AbstractListActivityCrm {
 		});
 		
 		Button buttonDisplayMail = (Button) findViewById(R.id.buttonEmail);
-		String email = getEmailFromContact();
-		if (email==null){
-			buttonDisplayMail.setVisibility(Button.GONE);
-		}else {
-			buttonDisplayMail.setVisibility(Button.VISIBLE);
-		}
 		buttonDisplayMail.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -118,8 +97,8 @@ public class ActivityLogDetail extends AbstractListActivityCrm {
 				showMAils();
 			}
 		});
+		String email = getEmailFromContact();
 
-		buttonDisplayCRM_ = (Button) findViewById(R.id.buttonCRM);
 		String displayName = contact.getExtra(applicationBg).getDisplayName();
 		if (displayName == null) {
 			displayName = contact.getContactNameOrNumber();
@@ -149,20 +128,12 @@ public class ActivityLogDetail extends AbstractListActivityCrm {
 		UtilLogoPhoto.init(this,textViewPhoto,imageViewPhoto_,contact);
 		
 		textViewPhoto.setOnClickListener(listenerPhoto);
-		setListEvents();
+		setListEvents(displayed);
 
 		Log.i("bg2", " events size" + events.size());
 		adapter = new PhoneCallLDetailArrayAdapter(this, contact, events);
 		// Assign adapter to List
 		setListAdapter(adapter);
-
-		buttonDisplayCRM_.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				displayCRM();
-			}
-		});
 		ListView listView = getListView();
 		listView.setOnScrollListener(new AbsListView.OnScrollListener() {
 			
@@ -241,20 +212,23 @@ public class ActivityLogDetail extends AbstractListActivityCrm {
 		UtilContact.updateContact(this, contact);
 	}
 
-	private void setListEvents() {
+	private void setListEvents(DISPLAY displayed) {
+		Log.i("bg2","setListEvents displayed :"+displayed);
 		this.events.clear();
-		if (displayed == DISPLAY_PHONE_LIST) {
+		if (displayed == DISPLAY.PHONE_LIST) {
 
 			BgCalendar bgCalendar = (BgCalendar) storage;
 			List<Event> list = UtilCalendar.getListEventByContact(this, bgCalendar, contact, page);
 			events.addAll(list);
 
-		} else if (displayed == DISPLAY_CRM) {
+		} else if (displayed == DISPLAY.DISPLAY_CRM) {
 
-			Log.i("bg2", "Bdd Calendar!");
+			Log.i("bg2", "setListEvents AAA  Bdd Calendar!");
 			BgCalendar bgCalendar = (BgCalendar) storage;
+			Log.i("bg2", "setListEvents BBB  bgCalendar "+bgCalendar);
 			String clientId = contact.getClientId(this);
-			Log.i("bg2", "setListEvents clientId " + clientId);
+			Log.i("bg2", "setListEvents CCC  clientId "+clientId);
+
 			if (clientId == null) {
 
 			} else {
@@ -262,7 +236,7 @@ public class ActivityLogDetail extends AbstractListActivityCrm {
 				events.addAll(list);
 			}
 
-		}else if (displayed == DISPLAY_PHONE_LIST_COMMENTED_ONLY__) {
+		}else if (displayed == DISPLAY.PHONE_LIST_COMMENTED_ONLY) {
 
 			BgCalendar bgCalendar = (BgCalendar) storage;
 			List<Event> list = UtilCalendar.getListEventByContactAndCommentNotNull(this, bgCalendar, contact, page);
@@ -274,48 +248,21 @@ public class ActivityLogDetail extends AbstractListActivityCrm {
 		}
 	}
 
-	private void displayCRM() {
-		Log.i("bg2", "displayCRM contact: " + contact);
-		Log.i("bg2", "displayCRM storage: storage : " + this.storage);
 
-		
-		if (displayed == DISPLAY_CRM) {
-			displayed = DISPLAY_PHONE_LIST;
-		}else if(displayed== DISPLAY_PHONE_LIST){
-			displayed = DISPLAY_CRM;
-		}
-		if (displayed == DISPLAY_CRM) {
-			buttonEditClientId.setVisibility(View.VISIBLE);
-			buttonEditClientId.setEnabled(true);
-			
-			textViewClientId.setText(contact.getClientId());
-		}else {
-			//Display CAlls
-			buttonEditClientId.setVisibility(View.INVISIBLE);
-			buttonEditClientId.setEnabled(false);
-		}
-		displayCRM(displayed);
-		page = 0;
-	}
 
-	private void displayCRM(int display) {
-
-		Log.i("bg2", "displayCRM " + display);
-		if (display == DISPLAY_CRM) {
-			this.buttonDisplayCRM_.setText("Calls");
-		} else if (display == DISPLAY_PHONE_LIST) {
-			this.buttonDisplayCRM_.setText("CRM");
-		}
-		// ActivityLogs___OLD.displayActivity(this, contact, storage, false,
-		// ActivityDisplayCRM________________DEPRECATED.class);
-		setListEvents();
-		adapter.notifyDataSetChanged();
-	}
 
 	private void showMessageCommentedOnly() {
-		Log.i("bg2", "showMessageCommentedOnly " + contact);
-		displayed= ActivityLogDetail.DISPLAY_PHONE_LIST_COMMENTED_ONLY__;
-		setListEvents();
+		Log.i("bg2", "ActivityLogDetail showMessageCommentedOnly A" + contact);
+		Log.i("bg2", "ActivityLogDetail showMessageCommentedOnly B" + displayed);
+		Button buttonDisplayPhoneCAllCommentedOnly = (Button) findViewById(R.id.buttonFiltreCommentedOnly);
+		if (displayed== ActivityLogDetail.DISPLAY.PHONE_LIST_COMMENTED_ONLY){
+			displayed = DISPLAY.PHONE_LIST;
+			buttonDisplayPhoneCAllCommentedOnly.setText(R.string.labeFiltreCommmnentedOnly);
+		}else {
+			displayed = DISPLAY.PHONE_LIST_COMMENTED_ONLY;
+			buttonDisplayPhoneCAllCommentedOnly.setText(R.string.labeFiltreCommmnentedOnlyAll);
+		}
+		setListEvents(displayed);
 	}
 	
 	private String getEmailFromContact(){

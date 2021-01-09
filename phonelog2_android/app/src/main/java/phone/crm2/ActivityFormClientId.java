@@ -21,14 +21,16 @@ import java.util.ArrayList;
 import phone.crm2.legacy.UtilContact;
 import phone.crm2.model.Contact;
 
-
+/**
+ *
+ */
 public class ActivityFormClientId extends AbstractActivityCrm {
 
-	ApplicationBg applicationBg;
-	Contact contact;
-	EditText editTextClientId;
+	private ApplicationBg applicationBg;
+	private Contact contact;
+	private EditText editTextClientId;
 	private BgCalendar storage;
-	Button buttonSetClientId;
+	private Button buttonSetClientId;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

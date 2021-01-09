@@ -5,10 +5,7 @@
               android:orientation="vertical" >
 
    
-      <include
-        android:id="@+id/navigation"
-        layout="@layout/menu2" 
-        />
+
     
     <TextView
         android:id="@+id/textViewTittleList"

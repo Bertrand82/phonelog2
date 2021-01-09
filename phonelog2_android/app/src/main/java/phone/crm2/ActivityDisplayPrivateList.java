@@ -46,9 +46,7 @@ public class ActivityDisplayPrivateList extends AbstractActivityCrm {
 		};
 		buttonClearList.setOnClickListener(clicListener);
 		// UtilActivitiesCommon.initButtonNavigation(this,buttonLogs,buttonPrivateList,buttonOptions);
-		
-		
-		UtilActivitiesCommon.initButtonNavigation_(this, 2);
+
 	}
 	
 	

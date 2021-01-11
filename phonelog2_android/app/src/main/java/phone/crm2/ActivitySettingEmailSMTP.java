@@ -58,23 +58,23 @@ public class ActivitySettingEmailSMTP extends PreferenceActivity {
 		super.onPostCreate(savedInstanceState);
 
 		setupSimplePreferencesScreen();
-		Button button =new Button(this);
-		button.setText("OK");
+		Button buttonOK =new Button(this);
+		buttonOK.setText("OK");
 		AbsListView.LayoutParams  lp = new AbsListView.LayoutParams(AbsListView.LayoutParams.WRAP_CONTENT, AbsListView.LayoutParams.WRAP_CONTENT);
 	        
-		button.setLayoutParams(lp);
-		button.setOnClickListener(new View.OnClickListener() {
+		buttonOK.setLayoutParams(lp);
+		buttonOK.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) { 
 				UtilActivitiesCommon.openLogs(ActivitySettingEmailSMTP.this);
 			}
 		});
 		ListView v = getListView();
-		v.addFooterView(button);
+		v.addFooterView(buttonOK);
 	}
 	
-	@Override
-	public final boolean onCreateOptionsMenu(Menu menu) {
+
+	public final boolean onCreateOptionsMenu______________________(Menu menu) {
 		// Inflate the menu items for use in the action bar
 		MenuInflater inflater = getMenuInflater(); 
 		inflater.inflate(R.menu.main_menu, menu);
@@ -134,7 +134,7 @@ public class ActivitySettingEmailSMTP extends PreferenceActivity {
 			bindPreferenceSummaryToValue(findPreference("mailTo"));
 			bindPreferenceSummaryToValue(findPreference("mailPort"));
 		} catch (Exception e) {
-			Log.w(TAG, "ExceptionAAAA", e);
+			Log.w(TAG, "ActivitySettingEmailSMTP Exception", e);
 		}
 	}
 
@@ -145,9 +145,9 @@ public class ActivitySettingEmailSMTP extends PreferenceActivity {
 
 	private void setDefaultValueFirstInit_(String key) {
 		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this.getApplicationContext());
-		String mailUser = sharedPrefs.getString(key, "");
 		String possiblePrimaryEmailAdress = UtilActivitiesCommon.getPossiblePrimaryEmailAdress(this.getApplicationContext());
-		
+		String mailUser = sharedPrefs.getString(key, possiblePrimaryEmailAdress);
+
 		if (mailUser.trim().length()==0){
 			Editor editor = sharedPrefs.edit();
 			editor.putString(key, possiblePrimaryEmailAdress);
@@ -202,7 +202,7 @@ public class ActivitySettingEmailSMTP extends PreferenceActivity {
 		@Override
 		public boolean onPreferenceChange(Preference preference, Object value) {
 			String stringValue = value.toString();
-			Log.i(TAG,"onPreferenceChange  Change Setting "+preference+"  "+value);
+			Log.i(TAG,"onPreferenceChange  Change Setting preference: "+preference+"|  setting :"+value);
 			if (preference instanceof ListPreference) {
 				// For list preferences, look up the correct display value in
 				// the preference's 'entries' list.

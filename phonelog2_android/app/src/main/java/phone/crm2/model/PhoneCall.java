@@ -1,10 +1,11 @@
 package phone.crm2.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class PhoneCall extends Event{
+public class PhoneCall extends Event implements Serializable {
 
-	
+	public static String KEY_PHONE_CALL_EXTRA = "PHONE_CALL";
 	private int duration_ms;
 	private String comment;
 	

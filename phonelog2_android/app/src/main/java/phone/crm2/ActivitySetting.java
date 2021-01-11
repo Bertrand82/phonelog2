@@ -29,6 +29,7 @@ import java.util.List;
  * href="http://developer.android.com/guide/topics/ui/settings.html">Settings
  * API Guide</a> for more information on developing a Settings UI.
  */
+
 public class ActivitySetting extends PreferenceActivity {
 	/**
 	 * Determines whether to always show the simplified settings UI, where

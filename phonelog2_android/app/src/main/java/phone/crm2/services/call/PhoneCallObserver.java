@@ -12,7 +12,7 @@ import android.os.Handler;
 import android.provider.CallLog.Calls;
 import android.util.Log;
 
-import androidx.media.app.NotificationCompat;
+import androidx.core.app.NotificationCompat;
 
 import java.util.HashMap;
 
@@ -167,9 +167,7 @@ public class PhoneCallObserver extends ContentObserver {
 			Log.i(TAG,"processPhoneCall showPhoneCallDialog  isForeground :"+applicationBg_.isForeground());
 			if (applicationBg_.isForeground()) {// Afficher l'ecran
 				Log.i(TAG,"processPhoneCall showPhoneCallDialog start ACtivity");
-				Intent intent = new Intent(applicationBg_, ActivityComment.class);
-				intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-				intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+				Intent intent =getIntent(phoneCall);
 				applicationBg_.startActivity(intent);
 			}else {// Afficher une annotation + enregistrer l'appel dans le calendar
 				Log.i(TAG,"processPhoneCall showPhoneCallDialog show Notification");
@@ -183,33 +181,41 @@ public class PhoneCallObserver extends ContentObserver {
 		//senderMAil.execute("");
 	}
 
+	Intent getIntent(PhoneCall phoneCall) {
+		Intent intent = new Intent(applicationBg_, ActivityComment.class);
+		intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+		intent.putExtra(PhoneCall.KEY_PHONE_CALL_EXTRA,phoneCall);
+		return intent;
+	}
+
 	private void recordPhoneCall( PhoneCall phoneCall) {
 		UpdateResult result = UtilCalendar.update(this.applicationBg_, phoneCall);
 		UtilEmail.sendMail(this.applicationBg_, phoneCall, applicationBg_.getStorage());
 	}
 
-	public static String CHANNEL_ID="ptit-crm-channel-id";
+	public static String CHANNEL_ID_0 ="ptit-crm-notification-0";
 	void showCallNotification(PhoneCall phoneCall) {
-		NotificationManager mNotificationManager =
-				(NotificationManager) applicationBg_.getSystemService(Context.NOTIFICATION_SERVICE);
+		NotificationManager mNotificationManager =	(NotificationManager) applicationBg_.getSystemService(Context.NOTIFICATION_SERVICE);
 		if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
 			Log.i(TAG,"processPhoneCall show Notification showPhoneCallDialog >(android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O)");
-			NotificationChannel channel = new NotificationChannel(CHANNEL_ID,
-					"Phone Calls",
-					NotificationManager.IMPORTANCE_HIGH);
+			NotificationChannel channel = new NotificationChannel(CHANNEL_ID_0,	"Phone Calls", NotificationManager.IMPORTANCE_HIGH);
 			channel.setDescription("Call Notification");
 			mNotificationManager.createNotificationChannel(channel);
 		}else {
-			Log.i(TAG,"processPhone show Notification NO Notif Manager");
+			Log.i(TAG,"processPhone show Notification NO Notification Manager");
 		}
-		androidx.core.app.NotificationCompat.Builder mBuilder = new androidx.core.app.NotificationCompat.Builder(applicationBg_.getApplicationContext(), CHANNEL_ID)
+
+		Intent intent = getIntent(phoneCall);
+		PendingIntent pendingIntent = PendingIntent.getActivity(applicationBg_.getApplicationContext(), 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+		NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(applicationBg_.getApplicationContext(), CHANNEL_ID_0)
 				.setSmallIcon(R.mipmap.ic_launcher) // notification icon
-				.setContentTitle("Add comment") // title for notification
+				.setContentTitle("Call : "+phoneCall.getNameOrNumber()) // title for notification
 				.setContentText(phoneCall.getNameOrNumber())// message for notification
-				.setAutoCancel(true); // clear notification after click
-		Intent intent = new Intent(applicationBg_.getApplicationContext(), ActivityComment.class);
-		PendingIntent pi = PendingIntent.getActivity(applicationBg_.getApplicationContext(), 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-		mBuilder.setContentIntent(pi);
+				.setAutoCancel(true) // clear notification after click
+				.setContentIntent(pendingIntent)
+				.addAction(R.drawable.ic_mr_button_grey,"Comment",pendingIntent);
 		mNotificationManager.notify(0, mBuilder.build());
 		Log.i(TAG,"processPhoneCall showPhoneCallDialog show Notification done");
 	}

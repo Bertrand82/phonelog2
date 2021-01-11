@@ -2,13 +2,14 @@ package phone.crm2.model;
 
 import android.content.Context;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 
 import phone.crm2.BgCalendar;
 
-public abstract class Event {
+public abstract class Event implements Serializable {
 
 	public static final int TYPE_ALERT_CALL = 0;
 	public static final int TYPE_INCOMING_CALL = 1;
@@ -22,10 +23,8 @@ public abstract class Event {
 			"Outgoing Call", "Missed Call", "Incoming Sms", "Outgoing Sms",
 			"CRM", "", "" };
 
-	public static final SimpleDateFormat simpleDateFormatHour = new SimpleDateFormat(
-			"HH:mm");
-	public static final SimpleDateFormat simpleDateFormatDay = new SimpleDateFormat(
-			"dd/MM/yyyy");
+	public static final SimpleDateFormat simpleDateFormatHour = new SimpleDateFormat("HH:mm");
+	public static final SimpleDateFormat simpleDateFormatDay = new SimpleDateFormat("dd/MM/yyyy");
 
 	public long id;
 	public int type;

@@ -42,6 +42,7 @@ public class ActivityComment extends AbstractActivityCrm {
 	protected void onCreate(Bundle savedInstanceState) {
 
 		super.onCreate(savedInstanceState);
+
 		Log.i("bg2","ActivityComment onCreate");
 		this.applicationBg = this.getApplicationBg();
 		Bundle bundle = getIntent().getExtras();
@@ -52,128 +53,134 @@ public class ActivityComment extends AbstractActivityCrm {
 			this.storage = (BgCalendar) bundle.getSerializable("storage");
 			this.mailSent=bundle.getBoolean(KEY_SENT_MAIL, false);
 		}
+		PhoneCall phoneCallFromExtra =  (PhoneCall)getIntent().getSerializableExtra(PhoneCall.KEY_PHONE_CALL_EXTRA);
+
+
+		if (phoneCallFromExtra != null) {
+			Log.i("bg2","ActivityComment phoneCall In extra");
+			this.phoneCall = phoneCallFromExtra;
+		} else {
+			// TODO on ne doit plus gerer le phoneCAll dans applicationBg.
+			Log.i("bg2","ActivityComment phoneCall In applicationBg");
+			this.phoneCall = applicationBg.getPhoneCall();
+		}
 
 		// if no phonecall, we redirect the user to the logs
 		if (applicationBg.getPhoneCall() == null) {
-			Log.i("bg2","ActivityComment No last PhoneCall redirect on logs");
+			Log.i("bg2", "ActivityComment No last PhoneCall redirect on logs");
 			Intent intent = new Intent(this, ActivityLogs2.class);
 			startActivity(intent);
-		} else {// Il y a un phone call
-			/*int currentapiVersion = android.os.Build.VERSION.SDK_INT;
-			if (currentapiVersion >= 11) {
-				getActionBar().setDisplayHomeAsUpEnabled(true);
-			}*/
-
-			this.phoneCall = applicationBg.getPhoneCall();
-			Log.d("bg2","ActivityComment show "+this.applicationBg.isForeground());
-
-			setContentView(R.layout.activity_comment);
-
-			ImageView imageViewPhoto = (ImageView) findViewById(R.id.logoPhoto);
-			TextView textViewPhoto = (TextView) findViewById(R.id.logoPhotoText);
-
-			UtilLogoPhoto.init(this, textViewPhoto, imageViewPhoto, phoneCall.getContact());
-
-			// imageViewPhoto.setImageURI(phoneCall.getContact().getExtra(this.applicationBg).getPhotoUri());
-			OnClickListener listenerEditContact = new OnClickListener() {
-
-				@Override
-				public void onClick(View v) {
-					editContact();
-				}
-			};
-			if (imageViewPhoto.getVisibility() == View.VISIBLE) {
-				imageViewPhoto.setOnClickListener(listenerEditContact);
-			}
-			if (textViewPhoto.getVisibility() == View.VISIBLE) {
-				textViewPhoto.setOnClickListener(listenerEditContact);
-			}
-			textViewContact = (TextView) findViewById(R.id.labelContact);
-			textViewContact.setText(phoneCall.getContact().getExtra(this.applicationBg).getDisplayName());
-
-			textViewNumber = (TextView) findViewById(R.id.labelNumber);
-			textViewNumber.setText(phoneCall.getContact().getNumber());
-
-			imagePhoneOuMessage = (AwesomeTextView) findViewById(R.id.logoPhoneOuMessage);
-			UtilActivitiesCommon.setImagePhoneOuMessage(phoneCall.getType(), imagePhoneOuMessage);
-
-			AwesomeTextView imageViewType = (AwesomeTextView) findViewById(R.id.logoType);
-			UtilActivitiesCommon.setImage(phoneCall.getType(), imageViewType);
-
-			textViewTime = (TextView) findViewById(R.id.labelTime);
-			textViewTime.setText(phoneCall.getDateAsHour());
-
-			editText = (BootstrapEditText) findViewById(R.id.editText1);
-			String comment = phoneCall.getComment();
-			if (comment != null) {
-				editText.setText(comment);
-			}
-			Button buttonMask = (Button) findViewById(R.id.buttonMask);
-			OnClickListener listenerButtonMask = new OnClickListener() {
-				@Override
-				public void onClick(View arg0) {
-					mailSend();
-					Log.i("bg2", "MAsk  finish");
-					ActivityComment.this.finish();// Empeche la navigation arriere
-				}
-			};
-			buttonMask.setOnClickListener(listenerButtonMask);
-
-			BootstrapButton buttoncallAgain = (BootstrapButton) findViewById(R.id.button_call_again);
-			OnClickListener listenerButtoncallAgain = new OnClickListener() {
-				@Override
-				public void onClick(View arg0) {
-					Log.i("bg2", "CallAgain Contact start");
-					mailSend();
-					if (phoneCall != null) {
-						Log.i("bg2", "Edit Contact : " + phoneCall.getContact());
-						UtilActivitiesCommon.callNumber(ActivityComment.this, phoneCall.getContact().getNumber());
-					}
-				}
-			};
-			buttoncallAgain.setOnClickListener(listenerButtoncallAgain);
-			BootstrapButton buttonEnvoi = (BootstrapButton) findViewById(R.id.button_envoi);
-
-			OnClickListener buttonListenerEnvoi = new OnClickListener() {
-				@Override
-				public void onClick(View arg0) {
-					String comment = "" + editText.getText();
-					PhoneCall phoneCall = applicationBg.getPhoneCall();
-					
-					if (phoneCall != null) {
-						phoneCall.setComment(comment);
-						Log.i(TAG, "comment :" + comment);
-						// Send to ground
-						UpdateResult result = UtilCalendar.update(applicationBg, phoneCall);
-						mailSend();
-						showConfirmSend(result);
-						finish();
-					}
-
-				}
-			};
-			buttonEnvoi.setOnClickListener(buttonListenerEnvoi);
-
-			buttonAddRemoveToPrivateList = (BootstrapButton) findViewById(R.id.button_add_remove_from_private_list);
-			setButtonLabel();
-			OnClickListener buttonListenerRemoveFromPrivateList = new OnClickListener() {
-				@Override
-				public void onClick(View arg0) {
-
-					if (phoneCall == null) {
-						return;
-					}
-
-					Contact contact = phoneCall.getContact();
-					Log.i(TAG, "Change contact privacy :" + contact);
-					contact.setPrivate(!contact.isPrivate(applicationBg));
-					applicationBg.getDb().getContact().update(contact);
-					setButtonLabel();
-				}
-			};
-			buttonAddRemoveToPrivateList.setOnClickListener(buttonListenerRemoveFromPrivateList);
-
+			return;
 		}
+
+		Log.d("bg2","ActivityComment show "+this.applicationBg.isForeground());
+
+		setContentView(R.layout.activity_comment);
+
+		ImageView imageViewPhoto = (ImageView) findViewById(R.id.logoPhoto);
+		TextView textViewPhoto = (TextView) findViewById(R.id.logoPhotoText);
+
+		UtilLogoPhoto.init(this, textViewPhoto, imageViewPhoto, phoneCall.getContact());
+
+		// imageViewPhoto.setImageURI(phoneCall.getContact().getExtra(this.applicationBg).getPhotoUri());
+		OnClickListener listenerEditContact = new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				editContact();
+			}
+		};
+		if (imageViewPhoto.getVisibility() == View.VISIBLE) {
+			imageViewPhoto.setOnClickListener(listenerEditContact);
+		}
+		if (textViewPhoto.getVisibility() == View.VISIBLE) {
+			textViewPhoto.setOnClickListener(listenerEditContact);
+		}
+		textViewContact = (TextView) findViewById(R.id.labelContact);
+		textViewContact.setText(phoneCall.getContact().getExtra(this.applicationBg).getDisplayName());
+
+		textViewNumber = (TextView) findViewById(R.id.labelNumber);
+		textViewNumber.setText(phoneCall.getContact().getNumber());
+
+		imagePhoneOuMessage = (AwesomeTextView) findViewById(R.id.logoPhoneOuMessage);
+		UtilActivitiesCommon.setImagePhoneOuMessage(phoneCall.getType(), imagePhoneOuMessage);
+
+		AwesomeTextView imageViewType = (AwesomeTextView) findViewById(R.id.logoType);
+		UtilActivitiesCommon.setImage(phoneCall.getType(), imageViewType);
+
+		textViewTime = (TextView) findViewById(R.id.labelTime);
+		textViewTime.setText(phoneCall.getDateAsHour());
+
+		editText = (BootstrapEditText) findViewById(R.id.editText1);
+		String comment = phoneCall.getComment();
+		if (comment != null) {
+			editText.setText(comment);
+		}
+		Button buttonMask = (Button) findViewById(R.id.buttonMask);
+		OnClickListener listenerButtonMask = new OnClickListener() {
+			@Override
+			public void onClick(View arg0) {
+				mailSend();
+				Log.i("bg2", "MAsk  finish");
+				ActivityComment.this.finish();// Empeche la navigation arriere
+			}
+		};
+		buttonMask.setOnClickListener(listenerButtonMask);
+
+		BootstrapButton buttoncallAgain = (BootstrapButton) findViewById(R.id.button_call_again);
+		OnClickListener listenerButtoncallAgain = new OnClickListener() {
+			@Override
+			public void onClick(View arg0) {
+				Log.i("bg2", "CallAgain Contact start");
+				mailSend();
+				if (phoneCall != null) {
+					Log.i("bg2", "Edit Contact : " + phoneCall.getContact());
+					UtilActivitiesCommon.callNumber(ActivityComment.this, phoneCall.getContact().getNumber());
+				}
+			}
+		};
+		buttoncallAgain.setOnClickListener(listenerButtoncallAgain);
+		BootstrapButton buttonEnvoi = (BootstrapButton) findViewById(R.id.button_envoi);
+
+		OnClickListener buttonListenerEnvoi = new OnClickListener() {
+			@Override
+			public void onClick(View arg0) {
+				String comment = "" + editText.getText();
+				PhoneCall phoneCall = applicationBg.getPhoneCall();
+
+				if (phoneCall != null) {
+					phoneCall.setComment(comment);
+					Log.i(TAG, "comment :" + comment);
+					// Send to ground
+					UpdateResult result = UtilCalendar.update(applicationBg, phoneCall);
+					mailSend();
+					showConfirmSend(result);
+					finish();
+				}
+
+			}
+		};
+		buttonEnvoi.setOnClickListener(buttonListenerEnvoi);
+
+		buttonAddRemoveToPrivateList = (BootstrapButton) findViewById(R.id.button_add_remove_from_private_list);
+		setButtonLabel();
+		OnClickListener buttonListenerRemoveFromPrivateList = new OnClickListener() {
+			@Override
+			public void onClick(View arg0) {
+
+				if (phoneCall == null) {
+					return;
+				}
+
+				Contact contact = phoneCall.getContact();
+				Log.i(TAG, "Change contact privacy :" + contact);
+				contact.setPrivate(!contact.isPrivate(applicationBg));
+				applicationBg.getDb().getContact().update(contact);
+				setButtonLabel();
+			}
+		};
+
+		buttonAddRemoveToPrivateList.setOnClickListener(buttonListenerRemoveFromPrivateList);
 
 	}
 

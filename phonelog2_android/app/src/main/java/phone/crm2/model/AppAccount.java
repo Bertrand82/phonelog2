@@ -1,8 +1,9 @@
 package phone.crm2.model;
 
+import java.io.Serializable;
 import java.security.MessageDigest;
 
-public class AppAccount {
+public class AppAccount implements Serializable {
 
     private long id;
     private String mail;

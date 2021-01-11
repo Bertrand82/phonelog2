@@ -43,7 +43,7 @@ public class ApplicationBg extends Application  implements LifecycleObserver {
 	public static final String BG_UNKNOWN_="Unknown";
 	public static final String ACCOUNT_TYPE = "com.cafe_crm.account";
 	private Contact contactCurrent;
-	private String phoneLastCall;
+	//private String phoneLastCall;
 	private PhoneCall phoneCallDetail;
 	private PhoneCall phoneCall;
 	private AppAccount appAccount;
@@ -61,7 +61,6 @@ public class ApplicationBg extends Application  implements LifecycleObserver {
 
 
 	public ApplicationBg() {
-
 		super();
 		this.callManager=new CallManager(this);
 	}
@@ -84,8 +83,8 @@ public class ApplicationBg extends Application  implements LifecycleObserver {
 		// Regarde si dans cette liste des calendars sont selected
 		this.db.getCalendarsSelected().setSelectedParam(this.listCalendars);
 		this.initStoragePreference();
-
 	}
+
 	private void initStoragePreference() {
 		try {
 			SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
@@ -105,7 +104,6 @@ public class ApplicationBg extends Application  implements LifecycleObserver {
 					return;
 				}
 			}
-
 		} catch (Exception e) {
 			Log.e(TAG," initStoragePreference Exception "+e.getMessage());
 		}finally{
@@ -165,13 +163,6 @@ public class ApplicationBg extends Application  implements LifecycleObserver {
 	}
 
 
-
-
-	public String getMyPhoneNumber(){
-		TelephonyManager mTelephonyMgr = (TelephonyManager)   this.getSystemService(Context.TELEPHONY_SERVICE);
-		return mTelephonyMgr.getLine1Number();
-	}
-
 	public PhoneCall getPhoneCall() {
 		return phoneCall;
 	}
@@ -181,13 +172,6 @@ public class ApplicationBg extends Application  implements LifecycleObserver {
 	}
 
 
-	public String getPhoneLastCall() {
-		return phoneLastCall;
-	}
-
-	public void setPhoneLastCall(String phoneLastCall) {
-		this.phoneLastCall = phoneLastCall;
-	}
 
 
 	public PhoneCall getPhoneCallDetail() {

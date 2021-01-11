@@ -64,7 +64,8 @@ public class ActivityComment extends AbstractActivityCrm {
 				getActionBar().setDisplayHomeAsUpEnabled(true);
 			}*/
 
-			phoneCall = applicationBg.getPhoneCall();
+			this.phoneCall = applicationBg.getPhoneCall();
+			Log.d("bg2","ActivityComment show "+this.applicationBg.isForeground());
 
 			setContentView(R.layout.activity_comment);
 
@@ -113,7 +114,7 @@ public class ActivityComment extends AbstractActivityCrm {
 				public void onClick(View arg0) {
 					mailSend();
 					Log.i("bg2", "MAsk  finish");
-					ActivityComment.this.finish();
+					ActivityComment.this.finish();// Empeche la navigation arriere
 				}
 			};
 			buttonMask.setOnClickListener(listenerButtonMask);

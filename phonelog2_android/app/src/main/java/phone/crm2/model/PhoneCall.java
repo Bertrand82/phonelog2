@@ -101,5 +101,11 @@ public class PhoneCall extends Event{
 		return contact.equals2(other.getContact());
 	}
 	
-	
+	public String getNameOrNumber() {
+		if (contact== null){
+			return " ";
+		}else {
+			return contact.getContactNameOrNumber();
+		}
+	}
 }

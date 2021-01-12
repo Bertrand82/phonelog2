@@ -18,6 +18,7 @@ public class ContactExtra implements Serializable{
 	// UTI is not always serializable : java.io.NotSerializableException: android.net.Uri$StringUri
 	public  Uri photoUri;	
 	public String normalizedNumber;
+	public String email;
 	public Long raw_contact_id;
 	private Long _id;
 	private String lookup_key;
@@ -139,7 +140,9 @@ public class ContactExtra implements Serializable{
 		return lookup_key;
 	}
 
-	
+	public Long get_Id() {
+		return _id;
+	}
 	
 	
 	

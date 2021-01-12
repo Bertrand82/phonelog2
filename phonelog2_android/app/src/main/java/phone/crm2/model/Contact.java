@@ -251,6 +251,7 @@ public final class Contact implements Serializable {
 		} else {
 			Long raw_contact_id = contactExtra_.getRaw_contact_id(context);
 			if (raw_contact_id != null) {
+
 				email = UtilContact.getEmail(raw_contact_id, context);
 			}
 		}

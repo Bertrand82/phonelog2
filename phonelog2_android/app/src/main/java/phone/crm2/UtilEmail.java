@@ -25,27 +25,36 @@ public class UtilEmail {
 		return  sendMessage(activity, phoneCall.getContact());
 	}
 
-	public static boolean sendMessage(Context activity, Contact contact) {
-		return sendMessage(activity,contact.getEmailFromContact(activity),"","");
+
+
+	public static boolean sendMessage(Context activity,Contact contact) {
+		Log.i("bg2","UtilMail sendMessage message simple 44444444");
+
+		//intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		String destinataireMail = contact.getEmailFromContact(activity);
+		if (destinataireMail==null){
+			destinataireMail ="aaaa@bbb.com";
+		}
+		sendMessage(activity,destinataireMail,"oooo","aaaaa");
+
+		return true;
+
 	}
 
-	public static boolean sendMessage(Context activity, String destinataire, String subject, String text){
+	public static boolean sendMessage(Context activity, String destinataireEmail, String subject, String text){
+		Log.i("bg2","UtilMail sendMessage ");
+		String message = "this msg is sent from My App Time Track";
+		Intent intent = new Intent(Intent.ACTION_SEND);//intent will do work of sending something
+		intent.putExtra(Intent.EXTRA_EMAIL  , new String[]{destinataireEmail});
+		intent.putExtra(Intent.EXTRA_TEXT, text);//send given message
+		intent.putExtra(Intent.EXTRA_SUBJECT,subject);//give the subject for your message
+		//Intent.Extra_Text is actually a globol key
+		intent.setType("plane/text");//type of intent
 
-			Log.i("bg2","UtilMail sendMessage mail simple 0000000");
-			Intent i = new Intent(Intent.ACTION_SEND);
-			i.setType("message/rfc822");
-			i.putExtra(Intent.EXTRA_EMAIL  , new String[]{destinataire});
-			i.putExtra(Intent.EXTRA_SUBJECT, subject);
-			i.putExtra(Intent.EXTRA_TEXT   , text);
-			try {
-				activity.startActivity(Intent.createChooser(i, "Send mail..."));
-			} catch (android.content.ActivityNotFoundException ex) {
-				Log.i("bg2","UtilMail sendMail mail simple 0000000",ex);
-				Toast.makeText(activity, "There are no email clients installed.", Toast.LENGTH_SHORT).show();
-				return false;
-			}
-			return true;
+		activity.startActivity(Intent.createChooser(intent,"Send with: "));//createChooser is a dialogBox which shows app available to send data
+		return true;
 	}
+	
 
 	public static boolean sendEmail(Context activity, String destinataire, String subject, String text){
 
@@ -59,8 +68,9 @@ public class UtilEmail {
 		try {
 			activity.startActivity(Intent.createChooser(i, "Send mail..."));
 		} catch (android.content.ActivityNotFoundException ex) {
-			Log.i("bg2","UtilMail sendMail mail simple 0000000",ex);
-			Toast.makeText(activity, "There are no email clients installed.", Toast.LENGTH_SHORT).show();
+			Log.e("bg2","UtilMail sendMail mail simple 0000000"+ex);
+			Log.e("bg2","UtilMail sendMail mail simple 0000000",ex);
+			Toast.makeText(activity, "There are no sender clients installed.", Toast.LENGTH_SHORT).show();
 			return false;
 		}
 		return true;

@@ -120,9 +120,9 @@ public class ActivityComment extends AbstractActivityCrm {
 		OnClickListener listenerButtonMask = new OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
-				mailSend();
+				UtilEmail.sendMessage(ActivityComment.this,phoneCall);
 				Log.i("bg2", "MAsk  finish");
-				ActivityComment.this.finish();// Empeche la navigation arriere
+				//ActivityComment.this.finish();// Empeche la navigation arriere
 			}
 		};
 		buttonMask.setOnClickListener(listenerButtonMask);
@@ -132,7 +132,7 @@ public class ActivityComment extends AbstractActivityCrm {
 			@Override
 			public void onClick(View arg0) {
 				Log.i("bg2", "CallAgain Contact start");
-				mailSend();
+
 				if (phoneCall != null) {
 					Log.i("bg2", "Edit Contact : " + phoneCall.getContact());
 					UtilActivitiesCommon.callNumber(ActivityComment.this, phoneCall.getContact().getNumber());
@@ -153,7 +153,7 @@ public class ActivityComment extends AbstractActivityCrm {
 					Log.i(TAG, "comment :" + comment);
 					// Send to ground
 					UpdateResult result = UtilCalendar.update(applicationBg, phoneCall);
-					mailSend();
+
 					showConfirmSend(result);
 					finish();
 				}
@@ -235,7 +235,7 @@ public class ActivityComment extends AbstractActivityCrm {
 	@Override
 	protected void onStop() {
 		super.onStop();
-		mailSend();
+
 	}
 
 	@Override
@@ -248,7 +248,7 @@ public class ActivityComment extends AbstractActivityCrm {
 		}
 	}
 
-	private void mailSend() {
+	private void mailSend_DEPRECATED() {
 		if (phoneCall == null) {// inutile d'envoyer un mail!
 			Log.w("bg2", "mailSend phoneCall is Null!! ");
 			return;

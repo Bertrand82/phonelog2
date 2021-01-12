@@ -98,7 +98,8 @@
     <string name="labelCRM" translatable="false">CRM</string>
     <string name="labeFiltreCommmnentedOnly" translatable="false">FILTRE</string>
     <string name="labeFiltreCommmnentedOnlyAll" translatable="false">All</string>
-    <string name="labelMAIL" translatable="false">MAILS</string>
+    <string name="labelMAILS" translatable="false">MAILS</string>
+    <string name="labelSendMessage" translatable="false">SEND</string>
     <string name="please_select_calendar">Select at least one Calendar</string>
     <string name="buttonDisplayLogs">Next</string>
     <string name="title_import_contacts_description">Import Contacts from file </string>

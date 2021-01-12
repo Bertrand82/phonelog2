@@ -88,9 +88,17 @@ public class ActivityLogDetail extends AbstractListActivityCrm {
 			}
 
 		});
-		
-		Button buttonDisplayMail = (Button) findViewById(R.id.buttonEmail);
-		buttonDisplayMail.setOnClickListener(new OnClickListener() {
+		Button buttonSendMessage =(Button) findViewById(R.id.buttonSendMessage);
+		buttonSendMessage.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				Log.i("bg2", "sendMessage2");
+				UtilEmail.sendMessage(ActivityLogDetail.this,ActivityLogDetail.this.contact);
+			}
+		});
+		Button buttonDisplayMails = (Button) findViewById(R.id.buttonEmails);
+		buttonDisplayMails.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {

@@ -43,22 +43,11 @@
             android:layout_below="@+id/site_url"
             android:text="@string/aboutMessageLabel" />
 
-        <com.beardedhen.androidbootstrap.BootstrapEditText
-            android:id="@+id/editTextMessage"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/aboutMessage"
-            android:layout_marginTop="20dp"
-            android:gravity="center"
-            android:hint="@string/aboutCommentWrite"
-            android:lines="5"
-             />
-
         <Button
             android:id="@+id/aboutButtonSendMessage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/editTextMessage"
+            android:layout_below="@+id/aboutMessage"
             android:layout_marginTop="10dp"
             android:padding="10dp"
             android:text="@string/aboutSendComment" />

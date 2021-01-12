@@ -43,11 +43,7 @@
         android:title="@string/title_setting"
        app:showAsAction="ifRoom"
        />
-  <item
-        android:id="@+id/action_setting_preferences_mail_smtp"
-        android:title="@string/title_setting_mail_smtp"
-      app:showAsAction="ifRoom"
-      />
+
    <item
         android:id="@+id/action_setting_imports"
         android:title="@string/title_imports"> 

@@ -114,10 +114,6 @@ public class UtilActivitiesCommon {
         activity.startActivity(intent);
     }
 
-    public static void openSettingsEmail_(Activity activity) {
-        Intent intent = new Intent(activity, ActivitySettingEmailSMTP.class);
-        activity.startActivity(intent);
-    }
 
     private static void openImportContacts(Activity activity) {
         Intent intent = new Intent(activity, ActivityImportContacts.class);
@@ -172,10 +168,7 @@ public class UtilActivitiesCommon {
         } else if (item.getItemId() == R.id.action_setting_preferences) {
             UtilActivitiesCommon.openSettings_(activity);
             return true;
-        } else if (item.getItemId() == R.id.action_setting_preferences_mail_smtp) {
-            UtilActivitiesCommon.openSettingsEmail_(activity);
-            return true;
-        } else if (item.getItemId() == R.id.action_import_contact) {
+        }  else if (item.getItemId() == R.id.action_import_contact) {
             UtilActivitiesCommon.openImportContacts(activity);
             return true;
         } else if (item.getItemId() == R.id.action_import_event_crm) {

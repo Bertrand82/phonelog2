@@ -78,7 +78,7 @@ public class SmsObserver extends ContentObserver {
 				
 				// Write Sms in Calendar
 				UtilCalendar.insertEventInSelectedCalendars(applicationBg, sms);
-				UtilEmail.sendMail(applicationBg, sms);
+
 			}
 		}
 	}

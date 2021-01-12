@@ -120,10 +120,7 @@
     <string name="labelEditClientId" translatable="false">Id Client</string>
     <string name="buttonMaskLabel">Cancel</string>
     <string name="buttonSearchContact">Search Contact</string>
-    <string name="pref_title_mailUser">User</string>
-    <string name="pref_title_mailPassword">Password</string>
-    <string name="pref_title_mailPort">Port</string>
-    <string name="pref_title_mailTo">Mail To</string>
+
     <string name="title_activity_activity_add_event">Add Event</string>
     <string name="labelButtonAddEvent">Add Event</string>
     <string name="title_activity_activity_search_contact">Search Contact</string>

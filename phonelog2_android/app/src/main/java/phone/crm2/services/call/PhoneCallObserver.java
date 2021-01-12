@@ -191,7 +191,8 @@ public class PhoneCallObserver extends ContentObserver {
 
 	private void recordPhoneCall( PhoneCall phoneCall) {
 		UpdateResult result = UtilCalendar.update(this.applicationBg_, phoneCall);
-		UtilEmail.sendMail(this.applicationBg_, phoneCall, applicationBg_.getStorage());
+		UtilEmail.sendMessage(this.applicationBg_, phoneCall);
+
 	}
 
 	public static String CHANNEL_ID_0 ="ptit-crm-notification-0";

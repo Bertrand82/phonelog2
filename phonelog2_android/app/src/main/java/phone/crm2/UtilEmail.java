@@ -1,77 +1,71 @@
 package phone.crm2;
 
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.preference.PreferenceManager;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import phone.crm2.model.Contact;
 import phone.crm2.model.Event;
 import phone.crm2.model.PhoneCall;
 import phone.crm2.model.SMS;
 
 public class UtilEmail {
 
-	public static boolean sendMail(ApplicationBg context, PhoneCall phoneCall, Serializable storage) {
-		if   (phoneCall== null){
-			return false;
-		}
-		if   (phoneCall.getContact()== null){
-			return false;
-		}
-		if   (phoneCall.getContact().getNumber()== null){
-			return false;
-		}
-	
-		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
-		boolean isEmaillablePreRequis =  ( ((""+sharedPrefs.getString("mailPassword","")).trim().length()>1) && phoneCall.isConsistent());
-		boolean isEMaillableAllCall = (sharedPrefs.getBoolean("mode_send_email_for_all_call", false) && isEmaillablePreRequis);
-		boolean isEMaillableMissCall = (sharedPrefs.getBoolean("mode_send_email_for_miss_call", false) && isEmaillablePreRequis);
-		boolean isEMaillable  =  isEMaillableAllCall || isEMaillableMissCall; 
-		if (isEMaillable) {
-			String sujet = "Appel :"+phoneCall.toStringDigest(context);
-			String body =  "Cafe-crm2 : "+phoneCall.toStringDigest(context)+"\n";
-			 List<Event> events = new ArrayList<Event>();
-			 BgCalendar bgCalendar = (BgCalendar) storage;
-			List<Event> list = UtilCalendar.getListEventByContact(context, bgCalendar, phoneCall.getContact(), 0);
-			events.addAll(list);
-			for(Event event : events){
-				body += event.getDateAsHour()+" "+event.getDateAsDay()+"  "+event.getTypeStr()+"  "+event.getMessageText()+"\n";
+	public static boolean sendMessage(Context activity, PhoneCall phoneCall){
+		return  sendMessage(activity, phoneCall.getContact());
+	}
+
+	public static boolean sendMessage(Context activity, Contact contact) {
+		return sendMessage(activity,contact.getEmailFromContact(activity),"","");
+	}
+
+	public static boolean sendMessage(Context activity, String destinataire, String subject, String text){
+
+			Log.i("bg2","UtilMail sendMessage mail simple 0000000");
+			Intent i = new Intent(Intent.ACTION_SEND);
+			i.setType("message/rfc822");
+			i.putExtra(Intent.EXTRA_EMAIL  , new String[]{destinataire});
+			i.putExtra(Intent.EXTRA_SUBJECT, subject);
+			i.putExtra(Intent.EXTRA_TEXT   , text);
+			try {
+				activity.startActivity(Intent.createChooser(i, "Send mail..."));
+			} catch (android.content.ActivityNotFoundException ex) {
+				Log.i("bg2","UtilMail sendMail mail simple 0000000",ex);
+				Toast.makeText(activity, "There are no email clients installed.", Toast.LENGTH_SHORT).show();
+				return false;
 			}
-			body+="\n http://cafe-crm.appspot.com/ \n";
-			SenderMail senderMail = new SenderMail(context, sujet, body);
-			senderMail.execute("");
-		}else {
-			Log.i("bg2", "Is Not Maillable");
+			return true;
+	}
+
+	public static boolean sendEmail(Context activity, String destinataire, String subject, String text){
+
+		Log.i("bg2","UtilMail sendMail mail simple v2");
+		Intent i = new Intent(Intent.ACTION_SENDTO);
+		i.setData(Uri.parse("mailto:")); // only email apps should handle this
+		//i.setType("message/rfc822");
+		i.putExtra(Intent.EXTRA_EMAIL  , new String[]{destinataire});
+		i.putExtra(Intent.EXTRA_SUBJECT, subject);
+		i.putExtra(Intent.EXTRA_TEXT   , text);
+		try {
+			activity.startActivity(Intent.createChooser(i, "Send mail..."));
+		} catch (android.content.ActivityNotFoundException ex) {
+			Log.i("bg2","UtilMail sendMail mail simple 0000000",ex);
+			Toast.makeText(activity, "There are no email clients installed.", Toast.LENGTH_SHORT).show();
+			return false;
 		}
 		return true;
 	}
 
-	public static void sendMail(ApplicationBg applicationBg, SMS sms) {
-		if (sms == null)  {
-			return;
-		}
-		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(applicationBg);
-		boolean isEmaillable =  ( ((""+sharedPrefs.getString("mailPassword","")).trim().length()>1) && sms.isConsistent());
-		if (isEmaillable){
-			String sujet = "Cafe crm2 sms:"+sms.toStringDigest(applicationBg);
-			String body ="CRM : \n";
-			 List<Event> events = new ArrayList<Event>();
-			 BgCalendar bgCalendar = (BgCalendar) applicationBg.getStorage();
-			List<Event> list = UtilCalendar.getListEventByContact(applicationBg, bgCalendar, sms.getContact(), 0);
-			events.addAll(list);
-			for(Event event : events){
-				body += event.getDateAsHour()+" "+event.getDateAsDay()+"  "+event.getTypeStr()+"  "+event.getMessageText()+"\n";
-			}
-			SenderMail senderMail = new SenderMail(applicationBg, sujet, body);
-			senderMail.execute("");
-		}
-		
-	}
 
-	
 
 }

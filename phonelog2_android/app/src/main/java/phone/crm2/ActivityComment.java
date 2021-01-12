@@ -260,7 +260,7 @@ public class ActivityComment extends AbstractActivityCrm {
 			return;
 		}
 		phoneCall_Z_1 = phoneCall;
-		mailSent = UtilEmail.sendMail(this.getApplicationBg(), phoneCall, this.applicationBg.getStorage());
+		mailSent = UtilEmail.sendMessage(this, phoneCall);
 	}
 
 }

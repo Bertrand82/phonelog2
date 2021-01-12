@@ -43,7 +43,7 @@ public class FirstFragmentCalendar extends ListFragment {
                 if (getApplication().getDefaultCalendar()==null) {
                     alertNoCalendarSelected();
                 }else {
-                    UtilActivitiesCommon.openSettingsEmail_(FirstFragmentCalendar.this.getActivity());
+                    UtilActivitiesCommon.openLogs(FirstFragmentCalendar.this.getActivity());
                 }
             }
         });

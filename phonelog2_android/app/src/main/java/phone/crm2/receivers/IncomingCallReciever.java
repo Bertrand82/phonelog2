@@ -70,7 +70,7 @@ public class IncomingCallReciever extends BroadcastReceiver {
 						sms.setMessage(message);
 						
 						UtilCalendar.insertEventInSelectedCalendars(applicationBg, sms);
-						UtilEmail.sendMail(applicationBg, sms);
+
 					}
 				}
 			} catch (Exception e) {

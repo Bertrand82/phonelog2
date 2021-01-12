@@ -283,21 +283,21 @@ public class ActivityLogDetail extends AbstractListActivityCrm {
 		} else {
 			Long raw_contact_id = contactExtra_.getRaw_contact_id(this);
 			if (raw_contact_id != null) {
-				email = UtilContact.getEmail(raw_contact_id, this);
+				email = contactExtra_.getMail( this);
 			}
 		}
 		return email;
 	}
 	private void showMAils() {
-		Log.i("bg2", "showMAils " + contact);
+		Log.i("bg2", "ActivityLogDetails showMAils contact:" + contact);
 		String email = null;
 		ContactExtra contactExtra_ = this.contact.getExtra(this);
 		if (contactExtra_ == null) {
 		} else {
-			Log.i("bg2", " Contact Extra " + contactExtra_);
+			Log.i("bg2", "ActivityLogDetails Contact Extra " + contactExtra_);
 			Long raw_contact_id = contactExtra_.getRaw_contact_id(this);
 			if (raw_contact_id != null) {
-				email = UtilContact.getEmail(raw_contact_id, this);
+				email = contactExtra_.getMail( this);
 			}
 		}
 		if (contactExtra_  ==null){

@@ -244,17 +244,7 @@ public final class Contact implements Serializable {
 	}
 
 	public String getEmailFromContact(Context context){
-		String email = null;
-		
-		ContactExtra contactExtra_ = this.getExtra(context);
-		if (contactExtra_ == null) {
-		} else {
-			Long raw_contact_id = contactExtra_.getRaw_contact_id(context);
-			if (raw_contact_id != null) {
-
-				email = UtilContact.getEmail(raw_contact_id, context);
-			}
-		}
+		String email =  this.getExtra(context).getMail(context);
 		return email;
 	}
 

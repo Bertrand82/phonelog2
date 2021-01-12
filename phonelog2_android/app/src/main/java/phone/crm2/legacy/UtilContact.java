@@ -202,11 +202,6 @@ public class UtilContact {
 	}
 
 
-	public static String getEmail(long raw_contact_id, Context context) {
-		// TODO Auto-generated method stub
-
-		return null;
-	}
 
 
 	

@@ -3,6 +3,7 @@ package phone.crm2.model;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
+import android.provider.ContactsContract;
 import android.provider.ContactsContract.PhoneLookup;
 import android.provider.ContactsContract.RawContacts;
 import android.util.Log;
@@ -18,14 +19,14 @@ public class ContactExtra implements Serializable{
 	// UTI is not always serializable : java.io.NotSerializableException: android.net.Uri$StringUri
 	public  Uri photoUri;	
 	public String normalizedNumber;
-	public String email;
+
 	public Long raw_contact_id;
 	private Long _id;
 	private String lookup_key;
-	
+	private String email;
 
 	public ContactExtra(Context context, String phoneNumber) {
-		 
+
 		Uri uri = Uri.withAppendedPath(PhoneLookup.CONTENT_FILTER_URI, Uri.encode(phoneNumber));
 		String[] params = new String[]{PhoneLookup.DISPLAY_NAME, PhoneLookup.PHOTO_URI, PhoneLookup.NORMALIZED_NUMBER,PhoneLookup.LOOKUP_KEY,PhoneLookup._ID};
 		Cursor cursor = context.getContentResolver().query(uri, params ,null,null,null);
@@ -143,7 +144,28 @@ public class ContactExtra implements Serializable{
 	public Long get_Id() {
 		return _id;
 	}
-	
-	
+	private boolean emailFetched = false;
+	private String fetchEmail(Context context){
+		emailFetched = true;
+		Log.i("bg2","ContactExtra fetchEmail");
+		String email=null;
+		String[] params =  new String[] { ContactsContract.Data._ID, ContactsContract.Data.MIMETYPE,ContactsContract.CommonDataKinds.Email.ADDRESS};
+		Cursor cursor = context.getContentResolver().query(
+				ContactsContract.Data.CONTENT_URI,params, ContactsContract.Data.CONTACT_ID
+						+ "=?" + " AND "  +   ContactsContract.Data.MIMETYPE+ "='" + ContactsContract.CommonDataKinds.Email.CONTENT_ITEM_TYPE +"'",
+				new String[] {String.valueOf(this._id)}, null);
+		if (cursor.moveToFirst()) {
+			email = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Email.ADDRESS));
+		}
+		Log.i("bg2","ContactExtra fetchEmail : email:"+email);
+		return email;
+	}
+
+	public String getMail(Context context){
+		if (!emailFetched){
+			this.fetchEmail(context);
+		}
+		return this.email;
+	}
 	
 }

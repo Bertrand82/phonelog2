@@ -52,7 +52,7 @@ public class UtilEmail {
 		//Intent.Extra_Text is actually a globol key
 		//intent.setType("plane/text");//type of intent Manque sms
 		//intent.setType("*/*");// trop de choix
-		intent.setType("text/plain"); // Une dizaine de choix dont sms et whatsapp . 
+		intent.setType("text/plain"); // Une dizaine de choix dont sms et whatsapp .
 		//intent.setType("message/rfc822");// Plus de sms
 
 		activity.startActivity(Intent.createChooser(intent,"Send with: "));//createChooser is a dialogBox which shows app available to send data

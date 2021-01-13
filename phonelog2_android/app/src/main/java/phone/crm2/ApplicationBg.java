@@ -252,11 +252,7 @@ public class ApplicationBg extends Application  implements LifecycleObserver {
 
 	}
 
-	public Boolean getNotificationActivated() {
-		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
-		boolean notificationActivated =  sharedPrefs.getBoolean("notification_activated", true);
-		return notificationActivated;
-	}
+
 
 	List<TraceDebug> listTraceDebug = new ArrayList<TraceDebug>();
 	public void addEmailTrace(String message) {

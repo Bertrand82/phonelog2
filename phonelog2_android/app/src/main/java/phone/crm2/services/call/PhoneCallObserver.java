@@ -161,22 +161,20 @@ public class PhoneCallObserver extends ContentObserver {
 		phoneCall_Z_1=phoneCall;
 		Log.v(TAG, "processPhoneCall showAlertDialog PhoneCall :" + phoneCall);
 		this.applicationBg_.setPhoneCall(phoneCall);
-		Log.v(TAG, "processPhoneCall startAlertDialog NotificationActivated : "+applicationBg_.getNotificationActivated());
-		if (applicationBg_.getNotificationActivated()){
+		Log.v(TAG, "processPhoneCall startAlertDialog Notification ");
 
-			Log.i(TAG,"processPhoneCall showPhoneCallDialog  isForeground :"+applicationBg_.isForeground());
-			if (applicationBg_.isForeground()) {// Afficher l'ecran
-				Log.i(TAG,"processPhoneCall showPhoneCallDialog start ACtivity");
-				Intent intent =getIntent(phoneCall);
-				applicationBg_.startActivity(intent);
-			}else {// Afficher une annotation + enregistrer l'appel dans le calendar
-				Log.i(TAG,"processPhoneCall showPhoneCallDialog show Notification");
-				recordPhoneCall(phoneCall);
-				showCallNotification(phoneCall);
-			}
-		}else {
-			Log.v(TAG, "processPhoneCall No Phone AlertDialog ActivityComment No Activated");
+
+		Log.i(TAG,"processPhoneCall showPhoneCallDialog  isForeground :"+applicationBg_.isForeground());
+		if (applicationBg_.isForeground()) {// Afficher l'ecran
+			Log.i(TAG,"processPhoneCall showPhoneCallDialog start ACtivity");
+			Intent intent =getIntent(phoneCall);
+			applicationBg_.startActivity(intent);
+		}else {// Afficher une annotation + enregistrer l'appel dans le calendar
+			Log.i(TAG,"processPhoneCall showPhoneCallDialog show Notification");
+			recordPhoneCall(phoneCall);
+			showCallNotification(phoneCall);
 		}
+
 		//SenderMail senderMAil = new SenderMail(applicationBg_,  "Phone Call "+phoneCall, "Historic ");
 		//senderMAil.execute("");
 	}

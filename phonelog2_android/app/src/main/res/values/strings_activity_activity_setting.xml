@@ -13,8 +13,7 @@
     <string name="pref_description_mode_send_email_all_call">Send an email notification on every calls</string>
     <string name="pref_description_mode_send_email_miss_call">Send an email notification on miss calls</string>
     <string name="pref_title_display_name">Display name</string>
-    <string name="pref_description_notification_activated">Notification Activate</string>
-    <string name="pref_title_notification_activated">Notification Activate</string>
+
     <string name="pref_default_display_name">John Smith</string>
     <string name="pref_title_select_calendars2">Default Calendars Displayed</string>
     <string name="pref_title_mailHost">Host</string>

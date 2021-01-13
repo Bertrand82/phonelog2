@@ -100,7 +100,7 @@ public class ActivityFormClientId extends AbstractActivityCrm {
 			try { // Insert
 				Log.i("bg2","CRM ClientId insert");				
 				insert(clientId, raw_contact_id);
-				UtilActivitiesCommon.displayActivityLogDetatil(this, contact, storage, false);
+				UtilActivitiesCommon.displayActivityLogDetail(this, contact, storage, false);
 			} catch (Exception e) {
 				Log.w("bg2", "actionSetClientId 1 exception", e);
 				UtilActivitiesCommon.popUp(this, "Exception Inserting ClientId", "Exception " + e.getMessage());
@@ -111,7 +111,7 @@ public class ActivityFormClientId extends AbstractActivityCrm {
 				update( raw_contact_id,clientId);
 				contact.setClientId(clientId);
 				Log.i("bg2","CRM ClientId Update done");
-				UtilActivitiesCommon.displayActivityLogDetatil(this, contact, storage, false);
+				UtilActivitiesCommon.displayActivityLogDetail(this, contact, storage, false);
 			} catch (Exception e) {
 				Log.w("bg2", "actionSetClientId 2 exception", e);
 				UtilActivitiesCommon.popUp(this, "Exception updating ClientId", "Exception " + e.getMessage());

@@ -1,6 +1,5 @@
 package phone.crm2;
 
-import android.app.ActionBar;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -103,7 +102,7 @@ public class ActivityAddEvent extends AbstractActivityCrm {
 		String comment = this.editText.getText().toString();
 		Log.i("bg2", "AddEvent  date : "+date+"  comment :"+comment); 
 		insert(date, comment);
-		UtilActivitiesCommon.displayActivityLogDetatil(this, contact_, this.storage, false);
+		UtilActivitiesCommon.displayActivityLogDetail(this, contact_, this.storage, false);
 	}
 	
 	private void insert(Date date, String comment) {

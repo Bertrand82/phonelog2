@@ -185,10 +185,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".AbstractActivityCrm" />
         </activity>
-        <activity
-            android:name=".ActivityImportEventsCRM"
-            android:label="@string/title_activity_activity_import_events_crm" >
-        </activity>
+
         <activity
             android:name=".ActivityAbout"
             android:label="@string/title_activity_activity_about" >

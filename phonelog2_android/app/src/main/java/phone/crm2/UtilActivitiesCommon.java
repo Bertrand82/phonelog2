@@ -120,11 +120,7 @@ public class UtilActivitiesCommon {
         activity.startActivity(intent);
     }
 
-    private static void openImportEventsCRM(Activity activity) {
-        // popUp(activity, "Inport Events", "No Implemented Yet");
-        Intent intent = new Intent(activity, ActivityImportEventsCRM.class);
-        activity.startActivity(intent);
-    }
+
 
     private static void openAbout(Activity activity) {
         // popUp(activity, "Inport Events", "No Implemented Yet");
@@ -167,12 +163,6 @@ public class UtilActivitiesCommon {
             return true;
         } else if (item.getItemId() == R.id.action_setting_preferences) {
             UtilActivitiesCommon.openSettings_(activity);
-            return true;
-        }  else if (item.getItemId() == R.id.action_import_contact) {
-            UtilActivitiesCommon.openImportContacts(activity);
-            return true;
-        } else if (item.getItemId() == R.id.action_import_event_crm) {
-            UtilActivitiesCommon.openImportEventsCRM(activity);
             return true;
         } else if (item.getItemId() == R.id.action_about) {
             UtilActivitiesCommon.openAbout(activity);
@@ -427,8 +417,10 @@ public class UtilActivitiesCommon {
         }
         return "";
     }
-
-    public static void displayActivityLogDetatil(Context context, Contact contact, Serializable storage, boolean newActivity) {
+    public static void displayActivityAddEvent(Context context, Contact contact, Serializable storage, boolean newActivity) {
+        displayActivity(context, contact, storage, newActivity, ActivityAddEvent.class);
+    }
+    public static void displayActivityLogDetail(Context context, Contact contact, Serializable storage, boolean newActivity) {
         displayActivity(context, contact, storage, newActivity, ActivityLogDetail.class);
     }
 

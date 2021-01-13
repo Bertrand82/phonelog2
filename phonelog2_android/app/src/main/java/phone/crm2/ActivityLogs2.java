@@ -27,7 +27,7 @@ public class ActivityLogs2 extends AbstractActivityCrm{
         try {
             Contact contact = (Contact) view.getTag();
             Serializable storage = ((ApplicationBg) getApplication()).getStorage();
-            UtilActivitiesCommon.displayActivityLogDetatil(this,contact,storage,true);
+            UtilActivitiesCommon.displayActivityLogDetail(this,contact,storage,true);
             View parentRow = (View) view.getParent();
             ListView listView = (ListView) parentRow.getParent();
             final int position = listView.getPositionForView(parentRow);

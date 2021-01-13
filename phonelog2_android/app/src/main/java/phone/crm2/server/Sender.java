@@ -7,8 +7,9 @@ import android.os.Looper;
  * 
  * @author Bertrand Suite a Exception: : Caused by: java.lang.RuntimeException:
  *         Can't create handler inside thread that has not called
- *         Looper.prepare(), Je cr?e un thread
+ *         Looper.prepare(), Je crée un thread
  */
+@Deprecated
 public class Sender implements Runnable {
 
 	private AsyncTask<?, ?, ?> request;

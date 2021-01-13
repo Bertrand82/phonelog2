@@ -8,7 +8,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 
-@Deprecated
+
 public class ActivityAbout extends AbstractActivityCrm {
 	
 	private static final String VERSION = "2.02";//3/2015

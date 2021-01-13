@@ -44,19 +44,7 @@
        app:showAsAction="ifRoom"
        />
 
-   <item
-        android:id="@+id/action_setting_imports"
-        android:title="@string/title_imports"> 
-        <menu>
-       		  <item
-       			 	android:id="@+id/action_import_contact"
-        			android:title="@string/title_import_contacts"/>
-            	<item
-        			android:id="@+id/action_import_event_crm"
-       				android:title="@string/title_import_events_crm"/>
- 		 </menu>
-       app:showAsAction="ifRoom"
-     </item>
+
 
      <item
         android:id="@+id/action_trace_debug"

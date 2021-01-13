@@ -51,7 +51,7 @@ public class ListFragmentLogs extends ListFragment {
 			public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
 				int n = firstVisibleItem + visibleItemCount;
 				if (n >= totalItemCount){
-					Log.i("bg2","ActivityLogs___OLD Fin de page firstVisibleItem "+firstVisibleItem+" visibleItemCount "+visibleItemCount+"  "+(firstVisibleItem+visibleItemCount)+" totalItemCount :"+totalItemCount);
+					Log.i("bg2","ActivityLogs Fin de page firstVisibleItem "+firstVisibleItem+" visibleItemCount "+visibleItemCount+"  "+(firstVisibleItem+visibleItemCount)+" totalItemCount :"+totalItemCount);
 					appendNexPage();
 				}
 			}
@@ -142,7 +142,7 @@ public class ListFragmentLogs extends ListFragment {
 
 	private void displayActivityLogDetail(Contact contact) {
 		Serializable storage = (Serializable) this.spinner.getSelectedItem();
-		UtilActivitiesCommon.displayActivityLogDetatil(this.getActivity(), contact, storage, false);
+		UtilActivitiesCommon.displayActivityLogDetail(this.getActivity(), contact, storage, false);
 	}
 
 	
@@ -172,7 +172,7 @@ public class ListFragmentLogs extends ListFragment {
 	@Override
 	public void onDestroy() {
 		super.onDestroy();
-		Log.i(TAG, "ActivityLogs___OLD.ondestroy" + this.hashCode());
+		Log.i(TAG, "ActivityLogs.ondestroy" + this.hashCode());
 	}
 
 
@@ -186,7 +186,7 @@ public class ListFragmentLogs extends ListFragment {
 	
 
 	private void appendNexPage() {
-		Log.i("bg2","ActivityLogs___OLD.appendNexPage  page : "+page);
+		Log.i("bg2","ActivityLogs.appendNexPage  page : "+page);
 		Object o = spinner.getSelectedItem();
 		BgCalendar bgCalendar = (BgCalendar) o;
 		page ++;

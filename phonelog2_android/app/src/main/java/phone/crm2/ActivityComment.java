@@ -241,7 +241,7 @@ public class ActivityComment extends AbstractActivityCrm {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		if (item.getItemId() == android.R.id.home) {
-			UtilActivitiesCommon.displayActivityLogDetatil(this, phoneCall.getContact(), storage, false);
+			UtilActivitiesCommon.displayActivityLogDetail(this, phoneCall.getContact(), storage, false);
 			return true;
 		} else {
 			return super.onOptionsItemSelected(item);

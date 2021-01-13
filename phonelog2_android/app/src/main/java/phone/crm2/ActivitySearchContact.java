@@ -159,14 +159,14 @@ public class ActivitySearchContact extends AbstractActivityCrm {
 		
 	
 		private void select_(int position) {
-			Log.i("bg2", "select position" + position + "  ");
+			Log.d("bg2", "ActivitySearchContact select position :" + position + "  ");
 			ContactLabelNumber contactLabelNumber = listContacts.get(position);
-			Log.i("bg2", "select contact " + contactLabelNumber);
+			Log.i("bg2", "ActivitySearchContact select contact :" + contactLabelNumber);
 			Contact contact = new Contact(contactLabelNumber.displayName, contactLabelNumber.number);
 			if (contactLabelNumber.number == null){
 				// Quoi faire ?
 			}else {
-				UtilActivitiesCommon.displayActivityLogDetatil(ActivitySearchContact.this, contact,((ApplicationBg) getApplication()).getStorage(), true);
+				UtilActivitiesCommon.displayActivityLogDetail(ActivitySearchContact.this, contact,((ApplicationBg) getApplication()).getStorage(), true);
 			}
 		
 		}

@@ -168,10 +168,7 @@
                 android:resource="@xml/contacts" />
         </service>
 
-        <activity
-            android:name=".ActivityUploadHistoric"
-            android:label="@string/title_activity_activity_upload_historic" >
-        </activity>
+
         <activity
             android:name=".ActivitySetting"
             android:label="@string/title_activity_setting" >

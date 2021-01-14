@@ -24,14 +24,12 @@ public class ActivityLogs2 extends AbstractActivityCrm{
     }
 
     public void perform_action_click_select_contact(View view){
-         Log.e("bg2","ActivityLogs2 BINGOOOOOOOE  AAA TAG: "+view.getTag());
+         Log.e("bg2","ActivityLogs2 click   AAA TAG: "+view.getTag());
         try {
             Contact contact = (Contact) view.getTag();
             Serializable storage = ((ApplicationBg) getApplication()).getStorage();
             UtilActivitiesCommon.displayActivityLogDetail(this,contact,storage,true);
-            View parentRow = (View) view.getParent();
-            ListView listView = (ListView) parentRow.getParent();
-            final int position = listView.getPositionForView(parentRow);
+
 
         }catch(Exception e){
             Log.e("bg2","Exception "+e);

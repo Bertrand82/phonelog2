@@ -28,7 +28,9 @@ import android.widget.Button;
 
 
 import androidx.fragment.app.FragmentActivity;
+import androidx.navigation.NavArgument;
 import androidx.navigation.NavController;
+import androidx.navigation.NavDestination;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.beardedhen.androidbootstrap.AwesomeTextView;
@@ -161,10 +163,31 @@ public class UtilActivitiesCommon {
         popUp(activity, "Trace Debug", applicationBg.getTracesDebug());
 
     }
+    public static void displayActivityLogDetail(Activity activity, Contact contact, Serializable storage, boolean newActivity) {
+       Log.i("bg2", "UtilActivitiesCommon.displayActivityLogDetail " + contact + "  Storage:" + storage );
+
+        FragmentActivity fragmentActivity = (FragmentActivity) activity;
+        NavHostFragment navHostFragment = (NavHostFragment) fragmentActivity.getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment_logs2);
+        NavController navControler  =navHostFragment.getNavController();
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("contact", contact);
+        bundle.putSerializable("storage", storage);
+        /*  Un autre manière de coder, un peu plus lourde.
+        NavDestination destinationLogDetail = navControler.getGraph().findNode(R.id.FragmentLogDetailDirection);
+        NavArgument.Builder navArgumentBuilderContact =new  NavArgument.Builder().setDefaultValue(contact) ;
+        NavArgument.Builder navArgumentBuilderStorage =new  NavArgument.Builder().setDefaultValue(storage) ;
+
+        destinationLogDetail.addArgument("contact",navArgumentBuilderContact.build());
+        destinationLogDetail.addArgument("storage",navArgumentBuilderStorage.build());
+        */
+        navControler.navigate(R.id.action_to_FragmentLogDetail,bundle);
+        //
+
+    }
+
     private static void openNavigationTest(Activity activity){
         FragmentActivity fragmentActivity = (FragmentActivity) activity;
-        NavHostFragment navHostFragment = (NavHostFragment) fragmentActivity.getSupportFragmentManager()
-                .findFragmentById(R.id.nav_host_fragment_logs2);
+        NavHostFragment navHostFragment = (NavHostFragment) fragmentActivity.getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment_logs2);
         NavController navControler  =navHostFragment.getNavController();
          navControler.navigate(R.id.action_FragmenLogs_to_FragmentSecond);
     }
@@ -451,13 +474,10 @@ public class UtilActivitiesCommon {
         return "";
     }
     public static void displayActivityAddEvent(Context context, Contact contact, Serializable storage, boolean newActivity) {
-        displayActivity(context, contact, storage, newActivity, ActivityAddEvent.class);
-    }
-    public static void displayActivityLogDetail(Context context, Contact contact, Serializable storage, boolean newActivity) {
-        displayActivity(context, contact, storage, newActivity, ActivityLogDetail.class);
+        displayActivity_(context, contact, storage, newActivity, ActivityAddEvent.class);
     }
 
-    private static void displayActivity(Context context, Contact contact, Serializable storage, boolean newActivity, @SuppressWarnings("rawtypes") Class clazz) {
+    private static void displayActivity_(Context context, Contact contact, Serializable storage, boolean newActivity, @SuppressWarnings("rawtypes") Class clazz) {
 
         Log.i("bg2", "ActivityLogs2.displayActivityLogDetail " + contact + "  Storage:" + storage + "   class: " + clazz);
 

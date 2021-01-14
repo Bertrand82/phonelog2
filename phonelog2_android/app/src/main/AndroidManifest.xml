@@ -90,25 +90,7 @@
             android:label="@string/title_activity_activity_logs"
             android:theme="@style/NoActionBar"
             />
-        <activity
-            android:name=".ActivityLogDetail"
-            android:label="@string/title_activity_activity_log_detail"
-            android:parentActivityName=".ActivityLogs2"
-            android:theme="@style/NoActionBar">
 
-            <!-- Parent activity meta-data to support API level 7+ -->
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ActivityLogs2" />
-
-            <!-- intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-
-                <data android:mimeType="@string/MIMETYPE_PHONELOG" />
-            </intent-filter-->
-        </activity>
         <activity
             android:name=".ActivityListCalendars2"
             android:label="@string/label_list_calendars"

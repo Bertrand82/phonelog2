@@ -5,13 +5,11 @@ import android.app.ActivityManager.RunningAppProcessInfo;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 
 import java.io.Serializable;
 
-import phone.crm2.ActivityLogDetail;
 import phone.crm2.ApplicationBg;
 import phone.crm2.model.Contact;
 
@@ -89,18 +87,7 @@ public class CallManager {
 
 
 		
-	public static void displayActivityLogDetatil_WithoutHistory____DEPRECATED(Context context, Contact contact, Serializable storage) {
-		Log.i("bg2", "displayActivityLogDetailWthoutHistory " + contact + "  Storage:" + storage );
-		Intent intent = new Intent(context,  ActivityLogDetail.class);
-		Bundle b = new Bundle();
-		b.putSerializable("contact", contact);
-		b.putSerializable("storage", storage);
-		b.putBoolean(ActivityLogDetail.KEY_MASKABLE, true);
-		intent.putExtras(b);
-		intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-		intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-		context.startActivity(intent);
-	}
+
 	
 	private static void listTask(Context context) {
 		ActivityManager am = (ActivityManager)context.getSystemService(Context.ACTIVITY_SERVICE);

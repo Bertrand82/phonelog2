@@ -56,7 +56,7 @@ public class ActivityAddEvent extends AbstractActivityCrm {
 
 	protected void init() {
 		this.storage = applicationBg.getStorage();
-		Log.i("bg2", "ActivityLogDetail    contact : " + contact_ + "  storage " + storage);
+		Log.i("bg2", "ActivityAddEvent    contact : " + contact_ + "  storage " + storage);
 		int currentapiVersion = android.os.Build.VERSION.SDK_INT;
 
 

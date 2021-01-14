@@ -20,6 +20,9 @@
     <action
         android:id="@+id/action_to_DisplayPrivateList"
         app:destination="@id/FragmentDisplayPrivateList" />
+    <action
+        android:id="@+id/action_to_FragmentLogDetail"
+        app:destination="@id/FragmentLogDetailDirection" />
 
     <fragment
         android:id="@+id/FragmentLogs"
@@ -51,5 +54,19 @@
         android:name="phone.crm2.FragmentDisplayPrivateList"
         android:label="fragment_displayPrivateList"
         tools:layout="@layout/fragment_display_private_list">
+    </fragment>
+    <fragment
+        android:id="@+id/FragmentLogDetailDirection"
+        android:name="phone.crm2.FragmentLogDetail"
+        android:label="fragment_fragmentLogDetail"
+        tools:layout="@layout/activity_log_detail">
+        <argument
+            android:name="myArg"
+            app:argType="integer"
+            android:defaultValue="0" />
+        <argument
+            android:name="contact"
+            app:argType="phone.crm2.model.Contact"
+            app:nullable="true" />
     </fragment>
 </navigation>

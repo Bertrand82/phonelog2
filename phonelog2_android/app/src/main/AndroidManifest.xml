@@ -81,9 +81,7 @@
             android:label="@string/activity_comment_title"
             android:exported="true"
             android:theme="@style/NoActionBar" />
-        <activity
-            android:name=".ActivityDisplayPrivateList"
-            android:label="@string/title_activity_display_private_list" />
+
         <activity
             android:name=".ActivityConfirmSend"
             android:label="@string/title_activity_main_confirm_send" />

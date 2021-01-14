@@ -59,11 +59,7 @@ public class UtilActivitiesCommon {
     // activity.startActivity(intent);
     // }
 
-    public static void openActivityPrivateList(Activity activity) {
-        Intent intent = new Intent(activity, ActivityDisplayPrivateList.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-        activity.startActivity(intent);
-    }
+
 
     public static void openCommentLastCall(Activity activity) {
         Intent intent = new Intent(activity, ActivityComment.class);
@@ -132,7 +128,21 @@ public class UtilActivitiesCommon {
         activity.startActivity(intent);
     }
 
+    public static void openPrivateList2(Activity activity) {
+        openPrivateList(activity);
+    }
 
+    public static void openPrivateList(Activity activity) {
+        Log.i("bg2","UtilActivitiesCommon openPrivateList  activity : "+activity);
+        FragmentActivity fragmentActivity = (FragmentActivity) activity;
+        NavHostFragment navHostFragment = (NavHostFragment) fragmentActivity.getSupportFragmentManager()
+                .findFragmentById(R.id.nav_host_fragment_logs2);
+        NavController navControler  =navHostFragment.getNavController();
+        Log.i("bg2","openAbout Test activity navControler "+navControler);
+
+        navControler.navigate(R.id.action_to_DisplayPrivateList);
+
+    }
 
     private static void openAbout(Activity activity) {
         Log.i("bg2","openAbout Test activity : "+activity);
@@ -143,7 +153,6 @@ public class UtilActivitiesCommon {
         Log.i("bg2","openAbout Test activity navControler "+navControler);
 
         navControler.navigate(R.id.action_FragmentLogs_to_FragmentAbout);
-        // popUp(activity, "Inport Events", "No Implemented Yet");
 
     }
 
@@ -165,15 +174,12 @@ public class UtilActivitiesCommon {
         activity.startActivity(intent);
     }
 
-    public static void openPrivateList(Activity activity) {
-        Intent intent = new Intent(activity, ActivityDisplayPrivateList.class);
-        activity.startActivity(intent);
-    }
+
 
     public static boolean onOptionsItemSelected(MenuItem item, Activity activity) {
         Log.i("bg2", "UtilActivitiesCommon.onOptionsItemSelected ");
         if (item.getItemId() == R.id.action_display_private_list) {
-            UtilActivitiesCommon.openActivityPrivateList(activity);
+            UtilActivitiesCommon.openPrivateList(activity);
             return true;
         } else if (item.getItemId() == R.id.action_CommentLastCall) {
             UtilActivitiesCommon.openCommentLastCall(activity);

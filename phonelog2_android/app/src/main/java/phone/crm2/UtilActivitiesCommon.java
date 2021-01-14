@@ -135,9 +135,16 @@ public class UtilActivitiesCommon {
 
 
     private static void openAbout(Activity activity) {
+        Log.i("bg2","openAbout Test activity : "+activity);
+        FragmentActivity fragmentActivity = (FragmentActivity) activity;
+        NavHostFragment navHostFragment = (NavHostFragment) fragmentActivity.getSupportFragmentManager()
+                .findFragmentById(R.id.nav_host_fragment_logs2);
+       NavController navControler  =navHostFragment.getNavController();
+        Log.i("bg2","openAbout Test activity navControler "+navControler);
+
+        navControler.navigate(R.id.action_FragmentLogs_to_FragmentAbout);
         // popUp(activity, "Inport Events", "No Implemented Yet");
-        Intent intent = new Intent(activity, ActivityAbout.class);
-        activity.startActivity(intent);
+
     }
 
     private static void openTraceDebug(Activity activity) {
@@ -146,16 +153,11 @@ public class UtilActivitiesCommon {
 
     }
     private static void openNavigationTest(Activity activity){
-        Log.i("bg2","openNavigationTest Test activity : "+activity);
         FragmentActivity fragmentActivity = (FragmentActivity) activity;
-        Log.i("bg2","openNavigationTest Test activity isfragmentactivity ");
         NavHostFragment navHostFragment = (NavHostFragment) fragmentActivity.getSupportFragmentManager()
                 .findFragmentById(R.id.nav_host_fragment_logs2);
-        Log.i("bg2","openNavigationTest Test activity navHostFragment "+navHostFragment);
         NavController navControler  =navHostFragment.getNavController();
-        Log.i("bg2","openNavigationTest Test activity navControler "+navControler);
-
-        navControler.navigate(R.id.action_FragmenLogs_to_FragmentSecond);
+         navControler.navigate(R.id.action_FragmenLogs_to_FragmentSecond);
     }
 
     public static void openMain(Activity activity) {

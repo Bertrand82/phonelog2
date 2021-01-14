@@ -177,10 +177,7 @@
                 android:value=".AbstractActivityCrm" />
         </activity>
 
-        <activity
-            android:name=".ActivityAbout"
-            android:label="@string/title_activity_activity_about" >
-        </activity>
+
         <activity
             android:name=".ActivityFormClientId"
             android:label="@string/title_activity_activity_form_client_id" >

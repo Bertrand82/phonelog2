@@ -22,7 +22,7 @@
     <string name="about_title" translatable="false">About</string>
     <string name="action_trace_debug_title" translatable="false">Trace Debug</string>
     <string name="action_navigation_test" translatable="false">Navigation Test</string>
-    <string name="aboutVersion" translatable="false">V Beta 54</string>
+    <string name="aboutVersion" translatable="false">V Beta 6</string>
     <string name="aboutSendComment">Send</string>
     <string name="aboutMessageLabel">Please, send us a message (bug report, suggestions for improvement, encouragement ..)</string>
     <string name="aboutCommentWrite">Write your message</string>

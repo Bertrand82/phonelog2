@@ -28,9 +28,7 @@ import android.widget.Button;
 
 
 import androidx.fragment.app.FragmentActivity;
-import androidx.navigation.NavArgument;
 import androidx.navigation.NavController;
-import androidx.navigation.NavDestination;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.beardedhen.androidbootstrap.AwesomeTextView;
@@ -74,11 +72,18 @@ public class UtilActivitiesCommon {
         activity.startActivity(intent);
     }
 
-    public static void openLogs(Activity activity) {
+    public static void startLogsActivity(Activity activity) {
         Intent intent = new Intent(activity, ActivityLogs2.class);
         // intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);// Ne met pas
         // a jour la liste des Calendar dans spinner
         activity.startActivity(intent);
+    }
+
+    public static void openLogin(FragmentActivity fragmentActivity) {
+        NavHostFragment navHostFragment = (NavHostFragment) fragmentActivity.getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment_logs2);
+        NavController navControler  =navHostFragment.getNavController();
+        navControler.navigate(R.id.action_navigation_to_FragmentLogin);
+
     }
 
     public static void openAddEvent(Activity activity) {
@@ -104,24 +109,10 @@ public class UtilActivitiesCommon {
     }
 
     public static void openListCalendars(Activity activity) {
-        Log.v("bg2","openListCalendars activity : "+activity);
         FragmentActivity fragmentActivity = (FragmentActivity) activity;
-        Log.v("bg2","openListCalendars activity isfragmentactivity ");
-        NavHostFragment navHostFragment = (NavHostFragment) fragmentActivity.getSupportFragmentManager()
-                .findFragmentById(R.id.nav_host_fragment_logs2);
-        Log.v("bg2","openListCalendars  activity navHostFragment "+navHostFragment);
-         NavController navControler  =navHostFragment.getNavController();
-        Log.i("bg2","openNavigationTest Test activity navControler "+navControler);
-
+        NavHostFragment navHostFragment = (NavHostFragment) fragmentActivity.getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment_logs2);
+        NavController navControler  =navHostFragment.getNavController();
         navControler.navigate(R.id.action_FragmentLogs_to_FragmentListCalendars);
-    }
-
-    @Deprecated
-    public static void openListCalendars__DEPRECATED(Activity activity) {
-        Intent intent = new Intent(activity, ActivityListCalendars2.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-
-        activity.startActivity(intent);
     }
 
 
@@ -145,6 +136,7 @@ public class UtilActivitiesCommon {
         navControler.navigate(R.id.action_to_DisplayPrivateList);
 
     }
+
 
     private static void openAbout(Activity activity) {
         Log.i("bg2","openAbout Test activity : "+activity);
@@ -185,6 +177,14 @@ public class UtilActivitiesCommon {
 
     }
 
+    public static void openLogs(FragmentActivity fragmentActivity){
+
+        NavHostFragment navHostFragment = (NavHostFragment) fragmentActivity.getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment_logs2);
+        NavController navControler  =navHostFragment.getNavController();
+        navControler.navigate(R.id.action_navigation_to_log2);
+    }
+
+
     private static void openNavigationTest(Activity activity){
         FragmentActivity fragmentActivity = (FragmentActivity) activity;
         NavHostFragment navHostFragment = (NavHostFragment) fragmentActivity.getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment_logs2);
@@ -208,7 +208,7 @@ public class UtilActivitiesCommon {
             UtilActivitiesCommon.openCommentLastCall(activity);
             return true;
         } else if (item.getItemId() == R.id.action_display_logs) {
-            UtilActivitiesCommon.openLogs(activity);
+            UtilActivitiesCommon.startLogsActivity(activity);
             return true;
         } else if (item.getItemId() == R.id.action_display_calendars) {
             UtilActivitiesCommon.openCalendars(activity);
@@ -295,7 +295,7 @@ public class UtilActivitiesCommon {
                 @Override
                 public void onClick(View v) {
                     Log.i(TAG, "initButtonNavigation buttonLogs onClick");
-                    UtilActivitiesCommon.openLogs(activity);
+                    UtilActivitiesCommon.startLogsActivity(activity);
                     ;
                 }
             });

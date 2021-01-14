@@ -41,7 +41,7 @@ public class FragmentlistCalendars extends ListFragment {
                 if (getApplication().getDefaultCalendar()==null) {
                     alertNoCalendarSelected();
                 }else {
-                    UtilActivitiesCommon.openLogs(FragmentlistCalendars.this.getActivity());
+                    UtilActivitiesCommon.startLogsActivity(FragmentlistCalendars.this.getActivity());
                 }
             }
         });

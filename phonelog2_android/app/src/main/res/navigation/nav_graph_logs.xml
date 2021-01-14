@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph_bg"
-    app:startDestination="@id/FragmentLogs">
+    app:startDestination="@id/FragmentMain">
 
     <action
         android:id="@+id/action_FragmenLogs_to_FragmentSecond"
@@ -15,7 +15,7 @@
         android:id="@+id/action_FragmentLogs_to_FragmentAbout"
         app:destination="@id/FragmentAbout" />
     <action
-        android:id="@+id/action_SecondFragment_to_FirstFragment"
+        android:id="@+id/action_navigation_to_log2"
         app:destination="@id/FragmentLogs" />
     <action
         android:id="@+id/action_to_DisplayPrivateList"
@@ -23,6 +23,9 @@
     <action
         android:id="@+id/action_to_FragmentLogDetail"
         app:destination="@id/FragmentLogDetailDirection" />
+    <action
+        android:id="@+id/action_navigation_to_FragmentLogin"
+        app:destination="@id/FragmentLoginAuthenicator" />
 
     <fragment
         android:id="@+id/FragmentLogs"
@@ -69,4 +72,17 @@
             app:argType="phone.crm2.model.Contact"
             app:nullable="true" />
     </fragment>
+    <fragment
+        android:id="@+id/FragmentMain"
+        android:name="phone.crm2.FragmentMain"
+        android:label="fragment_displayFragmentMain"
+        tools:layout="@layout/fragment_main">
+    </fragment>
+    <fragment
+        android:id="@+id/FragmentLoginAuthenicator"
+        android:name="phone.crm2.FragmentLoginAuthenticator"
+        android:label="fragment_displayFragmentLoginAuthenticator"
+        tools:layout="@layout/fragment_login">
+    </fragment>
+
 </navigation>

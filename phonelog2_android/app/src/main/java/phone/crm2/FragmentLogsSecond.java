@@ -28,7 +28,7 @@ public class FragmentLogsSecond extends Fragment {
             @Override
             public void onClick(View view) {
                 NavHostFragment.findNavController(FragmentLogsSecond.this)
-                        .navigate(R.id.action_SecondFragment_to_FirstFragment);
+                        .navigate(R.id.action_navigation_to_log2);
             }
         });
     }

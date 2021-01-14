@@ -20,12 +20,15 @@ import androidx.core.content.ContextCompat;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends  AbstractActivityCrm {
+/**
+ * Cette activité est le point d'entrée de l'appli
+ * Elle a la responsabilité de gérer les permissions et de lancer l'activité "principale" !!!
+ */
+public class MainActivity extends  AppCompatActivity {
 
     private String TAG = "bg "+getClass().getSimpleName();
     private static final int REQUEST_RUNTIME_PERMISSION = 123;
     public static final String SERVICE_URL_CAFE_CRM = "http://phone-log.appspot.com/r/phonecall";
-    ApplicationBg applicationBg;
 
     private static String[] permissions = {
             android.Manifest.permission.READ_CONTACTS,
@@ -53,59 +56,18 @@ public class MainActivity extends  AbstractActivityCrm {
             android.Manifest.permission.CALL_PHONE,
             android.Manifest.permission.REORDER_TASKS
           //  Manifest.permission.CALL_PRIVILEGED
-
     };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.w(TAG,"OnCreate 1");
+        // Gestion des permissions
+        Log.w(TAG,"MainActivity OnCreate ");
         String[] permissionsToRequest  = getListPermissionToRequest( permissions);
         ActivityCompat.requestPermissions(this, permissionsToRequest, REQUEST_RUNTIME_PERMISSION);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Starting");
-        Log.w(TAG,"OnCreate 2");
-        this.applicationBg = (ApplicationBg) this.getApplication();
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        Log.w(TAG,"OnCreate 3");
-
-        AccountManager accountManager = AccountManager.get(applicationBg);
-        Account[] accounts = accountManager.getAccountsByType(applicationBg.ACCOUNT_TYPE);
-        Log.w(TAG,"OnCreate 4");
-        Log.i(TAG,"accounts: "+toString(accounts));
-
-        if (accounts.length == 0) { // Il n'y a pas de compte de type cafe-crm2
-            Log.w(TAG,"OnCreate 5 Start Login");
-            startLoginIntent();
-
-        } else {
-            Log.w(TAG,"MainActivity OnCreate 6 Start ");
-            try {
-                AppAccount appAccount = applicationBg.getDb().getAppAccount().getBy(AppAccountTable.KEY_MAIL, accounts[0].name);
-                startLogsIntent(appAccount);
-            } catch (Exception e) {
-                Log.e("bg2","ExcepXX",e);
-                startLoginIntent();
-            }
-        }
-
-    }
-    private void startLogsIntent(AppAccount appAccount) {
-        try {
-            applicationBg.setAccount(appAccount);
-            Log.i(TAG,"appAccount : "+appAccount);
-            Intent intent = new Intent(this, ActivityLogs2.class);
-            startActivity(intent);
-            finish();
-        } catch (Exception e) {
-            Log.w("bg2","ExcepXX",e);
-            startLoginIntent();
-        }
-    }
-    private void startLoginIntent() {
-        Intent intent = new Intent(this, ActivityLogin.class);
+        // Lancement de l'activity 'principale de l'appli
+        Intent intent = new Intent(this, ActivityLogs2.class);
         startActivity(intent);
         finish();
     }
@@ -133,14 +95,4 @@ public class MainActivity extends  AbstractActivityCrm {
         return strArray;
     }
 
-    private String  toString(Object[] oo){
-        if (oo == null){
-            return null;
-        }
-        String s ="";
-        for(Object o : oo){
-            s += " "+o+";";
-        }
-        return s;
-    }
 }

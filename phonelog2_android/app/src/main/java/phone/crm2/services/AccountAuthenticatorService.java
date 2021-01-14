@@ -13,7 +13,7 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.util.Log;
 
-import phone.crm2.ActivityLogin;
+import phone.crm2.FragmentLoginAuthenticator;
 
 public class AccountAuthenticatorService extends Service {
 	private static final String TAG = "AccountAuthenticatorService";
@@ -39,7 +39,6 @@ public class AccountAuthenticatorService extends Service {
 
 	private static class AccountAuthenticatorImpl extends AbstractAccountAuthenticator {
 		
-		
 
 		private Context mContext;
 
@@ -60,7 +59,7 @@ public class AccountAuthenticatorService extends Service {
 		public Bundle addAccount(AccountAuthenticatorResponse response, String accountType, String authTokenType, String[] requiredFeatures, Bundle options)
 				throws NetworkErrorException {
 			Bundle result = new Bundle();
-			Intent i = new Intent(mContext, ActivityLogin.class);
+			Intent i = new Intent(mContext, FragmentLoginAuthenticator.class);
 			i.putExtra(AccountManager.KEY_ACCOUNT_AUTHENTICATOR_RESPONSE, response);
 			result.putParcelable(AccountManager.KEY_INTENT, i);
 			return result;
@@ -69,18 +68,7 @@ public class AccountAuthenticatorService extends Service {
 //		/* (non-Javadoc)
 //		 * @see android.accounts.AbstractAccountAuthenticator#getAccountRemovalAllowed(android.accounts.AccountAuthenticatorResponse, android.accounts.Account)
 //		 */
-//		@Override
-//		public Bundle getAccountRemovalAllowed(
-//				AccountAuthenticatorResponse response, Account account)
-//				throws NetworkErrorException {
-//			final Bundle hResult = new Bundle();
-//			//TODO add dialog box to ask confirmation and explain consequences
-//			Intent i = new Intent(mContext, ActivityLogin.class);
-//			i.putExtra(AccountManager.KEY_ACCOUNT_AUTHENTICATOR_RESPONSE, response);
-//			hResult.putParcelable(AccountManager.KEY_INTENT, i);
-//		    return hResult;
-//		}
-		
+//
 		/*
 		 * (non-Javadoc)
 		 * 

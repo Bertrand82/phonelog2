@@ -112,7 +112,7 @@ public class UtilActivitiesCommon {
         FragmentActivity fragmentActivity = (FragmentActivity) activity;
         NavHostFragment navHostFragment = (NavHostFragment) fragmentActivity.getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment_logs2);
         NavController navControler  =navHostFragment.getNavController();
-        navControler.navigate(R.id.action_FragmentLogs_to_FragmentListCalendars);
+        navControler.navigate(R.id.action_navigation_to_FragmentListCalendars);
     }
 
 
@@ -133,7 +133,7 @@ public class UtilActivitiesCommon {
         NavController navControler  =navHostFragment.getNavController();
         Log.i("bg2","openAbout Test activity navControler "+navControler);
 
-        navControler.navigate(R.id.action_to_DisplayPrivateList);
+        navControler.navigate(R.id.action_navigation_to_DisplayPrivateList);
 
     }
 
@@ -146,7 +146,7 @@ public class UtilActivitiesCommon {
        NavController navControler  =navHostFragment.getNavController();
         Log.i("bg2","openAbout Test activity navControler "+navControler);
 
-        navControler.navigate(R.id.action_FragmentLogs_to_FragmentAbout);
+        navControler.navigate(R.id.action_navigation_to_FragmentAbout);
 
     }
 
@@ -172,7 +172,7 @@ public class UtilActivitiesCommon {
         destinationLogDetail.addArgument("contact",navArgumentBuilderContact.build());
         destinationLogDetail.addArgument("storage",navArgumentBuilderStorage.build());
         */
-        navControler.navigate(R.id.action_to_FragmentLogDetail,bundle);
+        navControler.navigate(R.id.action_navigation_to_FragmentLogDetail,bundle);
         //
 
     }
@@ -189,7 +189,7 @@ public class UtilActivitiesCommon {
         FragmentActivity fragmentActivity = (FragmentActivity) activity;
         NavHostFragment navHostFragment = (NavHostFragment) fragmentActivity.getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment_logs2);
         NavController navControler  =navHostFragment.getNavController();
-         navControler.navigate(R.id.action_FragmenLogs_to_FragmentSecond);
+         navControler.navigate(R.id.action_navigation_to_FragmentSecond);
     }
 
     public static void openMain(Activity activity) {

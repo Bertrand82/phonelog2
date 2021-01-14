@@ -110,7 +110,7 @@ public class FragmentLogsFirst extends ListFragment {
             @Override
             public void onClick(View view) {
                 NavHostFragment.findNavController(FragmentLogsFirst.this)
-                        .navigate(R.id.action_FragmenLogs_to_FragmentSecond);
+                        .navigate(R.id.action_navigation_to_FragmentSecond);
             }
         });
     }

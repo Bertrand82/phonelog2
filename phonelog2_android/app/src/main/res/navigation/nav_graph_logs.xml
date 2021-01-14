@@ -6,26 +6,26 @@
     app:startDestination="@id/FragmentMain">
 
     <action
-        android:id="@+id/action_FragmenLogs_to_FragmentSecond"
+        android:id="@+id/action_navigation_to_FragmentSecond"
         app:destination="@id/FragmentSecond2" />
     <action
-        android:id="@+id/action_FragmentLogs_to_FragmentListCalendars"
+        android:id="@+id/action_navigation_to_FragmentListCalendars"
         app:destination="@id/FragmentListCalendars" />
     <action
-        android:id="@+id/action_FragmentLogs_to_FragmentAbout"
+        android:id="@+id/action_navigation_to_FragmentAbout"
         app:destination="@id/FragmentAbout" />
     <action
         android:id="@+id/action_navigation_to_log2"
         app:destination="@id/FragmentLogs" />
     <action
-        android:id="@+id/action_to_DisplayPrivateList"
+        android:id="@+id/action_navigation_to_DisplayPrivateList"
         app:destination="@id/FragmentDisplayPrivateList" />
     <action
-        android:id="@+id/action_to_FragmentLogDetail"
+        android:id="@+id/action_navigation_to_FragmentLogDetail"
         app:destination="@id/FragmentLogDetailDirection" />
     <action
         android:id="@+id/action_navigation_to_FragmentLogin"
-        app:destination="@id/FragmentLoginAuthenicator" />
+        app:destination="@id/FragmentLoginAuthenticator" />
 
     <fragment
         android:id="@+id/FragmentLogs"
@@ -79,7 +79,7 @@
         tools:layout="@layout/fragment_main">
     </fragment>
     <fragment
-        android:id="@+id/FragmentLoginAuthenicator"
+        android:id="@+id/FragmentLoginAuthenticator"
         android:name="phone.crm2.FragmentLoginAuthenticator"
         android:label="fragment_displayFragmentLoginAuthenticator"
         tools:layout="@layout/fragment_login">

@@ -3,7 +3,6 @@ package phone.crm2;
 import java.io.Serializable;
 import java.util.regex.Pattern;
 
-import phone.crm2.R;
 import phone.crm2.model.Contact;
 import phone.crm2.model.PhoneCall;
 import android.accounts.Account;
@@ -27,6 +26,10 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
+
+import androidx.fragment.app.FragmentActivity;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
 
 import com.beardedhen.androidbootstrap.AwesomeTextView;
 import com.beardedhen.androidbootstrap.TypefaceProvider;
@@ -103,14 +106,23 @@ public class UtilActivitiesCommon {
     }
 
     public static void openListCalendars(Activity activity) {
+        Log.v("bg2","openListCalendars activity : "+activity);
+        FragmentActivity fragmentActivity = (FragmentActivity) activity;
+        Log.v("bg2","openListCalendars activity isfragmentactivity ");
+        NavHostFragment navHostFragment = (NavHostFragment) fragmentActivity.getSupportFragmentManager()
+                .findFragmentById(R.id.nav_host_fragment_logs2);
+        Log.v("bg2","openListCalendars  activity navHostFragment "+navHostFragment);
+         NavController navControler  =navHostFragment.getNavController();
+        Log.i("bg2","openNavigationTest Test activity navControler "+navControler);
+
+        navControler.navigate(R.id.action_FragmentLogs_to_FragmentListCalendars);
+    }
+
+    @Deprecated
+    public static void openListCalendars__DEPRECATED(Activity activity) {
         Intent intent = new Intent(activity, ActivityListCalendars2.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
 
-        activity.startActivity(intent);
-    }
-
-    private static void openSettings_(Activity activity) {
-        Intent intent = new Intent(activity, ActivitySetting.class);
         activity.startActivity(intent);
     }
 
@@ -133,6 +145,18 @@ public class UtilActivitiesCommon {
         popUp(activity, "Trace Debug", applicationBg.getTracesDebug());
 
     }
+    private static void openNavigationTest(Activity activity){
+        Log.i("bg2","openNavigationTest Test activity : "+activity);
+        FragmentActivity fragmentActivity = (FragmentActivity) activity;
+        Log.i("bg2","openNavigationTest Test activity isfragmentactivity ");
+        NavHostFragment navHostFragment = (NavHostFragment) fragmentActivity.getSupportFragmentManager()
+                .findFragmentById(R.id.nav_host_fragment_logs2);
+        Log.i("bg2","openNavigationTest Test activity navHostFragment "+navHostFragment);
+        NavController navControler  =navHostFragment.getNavController();
+        Log.i("bg2","openNavigationTest Test activity navControler "+navControler);
+
+        navControler.navigate(R.id.action_FragmenLogs_to_FragmentSecond);
+    }
 
     public static void openMain(Activity activity) {
         Intent intent = new Intent(activity, MainActivity.class);
@@ -145,7 +169,7 @@ public class UtilActivitiesCommon {
     }
 
     public static boolean onOptionsItemSelected(MenuItem item, Activity activity) {
-        Log.i("bg2", "onOptionsItemSelected ");
+        Log.i("bg2", "UtilActivitiesCommon.onOptionsItemSelected ");
         if (item.getItemId() == R.id.action_display_private_list) {
             UtilActivitiesCommon.openActivityPrivateList(activity);
             return true;
@@ -161,15 +185,16 @@ public class UtilActivitiesCommon {
         } else if (item.getItemId() == R.id.action_list_calendar) {
             UtilActivitiesCommon.openListCalendars(activity);
             return true;
-        } else if (item.getItemId() == R.id.action_setting_preferences) {
-            UtilActivitiesCommon.openSettings_(activity);
-            return true;
-        } else if (item.getItemId() == R.id.action_about) {
+        }else if (item.getItemId() == R.id.action_about) {
             UtilActivitiesCommon.openAbout(activity);
             return true;
 
         } else if (item.getItemId() == R.id.action_trace_debug) {
             UtilActivitiesCommon.openTraceDebug(activity);
+            return true;
+
+        }else if (item.getItemId() == R.id.action_navigation_test) {
+            UtilActivitiesCommon.openNavigationTest(activity);
             return true;
 
         } else if (item.getItemId() == R.id.action_add_event) {

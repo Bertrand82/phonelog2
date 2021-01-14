@@ -168,12 +168,6 @@
                 android:resource="@xml/contacts" />
         </service>
 
-
-        <activity
-            android:name=".ActivitySetting"
-            android:label="@string/title_activity_setting" >
-        </activity>
-
         <activity
             android:name=".ActivityImportContacts"
             android:label="@string/title_activity_activity_import_contacts"

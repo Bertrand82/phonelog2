@@ -12,11 +12,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.ListFragment;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
 import java.util.List;
 
-public class FirstFragmentCalendar extends ListFragment {
+public class FragmentlistCalendars extends ListFragment {
 
     @Override
     public View onCreateView(
@@ -24,7 +22,7 @@ public class FirstFragmentCalendar extends ListFragment {
             Bundle savedInstanceState
     ) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_calendars, container, false);
+        return inflater.inflate(R.layout.fragment_list_calendars, container, false);
     }
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
@@ -43,7 +41,7 @@ public class FirstFragmentCalendar extends ListFragment {
                 if (getApplication().getDefaultCalendar()==null) {
                     alertNoCalendarSelected();
                 }else {
-                    UtilActivitiesCommon.openLogs(FirstFragmentCalendar.this.getActivity());
+                    UtilActivitiesCommon.openLogs(FragmentlistCalendars.this.getActivity());
                 }
             }
         });

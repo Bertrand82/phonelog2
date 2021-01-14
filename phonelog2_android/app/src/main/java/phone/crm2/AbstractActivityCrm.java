@@ -29,7 +29,7 @@ public class AbstractActivityCrm extends AppCompatActivity {
 	
 	@Override
 	public  boolean onOptionsItemSelected(MenuItem item) {
-		Log.v(TAG,"onOptionsItemSelected 1");
+		Log.v(TAG,"AbstractActivityCrm.onOptionsItemSelected ");
 		if (UtilActivitiesCommon.onOptionsItemSelected(item, this)) {
 			return true;
 		} else {

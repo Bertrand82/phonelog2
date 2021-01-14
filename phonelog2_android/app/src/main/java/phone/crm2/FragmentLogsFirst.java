@@ -16,7 +16,7 @@ import java.util.List;
 
 import phone.crm2.model.Event;
 
-public class FirstFragment extends ListFragment {
+public class FragmentLogsFirst extends ListFragment {
 
     private PhoneCallLArrayAdapter adapter;
     private int page = 0;
@@ -109,8 +109,8 @@ public class FirstFragment extends ListFragment {
         view.findViewById(R.id.button_first).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                NavHostFragment.findNavController(FirstFragment.this)
-                        .navigate(R.id.action_FirstFragment_to_SecondFragment);
+                NavHostFragment.findNavController(FragmentLogsFirst.this)
+                        .navigate(R.id.action_FragmenLogs_to_FragmentSecond);
             }
         });
     }

@@ -22,7 +22,8 @@ public class ActivityLogs2 extends AbstractActivityCrm{
         setSupportActionBar(toolbar);
         applicationBg = (ApplicationBg) getApplication();
     }
-    public void perform_action_click(View view){
+
+    public void perform_action_click_select_contact(View view){
          Log.e("bg2","ActivityLogs2 BINGOOOOOOOE  AAA TAG: "+view.getTag());
         try {
             Contact contact = (Contact) view.getTag();
@@ -35,8 +36,6 @@ public class ActivityLogs2 extends AbstractActivityCrm{
         }catch(Exception e){
             Log.e("bg2","Exception "+e);
         }
-
-
     }
 
 }

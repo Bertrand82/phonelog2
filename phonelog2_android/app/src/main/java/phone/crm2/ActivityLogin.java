@@ -109,9 +109,7 @@ public class ActivityLogin extends AccountAuthenticatorActivityBg {
 			result.putString(AccountManager.KEY_ACCOUNT_NAME, account.name);
 			result.putString(AccountManager.KEY_ACCOUNT_TYPE, account.type);
 			setAccountAuthenticatorResult(result);
-
-			Intent intent = new Intent(context, ActivityListCalendars2.class);
-			startActivity(intent);
+			UtilActivitiesCommon.openListCalendars(this);
 
 			isAccountAdded = true;
 			this.finish();

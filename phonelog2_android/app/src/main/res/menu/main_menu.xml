@@ -38,20 +38,18 @@
         android:title="@string/title_list_calendars"
         app:showAsAction="ifRoom"
         />
-   <item
-        android:id="@+id/action_setting_preferences"
-        android:title="@string/title_setting"
-       app:showAsAction="ifRoom"
-       />
 
-
-
-     <item
+    <item
         android:id="@+id/action_trace_debug"
         android:title="@string/action_trace_debug_title"
-         app:showAsAction="ifRoom"
-         />
-     <item
+        app:showAsAction="ifRoom"
+        />
+    <item
+        android:id="@+id/action_navigation_test"
+        android:title="@string/action_navigation_test"
+        app:showAsAction="ifRoom"
+        />
+    <item
         android:id="@+id/action_about"
         android:title="@string/about_title"
          app:showAsAction="ifRoom"

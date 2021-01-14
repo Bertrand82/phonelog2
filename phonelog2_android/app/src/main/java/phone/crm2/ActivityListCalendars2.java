@@ -20,10 +20,4 @@ public class ActivityListCalendars2 extends AbstractActivityCrm {
     }
 
 
-    private void alertNoCalendarSelected() {
-        AlertDialog alertDialog = new AlertDialog.Builder(this).create();
-        alertDialog.setTitle("Choose one account");
-        alertDialog.setMessage("Error "+  " \n");
-        alertDialog.show();
-    }
 }

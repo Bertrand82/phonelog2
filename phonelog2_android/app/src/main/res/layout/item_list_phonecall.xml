@@ -27,7 +27,7 @@
         android:textSize="40dp"
         android:visibility="invisible"
         android:clickable="true"
-        android:onClick="perform_action_click"/>
+        android:onClick="perform_action_click_select_contact"/>
 
 
 

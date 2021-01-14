@@ -6,8 +6,9 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentActivity;
 
-public class AbstractFragmentActivity extends AppCompatActivity {
+public class AbstractFragmentActivity extends FragmentActivity {
 	
 	public AbstractFragmentActivity() {
 		super();

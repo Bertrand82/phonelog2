@@ -18,7 +18,7 @@ import phone.crm2.legacy.UtilContact;
 import phone.crm2.model.Contact;
 import phone.crm2.model.EventCRM;
 
-
+@Deprecated
 public class ActivityAddEvent extends AbstractActivityCrm {
 
 	private Contact contact_;

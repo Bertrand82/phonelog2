@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import phone.crm2.model.Contact;
-
+@Deprecated
 public class ActivitySearchContact extends AbstractActivityCrm {
 
 	private EditText editText;

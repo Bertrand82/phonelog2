@@ -26,7 +26,18 @@
     <action
         android:id="@+id/action_navigation_to_FragmentLogin"
         app:destination="@id/FragmentLoginAuthenticator" />
-
+    <action
+        android:id="@+id/action_navigation_to_FragmentAddEvent"
+        app:destination="@id/FragmentAddEvent" />
+    <action
+        android:id="@+id/action_navigation_to_searchContact"
+        app:destination="@id/FragmentSearchContact" />
+    <action
+        android:id="@+id/action_navigation_to_confirmSend"
+        app:destination="@id/FragmentConfirmSend" />
+    <action
+        android:id="@+id/action_navigation_to_FragmentComment"
+        app:destination="@id/FragmentComment" />
     <fragment
         android:id="@+id/FragmentLogs"
         android:name="phone.crm2.FragmentLogsFirst"
@@ -83,6 +94,30 @@
         android:name="phone.crm2.FragmentLoginAuthenticator"
         android:label="fragment_displayFragmentLoginAuthenticator"
         tools:layout="@layout/fragment_login">
+    </fragment>
+    <fragment
+        android:id="@+id/FragmentAddEvent"
+        android:name="phone.crm2.FragmentAddEvent"
+        android:label="fragment_displayFragmentAddEvent"
+        tools:layout="@layout/fragment_add_event">
+    </fragment>
+    <fragment
+        android:id="@+id/FragmentSearchContact"
+        android:name="phone.crm2.FragmentSearchContact"
+        android:label="fragment_displayFragmentSerchContact"
+        tools:layout="@layout/fragment_search_contact">
+    </fragment>
+    <fragment
+        android:id="@+id/FragmentConfirmSend"
+        android:name="phone.crm2.FragmentConfirmSend"
+        android:label="fragment_displayFragmentConfirmSend"
+        tools:layout="@layout/fragment_confirm_send">
+    </fragment>
+    <fragment
+        android:id="@+id/FragmentComment"
+        android:name="phone.crm2.FragmentComment"
+        android:label="fragment_displayFragmentComment"
+        tools:layout="@layout/fragment_comment">
     </fragment>
 
 </navigation>

@@ -11,7 +11,7 @@ import java.io.Serializable;
 
 import phone.crm2.model.Contact;
 
-public class ActivityLogs2 extends AbstractActivityCrm{
+public class ActivityPhoneLog extends AbstractActivityCrm{
 
     private ApplicationBg applicationBg;
     @Override
@@ -24,7 +24,7 @@ public class ActivityLogs2 extends AbstractActivityCrm{
     }
 
     public void perform_action_click_select_contact(View view){
-         Log.e("bg2","ActivityLogs2 click   AAA TAG: "+view.getTag());
+         Log.e("bg2","ActivityPhoneLog click   AAA TAG: "+view.getTag());
         try {
             Contact contact = (Contact) view.getTag();
             Serializable storage = ((ApplicationBg) getApplication()).getStorage();

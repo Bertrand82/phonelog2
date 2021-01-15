@@ -72,26 +72,15 @@
        <activity
             android:name=".RegisterActivity"
             android:label="@string/app_name" />
-        <activity
-            android:name=".ActivityComment"
-            android:label="@string/activity_comment_title"
-            android:exported="true"
-            android:theme="@style/NoActionBar" />
 
-        <activity
-            android:name=".ActivityConfirmSend"
-            android:label="@string/title_activity_main_confirm_send" />
-        <activity
-            android:name=".ActivityLogs2"
+
+       <activity
+            android:name=".ActivityPhoneLog"
             android:label="@string/title_activity_activity_logs"
             android:theme="@style/NoActionBar"
             />
 
-        <activity
-            android:name=".ActivityListCalendars2"
-            android:label="@string/label_list_calendars"
-            android:theme="@style/NoActionBar"/>
-        <!-- Receivers -->
+         <!-- Receivers -->
 
         <receiver
             android:name=".receivers.IncomingCallReciever"
@@ -144,30 +133,8 @@
                 android:resource="@xml/contacts" />
         </service>
 
-        <activity
-            android:name=".ActivityImportContacts"
-            android:label="@string/title_activity_activity_import_contacts"
-            android:parentActivityName=".AbstractActivityCrm" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".AbstractActivityCrm" />
-        </activity>
 
-
-        <activity
-            android:name=".ActivityFormClientId"
-            android:label="@string/title_activity_activity_form_client_id" >
-        </activity>
-        <activity
-            android:name=".ActivityAddEvent"
-            android:label="@string/title_activity_activity_add_event"
-            android:theme="@style/NoActionBar">
-        </activity>
-        <activity
-            android:name=".ActivitySearchContact"
-            android:label="@string/title_activity_activity_search_contact" >
-        </activity>
-    </application>
+     </application>
 
 
 </manifest>

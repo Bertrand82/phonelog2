@@ -18,12 +18,17 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.navigation.fragment.NavHostFragment;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import phone.crm2.model.Contact;
-@Deprecated
-public class ActivitySearchContact extends AbstractActivityCrm {
+
+
+public class FragmentSearchContact extends Fragment {
 
 	private EditText editText;
 	private List<ContactLabelNumber> listContacts = new ArrayList<ContactLabelNumber>();
@@ -31,22 +36,33 @@ public class ActivitySearchContact extends AbstractActivityCrm {
 	private ListView listView;
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_search_contact);
-		applicationBg = (ApplicationBg) getApplication();
-		listView = (ListView) findViewById(R.id.listview3);
-		editText = (EditText) findViewById(R.id.editTextSearchContact);
+	public View onCreateView(  LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState ) {
+		// Inflate the layout for this fragment
+		return inflater.inflate(R.layout.fragment_search_contact, container, false);
+	}
+
+	@Override
+	public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
+		super.onViewCreated(view, savedInstanceState);
+
+		initFragmentSeatchContact();
+	}
+
+	protected void initFragmentSeatchContact() {
+
+		applicationBg = (ApplicationBg) this.getActivity().getApplication();
+		listView = (ListView) this.getActivity().findViewById(R.id.listview3);
+		editText = (EditText) this.getActivity().findViewById(R.id.editTextSearchContact);
 		editText.addTextChangedListener(new TextWatcher() {
 			
 			@Override
 			public void onTextChanged(CharSequence s, int start, int before, int count) {
 				try {
-					Log.i("bg2", "ActivitySearchContact.searchChar");
+					Log.i("bg2", "FragmentSearchContact.searchChar");
 					initListContact();
 				
 				} catch (Exception e) {
-					Log.e("bg2", "ActivitySearchContact.searchChar",e);
+					Log.e("bg2", "FragmentSearchContact.searchChar",e);
 					
 				}
 			}
@@ -84,14 +100,14 @@ public class ActivitySearchContact extends AbstractActivityCrm {
 		            ContactsContract.Contacts.LOOKUP_KEY,
 		        };
 		Uri contentUri = Uri.withAppendedPath( ContactsContract.Contacts.CONTENT_FILTER_URI, Uri.encode(mSearchString));
-		Cursor cursor = this.getContentResolver().query(contentUri, params, null, null, null);
+		Cursor cursor = this.getActivity().getContentResolver().query(contentUri, params, null, null, null);
 		traceAndClose(cursor);
-		ArrayAdapter<ContactLabelNumber> baseAdapter = new StableArrayAdapter(this, R.id.listview3, listContacts);
+		ArrayAdapter<ContactLabelNumber> baseAdapter = new StableArrayAdapter(this.getActivity(), R.id.listview3, listContacts);
 		listView.setAdapter(baseAdapter);
 	}
 	
 	private String  processNumber(ContactLabelNumber cln){
-		Cursor phones = getContentResolver().query(Phone.CONTENT_URI, null,  Phone.CONTACT_ID + " = " + cln._id, null, null);
+		Cursor phones = this.getActivity().getContentResolver().query(Phone.CONTENT_URI, null,  Phone.CONTACT_ID + " = " + cln._id, null, null);
 		 String number="";
 		if(phones.moveToFirst()) {
 			
@@ -120,7 +136,7 @@ public class ActivitySearchContact extends AbstractActivityCrm {
 
 	
 	public void search(View v) {
-		Log.i("bg2", "ActivitySearchContact.search : >" + editText.getText()+"<");
+		Log.i("bg2", "FragmentSearchContact.search : >" + editText.getText()+"<");
 		try {
 			initListContact();
 		} catch (Exception e) {
@@ -159,14 +175,14 @@ public class ActivitySearchContact extends AbstractActivityCrm {
 		
 	
 		private void select_(int position) {
-			Log.d("bg2", "ActivitySearchContact select position :" + position + "  ");
+			Log.d("bg2", "FragmentSearchContact select position :" + position + "  ");
 			ContactLabelNumber contactLabelNumber = listContacts.get(position);
-			Log.i("bg2", "ActivitySearchContact select contact :" + contactLabelNumber);
+			Log.i("bg2", "FragmentSearchContact select contact :" + contactLabelNumber);
 			Contact contact = new Contact(contactLabelNumber.displayName, contactLabelNumber.number);
 			if (contactLabelNumber.number == null){
 				// Quoi faire ?
 			}else {
-				UtilActivitiesCommon.displayActivityLogDetail(ActivitySearchContact.this, contact,((ApplicationBg) getApplication()).getStorage(), true);
+				UtilActivitiesCommon.displayActivityLogDetail(FragmentSearchContact.this.getActivity(), contact,applicationBg.getStorage(), true);
 			}
 		
 		}

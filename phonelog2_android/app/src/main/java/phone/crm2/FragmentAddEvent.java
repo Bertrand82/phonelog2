@@ -2,13 +2,20 @@ package phone.crm2;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.navigation.fragment.NavHostFragment;
+
 import com.beardedhen.androidbootstrap.BootstrapEditText;
+import com.google.android.material.internal.ContextUtils;
 
 import java.io.Serializable;
 import java.util.Calendar;
@@ -18,8 +25,8 @@ import phone.crm2.legacy.UtilContact;
 import phone.crm2.model.Contact;
 import phone.crm2.model.EventCRM;
 
-@Deprecated
-public class ActivityAddEvent extends AbstractActivityCrm {
+
+public class FragmentAddEvent extends Fragment {
 
 	private Contact contact_;
 	private ApplicationBg applicationBg;
@@ -31,20 +38,32 @@ public class ActivityAddEvent extends AbstractActivityCrm {
 	TextView textViewPhoto_;
 	DatePicker datePicker;
 	BootstrapEditText editText;
+
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		applicationBg = (ApplicationBg) getApplication();
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState ) {
+		// Inflate the layout for this fragment
+		return inflater.inflate(R.layout.fragment_add_event, container, false);
+	}
+
+	@Override
+	public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
+		super.onViewCreated(view, savedInstanceState);
+		initAddEvent();
+	}
+
+	protected void initAddEvent() {
+
+		applicationBg = (ApplicationBg) getActivity().getApplication();
 		contact_ = applicationBg.getContactCurrent();
-		Log.i("bg2", "ActivityAddEvent " + contact_);
-		setContentView(R.layout.activity_add_event);
-		textViewClientId_ = (TextView) findViewById(R.id.textViewClientId22);
-		textViewContact = (TextView) findViewById(R.id.labelContact2);
-		textViewDetailNumber = (TextView) findViewById(R.id.labelNumber2);
-		imageViewPhoto = (ImageView) findViewById(R.id.logoPhoto2);
-		textViewPhoto_ = (TextView) findViewById(R.id.logoPhotoText2);
-		datePicker = (DatePicker) findViewById(R.id.datepicker1);
-		editText = (BootstrapEditText) findViewById(R.id.editText2);
+		Log.i("bg2", "FragmentAddEvent " + contact_);
+
+		textViewClientId_ = (TextView)  getActivity().findViewById(R.id.textViewClientId22);
+		textViewContact = (TextView)  getActivity().findViewById(R.id.labelContact2);
+		textViewDetailNumber = (TextView)  getActivity().findViewById(R.id.labelNumber2);
+		imageViewPhoto = (ImageView)  getActivity().findViewById(R.id.logoPhoto2);
+		textViewPhoto_ = (TextView)  getActivity().findViewById(R.id.logoPhotoText2);
+		datePicker = (DatePicker)  getActivity().findViewById(R.id.datepicker1);
+		editText = (BootstrapEditText)  getActivity().findViewById(R.id.editText2);
 		Log.w("bg2","textViewClientId "+textViewClientId_);
 		Log.w("bg2","textViewPhoto"+textViewPhoto_);
 		Log.w("bg2","textViewDetailNumber"+textViewDetailNumber);
@@ -76,10 +95,10 @@ public class ActivityAddEvent extends AbstractActivityCrm {
 			if (normalisedNumber == null) {
 				normalisedNumber = contact_.getNumber();
 			}
-			UtilLogoPhoto.init(this, textViewPhoto_, imageViewPhoto, contact_);
+			UtilLogoPhoto.init(this.getActivity(), textViewPhoto_, imageViewPhoto, contact_);
 
 		}
-		setTitle(displayName);
+		getActivity().setTitle(displayName);
 		textViewContact.setText(displayName);
 		textViewDetailNumber.setText(normalisedNumber);
 
@@ -87,7 +106,7 @@ public class ActivityAddEvent extends AbstractActivityCrm {
 
 			@Override
 			public void onClick(View v) {
-				UtilContact.updateContact(ActivityAddEvent.this, contact_);
+				UtilContact.updateContact( getActivity(), contact_);
 			}
 		};
 		imageViewPhoto.setOnClickListener(listenerPhoto);
@@ -102,7 +121,7 @@ public class ActivityAddEvent extends AbstractActivityCrm {
 		String comment = this.editText.getText().toString();
 		Log.i("bg2", "AddEvent  date : "+date+"  comment :"+comment); 
 		insert(date, comment);
-		UtilActivitiesCommon.displayActivityLogDetail(this, contact_, this.storage, false);
+		UtilActivitiesCommon.displayActivityLogDetail(this.getActivity(), contact_, this.storage, false);
 	}
 	
 	private void insert(Date date, String comment) {
@@ -112,12 +131,12 @@ public class ActivityAddEvent extends AbstractActivityCrm {
 		String description = comment;
 		BgCalendar calendar = applicationBg.getStorageCalendar();
 		String tittle = contact_.getNameRemember()+" CRM "+contact_.getClientId();
-		UtilCalendar.insertEvent(this.getContentResolver(),startMills,endMillis,calendar,tittle,description);
+		UtilCalendar.insertEvent(this. getActivity().getContentResolver(),startMills,endMillis,calendar,tittle,description);
 	}
 
 	public void searchContact(View view) {
 		Log.i("bg2", "AddEvent searchContact No implemented yet");
-		UtilActivitiesCommon.openSearchContact(this);
+		UtilActivitiesCommon.openSearchContact( getActivity());
 	}
 
 	// display current date

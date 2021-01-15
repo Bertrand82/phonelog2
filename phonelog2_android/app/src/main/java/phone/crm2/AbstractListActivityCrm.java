@@ -6,7 +6,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-
+@Deprecated
 public class AbstractListActivityCrm extends ListActivity{
 
     private String TAG ="bg2 AbstractListActivityCrm";

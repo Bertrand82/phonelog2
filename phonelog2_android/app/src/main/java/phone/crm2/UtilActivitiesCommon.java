@@ -58,14 +58,47 @@ public class UtilActivitiesCommon {
     // Intent intent = new Intent(activity, ActivityPreference3.class);
     // activity.startActivity(intent);
     // }
+    public static void openCommentLastCall(FragmentActivity fragmentActivity) {
 
-
-
-    public static void openCommentLastCall(Activity activity) {
-        Intent intent = new Intent(activity, ActivityComment.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-        activity.startActivity(intent);
+        NavHostFragment navHostFragment = (NavHostFragment) fragmentActivity.getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment_logs2);
+        NavController navControler  =navHostFragment.getNavController();
+        navControler.navigate(R.id.action_navigation_to_FragmentComment);
     }
+
+    public static void openComment(FragmentActivity fragmentActivity,PhoneCall phoneCall, BgCalendar storage) {
+
+        NavHostFragment navHostFragment = (NavHostFragment) fragmentActivity.getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment_logs2);
+        NavController navControler  =navHostFragment.getNavController();
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(FragmentComment.KEY_Storage, storage);
+        bundle.putSerializable(FragmentComment.KEY_PhoneCall, phoneCall);
+        bundle.putBoolean(FragmentComment.KEY_SENT_MAIL, true);
+        navControler.navigate(R.id.action_navigation_to_FragmentComment,bundle);
+    }
+
+
+    public static void openComment(FragmentActivity fragmentActivity) {
+
+        NavHostFragment navHostFragment = (NavHostFragment) fragmentActivity.getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment_logs2);
+        NavController navControler  =navHostFragment.getNavController();
+        Bundle bundle = new Bundle();
+        navControler.navigate(R.id.action_navigation_to_FragmentComment,bundle);
+    }
+
+    public static void showConfirmSend(FragmentActivity activity,String text,String number,String contactStr,String timeStr, int colorBackground ,UpdateResult result_) {
+        NavHostFragment navHostFragment = (NavHostFragment) activity.getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment_logs2);
+        NavController navControler  =navHostFragment.getNavController();
+        Bundle bundle = new Bundle();
+        bundle.putString(FragmentComment.KEY_MESSAGE, "" + text);
+        bundle.putString(FragmentComment.KEY_NUMBER, "" +number);
+        bundle.putString(FragmentComment.KEY_CONTACT, "" + contactStr);
+        bundle.putString(FragmentComment.KEY_TIME, "" + timeStr);
+        bundle.putInt(FragmentComment.KEY_COLOR_BACKGROUND, colorBackground);
+        navControler.navigate(R.id.action_navigation_to_confirmSend,bundle);
+    }
+
+
+
 
     private static void showHome_(Activity activity) {
         Intent intent = new Intent(activity, MainActivity.class);
@@ -73,7 +106,7 @@ public class UtilActivitiesCommon {
     }
 
     public static void startLogsActivity(Activity activity) {
-        Intent intent = new Intent(activity, ActivityLogs2.class);
+        Intent intent = new Intent(activity, ActivityPhoneLog.class);
         // intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);// Ne met pas
         // a jour la liste des Calendar dans spinner
         activity.startActivity(intent);
@@ -86,15 +119,26 @@ public class UtilActivitiesCommon {
 
     }
 
-    public static void openAddEvent(Activity activity) {
-        Intent intent = new Intent(activity, ActivityAddEvent.class);
-        activity.startActivity(intent);
+    public static void openSearchContact(FragmentActivity fragmentActivity) {
+
+        NavHostFragment navHostFragment = (NavHostFragment) fragmentActivity.getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment_logs2);
+        NavController navControler  =navHostFragment.getNavController();
+        navControler.navigate(R.id.action_navigation_to_searchContact);
+
     }
 
-    public static void openSearchContact(Activity activity) {
-        Intent intent = new Intent(activity, ActivitySearchContact.class);
-        activity.startActivity(intent);
+    public static void displayActivityAddEvent(Activity activity) {
+        displayActivityAddEvent((FragmentActivity)activity,null,null);
     }
+    public static void displayActivityAddEvent(FragmentActivity activity, Contact contact, Serializable storage) {
+        NavHostFragment navHostFragment = (NavHostFragment) activity.getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment_logs2);
+        NavController navControler  =navHostFragment.getNavController();
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("contact", contact);
+        bundle.putSerializable("storage", storage);
+        navControler.navigate(R.id.action_navigation_to_FragmentAddEvent,bundle);
+    }
+
 
     public static void openCalendars(Activity activity) {
         long startMillis = System.currentTimeMillis() - 5l * 24l * 60l * 60l * 1000l;
@@ -116,14 +160,6 @@ public class UtilActivitiesCommon {
     }
 
 
-    private static void openImportContacts(Activity activity) {
-        Intent intent = new Intent(activity, ActivityImportContacts.class);
-        activity.startActivity(intent);
-    }
-
-    public static void openPrivateList2(Activity activity) {
-        openPrivateList(activity);
-    }
 
     public static void openPrivateList(Activity activity) {
         Log.i("bg2","UtilActivitiesCommon openPrivateList  activity : "+activity);
@@ -155,11 +191,9 @@ public class UtilActivitiesCommon {
         popUp(activity, "Trace Debug", applicationBg.getTracesDebug());
 
     }
-    public static void displayActivityLogDetail(Activity activity, Contact contact, Serializable storage, boolean newActivity) {
-       Log.i("bg2", "UtilActivitiesCommon.displayActivityLogDetail " + contact + "  Storage:" + storage );
+    public static void displayActivityLogDetail(FragmentActivity activity, Contact contact, Serializable storage, boolean newActivity) {
 
-        FragmentActivity fragmentActivity = (FragmentActivity) activity;
-        NavHostFragment navHostFragment = (NavHostFragment) fragmentActivity.getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment_logs2);
+        NavHostFragment navHostFragment = (NavHostFragment) activity.getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment_logs2);
         NavController navControler  =navHostFragment.getNavController();
         Bundle bundle = new Bundle();
         bundle.putSerializable("contact", contact);
@@ -205,7 +239,7 @@ public class UtilActivitiesCommon {
             UtilActivitiesCommon.openPrivateList(activity);
             return true;
         } else if (item.getItemId() == R.id.action_CommentLastCall) {
-            UtilActivitiesCommon.openCommentLastCall(activity);
+            UtilActivitiesCommon.openCommentLastCall((FragmentActivity) activity);
             return true;
         } else if (item.getItemId() == R.id.action_display_logs) {
             UtilActivitiesCommon.startLogsActivity(activity);
@@ -224,16 +258,12 @@ public class UtilActivitiesCommon {
             UtilActivitiesCommon.openTraceDebug(activity);
             return true;
 
-        }else if (item.getItemId() == R.id.action_navigation_test) {
-            UtilActivitiesCommon.openNavigationTest(activity);
-            return true;
-
-        } else if (item.getItemId() == R.id.action_add_event) {
-            UtilActivitiesCommon.openAddEvent(activity);
+        }else if (item.getItemId() == R.id.action_add_event) {
+            UtilActivitiesCommon.displayActivityAddEvent(activity);
             return true;
 
         } else if (item.getItemId() == R.id.action_search_contact) {
-            UtilActivitiesCommon.openSearchContact(activity);
+            UtilActivitiesCommon.openSearchContact((FragmentActivity)activity);
             return true;
 
         } else {
@@ -321,7 +351,7 @@ public class UtilActivitiesCommon {
             buttonLastCall.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    UtilActivitiesCommon.openCommentLastCall(activity);
+                    UtilActivitiesCommon.openCommentLastCall((FragmentActivity)activity);
                 }
             });
         }
@@ -473,13 +503,11 @@ public class UtilActivitiesCommon {
         }
         return "";
     }
-    public static void displayActivityAddEvent(Context context, Contact contact, Serializable storage, boolean newActivity) {
-        displayActivity_(context, contact, storage, newActivity, ActivityAddEvent.class);
-    }
+
 
     private static void displayActivity_(Context context, Contact contact, Serializable storage, boolean newActivity, @SuppressWarnings("rawtypes") Class clazz) {
 
-        Log.i("bg2", "ActivityLogs2.displayActivityLogDetail " + contact + "  Storage:" + storage + "   class: " + clazz);
+        Log.i("bg2", "ActivityPhoneLog.displayActivityLogDetail " + contact + "  Storage:" + storage + "   class: " + clazz);
 
         Intent intent = new Intent(context, clazz);
         Bundle b = new Bundle();

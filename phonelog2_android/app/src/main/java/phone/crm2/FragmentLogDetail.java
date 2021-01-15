@@ -219,16 +219,10 @@ public class FragmentLogDetail extends ListFragment {
 
 		Log.i(TAG, "displayCommentPhoneCall " + phoneCall + "   " + this.getActivity().getApplication());
 		((ApplicationBg) this.getActivity().getApplication()).setPhoneCall(phoneCall);
-		Intent intent = new Intent(this.getActivity(), ActivityComment.class);
-		Bundle b = new Bundle();
-		b.putSerializable("storage", storage);
-		b.putBoolean(ActivityComment.KEY_SENT_MAIL, true);
-		intent.putExtras(b);
-		intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-		startActivity(intent);
-		this.getActivity().overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_right);
+		UtilActivitiesCommon.openComment(this.getActivity(),phoneCall,storage);
 
 	}
+
 
 	private void callNumber() {
 		Log.i(TAG, "Call Number");
@@ -332,19 +326,7 @@ public class FragmentLogDetail extends ListFragment {
 		}
 	}
 	
-	private void displayActivityFormClientId() {
-		Log.i("bg2", "displayActivityFormClientId_1 " + contact + "  Storage:" + storage );
-		Class clazz = ActivityFormClientId.class;
-		Intent intent = new Intent(this.getActivity(), clazz);
-		Bundle b = new Bundle();
-		b.putSerializable("contact", contact);
-		b.putSerializable("storage", storage);
-		Log.i(TAG, "Start ----  " + b.getSerializable("contact"));
-		intent.putExtras(b);
-		intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-		
-		this.startActivity(intent);
-	}
+
 	
 	private void appendNexPage() {
 		page++;

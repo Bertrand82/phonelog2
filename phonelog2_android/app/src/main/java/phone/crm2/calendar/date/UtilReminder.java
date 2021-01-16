@@ -20,7 +20,7 @@ public class UtilReminder {
 	public static void testReminder(Activity activity, List<BgCalendar> listCalendars) {
 		ContentResolver cr = activity.getContentResolver();
 		UtilCalendar.runQueryListCalendar(listCalendars, cr);
-		long startMillis = System.currentTimeMillis()+5l* 60l*1000l;
+		long startMillis = System.currentTimeMillis()+5L* 60L*1000L;
 		long endMillis = startMillis + 1000;
 		String title = "Cela est un test!!";
 		String description = "Cela est un test description!!";

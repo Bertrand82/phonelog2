@@ -141,7 +141,7 @@ public class UtilActivitiesCommon {
 
 
     public static void openCalendars(Activity activity) {
-        long startMillis = System.currentTimeMillis() - 5l * 24l * 60l * 60l * 1000l;
+        long startMillis = System.currentTimeMillis() - 5L * 24L * 60L * 60L * 1000L;
 
         Uri.Builder builder = CalendarContract.CONTENT_URI.buildUpon();
         builder.appendPath("time");

@@ -13,6 +13,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.beardedhen.androidbootstrap.BootstrapButton;
 import com.beardedhen.androidbootstrap.BootstrapEditText;
 
 import java.io.Serializable;
@@ -111,10 +112,17 @@ public class FragmentAddEvent extends Fragment {
 
 
 		textViewPhoto_.setOnClickListener(listenerPhoto);
+		BootstrapButton buttonOk = (BootstrapButton)getActivity().findViewById(R.id.buttonOK);
+		buttonOk.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				actionOk(v);
+			}
+		});
 		
 	}
 
-	public void ok(View view) {
+	public void actionOk(View view) {
 		Date date = getDateFromDatePicker(datePicker);
 		String comment = this.editText.getText().toString();
 		Log.i("bg2", "AddEvent  date : "+date+"  comment :"+comment); 

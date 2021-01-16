@@ -18,7 +18,7 @@ import phone.crm2.model.SMS;
 
 public class IncomingCallReciever extends BroadcastReceiver {
 
-	private final String TAG = "bg2";
+	private static final String TAG = "bg2 IncomingCallReciever ";
 
 	public final static String KEY_MESSAGE_ALERT_CALL = "bg.bgfirst.AlertCall";
 	public final static String KEY_NUMERO_CALLER_ = "bg.bgfirst.NumeroCaller";

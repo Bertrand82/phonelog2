@@ -186,7 +186,7 @@ public class UtilCalendar {
 		ContentResolver cr = applicationBg.getContentResolver();
 		List<BgCalendar> listCAlendars = applicationBg.getListCalendars();
 		long startMillis = sms.getDate();
-		long endMillis = startMillis + (1 * 1000L);
+		long endMillis = startMillis + (1000L);
 		String title = toTitleFromPhoneCall(sms);
 		String description = sms.getMessage();
 		if (description == null) {

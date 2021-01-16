@@ -43,7 +43,7 @@ public class Request extends AsyncTask<Object, Integer, String> {
     private int taskType = GET;
     private final String url;
     private ArrayList<NameValuePair> data = new ArrayList<NameValuePair>();
-    private AppAccount appAccount;
+
  
    
 
@@ -54,11 +54,7 @@ public class Request extends AsyncTask<Object, Integer, String> {
     	this.data 		= data;
     }
     
-    public Request(int taskType,String url, ArrayList<NameValuePair> data, AppAccount appAccount){
-    	
-    	this(taskType, url, data);
-    	this.appAccount = appAccount;
-    }
+
     
    
 
@@ -72,13 +68,9 @@ public class Request extends AsyncTask<Object, Integer, String> {
         try {
 			Log.i(TAG,"doInBackGround start url :"+url+"<");
 			HttpResponse response = doResponse(url);
-
-			if (response == null) {
-				 Log.i(TAG," from "+url+" hResult " +result);
-			   // return hResult;
-			} else {
+            Log.i(TAG," from "+url+" hResult " +result);
+			if (response != null) {
 				result = parseResult(response.getEntity().getContent());
-			    Log.i(TAG," from "+url+" hResult " +result);
 			}
 		} catch (Exception e) {
 			Log.e(TAG,"exception args:"+args, e);

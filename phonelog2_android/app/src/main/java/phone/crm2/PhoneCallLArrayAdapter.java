@@ -19,7 +19,7 @@ import phone.crm2.model.SMS;
 
 public class PhoneCallLArrayAdapter extends ArrayAdapter<Event> {
 
-	private final String TAG = "bg2";
+	private static final String TAG = "bg2 PhoneCallLArrayAdapter ";
 
 	private final Context context;
 	private final List<Event> listEvents;

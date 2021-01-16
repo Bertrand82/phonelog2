@@ -99,7 +99,8 @@
         <service
             android:name=".services.AccountAuthenticatorService"
             android:exported="true"
-            android:process=":auth" >
+            android:process=":auth"
+            android:permission="TODO">
             <intent-filter>
                 <action android:name="android.accounts.AccountAuthenticator" >
                 </action>
@@ -113,7 +114,8 @@
         <service
             android:name=".services.ContactsSyncAdapterService"
             android:exported="true"
-            android:process=":contacts" >
+            android:process=":contacts"
+            android:permission="TODO">
             <intent-filter>
                 <action android:name="android.content.SyncAdapter" />
             </intent-filter>

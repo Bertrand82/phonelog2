@@ -19,7 +19,7 @@ public class ServerUtil {
 		try {
 			String url = MainActivity.SERVICE_URL_CAFE_CRM + "/log";
 
-			Request request = new Request(Request.POST, url, Adapter.toNameValuePair(phoneCall),phoneCall.getAccount());
+			Request request = new Request(Request.POST, url, Adapter.toNameValuePair(phoneCall));
 
 			send(request);
 			
@@ -35,7 +35,7 @@ public class ServerUtil {
 		try {
 			String url = MainActivity.SERVICE_URL_CAFE_CRM + "/alert";
 
-			Request request = new Request(Request.POST, url, Adapter.toNameValuePair(phoneCallAlert), phoneCallAlert.getAccount());
+			Request request = new Request(Request.POST, url, Adapter.toNameValuePair(phoneCallAlert));
 
 			send(request);
 
@@ -51,7 +51,7 @@ public class ServerUtil {
 		try {
 			String url = MainActivity.SERVICE_URL_CAFE_CRM + "/log";
 
-			Request request = new Request(Request.POST, url, Adapter.toNameValuePair(sms), sms.getAccount());
+			Request request = new Request(Request.POST, url, Adapter.toNameValuePair(sms));
 
 			send(request);
 

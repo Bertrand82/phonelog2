@@ -261,7 +261,7 @@ public class FragmentComment extends Fragment {
 			Log.w("bg2", "mailSend phoneCall is Null!! ");
 			return;
 		}
-		if (mailSent == true) {// Le mail a été deja envoyé
+		if (mailSent ) {// Le mail a été deja envoyé
 			return;
 		}
 		if (phoneCall.equals2(phoneCall_Z_1)) {// Le mail a été deja envoyé

@@ -13,7 +13,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.navigation.fragment.NavHostFragment;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -52,11 +51,11 @@ public class FragmentConfirmSend extends Fragment {
 		String time = b.getString(FragmentComment.KEY_TIME);
 		String type = b.getString(FragmentComment.KEY_TYPE);
 		UpdateResult updateResult = (UpdateResult) b.getSerializable(FragmentComment.KEY_RESULT_CALENDAR);
-		TextView textViewMessage = (TextView) this.getActivity().findViewById(R.id.labelMessage);
-		TextView textViewNumber = (TextView) this.getActivity().findViewById(R.id.labelNumber);
-		TextView textViewContact = (TextView) this.getActivity().findViewById(R.id.labelContact);
-		TextView textViewTime = (TextView) this.getActivity().findViewById(R.id.labelTime);
-		TextView textViewType = (TextView) this.getActivity().findViewById(R.id.labelType);
+		TextView textViewMessage = this.getActivity().findViewById(R.id.labelMessage);
+		TextView textViewNumber = this.getActivity().findViewById(R.id.labelNumber);
+		TextView textViewContact = this.getActivity().findViewById(R.id.labelContact);
+		TextView textViewTime = this.getActivity().findViewById(R.id.labelTime);
+		TextView textViewType = this.getActivity().findViewById(R.id.labelType);
 		textViewMessage.setText(message);
 		textViewNumber.setText(number);
 		textViewContact.setText(contact);
@@ -64,12 +63,12 @@ public class FragmentConfirmSend extends Fragment {
 		textViewTime.setText(time);
 		TextView[] textViewsResult = new TextView[4];
 
-		textViewsResult[0] = (TextView) this.getActivity().findViewById(R.id.labelResult_R_1);
-		textViewsResult[1] = (TextView) this.getActivity().findViewById(R.id.labelResult_R_2);
-		textViewsResult[2] = (TextView) this.getActivity().findViewById(R.id.labelResult_R_3);
-		textViewsResult[3] = (TextView) this.getActivity().findViewById(R.id.labelResult_R_4);
+		textViewsResult[0] = this.getActivity().findViewById(R.id.labelResult_R_1);
+		textViewsResult[1] = this.getActivity().findViewById(R.id.labelResult_R_2);
+		textViewsResult[2] = this.getActivity().findViewById(R.id.labelResult_R_3);
+		textViewsResult[3] = this.getActivity().findViewById(R.id.labelResult_R_4);
 		// view.setBackgroundColor(color);
-		buttonSetReminder = (Button) this.getActivity().findViewById(R.id.buttonAddReminder);
+		buttonSetReminder = this.getActivity().findViewById(R.id.buttonAddReminder);
 		buttonSetReminder.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -77,7 +76,7 @@ public class FragmentConfirmSend extends Fragment {
 			}
 		});
 
-		Button buttonLogs = (Button) this.getActivity().findViewById(R.id.buttonCallAgain);
+		Button buttonLogs = this.getActivity().findViewById(R.id.buttonCallAgain);
 		buttonLogs.setOnClickListener(new OnClickListener() {
 
 			@Override

@@ -106,12 +106,9 @@ public class BgCalendar implements Serializable{
 		} else if (!accountType.equals(other.accountType))
 			return false;
 		if (ownerName == null) {
-			if (other.ownerName != null)
-				return false;
-		} else if (!ownerName.equals(other.ownerName))
-			return false;
-		return true;
-	}
+            return other.ownerName == null;
+		} else return ownerName.equals(other.ownerName);
+    }
 
 	public long getEventId(long startMillis) {
 		for(EventId eventId : listEventId){

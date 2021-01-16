@@ -15,11 +15,11 @@ import phone.crm2.model.Contact;
 
 public class CallManager {
 
-	private ApplicationBg applicationBg;
+	private final ApplicationBg applicationBg;
 	private String number;
 	private String number_Z_1;
 	private String stateTelephonyManager_Z_1 = null;
-	private Contact contact;
+	//private Contact contact;
    private final static String TAG = "bg2";
 
 	public CallManager(ApplicationBg applicationBg_) {
@@ -46,9 +46,9 @@ public class CallManager {
 				//if (!stateTelephonyManager.equals(stateTelephonyManager_Z_1)) {
 				if (TelephonyManager.EXTRA_STATE_RINGING.equals(stateTelephonyManager_Z_1)) {
 					Log.i(TAG,"CallManager Decrovhage Bingo !!! ");
-					this.contact = applicationBg.getDb().getContact().getByNumberOrCreate(number);
+					Contact contact = applicationBg.getDb().getContact().getByNumberOrCreate(number);
 					//delayProcessCall(context,this.contact);
-					processCall(context,this.contact);
+					processCall(context,contact);
 				}
 			}
 		} else if (stateTelephonyManager.equals(TelephonyManager.EXTRA_STATE_IDLE)) {
@@ -67,6 +67,7 @@ public class CallManager {
 					Log.i("bg2","CallManager.delayProcess wait "+delay);
 					Thread.sleep(delay);
 				} catch (InterruptedException e) {
+					Log.i("TAG","InterruptedException"); // Useless!
 				}
 				processCall(context, contact);
 				Log.i("bg2","CallManager.delayProcess CCCC ");

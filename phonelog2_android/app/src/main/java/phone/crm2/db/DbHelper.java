@@ -7,14 +7,14 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 public class DbHelper extends SQLiteOpenHelper {
 
-    private static String TAG = "DbHelper";
+    private static final String TAG = "DbHelper";
 
     private static final String DATABASE_NAME = "cafe_crm.db";
     private static final int DATABASE_VERSION = 9;//12/02/2014
 
     private ContactTable contact;
     private AppAccountTable appAccount;
-    private CalendarSelectedTable calendarsSelected;
+    private final CalendarSelectedTable calendarsSelected;
 
     public DbHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -63,7 +63,7 @@ public class DbHelper extends SQLiteOpenHelper {
     }
 
     /**
-     * @param account the account to set
+     * @param appAccount the account to set
      */
     public void setAppAccount(AppAccountTable appAccount) {
         this.appAccount = appAccount;

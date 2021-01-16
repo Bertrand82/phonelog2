@@ -21,7 +21,7 @@ import phone.crm2.model.SMS;
 
 public class PhoneCallLDetailArrayAdapter extends ArrayAdapter<Event>{
 
-	private String TAG = getClass().getSimpleName();
+	private final String TAG = getClass().getSimpleName();
 	
 	private final Context context;
 	private   List<Event> events;
@@ -44,10 +44,10 @@ public class PhoneCallLDetailArrayAdapter extends ArrayAdapter<Event>{
 		
 		Event event = events.get(position);
 		
-		TextView textViewDate = (TextView) rowView.findViewById(R.id.labelDDate);
+		TextView textViewDate = rowView.findViewById(R.id.labelDDate);
 		textViewDate.setText(event.getDateAsHour());
 		
-		TextView textViewDay= (TextView) rowView.findViewById(R.id.labelDay);
+		TextView textViewDay= rowView.findViewById(R.id.labelDay);
 		String dateDay = event.getDateAsDay();
 		if (dateDay.equals(this.dateDay)){
 			textViewDay.setText("");
@@ -57,7 +57,7 @@ public class PhoneCallLDetailArrayAdapter extends ArrayAdapter<Event>{
 			this.dateDay = dateDay;
 		}
 		
-		TextView textViewComment= (TextView) rowView.findViewById(R.id.labelComment);
+		TextView textViewComment= rowView.findViewById(R.id.labelComment);
 		if(event instanceof SMS){
 			SMS sms = (SMS) event;
 			textViewComment.setText(sms.getMessage());
@@ -69,10 +69,10 @@ public class PhoneCallLDetailArrayAdapter extends ArrayAdapter<Event>{
 			textViewComment.setText(event.getMessageText());
 		}
 
-		AwesomeTextView imageViewType = (AwesomeTextView) rowView.findViewById(R.id.logoType);
+		AwesomeTextView imageViewType = rowView.findViewById(R.id.logoType);
 		UtilActivitiesCommon.setImage(event.getType(), imageViewType);
 
-		AwesomeTextView imagePhoneOuMessage = (AwesomeTextView) rowView.findViewById(R.id.logoPhoneOuMessage);
+		AwesomeTextView imagePhoneOuMessage = rowView.findViewById(R.id.logoPhoneOuMessage);
 		UtilActivitiesCommon.setImagePhoneOuMessage(event.getType(), imagePhoneOuMessage);
 		
 		return rowView;

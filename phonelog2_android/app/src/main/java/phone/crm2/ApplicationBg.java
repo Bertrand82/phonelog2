@@ -38,7 +38,7 @@ import phone.crm2.sms.SmsSendService;
 public class ApplicationBg extends Application  implements LifecycleObserver {
 
 
-	private String TAG = "bg2";
+	private final String TAG = "bg2";
 
 	public static final String BG_UNKNOWN_="Unknown";
 	public static final String ACCOUNT_TYPE = "com.cafe_crm.account";
@@ -49,13 +49,13 @@ public class ApplicationBg extends Application  implements LifecycleObserver {
 	private AppAccount appAccount;
 	private DbHelper db;
 	private List<BgCalendar> listCalendars = new ArrayList<BgCalendar>();
-	private long time_HOOK =0;
+	private final long time_HOOK =0;
 	private SmsObserver smsObserverBg__;
 	private TelephonyManager  telephonyManager =null;
 	private PhoneStateListener2 phoneListener=null;
 	private boolean isForeground= false;
 
-	private CallManager callManager ;
+	private final CallManager callManager ;
 
 	private BgCalendar storage ;
 
@@ -131,7 +131,7 @@ public class ApplicationBg extends Application  implements LifecycleObserver {
 	public AppAccount getAppAccount() {
 		if(appAccount == null){
 			AccountManager accountManager = AccountManager.get(this);
-			Account[] accounts = accountManager.getAccountsByType(this.ACCOUNT_TYPE);
+			Account[] accounts = accountManager.getAccountsByType(ACCOUNT_TYPE);
 			AppAccount appAccount = this.getDb().getAppAccount().getBy(AppAccountTable.KEY_MAIL, accounts[0].name);
 			this.appAccount = appAccount;
 		}
@@ -299,7 +299,7 @@ public class ApplicationBg extends Application  implements LifecycleObserver {
 		return isForeground;
 	}
 
-	class TraceDebug{
+	static class TraceDebug{
 		String message="";
 		Date date = new Date();
 

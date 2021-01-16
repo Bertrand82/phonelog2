@@ -1,23 +1,14 @@
 package phone.crm2;
 
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.net.Uri;
-import android.preference.PreferenceManager;
 import android.util.Log;
 import android.widget.Toast;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-
 import phone.crm2.model.Contact;
-import phone.crm2.model.Event;
 import phone.crm2.model.PhoneCall;
-import phone.crm2.model.SMS;
 
 public class UtilEmail {
 

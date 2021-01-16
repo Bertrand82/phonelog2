@@ -24,7 +24,7 @@ public class ContactHandler {
     private static final String KEY_ID = "id";
     private static final String KEY_NAME = "name";
     private static final String KEY_PHONE_NUMBER = "phone_number";
-    private DataBaseHandlerBg dataBaseHandlerBg;
+    private final DataBaseHandlerBg dataBaseHandlerBg;
     
     public ContactHandler( DataBaseHandlerBg dataBaseHandlerBg) {
        this.dataBaseHandlerBg =dataBaseHandlerBg;

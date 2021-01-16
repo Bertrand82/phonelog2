@@ -19,7 +19,6 @@ import phone.crm2.model.Event;
 public class FragmentLogsFirst extends ListFragment {
 
     private PhoneCallLArrayAdapter adapter;
-    private int page = 0;
     private Spinner spinner;
     @Override
     public View onCreateView(
@@ -41,7 +40,7 @@ public class FragmentLogsFirst extends ListFragment {
     }
 
     private void initSpinner() {
-        spinner = (Spinner) this.getActivity().findViewById(R.id.bdd_spinner2);
+        spinner = this.getActivity().findViewById(R.id.bdd_spinner2);
         @SuppressWarnings("rawtypes")
         List lisBgCalendarsSelected = this.getApplicationBg().getListCalendarsSelected();
         Object storageDefault = this.getApplicationBg().getStorage();
@@ -84,6 +83,7 @@ public class FragmentLogsFirst extends ListFragment {
 
         Object o = spinner.getSelectedItem();
         BgCalendar bgCalendar = (BgCalendar) o;
+        int page = 0;
         List<Event> communicationList = UtilCalendar.getListEvent(this.getActivity(), bgCalendar, page);
         initListDisplayed(communicationList);
         ApplicationBg applicationBg = getApplicationBg();

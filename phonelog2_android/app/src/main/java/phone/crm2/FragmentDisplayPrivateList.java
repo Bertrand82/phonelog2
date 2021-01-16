@@ -1,7 +1,5 @@
 package phone.crm2;
 
-import android.app.AlertDialog;
-
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,9 +12,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.ListFragment;
-import androidx.navigation.fragment.NavHostFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,10 +38,10 @@ public class FragmentDisplayPrivateList extends ListFragment {
         super.onViewCreated(view, savedInstanceState);
 
         applicationBg = (ApplicationBg) this.getActivity().getApplication();
-        textViewNbPrivate = (TextView) view.findViewById(R.id.textViewNbNumeros);
-        listView = (ListView) view.findViewById(android.R.id.list);
+        textViewNbPrivate = view.findViewById(R.id.textViewNbNumeros);
+        listView = view.findViewById(android.R.id.list);
         initList();
-        Button buttonClearList = (Button) view.findViewById(R.id.buttonClearBlackList);
+        Button buttonClearList = view.findViewById(R.id.buttonClearBlackList);
         View.OnClickListener clicListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -95,10 +91,10 @@ public class FragmentDisplayPrivateList extends ListFragment {
         public View getView(final int position, View convertView, ViewGroup parent) {
             LayoutInflater inflater = (LayoutInflater) contextBg.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             View rowView = inflater.inflate(R.layout.item_list_private, parent, false);
-            TextView textView =(TextView) rowView.findViewById(R.id.labelPrivateItem);
+            TextView textView = rowView.findViewById(R.id.labelPrivateItem);
             Contact contact = listPrivateContacts.get(position);
             textView.setText(contact.getContactNumbberAndNAme());
-            Button button = (Button)  rowView.findViewById(R.id.buttonPrivateItemRemove);
+            Button button = rowView.findViewById(R.id.buttonPrivateItemRemove);
             View.OnClickListener onClickListener = new View.OnClickListener() {
 
                 @Override

@@ -33,7 +33,7 @@ public class ContactTable {
 	private static final String REQUEST_DROP_TABLE_IF_E = "DROP TABLE IF EXISTS " + TABLE_NAME;
 
 	// db
-	private DbHelper dbHelper;
+	private final DbHelper dbHelper;
 
 	public ContactTable(DbHelper dbHelper) {
 		this.dbHelper = dbHelper;
@@ -88,7 +88,7 @@ public class ContactTable {
 		Contact contact = new Contact();
 		contact.setId(c.getLong(c.getColumnIndex(KEY_ID)));
 		contact.setNumber(c.getString(c.getColumnIndex(KEY_NUMBER)));
-		contact.setPrivate((c.getInt(c.getColumnIndex(KEY_IS_PRIVATE)) == 1) ? true : false);
+		contact.setPrivate(c.getInt(c.getColumnIndex(KEY_IS_PRIVATE)) == 1);
 		// return contact
 		return contact;
 	}
@@ -110,7 +110,7 @@ public class ContactTable {
 			contact = new Contact();
 			contact.setId(c.getLong(c.getColumnIndex(KEY_ID)));
 			contact.setNumber(c.getString(c.getColumnIndex(KEY_NUMBER)));
-			contact.setPrivate((c.getInt(c.getColumnIndex(KEY_IS_PRIVATE)) == 1) ? true : false);
+			contact.setPrivate(c.getInt(c.getColumnIndex(KEY_IS_PRIVATE)) == 1);
 		}
 		// return contact
 		Log.i("bg2", "getByNumber done contact " + contact);
@@ -138,7 +138,7 @@ public class ContactTable {
 				Contact contact = new Contact();
 				contact.setId(c.getLong(c.getColumnIndex(KEY_ID)));
 				contact.setNumber(c.getString(c.getColumnIndex(KEY_NUMBER)));
-				contact.setPrivate((c.getInt(c.getColumnIndex(KEY_IS_PRIVATE)) == 1) ? true : false);
+				contact.setPrivate(c.getInt(c.getColumnIndex(KEY_IS_PRIVATE)) == 1);
 				// Adding contact to list
 				contactList.add(contact);
 			} while (c.moveToNext());

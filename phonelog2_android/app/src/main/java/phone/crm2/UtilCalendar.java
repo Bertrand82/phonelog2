@@ -387,7 +387,6 @@ public class UtilCalendar {
 			if (t.equals(typeStr)) {
 				return i;
 			}
-			;
 			i++;
 		}
 		return 0;

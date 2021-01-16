@@ -74,11 +74,8 @@ public class PhoneCall extends Event implements Serializable {
 		if (this.contact.getNumber()==null){
 			return false;
 		}
-		if (this.contact.getNumber().length()<2){
-			return false;
-		}
-		return true;
-	}
+        return this.contact.getNumber().length() >= 2;
+    }
 
 
 

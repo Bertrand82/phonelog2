@@ -17,9 +17,9 @@ import java.util.StringTokenizer;
 public class FileParserCSVContacts {
 
 	public Map<Integer, List<Integer>> mapColumns = new HashMap<Integer, List<Integer>>();
-	private Context context;
-	private File file;
-	private IProcessItem iProcessItem;
+	private final Context context;
+	private final File file;
+	private final IProcessItem iProcessItem;
 	
 	public FileParserCSVContacts(Context context, File file,IProcessItem iProcessItem) {
 		super();
@@ -179,10 +179,10 @@ public class FileParserCSVContacts {
 			}
 			
 		}
-	};
-	
+	}
 
-	private void showColumnsDebug(){
+
+    private void showColumnsDebug(){
 		Integer i=0;
 		for(String s : COLUMNS){
 			System.out.println(i+"  "+s+"   "+mapColumns.get(i));

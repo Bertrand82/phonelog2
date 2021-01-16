@@ -20,8 +20,8 @@ public class DataBaseHandlerBg extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "bg";
 
 	
-	private ContactHandler contactHandler;
-	private PhoneCallHandler phoneCallHandler;
+	private final ContactHandler contactHandler;
+	private final PhoneCallHandler phoneCallHandler;
 	
 	public DataBaseHandlerBg(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);

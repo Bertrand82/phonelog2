@@ -7,7 +7,6 @@ import java.io.Serializable;
 
 import phone.crm2.ApplicationBg;
 import phone.crm2.db.ContactTable;
-import phone.crm2.legacy.UtilContact;
 
 public final class Contact implements Serializable {
 
@@ -146,11 +145,7 @@ public final class Contact implements Serializable {
 			return false;
 		} else {
 			Long raw_contact_id = this.extra.getRaw_contact_id(context);
-			if (raw_contact_id == null) {
-				return false;
-			} else {
-				return true;
-			}
+            return raw_contact_id != null;
 		}
 
 	}
@@ -191,11 +186,8 @@ public final class Contact implements Serializable {
 	public boolean isInContacts(Context context) {
 		if (this.getExtra(context) != null) {
 			if (this.extra.getRaw_contact_id(context) == null) {
-				;
-				return false;
-			} else if (this.extra.raw_contact_id != 0) {
-				return true;
-			}
+                return false;
+			} else return this.extra.raw_contact_id != 0;
 		}
 		return false;
 	}
@@ -236,12 +228,9 @@ public final class Contact implements Serializable {
 			return false;
 		Contact other = (Contact) obj;
 		if (number == null) {
-			if (other.number != null)
-				return false;
-		} else if (!number.equals(other.number))
-			return false;
-		return true;
-	}
+            return other.number == null;
+		} else return number.equals(other.number);
+    }
 
 	public String getEmailFromContact(Context context){
 		String email =  this.getExtra(context).getMail(context);

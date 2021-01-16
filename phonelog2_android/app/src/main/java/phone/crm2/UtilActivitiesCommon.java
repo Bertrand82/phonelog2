@@ -51,7 +51,7 @@ public class UtilActivitiesCommon {
     final static IconSet typicon = TypefaceProvider.retrieveRegisteredIconSet(Typicon.FONT_PATH, editMode);
     final static IconSet materialIcons = TypefaceProvider.retrieveRegisteredIconSet(MaterialIcons.FONT_PATH, editMode);
 
-    private static String TAG = "UtilActivitiesCommon";
+    private static final String TAG = "UtilActivitiesCommon";
 
     // TODO
     // public static void openActivityPreferences(Activity activity) {
@@ -292,12 +292,12 @@ public class UtilActivitiesCommon {
 
     public static void initButtonNavigation_(final Activity activity, int n) {
 
-        Button buttonLogs = (Button) activity.findViewById(R.id.buttonLogs);
-        Button buttonPrivateList = (Button) activity.findViewById(R.id.buttonPrivateList);
+        Button buttonLogs = activity.findViewById(R.id.buttonLogs);
+        Button buttonPrivateList = activity.findViewById(R.id.buttonPrivateList);
         // Button buttonOptions = (Button)
         // activity.findViewById(R.id.buttonOptions);
-        Button buttonLastCall = (Button) activity.findViewById(R.id.buttonLastCall);
-        Button buttonAndroidPhoneSystem = (Button) activity.findViewById(R.id.buttonAndroidPhoneSystem);
+        Button buttonLastCall = activity.findViewById(R.id.buttonLastCall);
+        Button buttonAndroidPhoneSystem = activity.findViewById(R.id.buttonAndroidPhoneSystem);
 
         if (n == 1) {
             select(buttonLogs);
@@ -326,7 +326,6 @@ public class UtilActivitiesCommon {
                 public void onClick(View v) {
                     Log.i(TAG, "initButtonNavigation buttonLogs onClick");
                     UtilActivitiesCommon.startLogsActivity(activity);
-                    ;
                 }
             });
         }

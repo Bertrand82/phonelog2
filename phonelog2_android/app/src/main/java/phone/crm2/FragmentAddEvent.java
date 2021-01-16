@@ -12,10 +12,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.fragment.NavHostFragment;
 
 import com.beardedhen.androidbootstrap.BootstrapEditText;
-import com.google.android.material.internal.ContextUtils;
 
 import java.io.Serializable;
 import java.util.Calendar;
@@ -57,13 +55,13 @@ public class FragmentAddEvent extends Fragment {
 		contact_ = applicationBg.getContactCurrent();
 		Log.i("bg2", "FragmentAddEvent " + contact_);
 
-		textViewClientId_ = (TextView)  getActivity().findViewById(R.id.textViewClientId22);
-		textViewContact = (TextView)  getActivity().findViewById(R.id.labelContact2);
-		textViewDetailNumber = (TextView)  getActivity().findViewById(R.id.labelNumber2);
-		imageViewPhoto = (ImageView)  getActivity().findViewById(R.id.logoPhoto2);
-		textViewPhoto_ = (TextView)  getActivity().findViewById(R.id.logoPhotoText2);
-		datePicker = (DatePicker)  getActivity().findViewById(R.id.datepicker1);
-		editText = (BootstrapEditText)  getActivity().findViewById(R.id.editText2);
+		textViewClientId_ = getActivity().findViewById(R.id.textViewClientId22);
+		textViewContact = getActivity().findViewById(R.id.labelContact2);
+		textViewDetailNumber = getActivity().findViewById(R.id.labelNumber2);
+		imageViewPhoto = getActivity().findViewById(R.id.logoPhoto2);
+		textViewPhoto_ = getActivity().findViewById(R.id.logoPhotoText2);
+		datePicker = getActivity().findViewById(R.id.datepicker1);
+		editText = getActivity().findViewById(R.id.editText2);
 		Log.w("bg2","textViewClientId "+textViewClientId_);
 		Log.w("bg2","textViewPhoto"+textViewPhoto_);
 		Log.w("bg2","textViewDetailNumber"+textViewDetailNumber);

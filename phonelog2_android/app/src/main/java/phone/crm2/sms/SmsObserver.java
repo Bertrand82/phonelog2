@@ -9,18 +9,17 @@ import android.util.Log;
 
 import phone.crm2.ApplicationBg;
 import phone.crm2.UtilCalendar;
-import phone.crm2.UtilEmail;
 import phone.crm2.model.AppAccount;
 import phone.crm2.model.Contact;
 import phone.crm2.model.SMS;
 
 public class SmsObserver extends ContentObserver {
 	
-	private static String TAG = "SmsObserver";
+	private static final String TAG = "SmsObserver";
 	
-	private static int TYPE_SMS_RECEIVED=1;
-	private static int TYPE_SMS_SENT=2;
-	private ApplicationBg context;
+	private static final int TYPE_SMS_RECEIVED=1;
+	private static final int TYPE_SMS_SENT=2;
+	private final ApplicationBg context;
 
 	public SmsObserver(Context context_) {
 		super(new Handler());

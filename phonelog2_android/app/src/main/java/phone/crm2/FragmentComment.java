@@ -1,6 +1,5 @@
 package phone.crm2;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,14 +13,10 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
-import androidx.navigation.fragment.NavHostFragment;
 
 import com.beardedhen.androidbootstrap.AwesomeTextView;
 import com.beardedhen.androidbootstrap.BootstrapButton;
 import com.beardedhen.androidbootstrap.BootstrapEditText;
-
-import java.io.Serializable;
 
 import phone.crm2.legacy.UtilContact;
 import phone.crm2.model.Contact;
@@ -29,7 +24,7 @@ import phone.crm2.model.PhoneCall;
 
 public class FragmentComment extends Fragment {
 
-	private String TAG = getClass().getSimpleName();
+	private final String TAG = getClass().getSimpleName();
 
 	private BootstrapEditText editText;
 	private BootstrapButton buttonAddRemoveToPrivateList;
@@ -37,8 +32,7 @@ public class FragmentComment extends Fragment {
 	private TextView textViewContact;
 	private TextView textViewNumber;
 	private TextView textViewTime;
-	private AwesomeTextView imagePhoneOuMessage;
-	private int colorBackground = -1;
+
 	private PhoneCall phoneCall;
 	private boolean mailSent = false;
 	private BgCalendar storage;
@@ -48,7 +42,7 @@ public class FragmentComment extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState ) {
 		// Inflate the layout for this fragment
-		return inflater.inflate(R.layout.activity_comment, container, false);
+		return inflater.inflate(R.layout.fragment_comment, container, false);
 	}
 
 	@Override
@@ -95,8 +89,8 @@ public class FragmentComment extends Fragment {
 
 
 
-		ImageView imageViewPhoto = (ImageView) this.getActivity().findViewById(R.id.logoPhoto);
-		TextView textViewPhoto = (TextView) this.getActivity().findViewById(R.id.logoPhotoText);
+		ImageView imageViewPhoto = this.getActivity().findViewById(R.id.logoPhoto);
+		TextView textViewPhoto = this.getActivity().findViewById(R.id.logoPhotoText);
 
 		UtilLogoPhoto.init(this.getActivity(), textViewPhoto, imageViewPhoto, phoneCall.getContact());
 
@@ -114,27 +108,26 @@ public class FragmentComment extends Fragment {
 		if (textViewPhoto.getVisibility() == View.VISIBLE) {
 			textViewPhoto.setOnClickListener(listenerEditContact);
 		}
-		textViewContact = (TextView) this.getActivity().findViewById(R.id.labelContact);
+		textViewContact = this.getActivity().findViewById(R.id.labelContact);
 		textViewContact.setText(phoneCall.getContact().getExtra(this.applicationBg).getDisplayName());
 
-		textViewNumber = (TextView) this.getActivity().findViewById(R.id.labelNumber);
+		textViewNumber = this.getActivity().findViewById(R.id.labelNumber);
 		textViewNumber.setText(phoneCall.getContact().getNumber());
-
-		imagePhoneOuMessage = (AwesomeTextView) this.getActivity().findViewById(R.id.logoPhoneOuMessage);
+		AwesomeTextView imagePhoneOuMessage = this.getActivity().findViewById(R.id.logoPhoneOuMessage);
 		UtilActivitiesCommon.setImagePhoneOuMessage(phoneCall.getType(), imagePhoneOuMessage);
 
-		AwesomeTextView imageViewType = (AwesomeTextView) this.getActivity().findViewById(R.id.logoType);
+		AwesomeTextView imageViewType = this.getActivity().findViewById(R.id.logoType);
 		UtilActivitiesCommon.setImage(phoneCall.getType(), imageViewType);
 
-		textViewTime = (TextView) this.getActivity().findViewById(R.id.labelTime);
+		textViewTime = this.getActivity().findViewById(R.id.labelTime);
 		textViewTime.setText(phoneCall.getDateAsHour());
 
-		editText = (BootstrapEditText) this.getActivity().findViewById(R.id.editText1);
+		editText = this.getActivity().findViewById(R.id.editText1);
 		String comment = phoneCall.getComment();
 		if (comment != null) {
 			editText.setText(comment);
 		}
-		Button buttonMask = (Button) this.getActivity().findViewById(R.id.buttonMask);
+		Button buttonMask = this.getActivity().findViewById(R.id.buttonMask);
 		OnClickListener listenerButtonMask = new OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
@@ -145,7 +138,7 @@ public class FragmentComment extends Fragment {
 		};
 		buttonMask.setOnClickListener(listenerButtonMask);
 
-		BootstrapButton buttoncallAgain = (BootstrapButton) this.getActivity().findViewById(R.id.button_call_again);
+		BootstrapButton buttoncallAgain = this.getActivity().findViewById(R.id.button_call_again);
 		OnClickListener listenerButtoncallAgain = new OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
@@ -158,7 +151,7 @@ public class FragmentComment extends Fragment {
 			}
 		};
 		buttoncallAgain.setOnClickListener(listenerButtoncallAgain);
-		BootstrapButton buttonEnvoi = (BootstrapButton) this.getActivity().findViewById(R.id.button_envoi);
+		BootstrapButton buttonEnvoi = this.getActivity().findViewById(R.id.button_envoi);
 
 		OnClickListener buttonListenerEnvoi = new OnClickListener() {
 			@Override
@@ -179,7 +172,7 @@ public class FragmentComment extends Fragment {
 		};
 		buttonEnvoi.setOnClickListener(buttonListenerEnvoi);
 
-		buttonAddRemoveToPrivateList = (BootstrapButton) this.getActivity().findViewById(R.id.button_add_remove_from_private_list);
+		buttonAddRemoveToPrivateList = this.getActivity().findViewById(R.id.button_add_remove_from_private_list);
 		setButtonLabel();
 		OnClickListener buttonListenerRemoveFromPrivateList = new OnClickListener() {
 			@Override
@@ -240,7 +233,8 @@ public class FragmentComment extends Fragment {
 		if (result_ == null) {
 			result_ = new UpdateResult();
 		}
-		UtilActivitiesCommon.showConfirmSend((FragmentActivity)this.getActivity(),text,number,contact,time,colorBackground,result_);
+		 int colorBackground = -1;
+		UtilActivitiesCommon.showConfirmSend(this.getActivity(),text,number,contact,time,colorBackground,result_);
 
 	}
 

@@ -43,11 +43,8 @@ public class SMS extends Event {
 	}
 
 	public boolean isConsistent() {
-		if (this.message == null){
-			return false;
-		}
-		return true;
-	}
+        return this.message != null;
+    }
 
 	
 	

@@ -41,7 +41,7 @@ public class Request extends AsyncTask<Object, Integer, String> {
     private static final int SOCKET_TIMEOUT = 5000;
      
     private int taskType = GET;
-    private String url;
+    private final String url;
     private ArrayList<NameValuePair> data = new ArrayList<NameValuePair>();
     private AppAccount appAccount;
  

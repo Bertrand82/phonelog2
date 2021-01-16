@@ -18,10 +18,10 @@ import android.widget.TextView;
 
 public class CalendarsArrayAdapter extends ArrayAdapter<BgCalendar>{
 
-	private String TAG = "bg2 "+getClass().getSimpleName();
+	private final String TAG = "bg2 "+getClass().getSimpleName();
 	
 	private final Context context;
-	private   List<BgCalendar> listCalendars;
+	private final List<BgCalendar> listCalendars;
  
 	public CalendarsArrayAdapter(Context context, List<BgCalendar> calendars) {
 		super(context,R.layout.item_list_calendar, calendars);
@@ -39,7 +39,7 @@ public class CalendarsArrayAdapter extends ArrayAdapter<BgCalendar>{
 		try {
 			final BgCalendar calendar = listCalendars.get(position);
 
-			final CheckBox checkBox = (CheckBox) rowView.findViewById(R.id.calendarSelected);
+			final CheckBox checkBox = rowView.findViewById(R.id.calendarSelected);
 			checkBox.setChecked(calendar.isSelected());
 			checkBox.setOnClickListener(new View.OnClickListener() {
 				
@@ -52,17 +52,17 @@ public class CalendarsArrayAdapter extends ArrayAdapter<BgCalendar>{
 				}
 
 			});
-			TextView textViewName = (TextView) rowView.findViewById(R.id.displayName);
+			TextView textViewName = rowView.findViewById(R.id.displayName);
 			textViewName.setText(calendar.getDisplayName());
 			
-			TextView textViewNumber = (TextView) rowView.findViewById(R.id.accountName);
+			TextView textViewNumber = rowView.findViewById(R.id.accountName);
 			textViewNumber.setText(calendar.getAccountName());
 			// On ne met pas 2 fois le même nom
 			String ownerName = calendar.getOwnerName();
 			if ((""+ownerName.trim()).equals((""+calendar.getDisplayName()).trim())){
 				ownerName="";
 			}
-			TextView textViewDate = (TextView) rowView.findViewById(R.id.ownerName);
+			TextView textViewDate = rowView.findViewById(R.id.ownerName);
 			textViewDate.setText(ownerName);
 		} catch (Exception e) {
 			Log.w("bg2"," getView Exception ",e);

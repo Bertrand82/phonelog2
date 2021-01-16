@@ -14,9 +14,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.ListFragment;
-import androidx.navigation.fragment.NavHostFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,25 +30,23 @@ import phone.crm2.receivers.CallManager;
 
 public class FragmentLogDetail extends ListFragment {
 
-	enum DISPLAY_F  {PHONE_LIST, DISPLAY_CRM, PHONE_LIST_COMMENTED_ONLY};
+	enum DISPLAY_F  {PHONE_LIST, DISPLAY_CRM, PHONE_LIST_COMMENTED_ONLY}
 
 	public static final String KEY_MASKABLE = "KEY_MASKABLE";
 	
 	private DISPLAY_F displayed = DISPLAY_F.PHONE_LIST;
-	private String TAG = "bg2";
-	private ApplicationBg applicationBg;
+	private final String TAG = "bg2";
 	private PhoneCallLDetailArrayAdapter adapter;
 	private Contact contact;
 	private BgCalendar storage;
 	private int page = 0;
-	private List<Event> events = new ArrayList<Event>();
-	private TextView textViewClientId;
+	private final List<Event> events = new ArrayList<Event>();
 	private Button buttonEditClientId;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		// Inflate the layout for this fragment
-		View view = inflater.inflate(R.layout.activity_log_detail, container, false);
+		View view = inflater.inflate(R.layout.fragment_log_detail, container, false);
 		return view;
 	}
 
@@ -61,25 +57,23 @@ public class FragmentLogDetail extends ListFragment {
 	}
 
 	protected void onCreateBg(View view,Bundle savedInstanceState) {
-		this.applicationBg = (ApplicationBg) this.getActivity().getApplicationContext();
+		ApplicationBg applicationBg = (ApplicationBg) this.getActivity().getApplicationContext();
 		Bundle b = getArguments();
 
 		// long contactId = b.getLong("contactId");
 		Log.i("bg2","Bundle  : " +b);
 		this.contact = (Contact) b.getSerializable("contact");//contact
 		this.contact.getExtra(this.getActivity());
-		this.applicationBg.setContactCurrent(contact);
+		applicationBg.setContactCurrent(contact);
 		this.storage = (BgCalendar) b.getSerializable("storage");
 		Boolean isMaskable = b.getBoolean(KEY_MASKABLE, false);
 		Log.i("bg2", "FragmentLogDetail    contact : " + contact + "  storage " + storage);
 		int currentapiVersion = android.os.Build.VERSION.SDK_INT;
 
 
-		
-		
-		textViewClientId = (TextView) view.findViewById(R.id.textViewClientId);
+		TextView textViewClientId = view.findViewById(R.id.textViewClientId);
 		textViewClientId.setText("");
-		Button buttonMask = (Button) view.findViewById(R.id.buttonMask);
+		Button buttonMask = view.findViewById(R.id.buttonMask);
 		if (isMaskable){
 			buttonMask.setVisibility(View.VISIBLE);
 			buttonMask.setOnClickListener(new OnClickListener() {
@@ -91,7 +85,7 @@ public class FragmentLogDetail extends ListFragment {
 			});
 		}
 
-		Button buttonPhoneCall = (Button) view.findViewById(R.id.buttonPhoneCall);
+		Button buttonPhoneCall = view.findViewById(R.id.buttonPhoneCall);
 		buttonPhoneCall.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -100,7 +94,7 @@ public class FragmentLogDetail extends ListFragment {
 			}
 		});
 		
-		Button buttonDisplayPhoneCAllCommentedOnly = (Button) view.findViewById(R.id.buttonFiltreCommentedOnly);
+		Button buttonDisplayPhoneCAllCommentedOnly = view.findViewById(R.id.buttonFiltreCommentedOnly);
 		buttonDisplayPhoneCAllCommentedOnly.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -109,7 +103,7 @@ public class FragmentLogDetail extends ListFragment {
 			}
 
 		});
-		Button buttonSendMessage =(Button) view.findViewById(R.id.buttonSendMessage);
+		Button buttonSendMessage = view.findViewById(R.id.buttonSendMessage);
 		buttonSendMessage.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -118,7 +112,7 @@ public class FragmentLogDetail extends ListFragment {
 				UtilEmail.sendMessage(FragmentLogDetail.this.getActivity(), FragmentLogDetail.this.contact);
 			}
 		});
-		Button buttonDisplayMails = (Button) view.findViewById(R.id.buttonEmails);
+		Button buttonDisplayMails = view.findViewById(R.id.buttonEmails);
 		buttonDisplayMails.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -134,18 +128,18 @@ public class FragmentLogDetail extends ListFragment {
 		}
 		this.getActivity().setTitle(displayName);
 
-		TextView textViewContact = (TextView) view.findViewById(R.id.labelContact);
+		TextView textViewContact = view.findViewById(R.id.labelContact);
 		textViewContact.setText(displayName);
 
 		String normalisedNumber = contact.getExtra(applicationBg).getNormalizedNumber();
 		if (normalisedNumber == null) {
 			normalisedNumber = contact.getNumber();
 		}
-		TextView textViewDetailNumber = (TextView) view.findViewById(R.id.labelNumber);
+		TextView textViewDetailNumber = view.findViewById(R.id.labelNumber);
 		textViewDetailNumber.setText(normalisedNumber);
 
-		ImageView imageViewPhoto_ = (ImageView) view.findViewById(R.id.logoPhoto);
-		TextView  textViewPhoto = (TextView)view.findViewById(R.id.logoPhotoText);
+		ImageView imageViewPhoto_ = view.findViewById(R.id.logoPhoto);
+		TextView  textViewPhoto = view.findViewById(R.id.logoPhotoText);
 		OnClickListener listenerPhoto = new OnClickListener() {
 
 			@Override
@@ -240,14 +234,14 @@ public class FragmentLogDetail extends ListFragment {
 		this.events.clear();
 		if (displayed == DISPLAY_F.PHONE_LIST) {
 
-			BgCalendar bgCalendar = (BgCalendar) storage;
+			BgCalendar bgCalendar = storage;
 			List<Event> list = UtilCalendar.getListEventByContact(this.getActivity(), bgCalendar, contact, page);
 			events.addAll(list);
 
 		} else if (displayed == DISPLAY_F.DISPLAY_CRM) {
 
 			Log.i("bg2", "setListEvents AAA  Bdd Calendar!");
-			BgCalendar bgCalendar = (BgCalendar) storage;
+			BgCalendar bgCalendar = storage;
 			Log.i("bg2", "setListEvents BBB  bgCalendar "+bgCalendar);
 			String clientId = contact.getClientId(this.getActivity());
 			Log.i("bg2", "setListEvents CCC  clientId "+clientId);
@@ -261,7 +255,7 @@ public class FragmentLogDetail extends ListFragment {
 
 		}else if (displayed == DISPLAY_F.PHONE_LIST_COMMENTED_ONLY) {
 
-			BgCalendar bgCalendar = (BgCalendar) storage;
+			BgCalendar bgCalendar = storage;
 			List<Event> list = UtilCalendar.getListEventByContactAndCommentNotNull(this.getActivity(), bgCalendar, contact, page);
 			events.addAll(list);
 
@@ -277,7 +271,7 @@ public class FragmentLogDetail extends ListFragment {
 	private void showMessageCommentedOnly(View view) {
 		Log.i("bg2", "FragmentLogDetail showMessageCommentedOnly A" + contact);
 		Log.i("bg2", "FragmentLogDetail showMessageCommentedOnly B" + displayed);
-		Button buttonDisplayPhoneCAllCommentedOnly = (Button)view. findViewById(R.id.buttonFiltreCommentedOnly);
+		Button buttonDisplayPhoneCAllCommentedOnly = view. findViewById(R.id.buttonFiltreCommentedOnly);
 		if (displayed== FragmentLogDetail.DISPLAY_F.PHONE_LIST_COMMENTED_ONLY){
 			displayed = DISPLAY_F.PHONE_LIST;
 			buttonDisplayPhoneCAllCommentedOnly.setText(R.string.labeFiltreCommmnentedOnly);

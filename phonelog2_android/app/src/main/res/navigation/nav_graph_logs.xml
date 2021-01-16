@@ -73,7 +73,7 @@
         android:id="@+id/FragmentLogDetailDirection"
         android:name="phone.crm2.FragmentLogDetail"
         android:label="fragment_fragmentLogDetail"
-        tools:layout="@layout/activity_log_detail">
+        >
         <argument
             android:name="myArg"
             app:argType="integer"

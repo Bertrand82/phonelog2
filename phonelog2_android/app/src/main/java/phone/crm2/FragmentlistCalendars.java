@@ -32,7 +32,7 @@ public class FragmentlistCalendars extends ListFragment {
     }
 
     private void initButton() {
-        Button button = (Button) this.getActivity().findViewById(R.id.buttonDisplayEmailSettings);
+        Button button = this.getActivity().findViewById(R.id.buttonDisplayEmailSettings);
         button.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -55,12 +55,12 @@ public class FragmentlistCalendars extends ListFragment {
         Log.i("bg2","start list calendars2" );
         List<BgCalendar> listCalendar =this.getApplication().getListCalendars();
         Log.i("bg2","start list calendars2 "+listCalendar );
-        TextView textViewNbCalendars = (TextView)this.getActivity().findViewById(R.id.comment_list_calendar_second);
-         TextView textViewComment = (TextView)this.getActivity().findViewById(R.id.comment_list_calendar_second);
+        TextView textViewNbCalendars = this.getActivity().findViewById(R.id.comment_list_calendar_second);
+         TextView textViewComment = this.getActivity().findViewById(R.id.comment_list_calendar_second);
         Log.i("bg2",listCalendar.toString());
 
 
-        CalendarsArrayAdapter  adapter =  new CalendarsArrayAdapter(this.getActivity(), listCalendar);;
+        CalendarsArrayAdapter  adapter =  new CalendarsArrayAdapter(this.getActivity(), listCalendar);
         setListAdapter(adapter);
         textViewNbCalendars.setText("Size :"+listCalendar.size());
         if (listCalendar.size() == 0){

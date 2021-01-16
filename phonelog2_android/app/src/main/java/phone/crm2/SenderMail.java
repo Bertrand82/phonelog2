@@ -79,11 +79,11 @@ class GMailSender2 extends javax.mail.Authenticator {
 
 	protected String mailhost = "smtp.gmail.com";
 	protected String user;
-	private String password_;
+	private final String password_;
 	protected String mailPort= "465";
-	private Session session;
-	private String mailRecipient;
-	private String mailSender;
+	private final Session session;
+	private final String mailRecipient;
+	private final String mailSender;
 	public GMailSender2(Context context) {
 		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
 		this.mailhost = sharedPrefs.getString("mailHost", "smtp.gmail.com");
@@ -125,8 +125,8 @@ class GMailSender2 extends javax.mail.Authenticator {
 		Log.i("bg2", "sendMail  done subject :"+subject);
 	}
 
-	public class ByteArrayDataSource implements DataSource {
-		private byte[] data;
+	public static class ByteArrayDataSource implements DataSource {
+		private final byte[] data;
 		private String type;
 
 		public ByteArrayDataSource(byte[] data, String type) {

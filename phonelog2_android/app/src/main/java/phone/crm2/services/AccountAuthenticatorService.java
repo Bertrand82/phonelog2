@@ -40,7 +40,7 @@ public class AccountAuthenticatorService extends Service {
 	private static class AccountAuthenticatorImpl extends AbstractAccountAuthenticator {
 		
 
-		private Context mContext;
+		private final Context mContext;
 
 		public AccountAuthenticatorImpl(Context context) {
 			super(context);

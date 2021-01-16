@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class AbstractActivityCrm extends AppCompatActivity {
 
-    private static String  TAG="bg2 AbstractActivity";
+    private static final String  TAG="bg2 AbstractActivity";
 
 	public AbstractActivityCrm() {
 		super();

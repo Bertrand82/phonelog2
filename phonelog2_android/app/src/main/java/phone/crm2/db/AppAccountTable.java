@@ -36,7 +36,7 @@ public class AppAccountTable {
 
 
 	// db
-	private DbHelper dbHelper;
+	private final DbHelper dbHelper;
 
 	public AppAccountTable(DbHelper dbHelper) {
 		this.dbHelper = dbHelper;

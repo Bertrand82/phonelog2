@@ -34,7 +34,7 @@ public class PhoneCallHandler {
 
 	private static final String CREATE_PHONECALL_TABLE = "CREATE TABLE " + TABLE_PHONE_CALL + "(" + KEY_ID + " INTEGER PRIMARY KEY," + KEY_number + " TEXT," + KEY_type + " INTEGER, " + KEY_date + " LONG, " + KEY_duration + " INTEGER, " + KEY_contactName + " TEXT, " + KEY_comment + " TEXT, "+KEY_contact_id + " LONG, " +KEY_photoid+" LONG, "+KEY_message_sms+" TEXT)";
 
-	private DataBaseHandlerBg dataBaseHandlerBg;
+	private final DataBaseHandlerBg dataBaseHandlerBg;
 
 	public PhoneCallHandler(DataBaseHandlerBg dataBaseHandlerBg) {
 		this.dataBaseHandlerBg = dataBaseHandlerBg;

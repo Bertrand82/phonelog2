@@ -12,14 +12,13 @@ import java.util.Date;
 
 import phone.crm2.ApplicationBg;
 import phone.crm2.UtilCalendar;
-import phone.crm2.UtilEmail;
 import phone.crm2.model.AppAccount;
 import phone.crm2.model.Contact;
 import phone.crm2.model.SMS;
 
 public class IncomingCallReciever extends BroadcastReceiver {
 
-	private String TAG = "bg2";
+	private final String TAG = "bg2";
 
 	public final static String KEY_MESSAGE_ALERT_CALL = "bg.bgfirst.AlertCall";
 	public final static String KEY_NUMERO_CALLER_ = "bg.bgfirst.NumeroCaller";

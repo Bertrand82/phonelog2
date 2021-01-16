@@ -18,11 +18,11 @@ import java.util.List;
  */
 public class MainActivity extends  AppCompatActivity {
 
-    private String TAG = "bg "+getClass().getSimpleName();
+    private final String TAG = "bg "+getClass().getSimpleName();
     private static final int REQUEST_RUNTIME_PERMISSION = 123;
     public static final String SERVICE_URL_CAFE_CRM = "http://phone-log.appspot.com/r/phonecall";
 
-    private static String[] permissions = {
+    private static final String[] permissions = {
             android.Manifest.permission.READ_CONTACTS,
             android.Manifest.permission.WRITE_CONTACTS,
             android.Manifest.permission.READ_CALENDAR,
@@ -80,7 +80,7 @@ public class MainActivity extends  AppCompatActivity {
 
     // Function to convert ArrayList<String> to String[]
     private static String[] toStringArray(List<String> list)    {
-        String strArray[] = new String[list.size()];
+        String[] strArray = new String[list.size()];
         for (int j = 0; j < list.size(); j++) {
             strArray[j] = list.get(j);
         }

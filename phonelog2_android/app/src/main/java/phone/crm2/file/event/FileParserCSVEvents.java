@@ -14,8 +14,8 @@ import java.util.Map;
 public class FileParserCSVEvents {
 
 	public Map<Integer, List<Integer>> mapColumns = new HashMap<Integer, List<Integer>>();
-	private Context context;
-	private File file;
+	private final Context context;
+	private final File file;
 	IParserLigneEvent parseLigne;
 
 	public FileParserCSVEvents(Context context, File file, IParserLigneEvent parseLigne) {

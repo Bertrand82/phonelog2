@@ -20,7 +20,6 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.fragment.NavHostFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +30,7 @@ import phone.crm2.model.Contact;
 public class FragmentSearchContact extends Fragment {
 
 	private EditText editText;
-	private List<ContactLabelNumber> listContacts = new ArrayList<ContactLabelNumber>();
+	private final List<ContactLabelNumber> listContacts = new ArrayList<ContactLabelNumber>();
 	private ApplicationBg applicationBg;
 	private ListView listView;
 
@@ -51,8 +50,8 @@ public class FragmentSearchContact extends Fragment {
 	protected void initFragmentSeatchContact() {
 
 		applicationBg = (ApplicationBg) this.getActivity().getApplication();
-		listView = (ListView) this.getActivity().findViewById(R.id.listview3);
-		editText = (EditText) this.getActivity().findViewById(R.id.editTextSearchContact);
+		listView = this.getActivity().findViewById(R.id.listview3);
+		editText = this.getActivity().findViewById(R.id.editTextSearchContact);
 		editText.addTextChangedListener(new TextWatcher() {
 			
 			@Override
@@ -159,7 +158,7 @@ public class FragmentSearchContact extends Fragment {
 		public View getView(final int position, View convertView,	ViewGroup parent) {
 			LayoutInflater inflater = (LayoutInflater) contextBg.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			View rowView = inflater.inflate(R.layout.item_list_search_contact,parent, false);
-			TextView textView = (TextView) rowView.findViewById(R.id.displayNameSearchContact);
+			TextView textView = rowView.findViewById(R.id.displayNameSearchContact);
 			rowView.setOnClickListener(new OnClickListener() {
 				
 				@Override
@@ -188,7 +187,7 @@ public class FragmentSearchContact extends Fragment {
 		}
 	}
 
-	class ContactLabelNumber {
+	static class ContactLabelNumber {
 		String displayName;
 		Uri photoUri;
 		String number;

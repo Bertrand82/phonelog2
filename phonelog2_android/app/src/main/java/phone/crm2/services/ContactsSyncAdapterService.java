@@ -38,14 +38,14 @@ public class ContactsSyncAdapterService extends Service {
 	private static final String TAG = "ContactsSyncAdapterService";
 	private static SyncAdapterImpl sSyncAdapter = null;
 	private static ContentResolver mContentResolver = null;
-	private static String PhoneNumberColumn = RawContacts.SYNC1;
+	private static final String PhoneNumberColumn = RawContacts.SYNC1;
 
 	public ContactsSyncAdapterService() {
 		super();
 	}
 
 	private static class SyncAdapterImpl extends AbstractThreadedSyncAdapter {
-		private Context mContext;
+		private final Context mContext;
 
 		public SyncAdapterImpl(Context context) {
 			super(context, true);
@@ -57,6 +57,7 @@ public class ContactsSyncAdapterService extends Service {
 			try {
 				ContactsSyncAdapterService.performSync(mContext, account, extras, authority, provider, syncResult);
 			} catch (OperationCanceledException e) {
+				Log.i(TAG,"OperationCanceledException ",e);
 			}
 		}
 	}

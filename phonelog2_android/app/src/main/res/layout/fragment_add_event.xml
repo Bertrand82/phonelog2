@@ -1,6 +1,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:bootstrapbutton="http://schemas.android.com/apk/res-auto"
     xmlns:fontawesometext="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content" >
 
@@ -72,8 +73,9 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/labelNumber2"
             android:layout_toRightOf="@+id/logoPhoto2"
-            android:onClick="searchContact"
-            android:text="@string/buttonSearchContact" />
+
+            android:text="@string/buttonSearchContact"
+             />
 
         <TextView
             android:id="@+id/labelContact2"
@@ -124,10 +126,10 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:onClick="ok"
-                android:text="@string/activity_comment_send_comment"/>
-        </LinearLayout>
 
+                android:text="@string/activity_comment_send_comment"
+                tools:ignore="OnClick" />
+        </LinearLayout>
         <requestFocus />
     </RelativeLayout>
 

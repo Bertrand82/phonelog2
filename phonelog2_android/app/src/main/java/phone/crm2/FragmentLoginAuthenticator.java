@@ -17,7 +17,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.fragment.NavHostFragment;
 
 import com.google.android.gms.tagmanager.TagManager;
 
@@ -35,9 +34,8 @@ import phone.crm2.model.AppAccount;
  */
 public class FragmentLoginAuthenticator extends Fragment {
 
-	private String TAG = "bg2 FragmentLoginAuthenticator";
+	private final String TAG = "bg2 FragmentLoginAuthenticator";
 	private EditText editTextAccountName;
-	private Button mLoginButton;
 	private ApplicationBg context;
 	private static final String CONTAINER_ID = "UA-48106381-1";// "GTM-XXXX";//
 																// UA-48106381-
@@ -70,20 +68,20 @@ public class FragmentLoginAuthenticator extends Fragment {
 		Log.i(TAG, "FragmentLoginAuth 2 accounts.length  "+accounts.length);
 		if (accounts.length == 0) {
 
-			editTextAccountName = (EditText) getActivity().findViewById(R.id.accountName);
+			editTextAccountName = getActivity().findViewById(R.id.accountName);
 			editTextAccountName.setOnFocusChangeListener(new OnFocusChangeListener() {
 				@Override
 				public void onFocusChange(View arg0, boolean arg1) {
 					if (!arg1 && !isValidLogin(editTextAccountName.getText())) {
 						editTextAccountName.setError("Invalid email!!");
 					}
-				};
-			});
+				}
+            });
 			String accountName = editTextAccountName.getText().toString();
 			if (accountName.trim().length() == 0) {
 				editTextAccountName.setText(UtilActivitiesCommon.getPossiblePrimaryEmailAdress(context));
 			}
-			mLoginButton = (Button) getActivity().findViewById(R.id.submitSignIn);
+			Button mLoginButton = getActivity().findViewById(R.id.submitSignIn);
 			mLoginButton.setOnClickListener(new OnClickListener() {
 				public void onClick(View v) {
 					boolean isValidLogin = isValidLogin(("" + editTextAccountName.getText()).trim());
@@ -144,11 +142,7 @@ public class FragmentLoginAuthenticator extends Fragment {
 		if (s == null) {
 			return false;
 		}
-		if (s.toString().trim().length() < 3) {
-			return false;
-		} else {
-			return true;
-		}
+        return s.toString().trim().length() >= 3;
 	}
 
 	/**

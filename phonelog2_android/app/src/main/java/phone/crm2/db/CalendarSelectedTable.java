@@ -41,7 +41,7 @@ public class CalendarSelectedTable {
 			+ TABLE_NAME;
 
 	// db
-	private DbHelper dbHelper;
+	private final DbHelper dbHelper;
 
 	public CalendarSelectedTable(DbHelper dbHelper) {
 		this.dbHelper = dbHelper;

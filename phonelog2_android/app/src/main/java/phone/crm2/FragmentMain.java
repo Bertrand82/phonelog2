@@ -18,7 +18,7 @@ import phone.crm2.model.AppAccount;
 
 public class FragmentMain extends Fragment {
 
-    private String TAG = "bg "+getClass().getSimpleName();
+    private final String TAG = "bg "+getClass().getSimpleName();
     private static final int REQUEST_RUNTIME_PERMISSION = 123;
     public static final String SERVICE_URL_CAFE_CRM = "http://phone-log.appspot.com/r/phonecall";
     ApplicationBg applicationBg;
@@ -49,7 +49,7 @@ public class FragmentMain extends Fragment {
 
 
         AccountManager accountManager = AccountManager.get(applicationBg);
-        Account[] accounts = accountManager.getAccountsByType(applicationBg.ACCOUNT_TYPE);
+        Account[] accounts = accountManager.getAccountsByType(ApplicationBg.ACCOUNT_TYPE);
 
         Log.i(TAG,"FragmentMain accounts: "+toString(accounts));
 

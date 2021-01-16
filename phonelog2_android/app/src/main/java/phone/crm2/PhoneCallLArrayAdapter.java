@@ -19,10 +19,10 @@ import phone.crm2.model.SMS;
 
 public class PhoneCallLArrayAdapter extends ArrayAdapter<Event> {
 
-	private String TAG = "bg2";
+	private final String TAG = "bg2";
 
 	private final Context context;
-	private List<Event> listEvents;
+	private final List<Event> listEvents;
 
 	public PhoneCallLArrayAdapter(Context context, List<Event> listEv) {
 		super(context, R.layout.item_list_phonecall, listEv);
@@ -46,20 +46,20 @@ public class PhoneCallLArrayAdapter extends ArrayAdapter<Event> {
 		LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View rowView = inflater.inflate(R.layout.item_list_phonecall, parent, false);
 
-		TextView textViewName = (TextView) rowView.findViewById(R.id.labelName);
+		TextView textViewName = rowView.findViewById(R.id.labelName);
 		textViewName.setText(event.getContact().getExtra(context).getDisplayName());
 		textViewName.setTag(event.getContact());
 
 
-		TextView textViewNumber = (TextView) rowView.findViewById(R.id.labelNumber);
+		TextView textViewNumber = rowView.findViewById(R.id.labelNumber);
 		textViewNumber.setText(event.getContact().getNumber());
 		textViewNumber.setTag(event.getContact());
 
-		TextView textViewDate = (TextView) rowView.findViewById(R.id.labelDDate);
+		TextView textViewDate = rowView.findViewById(R.id.labelDDate);
 		String dateAsHour  = ""+event.getDateAsHour();
 		textViewDate.setText(dateAsHour);
 
-		TextView textViewDay = (TextView) rowView.findViewById(R.id.labelDay);
+		TextView textViewDay = rowView.findViewById(R.id.labelDay);
 		String dateDay = event.getDateAsDay();
 		
 		if (dateDay.equals(this.dateDay__) && (position > 0)) {
@@ -71,7 +71,7 @@ public class PhoneCallLArrayAdapter extends ArrayAdapter<Event> {
 		}
 		
 
-		TextView textViewComment = (TextView) rowView.findViewById(R.id.labelComment);
+		TextView textViewComment = rowView.findViewById(R.id.labelComment);
 		if (event instanceof SMS) {
 			SMS sms = (SMS) event;
 			textViewComment.setText(sms.getMessage());
@@ -80,15 +80,15 @@ public class PhoneCallLArrayAdapter extends ArrayAdapter<Event> {
 			textViewComment.setText(phoneCall.getComment());
 		}
 
-		TextView textViewPhoto = (TextView) rowView.findViewById(R.id.logoPhotoText);
-		ImageView imageViewPhoto = (ImageView) rowView.findViewById(R.id.logoPhoto);
+		TextView textViewPhoto = rowView.findViewById(R.id.logoPhotoText);
+		ImageView imageViewPhoto = rowView.findViewById(R.id.logoPhoto);
 		textViewPhoto.setTag(event.getContact());
 		UtilLogoPhoto.init(context, textViewPhoto,imageViewPhoto,event.getContact());
 
-		AwesomeTextView imageViewType = (AwesomeTextView) rowView.findViewById(R.id.logoType);
+		AwesomeTextView imageViewType = rowView.findViewById(R.id.logoType);
 		UtilActivitiesCommon.setImage(event.getType(), imageViewType);
 
-		AwesomeTextView imagePhoneOuMessage = (AwesomeTextView) rowView.findViewById(R.id.logoPhoneOuMessage);
+		AwesomeTextView imagePhoneOuMessage = rowView.findViewById(R.id.logoPhoneOuMessage);
 		UtilActivitiesCommon.setImagePhoneOuMessage(event.getType(), imagePhoneOuMessage);
 
 		

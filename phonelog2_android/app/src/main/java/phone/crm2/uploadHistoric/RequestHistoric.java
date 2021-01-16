@@ -32,11 +32,11 @@ public class RequestHistoric extends AsyncTask<String, Integer, String> {
 	// socket timeout, in milliseconds (waiting for data)
 	private static final int SOCKET_TIMEOUT = 5000;
 	
-	private String url = MainActivity.SERVICE_URL_CAFE_CRM+"/historic";
+	private final String url = MainActivity.SERVICE_URL_CAFE_CRM+"/historic";
 	private int fromIndex=0;
 	private int nbmax =1000;
-	private AppAccount appAccount;
-	private ArrayList<NameValuePair> data = new ArrayList<NameValuePair>();
+	private final AppAccount appAccount;
+	private final ArrayList<NameValuePair> data = new ArrayList<NameValuePair>();
 
 	
 

@@ -10,7 +10,6 @@ import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.fragment.NavHostFragment;
 
 public class FragmentAbout extends Fragment {
 
@@ -18,8 +17,8 @@ public class FragmentAbout extends Fragment {
     private static final String BUILD = "6/2/2015";
 
 
-    private String adress = "https://ptit-crm.ew.r.appspot.com/";
-    private String urlStr = "https://ptit-crm.ew.r.appspot.com/";
+    private final String adress = "https://ptit-crm.ew.r.appspot.com/";
+    private final String urlStr = "https://ptit-crm.ew.r.appspot.com/";
     private Button buttonSendMessage;
 
     @Override
@@ -34,7 +33,7 @@ public class FragmentAbout extends Fragment {
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Button buttonGoToSite = (Button) view.findViewById(R.id.site_url);
+        Button buttonGoToSite = view.findViewById(R.id.site_url);
         buttonGoToSite.setText(urlStr);
         buttonGoToSite.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,7 +43,7 @@ public class FragmentAbout extends Fragment {
                 startActivity(intent);
             }
         });
-        Button buttonSendMessage = (Button) view.findViewById(R.id.buttonAboutSendMessage);
+        Button buttonSendMessage = view.findViewById(R.id.buttonAboutSendMessage);
         buttonSendMessage.setOnClickListener(new View.OnClickListener() {
 
             @Override

@@ -111,14 +111,14 @@ public class FragmentAddEvent extends Fragment {
 
 
 		textViewPhoto_.setOnClickListener(listenerPhoto);
-		BootstrapButton buttonOk = (BootstrapButton)getActivity().findViewById(R.id.buttonOK);
+		BootstrapButton buttonOk = getActivity().findViewById(R.id.buttonOK);
 		buttonOk.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				actionOk(v);
 			}
 		});
-		Button buttonSearchContact = (Button)getActivity().findViewById(R.id.buttonSearchContact);
+		Button buttonSearchContact = getActivity().findViewById(R.id.buttonSearchContact);
 		buttonSearchContact.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {

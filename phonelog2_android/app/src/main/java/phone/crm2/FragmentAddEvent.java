@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -69,22 +70,20 @@ public class FragmentAddEvent extends Fragment {
 		Log.w("bg2","textViewContact"+textViewContact);
 		
 		initDatePicker();
-		init();
+		initView();
 	}
 
-	protected void init() {
+	private void initView() {
 		this.storage = applicationBg.getStorage();
 		Log.i("bg2", "ActivityAddEvent    contact : " + contact_ + "  storage " + storage);
 		int currentapiVersion = android.os.Build.VERSION.SDK_INT;
-
-
-		
 		textViewClientId_.setText("");
 		String displayName;
 		String normalisedNumber;
         if (contact_==null){
-        	displayName="No Name";
+        	displayName="Choos a contact";
 			normalisedNumber="";
+
 		}else {
 			 displayName = contact_.getExtra(applicationBg).getDisplayName();
 			if (displayName == null) {
@@ -117,6 +116,13 @@ public class FragmentAddEvent extends Fragment {
 			@Override
 			public void onClick(View v) {
 				actionOk(v);
+			}
+		});
+		Button buttonSearchContact = (Button)getActivity().findViewById(R.id.buttonSearchContact);
+		buttonSearchContact.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				searchContact(v);
 			}
 		});
 		

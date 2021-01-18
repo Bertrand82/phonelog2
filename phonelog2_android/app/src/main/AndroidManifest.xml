@@ -81,7 +81,7 @@
          <!-- Receivers -->
 
         <receiver
-            android:name=".receivers.IncomingCallReciever"
+            android:name=".receivers.IncomingCallReceiver"
             android:enabled="true" >
             <intent-filter>
                 <!-- action android:name="android.intent.action.PHONE_STATE" / -->

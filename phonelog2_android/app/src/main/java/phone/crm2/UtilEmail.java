@@ -39,6 +39,7 @@ public class UtilEmail {
 		intent.putExtra(Intent.EXTRA_TEXT, message);//send given message
 		intent.putExtra(Intent.EXTRA_SUBJECT,subject);//give the subject for your message
 		intent.putExtra(Intent.EXTRA_PHONE_NUMBER,phoneNumber);//give the subject for your message
+		// from outside of an Activity  context requires the FLAG_ACTIVITY_NEW_TASK flag.
 		intent.putExtra("address", phoneNumber);// Pour avoir le destinataire dans le sms
 		//Intent.Extra_Text is actually a globol key
 		//intent.setType("plane/text");//type of intent Manque sms

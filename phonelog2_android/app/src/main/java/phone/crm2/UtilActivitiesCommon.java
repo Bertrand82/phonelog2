@@ -71,7 +71,7 @@ public class UtilActivitiesCommon {
         NavController navControler  =navHostFragment.getNavController();
         Bundle bundle = new Bundle();
         bundle.putSerializable(FragmentComment.KEY_Storage, storage);
-        bundle.putSerializable(FragmentComment.KEY_PhoneCall, phoneCall);
+        bundle.putSerializable(PhoneCall.KEY_PHONE_CALL_EXTRA, phoneCall);
         bundle.putBoolean(FragmentComment.KEY_SENT_MAIL, true);
         navControler.navigate(R.id.action_navigation_to_FragmentComment,bundle);
     }

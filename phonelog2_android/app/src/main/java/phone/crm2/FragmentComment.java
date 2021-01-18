@@ -220,7 +220,6 @@ public class FragmentComment extends Fragment {
 	public static String KEY_RESULT_BDD_________________old = "bg.ResultBDD_";
 
 	public static String KEY_SENT_MAIL ="sendMAil";
-	public static String KEY_PhoneCall ="phoneCall";
 	public static String KEY_Storage ="storage";
 
 	private void showConfirmSend(UpdateResult result_) {

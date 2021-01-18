@@ -38,7 +38,7 @@ import phone.crm2.sms.SmsSendService;
 public class ApplicationBg extends Application  implements LifecycleObserver {
 
 
-	private final String TAG = "bg2";
+	private final String TAG = "bg2 ApplicationBg";
 
 	public static final String BG_UNKNOWN_="Unknown";
 	public static final String ACCOUNT_TYPE = "com.cafe_crm.account";
@@ -71,12 +71,12 @@ public class ApplicationBg extends Application  implements LifecycleObserver {
 		ProcessLifecycleOwner.get().getLifecycle().addObserver(this);
 		this.db = new DbHelper(this);
 		this.telephonyManager= (TelephonyManager) this.getSystemService(Context.TELEPHONY_SERVICE);
-		phoneListener = new PhoneStateListener2(this);
+		phoneListener = new PhoneStateListener2();
 		// Register listener for LISTEN_CALL_STATE
 		telephonyManager.listen(phoneListener, PhoneStateListener2.LISTEN_CALL_STATE);
 		ComponentName componentNameSms = startService(new Intent(this, SmsSendService.class));
 		ComponentName componentNamePhoneCall =startService(new Intent(this, PhoneCallService.class));
-		Log.i(TAG,"PhoneCallService started   componentNamePhoneCall :"+componentNamePhoneCall);
+		Log.i(TAG,"OnCreate PhoneCallService started   componentNamePhoneCall :"+componentNamePhoneCall);
 		// Recupere la liste des Calendar du Telephone
 		UtilCalendar.runQueryListCalendar(listCalendars, getContentResolver());
 		Log.i(TAG,"listCalendars size : "+listCalendars.size());

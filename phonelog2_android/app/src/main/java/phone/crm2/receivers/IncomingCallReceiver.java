@@ -16,9 +16,9 @@ import phone.crm2.model.AppAccount;
 import phone.crm2.model.Contact;
 import phone.crm2.model.SMS;
 
-public class IncomingCallReciever extends BroadcastReceiver {
+public class IncomingCallReceiver extends BroadcastReceiver {
 
-	private static final String TAG = "bg2 IncomingCallReciever ";
+	private static final String TAG = "bg2 IncomingCallReceiver ";
 
 	public final static String KEY_MESSAGE_ALERT_CALL = "bg.bgfirst.AlertCall";
 	public final static String KEY_NUMERO_CALLER_ = "bg.bgfirst.NumeroCaller";
@@ -27,7 +27,7 @@ public class IncomingCallReciever extends BroadcastReceiver {
 
 	@Override
 	public void onReceive(Context context, Intent intent) {
-		Log.v("bg2","IncomingCallReciever.onReceive ----------- Start");
+		Log.v("bg2","IncomingCallReceiver.onReceive ----------- Start");
 		this.applicationBg = (ApplicationBg) context.getApplicationContext();
 		if ("android.provider.Telephony.SMS_RECEIVED".equals(intent.getAction())) {
 			processSmsReceived(context, intent);
@@ -35,7 +35,7 @@ public class IncomingCallReciever extends BroadcastReceiver {
 		if ("android.intent.action.PHONE_STATE".equals(intent.getAction())) {
 			this.applicationBg.getCallManager().processTelephone(context,intent);
 		}
-		Log.v("bg2","IncomingCallReciever.onReceive ----------- End");
+		Log.v("bg2","IncomingCallReceiver.onReceive ----------- End");
 	}
 
 	

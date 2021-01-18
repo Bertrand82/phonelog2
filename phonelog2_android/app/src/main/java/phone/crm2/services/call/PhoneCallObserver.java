@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.ContentObserver;
 import android.database.Cursor;
 import android.os.Handler;
+import android.os.Looper;
 import android.provider.CallLog.Calls;
 import android.util.Log;
 
@@ -13,7 +14,7 @@ import java.util.HashMap;
 import phone.crm2.ApplicationBg;
 import phone.crm2.BgCalendar;
 import phone.crm2.UtilCalendar;
-import phone.crm2.UtilInteruption;
+import phone.crm2.UtilNotifications;
 import phone.crm2.model.AppAccount;
 import phone.crm2.model.Contact;
 import phone.crm2.model.PhoneCall;
@@ -26,13 +27,13 @@ public class PhoneCallObserver extends ContentObserver {
 	private static final String TAG = "bg2";
 	private static long id_Z_1=0;
 	private static long timeStart_Z_1=0;
-	private static String number_Z_1;
-	private static int type_Z_1;
+	private static String number_Z_1="";
+	private static int type_Z_1=-1;
 	private final ApplicationBg applicationBg_;
 	private static PhoneCall phoneCall_Z_1;
 	
 	public PhoneCallObserver(Context context_) {
-		super(new Handler());
+		super(new Handler(Looper.getMainLooper()));
 		this.applicationBg_ = ((ApplicationBg) context_.getApplicationContext());
 	}
 
@@ -57,17 +58,17 @@ public class PhoneCallObserver extends ContentObserver {
 			return;
 		}
         if ((phoneCall.getId() == -1 )) {
-			Log.w(TAG, "PhoneCallObserver queryPhoneCall phoneCall No valid id==-1 " + phoneCall);
+			Log.w(TAG, "PhoneCallObserver YY queryPhoneCall phoneCall No valid id==-1 " + phoneCall);
         }else if ((phoneCall.getId()==id_Z_1 )) {
-        	Log.w(TAG, "PhoneCallObserver same id "+phoneCall);
+        	Log.w(TAG, "PhoneCallObserver ZZ same id "+phoneCall);
         }else if ((number.equals("-1") )) {
-    			Log.w(TAG, "PhoneCallObserver queryPhoneCall phoneCall numbrvNo -1 " + phoneCall);
+    			Log.w(TAG, "PhoneCallObserver AA queryPhoneCall phoneCall numbrvNo -1 " + phoneCall);
 		} else if (number.equals(number_Z_1) && (phoneCall.getDate() == timeStart_Z_1) && (phoneCall.getType()==type_Z_1)) {
-			Log.w(TAG, "PhoneCallObserver queryPhoneCall same number, time,  type,  processed " + phoneCall);
+			Log.w(TAG, "PhoneCallObserver BB queryPhoneCall same number, time,  type,  processed " + phoneCall);
 		} else if (number.equals(number_Z_1) && (phoneCall.getDate() == timeStart_Z_1) ) {
-			Log.w(TAG, "PhoneCallObserver queryPhoneCall already processed " + phoneCall);
+			Log.w(TAG, "PhoneCallObserver CC queryPhoneCall already processed " + phoneCall);
 		} else {
-			Log.w(TAG, "PhoneCallObserver queryPhoneCall ok process ");
+			Log.w(TAG, "PhoneCallObserver DD queryPhoneCall ok process ");
 			phoneCall.setId(0);// Si Id !0, il ne sera pas inseré. // TODO
 								// Garder l'id de la table CALLS
 			processPhoneCall(phoneCall);
@@ -104,7 +105,8 @@ public class PhoneCallObserver extends ContentObserver {
 			phoneCall.setId(id);
 			phoneCall.sethIds(hIds);
 			phoneCall_Z_1=phoneCall;
-			UtilInteruption.showPhoneCallDialog(applicationBg_, phoneCall);
+			applicationBg_.setPhoneCall(phoneCall);
+			UtilNotifications.showPhoneCallDialog(applicationBg_, phoneCall);
 		}
 	}
 	

@@ -96,7 +96,7 @@ public class ContactTable {
 	public Contact getByNumber(String number) {
 
 		Contact contact = null;
-		Log.i("bg2", "getByNumber contact " + number);
+		Log.i("bg2", "ContactTable getByNumber contact " + number);
 		SQLiteDatabase db = this.dbHelper.getReadableDatabase();
 
 		Cursor c = db.query(TABLE_NAME, ALL_KEYS, KEY_NUMBER + "=?", new String[] { number }, null, null, null, null);
@@ -113,7 +113,7 @@ public class ContactTable {
 			contact.setPrivate(c.getInt(c.getColumnIndex(KEY_IS_PRIVATE)) == 1);
 		}
 		// return contact
-		Log.i("bg2", "getByNumber done contact " + contact);
+		Log.i("bg2", "ContactTable getByNumber done contact " + contact);
 
 		return contact;
 	}

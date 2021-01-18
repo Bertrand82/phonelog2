@@ -86,7 +86,7 @@
     <string name="phrase_crypt">Cripting Phrase</string>
     <string name="title_activity_activity_preference3">Setting</string>
     <string name="Save">Save</string>
-    <string name="Blanc"></string>
+    <string name="Blanc"> </string>
     <string name="Preferences">Preferences</string>
     <string name="action_edit">Edit</string>
     <string name="action_call">Call</string>

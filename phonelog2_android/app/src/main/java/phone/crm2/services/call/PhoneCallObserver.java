@@ -106,7 +106,7 @@ public class PhoneCallObserver extends ContentObserver {
 			phoneCall.sethIds(hIds);
 			phoneCall_Z_1=phoneCall;
 			applicationBg_.setPhoneCall(phoneCall);
-			UtilNotifications.showPhoneCallDialog(applicationBg_, phoneCall);
+			UtilNotifications.notificationFinDappel(applicationBg_, phoneCall);
 		}
 	}
 	

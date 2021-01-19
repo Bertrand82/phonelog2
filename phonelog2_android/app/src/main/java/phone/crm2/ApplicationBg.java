@@ -71,7 +71,7 @@ public class ApplicationBg extends Application  implements LifecycleObserver {
 		ProcessLifecycleOwner.get().getLifecycle().addObserver(this);
 		this.db = new DbHelper(this);
 		this.telephonyManager= (TelephonyManager) this.getSystemService(Context.TELEPHONY_SERVICE);
-		phoneListener = new PhoneStateListener2();
+		phoneListener = new PhoneStateListener2(this);
 		// Register listener for LISTEN_CALL_STATE
 		telephonyManager.listen(phoneListener, PhoneStateListener2.LISTEN_CALL_STATE);
 		ComponentName componentNameSms = startService(new Intent(this, SmsSendService.class));

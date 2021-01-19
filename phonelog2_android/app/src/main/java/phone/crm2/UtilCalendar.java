@@ -509,15 +509,21 @@ public class UtilCalendar {
 	}
 
 	public static List<Event> getListEventByContact(Context context, BgCalendar bgCalendar, Contact contact, int page) {
-		String param = "%" + TAG_PHONE_CALL+ "%" + contact.getNumber() + "%";
-		return getListEventByParam(context, bgCalendar, contact, page, param);
+		return getListEventByNumber(context,bgCalendar,contact.getNumber(),page);
 	}
-	
+	public static List<Event> getListEventByNumber(Context context, BgCalendar bgCalendar, String number, int page) {
+		String param = "%" + TAG_PHONE_CALL+ "%" + number+ "%";
+		return getListEventByParam(context, bgCalendar,  page, param);
+	}
+
 	public static List<Event> getListEventByContactAndCommentNotNull(Context context, BgCalendar bgCalendar, Contact contact, int page) {
-		String tag = TAG_PHONE_CALL;
-		String param = "%" + tag + "%" + contact.getNumber() + "%";
+		return getListEventByNumberAndCommentNotNull(context,bgCalendar,contact.getNumber(),page);
+	}
+	public static List<Event> getListEventByNumberAndCommentNotNull(Context context, BgCalendar bgCalendar, String number, int page) {
+			String tag = TAG_PHONE_CALL;
+		String param = "%" + tag + "%" + number + "%";
 		 List<Event> listEvents = new ArrayList<Event>();
-		 List<Event> l = getListEventByParam(context, bgCalendar, contact, page, param);
+		 List<Event> l = getListEventByParam(context, bgCalendar,  page, param);
 		while( l.size()>0 && listEvents.size()<20) {
 			 for(Event ev : l){
 				 if(ev==null){
@@ -535,17 +541,17 @@ public class UtilCalendar {
 				 
 			 }
 			 page++;
-			 l = getListEventByParam(context, bgCalendar, contact, page, param);
+			 l = getListEventByParam(context, bgCalendar, page, param);
 		}
 		return listEvents;
 	}
 
 	public static List<Event> getListEventByNumeroClient(Context context, BgCalendar bgCalendar, Contact contact, int page) {
 		String param = "%CRM%" + contact.getClientId() + "%";
-		return getListEventByParam(context, bgCalendar, contact, page, param);
+		return getListEventByParam(context, bgCalendar, page, param);
 	}
 
-	public static List<Event> getListEventByParam(Context context, BgCalendar bgCalendar, Contact contact, int page, String param) {
+	public static List<Event> getListEventByParam(Context context, BgCalendar bgCalendar, int page, String param) {
 
 		ContentResolver cr = context.getContentResolver();
 		List<Event> events = new ArrayList<Event>();

@@ -5,7 +5,8 @@ import java.util.Date;
 
 public class PhoneCall extends Event implements Serializable {
 
-	public static String KEY_PHONE_CALL_EXTRA = "PHONE_CALL";
+    public static final String KEY_NUMBER = "NUMBER";
+    public static String KEY_PHONE_CALL_EXTRA = "PHONE_CALL";
 	private int duration_ms;
 	private String comment;
 	

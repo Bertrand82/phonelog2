@@ -68,8 +68,6 @@ public class FragmentLogDetail extends ListFragment {
 		this.storage = (BgCalendar) b.getSerializable("storage");
 		Boolean isMaskable = b.getBoolean(KEY_MASKABLE, false);
 		Log.i("bg2", "FragmentLogDetail    contact : " + contact + "  storage " + storage);
-		int currentapiVersion = android.os.Build.VERSION.SDK_INT;
-
 
 		TextView textViewClientId = view.findViewById(R.id.textViewClientId);
 		textViewClientId.setText("");

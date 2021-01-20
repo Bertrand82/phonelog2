@@ -12,24 +12,29 @@ import phone.crm2.model.Contact;
 public class UtilLogoPhoto {
 
 	public static void init(Context context, TextView textViewPhoto, ImageView imageViewPhoto, Contact contact) {
-		Uri uriPhoto = contact.getExtra(context).getPhotoUri();
-		imageViewPhoto.setImageURI(uriPhoto);
-		if (uriPhoto == null){
+		Uri uriPhoto=null;
+		if (contact == null) {
+		}else {
+			uriPhoto = contact.getExtra(context).getPhotoUri();
+			imageViewPhoto.setImageURI(uriPhoto);
+		}
+		if (uriPhoto == null) {
 			imageViewPhoto.setVisibility(View.INVISIBLE);
 			textViewPhoto.setVisibility(View.VISIBLE);
 			textViewPhoto.setBackgroundColor(getColorFromContact(contact));
-		}else {
+		} else {
 			imageViewPhoto.setVisibility(View.VISIBLE);
 			textViewPhoto.setVisibility(View.INVISIBLE);
 		}
 		String displayName2 = contact.getExtra(context).getDisplayName();
-		if ((displayName2!= null)  && (displayName2.length() > 1)){
-			String label= displayName2.substring(0,2);
+		if ((displayName2 != null) && (displayName2.length() > 1)) {
+			String label = displayName2.substring(0, 2);
 			textViewPhoto.setText(label);
-		}else {
+		} else {
 			String number = contact.getNumber().trim();
-			textViewPhoto.setText(number.substring(number.length()-2));
+			textViewPhoto.setText(number.substring(number.length() - 2));
 		}
+
 	}
 	private static final int[] colors = {0xfff58559, 0xff59a2be,0xffe4c62e,0xfff16364};
 	private static final int[] colors_old = {Color.BLUE, Color.CYAN,Color.YELLOW,Color.RED, Color.GREEN, Color.LTGRAY};

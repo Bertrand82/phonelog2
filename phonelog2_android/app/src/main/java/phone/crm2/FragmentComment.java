@@ -70,7 +70,7 @@ public class FragmentComment extends Fragment {
 
 
 		if (phoneCallFromExtra != null) {
-			Log.i("bg2","FragmentComment phoneCall In extra");
+			Log.i("bg2","FragmentComment phoneCall In extra arguments");
 			this.phoneCall = phoneCallFromExtra;
 		} else {
 			// TODO on ne doit plus gerer le phoneCAll dans applicationBg.
@@ -78,9 +78,12 @@ public class FragmentComment extends Fragment {
 			this.phoneCall = applicationBg.getPhoneCall();
 		}
 
-		// if no phonecall, we redirect the user to the logs
-		if (applicationBg.getPhoneCall() == null) {
-			Log.i("bg2", "FragmentComment No last PhoneCall redirect on logs");
+		if (this.phoneCall == null){
+			Log.e("bg2", "FragmentComment no phoneCall in extra, i get celui de applicationBg . PAs Normal");
+			this.phoneCall =applicationBg.getPhoneCall();
+		}
+		if (phoneCall == null) {
+			Log.i("bg2", "FragmentComment No last PhoneCall redirect on logs fragment");
 			UtilActivitiesCommon.openLogs(this.getActivity());
 			return;
 		}
@@ -109,7 +112,9 @@ public class FragmentComment extends Fragment {
 			textViewPhoto.setOnClickListener(listenerEditContact);
 		}
 		textViewContact = this.getActivity().findViewById(R.id.labelContact);
-		textViewContact.setText(phoneCall.getContact().getExtra(this.applicationBg).getDisplayName());
+		String nameContact = phoneCall.getContact().getExtra(this.applicationBg).getDisplayName();
+		Log.v(TAG,"FragmentComment nameContact :"+nameContact);
+		textViewContact.setText(nameContact);
 
 		textViewNumber = this.getActivity().findViewById(R.id.labelNumber);
 		textViewNumber.setText(phoneCall.getContact().getNumber());
@@ -191,11 +196,13 @@ public class FragmentComment extends Fragment {
 		};
 
 		buttonAddRemoveToPrivateList.setOnClickListener(buttonListenerRemoveFromPrivateList);
-
+		Log.v(TAG,"FragmentComment init done!!");
 	}
 
 	private void setButtonLabel() {
 		if (phoneCall == null) {
+		}else if (phoneCall.getContact()==null){
+			Log.i(TAG,"fragmentComment No Contact for this number!! ");
 		} else if (phoneCall.getContact().isPrivate(applicationBg)) {
 			buttonAddRemoveToPrivateList.setText(getString(R.string.activity_comment_remove_from_private_list));
 			//buttonAddRemoveToPrivateList.setBootstrapType("success");

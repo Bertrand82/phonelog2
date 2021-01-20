@@ -27,7 +27,7 @@ public class ActivityPhoneLog extends AbstractActivityCrm{
     }
 
     public void perform_action_click_select_contact(View view){
-         Log.e("bg2","ActivityPhoneLog click   AAA TAG: "+view.getTag());
+         Log.v("bg2","ActivityPhoneLog click   AAA TAG: "+view.getTag());
         try {
             Contact contact = (Contact) view.getTag();
             Serializable storage = ((ApplicationBg) getApplication()).getStorage();

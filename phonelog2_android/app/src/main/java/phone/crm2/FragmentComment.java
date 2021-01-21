@@ -24,7 +24,7 @@ import phone.crm2.model.PhoneCall;
 
 public class FragmentComment extends Fragment {
 
-	private final String TAG = getClass().getSimpleName();
+	private final String TAG = "bg2";
 
 	private BootstrapEditText editText;
 	private BootstrapButton buttonAddRemoveToPrivateList;
@@ -48,13 +48,10 @@ public class FragmentComment extends Fragment {
 	@Override
 	public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
-
 		initFragmentComment();
 	}
 
 	private void initFragmentComment() {
-
-
 
 		Log.i("bg2","FragmentComment onCreate");
 		this.applicationBg = this.getApplicationBg();
@@ -96,7 +93,7 @@ public class FragmentComment extends Fragment {
 		TextView textViewPhoto = this.getActivity().findViewById(R.id.logoPhotoText);
 
 		UtilLogoPhoto.init(this.getActivity(), textViewPhoto, imageViewPhoto, phoneCall.getContact());
-
+		Log.d("bg2","FragmentComment AAAAA");
 		// imageViewPhoto.setImageURI(phoneCall.getContact().getExtra(this.applicationBg).getPhotoUri());
 		OnClickListener listenerEditContact = new OnClickListener() {
 
@@ -105,6 +102,8 @@ public class FragmentComment extends Fragment {
 				editContact();
 			}
 		};
+		Log.d("bg2","FragmentComment BBBBB");
+
 		if (imageViewPhoto.getVisibility() == View.VISIBLE) {
 			imageViewPhoto.setOnClickListener(listenerEditContact);
 		}
@@ -113,11 +112,15 @@ public class FragmentComment extends Fragment {
 		}
 		textViewContact = this.getActivity().findViewById(R.id.labelContact);
 		String nameContact = phoneCall.getContact().getExtra(this.applicationBg).getDisplayName();
+		Log.d("bg2","FragmentComment BBBBBB nameContact:"+nameContact);
+
 		Log.v(TAG,"FragmentComment nameContact :"+nameContact);
 		textViewContact.setText(nameContact);
 
 		textViewNumber = this.getActivity().findViewById(R.id.labelNumber);
-		textViewNumber.setText(phoneCall.getContact().getNumber());
+		String number = phoneCall.getContact().getNumber();
+		Log.v(TAG,"FragmentComment number :"+number);
+		textViewNumber.setText(number);
 		AwesomeTextView imagePhoneOuMessage = this.getActivity().findViewById(R.id.logoPhoneOuMessage);
 		UtilActivitiesCommon.setImagePhoneOuMessage(phoneCall.getType(), imagePhoneOuMessage);
 
@@ -136,8 +139,8 @@ public class FragmentComment extends Fragment {
 		OnClickListener listenerButtonMask = new OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
-				UtilEmail.sendMessage(FragmentComment.this.getActivity(),phoneCall);
-				Log.i("bg2", "MAsk  finish");
+				//UtilEmail.sendMessage(FragmentComment.this.getActivity(),phoneCall);
+				Log.i("bg2", "FragmentComment buttonMask fire MAsk  ");
 				//FragmentComment.this.finish();// Empeche la navigation arriere
 			}
 		};

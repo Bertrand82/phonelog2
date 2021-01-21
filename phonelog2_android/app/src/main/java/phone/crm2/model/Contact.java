@@ -66,11 +66,15 @@ public final class Contact implements Serializable {
 	/**
 	 * @return the isPrivate
 	 */
-	public Boolean isPrivate(ApplicationBg applicationBg) {
+	public boolean isPrivate(ApplicationBg applicationBg) {
 		try {
 			if (this.isPrivate == null){
-				applicationBg.getDb().getContact().getIsPrivate(this);
+				this.isPrivate = applicationBg.getDb().getContact().getIsPrivate(this);
 			}
+			if (this.isPrivate==null){
+				isPrivate =  ContactTable.isPrivateDefault;
+			}
+
 			return isPrivate;
 		} catch (Exception e) {
 			Log.w("bg2","isPrivate Oups ",e);

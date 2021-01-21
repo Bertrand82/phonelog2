@@ -33,8 +33,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/logoPhoto"
-            android:text="@+id/labelNumber"
-            android:textColor="#bbb"
+            android:text=""
+            android:textColor="#ffffff"
             android:textSize="14sp" />
 
         <com.beardedhen.androidbootstrap.AwesomeTextView
@@ -78,7 +78,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/logoPhoto"
-            android:text="@+id/label"
+            android:text=""
             android:textSize="32sp" />
 
         <com.beardedhen.androidbootstrap.BootstrapEditText

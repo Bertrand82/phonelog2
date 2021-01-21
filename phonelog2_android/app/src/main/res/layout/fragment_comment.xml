@@ -44,6 +44,7 @@
             android:layout_alignBottom="@+id/labelNumber"
             android:layout_marginRight="3dp"
             android:layout_toLeftOf="@+id/logoPhoneOuMessage"
+            android:textColor="#ffffff"
             android:textSize="12sp" />
 
         <com.beardedhen.androidbootstrap.AwesomeTextView
@@ -66,7 +67,7 @@
             android:textSize="12sp" />
 
         <Button
-            android:id="@+id/buttonMask"
+            android:id="@+id/buttonDeleteEnregistrement"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/labelNumber"
@@ -78,6 +79,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/logoPhoto"
+            android:textColor="#ffffff"
             android:text=""
             android:textSize="32sp" />
 
@@ -115,11 +117,11 @@
                 android:text="@string/activity_comment_add_to_private_list"/>
 
             <com.beardedhen.androidbootstrap.BootstrapButton
-                android:id="@+id/button_call_again"
+                android:id="@+id/button_back_to_detail"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:text="@string/activity_comment_call_again"
+                android:text="@string/activity_comment_back_detail"
                 />
         </LinearLayout>
 

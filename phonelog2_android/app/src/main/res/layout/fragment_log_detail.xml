@@ -91,22 +91,14 @@
         android:singleLine="true"
         />
 
-    <Button
-        android:id="@+id/buttonEmails"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/logoPhoto"
-        android:layout_toRightOf="@+id/buttonSendMessage"
-        android:text="@string/labelMAILS"
-        android:singleLine="true"
-        />
+
 
     <TextView
         android:id="@+id/textViewClientId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/buttonFiltreCommentedOnly"
-        android:layout_toRightOf="@+id/buttonEmails"
+        android:layout_toRightOf="@+id/buttonSendMessage"
         android:text=""
         android:textSize="12sp"
         android:textColor="#bbb"

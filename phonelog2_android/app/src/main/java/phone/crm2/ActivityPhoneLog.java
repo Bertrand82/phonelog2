@@ -31,7 +31,7 @@ public class ActivityPhoneLog extends AbstractActivityCrm{
         try {
             Contact contact = (Contact) view.getTag();
             Serializable storage = ((ApplicationBg) getApplication()).getStorage();
-            UtilActivitiesCommon.displayActivityLogDetail(this,contact,storage,true);
+            UtilActivitiesCommon.displayActivityLogDetail(this,contact,storage);
         }catch(Exception e){
             Log.e("bg2","Exception "+e);
         }

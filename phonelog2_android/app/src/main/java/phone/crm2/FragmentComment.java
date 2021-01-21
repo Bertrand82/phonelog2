@@ -135,30 +135,31 @@ public class FragmentComment extends Fragment {
 		if (comment != null) {
 			editText.setText(comment);
 		}
-		Button buttonMask = this.getActivity().findViewById(R.id.buttonMask);
-		OnClickListener listenerButtonMask = new OnClickListener() {
+		Button buttonDeleteEnregistrement = this.getActivity().findViewById(R.id.buttonDeleteEnregistrement);
+		OnClickListener listenerDelete = new OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
 				//UtilEmail.sendMessage(FragmentComment.this.getActivity(),phoneCall);
-				Log.i("bg2", "FragmentComment buttonMask fire MAsk  ");
+				Log.i("bg2", "FragmentComment buttonDeleteEnregistrement  delete  ");
+
 				//FragmentComment.this.finish();// Empeche la navigation arriere
 			}
 		};
-		buttonMask.setOnClickListener(listenerButtonMask);
+		buttonDeleteEnregistrement.setOnClickListener(listenerDelete);
 
-		BootstrapButton buttoncallAgain = this.getActivity().findViewById(R.id.button_call_again);
+		BootstrapButton buttonBackToDetail = this.getActivity().findViewById(R.id.button_back_to_detail);
 		OnClickListener listenerButtoncallAgain = new OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
-				Log.i("bg2", "CallAgain Contact start");
+				Log.i("bg2", "buttonBackToDetail Contact start");
 
 				if (phoneCall != null) {
 					Log.i("bg2", "Edit Contact : " + phoneCall.getContact());
-					UtilActivitiesCommon.callNumber(FragmentComment.this.getActivity(), phoneCall.getContact().getNumber());
+					UtilActivitiesCommon.displayActivityLogDetail(FragmentComment.this.getActivity(), phoneCall.getContact(),storage);
 				}
 			}
 		};
-		buttoncallAgain.setOnClickListener(listenerButtoncallAgain);
+		buttonBackToDetail.setOnClickListener(listenerButtoncallAgain);
 		BootstrapButton buttonEnvoi = this.getActivity().findViewById(R.id.button_envoi);
 
 		OnClickListener buttonListenerEnvoi = new OnClickListener() {
@@ -258,7 +259,7 @@ public class FragmentComment extends Fragment {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		if (item.getItemId() == android.R.id.home) {
-			UtilActivitiesCommon.displayActivityLogDetail(this.getActivity(), phoneCall.getContact(), storage, false);
+			UtilActivitiesCommon.displayActivityLogDetail(this.getActivity(), phoneCall.getContact(), storage);
 			return true;
 		} else {
 			return super.onOptionsItemSelected(item);

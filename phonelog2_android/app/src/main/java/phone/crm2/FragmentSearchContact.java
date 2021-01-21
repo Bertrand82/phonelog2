@@ -181,7 +181,7 @@ public class FragmentSearchContact extends Fragment {
 			if (contactLabelNumber.number == null){
 				// Quoi faire ?
 			}else {
-				UtilActivitiesCommon.displayActivityLogDetail(FragmentSearchContact.this.getActivity(), contact,applicationBg.getStorage(), true);
+				UtilActivitiesCommon.displayActivityLogDetail(FragmentSearchContact.this.getActivity(), contact,applicationBg.getStorage());
 			}
 		
 		}

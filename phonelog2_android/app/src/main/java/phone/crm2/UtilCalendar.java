@@ -46,9 +46,9 @@ public class UtilCalendar {
 		ops.add(ContentProviderOperation.newInsert(Events.CONTENT_URI).withValue(Events.DTSTART, startMillis).withValue(Events.DTEND, endMillis).withValue(Events.TITLE, title_).withValue(Events.DESCRIPTION, description).withValue(Events.CALENDAR_ID, calendarId).withValue(Events.EVENT_TIMEZONE, timeZone.getID()).build());
 
 		ContentProviderResult[] cp = cr.applyBatch(CalendarContract.AUTHORITY, ops);
-		Log.w("bg2", "insertEventTransactionnel cp.length :" + cp.length);
+		Log.w("bg2", "UtilCalendar insertEventTransactionnel cp.length :" + cp.length);
 		if (cp.length > 0) {
-			Log.w("bg2", "insertEventTransactionnel cp.length :" + cp[0].uri);
+			Log.w("bg2", "UtilCalendar insertEventTransactionnel cp.length :" + cp[0].uri);
 			Uri myContactUri = cp[0].uri;
 			int lastSlash = myContactUri.toString().lastIndexOf("/");
 			int length = myContactUri.toString().length();
@@ -447,6 +447,8 @@ public class UtilCalendar {
 		// I need Id
 		return updateEventInSelectedCalendars(cr, startMillis, endMillis, listCAlendars, title, description, phoneCall.getBddId(), phoneCall.getId(), phoneCall.gethIds());
 	}
+
+
 
 	private static UpdateResult updateEventInSelectedCalendars(ContentResolver cr, long startMillis, long endMillis, List<BgCalendar> listCAlendars, String title, String description, String bddSource, long eventIdSource, HashMap<BgCalendar, Long> hIds) {
 		for (BgCalendar bgc : hIds.keySet()) {

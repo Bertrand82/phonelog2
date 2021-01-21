@@ -66,22 +66,11 @@ public class FragmentLogDetail extends ListFragment {
 		this.contact.getExtra(this.getActivity());
 		applicationBg.setContactCurrent(contact);
 		this.storage = (BgCalendar) b.getSerializable("storage");
-		Boolean isMaskable = b.getBoolean(KEY_MASKABLE, false);
 		Log.i("bg2", "FragmentLogDetail    contact : " + contact + "  storage " + storage);
 
 		TextView textViewClientId = view.findViewById(R.id.textViewClientId);
 		textViewClientId.setText("");
-		Button buttonMask = view.findViewById(R.id.buttonMask);
-		if (isMaskable){
-			buttonMask.setVisibility(View.VISIBLE);
-			buttonMask.setOnClickListener(new OnClickListener() {
-				@Override 
-				public void onClick(View v) {
-					Log.i("bg2","buttonMask click");
-					CallManager.moveTaskPhoneToFront(FragmentLogDetail.this.getActivity());
-				}
-			});
-		}
+
 
 		Button buttonPhoneCall = view.findViewById(R.id.buttonPhoneCall);
 		buttonPhoneCall.setOnClickListener(new OnClickListener() {
@@ -110,15 +99,7 @@ public class FragmentLogDetail extends ListFragment {
 				UtilEmail.sendMessage(FragmentLogDetail.this.getActivity(), FragmentLogDetail.this.contact);
 			}
 		});
-		Button buttonDisplayMails = view.findViewById(R.id.buttonEmails);
-		buttonDisplayMails.setOnClickListener(new OnClickListener() {
 
-			@Override
-			public void onClick(View v) {
-				showMAils();
-			}
-		});
-		String email = getEmailFromContact();
 
 		String displayName = contact.getExtra(applicationBg).getDisplayName();
 		if (displayName == null) {
@@ -151,7 +132,7 @@ public class FragmentLogDetail extends ListFragment {
 		textViewPhoto.setOnClickListener(listenerPhoto);
 		setListEvents(displayed);
 
-		Log.i("bg2", " events size" + events.size());
+		Log.i("bg2", "FragmenLogDetail events size" + events.size());
 		adapter = new PhoneCallLDetailArrayAdapter(this.getActivity(), contact, events);
 		// Assign adapter to List
 		setListAdapter(adapter);

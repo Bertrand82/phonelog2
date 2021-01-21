@@ -133,7 +133,7 @@ public class FragmentAddEvent extends Fragment {
 		String comment = this.editText.getText().toString();
 		Log.i("bg2", "AddEvent  date : "+date+"  comment :"+comment); 
 		insert(date, comment);
-		UtilActivitiesCommon.displayActivityLogDetail(this.getActivity(), contact_, this.storage, false);
+		UtilActivitiesCommon.displayActivityLogDetail(this.getActivity(), contact_, this.storage);
 	}
 	
 	private void insert(Date date, String comment) {

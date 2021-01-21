@@ -35,7 +35,7 @@
     <string name="activity_comment_edit_contact">Edit Contact</string>
     <string name="save_contact">Save</string>
     <string name="activity_comment_add_to_private_list">Add to private list</string>
-    <string name="activity_comment_call_again">Call</string>
+    <string name="activity_comment_back_detail">Synthèse</string>
     <string name="activity_comment_remove_from_private_list">Remove from private list</string>
     <string name="activity_comment_contact">Contact</string>
     <string name="activity_comment_url_server">http://phone-log.appspot.com</string>
@@ -120,6 +120,7 @@
     <string name="buttonEditClientIdLabel">Edit Id</string>
     <string name="labelEditClientId" translatable="false">Id Client</string>
     <string name="buttonMaskLabel">Cancel</string>
+    <string name="buttonDeleteEnregistrement">Delete</string>
     <string name="buttonSearchContact">Search Contact</string>
 
     <string name="title_activity_activity_add_event">Add Event</string>

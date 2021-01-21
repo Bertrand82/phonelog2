@@ -191,7 +191,7 @@ public class UtilActivitiesCommon {
         popUp(activity, "Trace Debug", applicationBg.getTracesDebug());
 
     }
-    public static void displayActivityLogDetail(FragmentActivity activity, Contact contact, Serializable storage, boolean newActivity) {
+    public static void displayActivityLogDetail(FragmentActivity activity, Contact contact, Serializable storage) {
 
         NavHostFragment navHostFragment = (NavHostFragment) activity.getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment_logs2);
         NavController navControler  =navHostFragment.getNavController();

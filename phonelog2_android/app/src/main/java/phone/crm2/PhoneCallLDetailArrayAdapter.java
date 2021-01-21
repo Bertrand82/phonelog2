@@ -28,15 +28,12 @@ public class PhoneCallLDetailArrayAdapter extends ArrayAdapter<Event>{
 	private String dateDay ="";
 	
 	
-	public PhoneCallLDetailArrayAdapter(Context context, Contact contact, List<Event> events) {
+	public PhoneCallLDetailArrayAdapter(Context context, List<Event> events) {
 		super(context, R.layout.item_list_phonecall, events);
 		this.context = context;
 		this.events = events;
 	}
-	
 
-	
-	
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -78,26 +75,6 @@ public class PhoneCallLDetailArrayAdapter extends ArrayAdapter<Event>{
 		return rowView;
 	}
 
-	public static String getEmailFromEventIfDifferent(ApplicationBg applicationBg, Event event) {
-		if(event == null){
-			return "";
-		}
-		AppAccount account = event.getAccount();
-		if (account == null){
-			return "";
-		}
-		String email = account.getMail();
-		if (email == null){
-			return "";
-		}
-		email = email.trim();
-		if(email.equalsIgnoreCase(applicationBg.getAppAccount().getMail())) {
-			return "";
-		}
-		return email;
-	}
-
-
 
 
 	@Override
@@ -105,18 +82,10 @@ public class PhoneCallLDetailArrayAdapter extends ArrayAdapter<Event>{
 		Log.i("bg2", "PhoneCallDetailArrayAdapter.notifyDataSetChanged  BBB events "+toStringList(events));
 		super.notifyDataSetChanged();
 	}
-	
-	
-
-
-
 
 	public List<Event> getEvents() {
 		return events;
 	}
-
-
-
 
 	public void setEvents(List<Event> events) {
 		this.events = events;

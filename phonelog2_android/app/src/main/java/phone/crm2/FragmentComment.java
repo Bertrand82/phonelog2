@@ -9,6 +9,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -17,6 +18,7 @@ import androidx.fragment.app.Fragment;
 import com.beardedhen.androidbootstrap.AwesomeTextView;
 import com.beardedhen.androidbootstrap.BootstrapButton;
 import com.beardedhen.androidbootstrap.BootstrapEditText;
+import com.google.android.material.snackbar.Snackbar;
 
 import phone.crm2.legacy.UtilContact;
 import phone.crm2.model.Contact;
@@ -110,16 +112,17 @@ public class FragmentComment extends Fragment {
 		if (textViewPhoto.getVisibility() == View.VISIBLE) {
 			textViewPhoto.setOnClickListener(listenerEditContact);
 		}
-		textViewContact = this.getActivity().findViewById(R.id.labelContact);
+		textViewContact = this.getActivity().findViewById(R.id.labelContact3);
 		String nameContact = phoneCall.getContact().getExtra(this.applicationBg).getDisplayName();
 		Log.d("bg2","FragmentComment BBBBBB nameContact:"+nameContact);
 
 		Log.v(TAG,"FragmentComment nameContact :"+nameContact);
 		textViewContact.setText(nameContact);
 
-		textViewNumber = this.getActivity().findViewById(R.id.labelNumber);
+		textViewNumber = this.getActivity().findViewById(R.id.labelNumber2);
 		String number = phoneCall.getContact().getNumber();
 		Log.v(TAG,"FragmentComment number :"+number);
+		Log.v(TAG,"FragmentComment textViewNumber getTextColors :"+textViewNumber.getTextColors());
 		textViewNumber.setText(number);
 		AwesomeTextView imagePhoneOuMessage = this.getActivity().findViewById(R.id.logoPhoneOuMessage);
 		UtilActivitiesCommon.setImagePhoneOuMessage(phoneCall.getType(), imagePhoneOuMessage);
@@ -160,9 +163,9 @@ public class FragmentComment extends Fragment {
 			}
 		};
 		buttonBackToDetail.setOnClickListener(listenerButtoncallAgain);
-		BootstrapButton buttonEnvoi = this.getActivity().findViewById(R.id.button_envoi);
+		BootstrapButton buttonAddComment = this.getActivity().findViewById(R.id.button_add_comment);
 
-		OnClickListener buttonListenerEnvoi = new OnClickListener() {
+		OnClickListener buttonListenerAddComment = new OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
 				String comment = "" + editText.getText();
@@ -179,7 +182,7 @@ public class FragmentComment extends Fragment {
 
 			}
 		};
-		buttonEnvoi.setOnClickListener(buttonListenerEnvoi);
+		buttonAddComment.setOnClickListener(buttonListenerAddComment);
 
 		buttonAddRemoveToPrivateList = this.getActivity().findViewById(R.id.button_add_remove_from_private_list);
 		setButtonLabel();
@@ -244,7 +247,16 @@ public class FragmentComment extends Fragment {
 			result_ = new UpdateResult();
 		}
 		 int colorBackground = -1;
-		UtilActivitiesCommon.showConfirmSend(this.getActivity(),text,number,contact,time,colorBackground,result_);
+		try {
+			RelativeLayout layout  = this.getActivity().findViewById(R.id.layoutComment);
+			Snackbar.make(layout, "Enregistré :" + text,
+					Snackbar.LENGTH_SHORT)
+					.show();
+			UtilActivitiesCommon.displayActivityLogDetail(FragmentComment.this.getActivity(), phoneCall.getContact(),storage);
+		} catch(Throwable e){
+			Log.e("bg2","Exception ",e);
+		}
+		//UtilActivitiesCommon.showConfirmSend(this.getActivity(),text,number,contact,time,colorBackground,result_);
 
 	}
 
@@ -266,19 +278,6 @@ public class FragmentComment extends Fragment {
 		}
 	}
 
-	private void mailSend_DEPRECATED() {
-		if (phoneCall == null) {// inutile d'envoyer un mail!
-			Log.w("bg2", "mailSend phoneCall is Null!! ");
-			return;
-		}
-		if (mailSent ) {// Le mail a été deja envoyé
-			return;
-		}
-		if (phoneCall.equals2(phoneCall_Z_1)) {// Le mail a été deja envoyé
-			return;
-		}
-		phoneCall_Z_1 = phoneCall;
-		mailSent = UtilEmail.sendMessage(this.getActivity(), phoneCall);
-	}
+
 
 }

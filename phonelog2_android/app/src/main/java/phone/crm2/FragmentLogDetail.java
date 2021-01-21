@@ -8,12 +8,14 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.ListFragment;
 
 import java.util.ArrayList;
@@ -28,7 +30,9 @@ import phone.crm2.model.PhoneCall;
 import phone.crm2.receivers.CallManager;
 
 
-public class FragmentLogDetail extends ListFragment {
+public class FragmentLogDetail extends Fragment implements AdapterView.OnItemClickListener {
+
+
 
 	enum DISPLAY_F  {PHONE_LIST, DISPLAY_CRM, PHONE_LIST_COMMENTED_ONLY}
 
@@ -133,11 +137,13 @@ public class FragmentLogDetail extends ListFragment {
 		setListEvents(displayed);
 
 		Log.i("bg2", "FragmenLogDetail events size" + events.size());
-		adapter = new PhoneCallLDetailArrayAdapter(this.getActivity(), contact, events);
+		adapter = new PhoneCallLDetailArrayAdapter(this.getContext(),  events);
 		// Assign adapter to List
-		setListAdapter(adapter);
-		ListView listView = getListView();
-		listView.setOnScrollListener(new AbsListView.OnScrollListener() {
+		//setListAdapter(adapter);
+		ListView listView = (ListView)  this.getActivity().findViewById(R.id.listDetail0);
+		listView.setAdapter(adapter);
+
+		AbsListView.OnScrollListener onScrollListener = new AbsListView.OnScrollListener() {
 			
 			@Override
 			public void onScrollStateChanged(AbsListView view, int scrollState) {
@@ -153,7 +159,12 @@ public class FragmentLogDetail extends ListFragment {
 				}
 			}
 
-		});
+		};
+		listView.setOnItemClickListener(this);
+		if (events.size()>=UtilCalendar.LIMIT_P_PAGE) {
+			listView.setOnScrollListener(onScrollListener);
+		}
+
 	}
 
 	@Override
@@ -162,18 +173,22 @@ public class FragmentLogDetail extends ListFragment {
 		super.onResume();
 		adapter.notifyDataSetChanged();
 	}
-
 	@Override
-	public void onListItemClick(ListView l, View v, int position, long id) {
+	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+		onListItemClickBg(view,position);
+	}
+
+	public void onListItemClickBg( View v, int position) {
 
 		try {
-			super.onListItemClick(l, v, position, id);
+			Log.i(TAG, "FragmentLogDetail.onListItemClick AAA  start");
+			//super.onListItemClick(l, v, position, id);
 
 			// ListView Clicked item index
 			int itemPosition = position;
 
 			// ListView Clicked item value
-			Object itemValue = l.getItemAtPosition(position);
+			Event itemValue = events.get(position);
 
 			Log.i(TAG, "FragmentLogDetail.onListItemClick    Position :" + itemPosition + "   ListItem : " + itemValue);
 			if (itemValue == null) {
@@ -182,8 +197,8 @@ public class FragmentLogDetail extends ListFragment {
 			} else {
 				displayCommentPhoneCall((PhoneCall) itemValue);
 			}
-		} catch (Exception e) {
-			Log.i(TAG, "FragmentLogDetail.onListItemClick :   Position :" + position + "   id : " + id, e);
+		} catch (Throwable e) {
+			Log.i(TAG, "FragmentLogDetail.onListItemClick :   Position :" + position , e);
 		}
 
 	}

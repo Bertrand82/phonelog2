@@ -218,7 +218,7 @@ public class UtilCalendar {
 		}
 	}
 
-	public static int limit = 20;
+	public static int LIMIT_P_PAGE = 20;
 
 	public static List<Event> getListEvent(Context context, BgCalendar bgCalendar, int page) {
 		if (bgCalendar == null) {
@@ -231,8 +231,8 @@ public class UtilCalendar {
 
 		String selection = "( (" + Events.TITLE + " like  ?) AND (" + Events.CALENDAR_ID + " = ?) ) ";
 		// String order = ""+Events.DTSTART+"  DESC ";
-		int offset = page * limit;
-		String order = "" + Events.DTSTART + "  DESC LIMIT " + limit + " OFFSET " + offset;
+		int offset = page * LIMIT_P_PAGE;
+		String order = "" + Events.DTSTART + "  DESC LIMIT " + LIMIT_P_PAGE + " OFFSET " + offset;
 
 		String[] selectionArgs = new String[] { "%" + tag + "%", "" + bgCalendar.getCalID() };
 
@@ -560,8 +560,8 @@ public class UtilCalendar {
 		Uri uri = Events.CONTENT_URI;
 		String selection = "( (" + Events.TITLE + " like  ?) AND (" + Events.CALENDAR_ID + " = ?) ) ";
 		// String order = ""+Events.DTSTART+"  DESC ";
-		int offset = page * limit;
-		String order = "" + Events.DTSTART + "  DESC LIMIT " + limit + " OFFSET " + offset;
+		int offset = page * LIMIT_P_PAGE;
+		String order = "" + Events.DTSTART + "  DESC LIMIT " + LIMIT_P_PAGE + " OFFSET " + offset;
 
 		String[] selectionArgs = new String[] { param, "" + bgCalendar.getCalID() };
 

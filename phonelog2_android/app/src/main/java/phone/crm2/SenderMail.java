@@ -58,11 +58,8 @@ public class SenderMail extends AsyncTask<String, String, String> {
 			sender.sendMail(subject, body);
 		} catch(AuthenticationFailedException ee){
 			Log.e("bg2", "sendMail3 AuthenticationFailedException " + ee.getMessage(), ee);
-			context.addEmailTrace("eMail  Authentication Failed \nhost:"+sender.mailhost+":"+sender.mailPort+"\n  user: "+sender.user);
 		} catch (Exception e) {
 			Log.e("bg2", "sendMail3 Exception " + e.getMessage(), e);
-			context.addEmailTrace("eMail Exception "+e.getMessage());
-			
 		}
 	
 	}

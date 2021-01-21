@@ -5,11 +5,7 @@
         android:title="@string/title_activity_display_logs"
         app:showAsAction="ifRoom"
         />
-    <item
-        android:id="@+id/action_add_event"
-        android:title="@string/title_activity_display_add_event"
-        app:showAsAction="ifRoom"
-        />
+
    <item
         android:id="@+id/action_search_contact"
         android:title="@string/title_activity_search_contact"
@@ -39,11 +35,7 @@
         app:showAsAction="ifRoom"
         />
 
-    <item
-        android:id="@+id/action_trace_debug"
-        android:title="@string/action_trace_debug_title"
-        app:showAsAction="ifRoom"
-        />
+
     <item
         android:id="@+id/action_about"
         android:title="@string/about_title"

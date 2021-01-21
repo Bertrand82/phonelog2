@@ -80,7 +80,7 @@ public class CallManager {
 	
 	private void processCall( Context context,  Contact contact){
 		Log.i("bg2","CallManager.ProcessCall BBBB ");
-		Serializable storage = applicationBg.getStorage();
+		Serializable storage = applicationBg.getStorageCalendar();
 		// Bug Majeur : Masque l'ecran permettant de terminer l'appel
 		
 		//displayActivityLogDetatil_WithoutHistory(context, contact, storage);

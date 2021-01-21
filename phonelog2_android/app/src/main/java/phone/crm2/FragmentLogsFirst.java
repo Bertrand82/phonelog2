@@ -43,7 +43,7 @@ public class FragmentLogsFirst extends ListFragment {
         spinner = this.getActivity().findViewById(R.id.bdd_spinner2);
         @SuppressWarnings("rawtypes")
         List lisBgCalendarsSelected = this.getApplicationBg().getListCalendarsSelected();
-        Object storageDefault = this.getApplicationBg().getStorage();
+        Object storageDefault = this.getApplicationBg().getStorageCalendar();
         int positionSelected = 0;
         int i = 0;
         for (Object o : lisBgCalendarsSelected) {

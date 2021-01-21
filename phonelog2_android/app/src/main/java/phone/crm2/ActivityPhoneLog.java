@@ -30,7 +30,7 @@ public class ActivityPhoneLog extends AbstractActivityCrm{
          Log.v("bg2","ActivityPhoneLog click   AAA TAG: "+view.getTag());
         try {
             Contact contact = (Contact) view.getTag();
-            Serializable storage = ((ApplicationBg) getApplication()).getStorage();
+            Serializable storage = ((ApplicationBg) getApplication()).getStorageCalendar();
             UtilActivitiesCommon.displayActivityLogDetail(this,contact,storage);
         }catch(Exception e){
             Log.e("bg2","Exception "+e);

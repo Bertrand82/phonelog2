@@ -204,9 +204,7 @@ public class ApplicationBg extends Application  implements LifecycleObserver {
 		return callManager;
 	}
 
-	public Serializable getStorage() {
-		return storage;
-	}
+
 
 	public BgCalendar getStorageCalendar() {
 		return storage;
@@ -252,29 +250,6 @@ public class ApplicationBg extends Application  implements LifecycleObserver {
 
 	}
 
-
-
-	List<TraceDebug> listTraceDebug = new ArrayList<TraceDebug>();
-	public void addEmailTrace(String message) {
-		listTraceDebug.add(new TraceDebug(message));
-		if (listTraceDebug.size()>2){
-			listTraceDebug.remove(0);
-		}
-	}
-
-	public String getTracesDebug() {
-		if (listTraceDebug.size()==0){
-			return "No Traces !!";
-		}
-		String s = "";
-		for(int i=0;i<Math.min(1, listTraceDebug.size());i++){
-			s+=" - "+listTraceDebug.get(i)+"\n";
-		}
-		return s;
-	}
-
-
-
 	public Contact getContactCurrent() {
 		return contactCurrent;
 	}
@@ -299,22 +274,6 @@ public class ApplicationBg extends Application  implements LifecycleObserver {
 		return isForeground;
 	}
 
-	static class TraceDebug{
-		String message="";
-		Date date = new Date();
-
-		public TraceDebug(String message) {
-			super();
-			this.message = message;
-		}
-
-		@Override
-		public String toString() {
-			return "" + message + "\n date=" + date ;
-		}
-
-
-	}
 
 
 }

@@ -59,10 +59,14 @@ public class UtilActivitiesCommon {
     // activity.startActivity(intent);
     // }
     public static void openCommentLastCall(FragmentActivity fragmentActivity) {
-
-        NavHostFragment navHostFragment = (NavHostFragment) fragmentActivity.getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment_logs2);
-        NavController navControler  =navHostFragment.getNavController();
-        navControler.navigate(R.id.action_navigation_to_FragmentComment);
+        ApplicationBg applicationBg = (ApplicationBg) fragmentActivity.getApplication();
+        PhoneCall phoneCall = applicationBg.getPhoneCall();
+        BgCalendar storage = applicationBg.getStorageCalendar();
+        if (phoneCall==null){
+            Log.e("bg2"," OpenCommentLastCAll : oups : No last call found!!!");
+            return;
+        }
+        openComment(fragmentActivity,phoneCall,storage);
     }
 
     public static void openComment(FragmentActivity fragmentActivity,PhoneCall phoneCall, BgCalendar storage) {
@@ -84,20 +88,6 @@ public class UtilActivitiesCommon {
         Bundle bundle = new Bundle();
         navControler.navigate(R.id.action_navigation_to_FragmentComment,bundle);
     }
-
-    public static void showConfirmSend(FragmentActivity activity,String text,String number,String contactStr,String timeStr, int colorBackground ,UpdateResult result_) {
-        NavHostFragment navHostFragment = (NavHostFragment) activity.getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment_logs2);
-        NavController navControler  =navHostFragment.getNavController();
-        Bundle bundle = new Bundle();
-        bundle.putString(FragmentComment.KEY_MESSAGE, "" + text);
-        bundle.putString(FragmentComment.KEY_NUMBER, "" +number);
-        bundle.putString(FragmentComment.KEY_CONTACT, "" + contactStr);
-        bundle.putString(FragmentComment.KEY_TIME, "" + timeStr);
-        bundle.putInt(FragmentComment.KEY_COLOR_BACKGROUND, colorBackground);
-        navControler.navigate(R.id.action_navigation_to_confirmSend,bundle);
-    }
-
-
 
 
     private static void showHome_(Activity activity) {
@@ -127,17 +117,7 @@ public class UtilActivitiesCommon {
 
     }
 
-    public static void displayActivityAddEvent(Activity activity) {
-        displayActivityAddEvent((FragmentActivity)activity,null,null);
-    }
-    public static void displayActivityAddEvent(FragmentActivity activity, Contact contact, Serializable storage) {
-        NavHostFragment navHostFragment = (NavHostFragment) activity.getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment_logs2);
-        NavController navControler  =navHostFragment.getNavController();
-        Bundle bundle = new Bundle();
-        bundle.putSerializable("contact", contact);
-        bundle.putSerializable("storage", storage);
-        navControler.navigate(R.id.action_navigation_to_FragmentAddEvent,bundle);
-    }
+
 
 
     public static void openCalendars(Activity activity) {
@@ -186,11 +166,7 @@ public class UtilActivitiesCommon {
 
     }
 
-    private static void openTraceDebug(Activity activity) {
-        ApplicationBg applicationBg = (ApplicationBg) activity.getApplication();
-        popUp(activity, "Trace Debug", applicationBg.getTracesDebug());
 
-    }
     public static void displayActivityLogDetail(FragmentActivity activity, Contact contact, Serializable storage) {
 
         NavHostFragment navHostFragment = (NavHostFragment) activity.getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment_logs2);
@@ -252,14 +228,6 @@ public class UtilActivitiesCommon {
             return true;
         }else if (item.getItemId() == R.id.action_about) {
             UtilActivitiesCommon.openAbout(activity);
-            return true;
-
-        } else if (item.getItemId() == R.id.action_trace_debug) {
-            UtilActivitiesCommon.openTraceDebug(activity);
-            return true;
-
-        }else if (item.getItemId() == R.id.action_add_event) {
-            UtilActivitiesCommon.displayActivityAddEvent(activity);
             return true;
 
         } else if (item.getItemId() == R.id.action_search_contact) {

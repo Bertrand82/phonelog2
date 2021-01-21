@@ -1,5 +1,6 @@
 package phone.crm2;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -7,6 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -177,7 +179,7 @@ public class FragmentComment extends Fragment {
 					// Send to ground
 					UpdateResult result = UtilCalendar.update(applicationBg, phoneCall);
 
-					showConfirmSend(result);
+					showConfirmSend();
 				}
 
 			}
@@ -236,23 +238,18 @@ public class FragmentComment extends Fragment {
 	public static String KEY_SENT_MAIL ="sendMAil";
 	public static String KEY_Storage ="storage";
 
-	private void showConfirmSend(UpdateResult result_) {
+	private void showConfirmSend() {
 
 		String  text  =  ""+this.editText.getText();
 		String number =  ""+this.textViewNumber.getText();
 		String contact = ""+this.textViewContact.getText();
 		String time =   ""+this.textViewTime.getText();
 
-		if (result_ == null) {
-			result_ = new UpdateResult();
-		}
-		 int colorBackground = -1;
+
+
 		try {
-			RelativeLayout layout  = this.getActivity().findViewById(R.id.layoutComment);
-			Snackbar.make(layout, "Enregistré :" + text,
-					Snackbar.LENGTH_SHORT)
-					.show();
-			UtilActivitiesCommon.displayActivityLogDetail(FragmentComment.this.getActivity(), phoneCall.getContact(),storage);
+			hideKeyBoard();
+			showMessage(text);
 		} catch(Throwable e){
 			Log.e("bg2","Exception ",e);
 		}
@@ -260,8 +257,20 @@ public class FragmentComment extends Fragment {
 
 	}
 
-
-
+    private void showMessage(String text){
+		RelativeLayout layout  = this.getActivity().findViewById(R.id.layoutComment);
+		Snackbar.make(layout, "Enregistré :" + text,
+				Snackbar.LENGTH_SHORT)
+				.show();
+		UtilActivitiesCommon.displayActivityLogDetail(FragmentComment.this.getActivity(), phoneCall.getContact(),storage);
+	}
+    private void hideKeyBoard() {
+		View view = this.getActivity().getCurrentFocus();
+		if (view != null) {
+			InputMethodManager imm = (InputMethodManager)this.getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+			imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+		}
+	}
 	public ApplicationBg getApplicationBg() {
 		return (ApplicationBg) this.getActivity().getApplication();
 	}

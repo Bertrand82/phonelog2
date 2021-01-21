@@ -20,8 +20,7 @@
     <!-- General -->
     <string name="about" translatable="false">G Consulting </string>
     <string name="about_title" translatable="false">About</string>
-    <string name="action_trace_debug_title" translatable="false">Trace Debug</string>
-     <string name="aboutVersion" translatable="false">V Beta 6</string>
+      <string name="aboutVersion" translatable="false">V Beta 6</string>
     <string name="aboutSendComment">Send</string>
     <string name="aboutMessageLabel">Please, send us a message (bug report, suggestions for improvement, encouragement ..)</string>
     <string name="aboutCommentWrite">Write your message</string>
@@ -56,7 +55,7 @@
     <string name="title_activity_welcome">Welcome</string>
     <string name="title_activity_display_private_list">Private List</string>
     <string name="title_activity_display_logs">Logs</string>
-    <string name="title_activity_display_add_event">Add Event</string>
+
     <string name="title_activity_display_calendars">Calendars</string>
     <string name="title_fetch_historic_on_server">Upload Historic</string>
     <string name="title_list_calendars">List Calendar</string>

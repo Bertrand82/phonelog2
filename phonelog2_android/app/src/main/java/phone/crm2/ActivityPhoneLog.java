@@ -26,6 +26,10 @@ public class ActivityPhoneLog extends AbstractActivityCrm{
         setSupportActionBar(toolbar);
     }
 
+    /**
+     * Appelé lors d'un click sur un element de la liste
+     * @param view
+     */
     public void perform_action_click_select_contact(View view){
          Log.v("bg2","ActivityPhoneLog click   AAA TAG: "+view.getTag());
         try {

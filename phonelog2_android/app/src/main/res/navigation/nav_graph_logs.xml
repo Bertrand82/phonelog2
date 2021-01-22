@@ -60,7 +60,7 @@
     </fragment>
     <fragment
         android:id="@+id/FragmentLogDetailDirection"
-        android:name="phone.crm2.FragmentLogDetail"
+        android:name="phone.crm2.FragmentLogsDetail"
         android:label="fragment_fragmentLogDetail"
         >
         <argument

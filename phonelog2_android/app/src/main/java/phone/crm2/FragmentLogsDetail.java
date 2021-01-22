@@ -28,7 +28,7 @@ import phone.crm2.model.EventCRM;
 import phone.crm2.model.PhoneCall;
 
 
-public class FragmentLogDetail extends Fragment implements AdapterView.OnItemClickListener {
+public class FragmentLogsDetail extends Fragment implements AdapterView.OnItemClickListener {
 
 
 
@@ -48,7 +48,7 @@ public class FragmentLogDetail extends Fragment implements AdapterView.OnItemCli
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		// Inflate the layout for this fragment
-		View view = inflater.inflate(R.layout.fragment_log_detail, container, false);
+		View view = inflater.inflate(R.layout.fragment_logs_detail, container, false);
 		return view;
 	}
 
@@ -68,7 +68,7 @@ public class FragmentLogDetail extends Fragment implements AdapterView.OnItemCli
 		this.contact.getExtra(this.getActivity());
 		applicationBg.setContactCurrent(contact);
 		this.storage = (BgCalendar) b.getSerializable("storage");
-		Log.i("bg2", "FragmentLogDetail    contact : " + contact + "  storage " + storage);
+		Log.i("bg2", "FragmentLogsDetail    contact : " + contact + "  storage " + storage);
 
 		TextView textViewClientId = view.findViewById(R.id.textViewClientId);
 		textViewClientId.setText("");
@@ -79,7 +79,7 @@ public class FragmentLogDetail extends Fragment implements AdapterView.OnItemCli
 
 			@Override
 			public void onClick(View v) {
-				UtilActivitiesCommon.callNumber(FragmentLogDetail.this.getActivity(), contact.getNumber());
+				UtilActivitiesCommon.callNumber(FragmentLogsDetail.this.getActivity(), contact.getNumber());
 			}
 		});
 		
@@ -98,7 +98,7 @@ public class FragmentLogDetail extends Fragment implements AdapterView.OnItemCli
 			@Override
 			public void onClick(View v) {
 				Log.i("bg2", "sendMessage2");
-				UtilEmail.sendMessage(FragmentLogDetail.this.getActivity(), FragmentLogDetail.this.contact);
+				UtilEmail.sendMessage(FragmentLogsDetail.this.getActivity(), FragmentLogsDetail.this.contact);
 			}
 		});
 
@@ -125,8 +125,8 @@ public class FragmentLogDetail extends Fragment implements AdapterView.OnItemCli
 
 			@Override
 			public void onClick(View v) {
-				Log.i("bg2","FragmentLogDetail onClick");
-				UtilContact.updateContact(FragmentLogDetail.this.getActivity(), contact);
+				Log.i("bg2","FragmentLogsDetail onClick");
+				UtilContact.updateContact(FragmentLogsDetail.this.getActivity(), contact);
 			}
 		};
 		imageViewPhoto_.setOnClickListener(listenerPhoto);
@@ -153,7 +153,7 @@ public class FragmentLogDetail extends Fragment implements AdapterView.OnItemCli
 			public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
 				int n = firstVisibleItem + visibleItemCount;
 				if (n >= totalItemCount){
-					Log.i("bg2","FragmentLogDetail.onScroll firstItem "+firstVisibleItem+" visibleItemCount "+visibleItemCount+"  "+(firstVisibleItem+visibleItemCount)+" totalItemCount :"+totalItemCount);
+					Log.i("bg2","FragmentLogsDetail.onScroll firstItem "+firstVisibleItem+" visibleItemCount "+visibleItemCount+"  "+(firstVisibleItem+visibleItemCount)+" totalItemCount :"+totalItemCount);
 					appendNexPage();
 				}
 			}
@@ -168,7 +168,7 @@ public class FragmentLogDetail extends Fragment implements AdapterView.OnItemCli
 
 	@Override
 	public void onResume() {
-		Log.i(TAG, " FragmentLogDetail  onResume");
+		Log.i(TAG, " FragmentLogsDetail  onResume");
 		super.onResume();
 		adapter.notifyDataSetChanged();
 	}
@@ -180,7 +180,7 @@ public class FragmentLogDetail extends Fragment implements AdapterView.OnItemCli
 	public void onListItemClickBg( View v, int position) {
 
 		try {
-			Log.i(TAG, "FragmentLogDetail.onListItemClick AAA  start");
+			Log.i(TAG, "FragmentLogsDetail.onListItemClick AAA  start");
 			//super.onListItemClick(l, v, position, id);
 
 			// ListView Clicked item index
@@ -189,7 +189,7 @@ public class FragmentLogDetail extends Fragment implements AdapterView.OnItemCli
 			// ListView Clicked item value
 			Event itemValue = events.get(position);
 
-			Log.i(TAG, "FragmentLogDetail.onListItemClick    Position :" + itemPosition + "   ListItem : " + itemValue);
+			Log.i(TAG, "FragmentLogsDetail.onListItemClick    Position :" + itemPosition + "   ListItem : " + itemValue);
 			if (itemValue == null) {
 			} else if (itemValue instanceof EventCRM) {
 				// Select an eventCRM . What do ?
@@ -197,7 +197,7 @@ public class FragmentLogDetail extends Fragment implements AdapterView.OnItemCli
 				displayCommentPhoneCall((PhoneCall) itemValue);
 			}
 		} catch (Throwable e) {
-			Log.i(TAG, "FragmentLogDetail.onListItemClick :   Position :" + position , e);
+			Log.i(TAG, "FragmentLogsDetail.onListItemClick :   Position :" + position , e);
 		}
 
 	}
@@ -262,10 +262,10 @@ public class FragmentLogDetail extends Fragment implements AdapterView.OnItemCli
 
 
 	private void showMessageCommentedOnly(View view) {
-		Log.i("bg2", "FragmentLogDetail showMessageCommentedOnly A" + contact);
-		Log.i("bg2", "FragmentLogDetail showMessageCommentedOnly B" + displayed);
+		Log.i("bg2", "FragmentLogsDetail showMessageCommentedOnly A" + contact);
+		Log.i("bg2", "FragmentLogsDetail showMessageCommentedOnly B" + displayed);
 		Button buttonDisplayPhoneCAllCommentedOnly = view. findViewById(R.id.buttonFiltreCommentedOnly);
-		if (displayed== FragmentLogDetail.DISPLAY_F.PHONE_LIST_COMMENTED_ONLY){
+		if (displayed== FragmentLogsDetail.DISPLAY_F.PHONE_LIST_COMMENTED_ONLY){
 			displayed = DISPLAY_F.PHONE_LIST;
 			buttonDisplayPhoneCAllCommentedOnly.setText(R.string.labeFiltreCommmnentedOnly);
 		}else {

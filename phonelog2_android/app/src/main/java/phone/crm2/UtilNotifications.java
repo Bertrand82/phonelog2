@@ -48,7 +48,7 @@ public class UtilNotifications {
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
         intent.putExtra(PhoneCall.KEY_NUMBER,number);
-        intent.putExtra(ActivityPhoneLog.KEY_DISPLAY,FragmentLogDetail.class.getName());
+        intent.putExtra(ActivityPhoneLog.KEY_DISPLAY, FragmentLogsDetail.class.getName());
 
         PendingIntent pendingIntent = PendingIntent.getActivity(applicationBg.getApplicationContext(), 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 

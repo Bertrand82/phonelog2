@@ -10,7 +10,7 @@
         android:padding="5dp" >
 
         <ImageView
-            android:id="@+id/logoPhoto"
+            android:id="@+id/logoPhoto2"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_alignTop="@+id/labelNumber2"
@@ -19,7 +19,7 @@
             android:contentDescription="TODO" />
 
         <TextView
-            android:id="@+id/logoPhotoText"
+            android:id="@+id/logoPhotoText2"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_alignTop="@+id/labelNumber2"
@@ -32,7 +32,7 @@
             android:id="@+id/labelNumber2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/logoPhoto"
+            android:layout_toRightOf="@+id/logoPhoto2"
             android:text=""
             android:textColor="#ffffff"
             android:textSize="14sp" />
@@ -71,14 +71,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/labelNumber2"
-            android:layout_toRightOf="@+id/logoPhoto"
+            android:layout_toRightOf="@+id/logoPhoto2"
             android:text="@string/buttonMaskLabel" />
 
         <TextView
             android:id="@+id/labelContact3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/logoPhoto"
+            android:layout_below="@+id/logoPhoto2"
             android:textColor="#ffffff"
             android:text=""
             android:textSize="32sp" />

@@ -7,7 +7,7 @@
 
 
     <ImageView
-        android:id="@+id/logoPhoto"
+        android:id="@+id/logoPhoto1"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_alignParentLeft="true"
@@ -17,7 +17,7 @@
         android:visibility="invisible"
         />
     <TextView
-        android:id="@+id/logoPhotoText"
+        android:id="@+id/logoPhotoText1"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_alignParentLeft="true"
@@ -33,7 +33,7 @@
         android:layout_height="wrap_content"
         android:text="@+id/label"
         android:textSize="20sp"
-        android:layout_toRightOf="@+id/logoPhoto"
+        android:layout_toRightOf="@+id/logoPhoto1"
         android:singleLine="true"
         />
 
@@ -43,7 +43,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/labelContact"
-        android:layout_toRightOf="@+id/logoPhoto"
+        android:layout_toRightOf="@+id/logoPhoto1"
         android:text="@string/labelCRM"
         android:textSize="14sp"
         android:textColor="#bbb"
@@ -51,21 +51,12 @@
         />
 
 
-    <Button
-        android:id="@+id/buttonCRM___________________________________________xxxxxx"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/logoPhoto"
-        android:layout_marginRight="6dip"
-        android:text="@string/labelCRM"
-        android:singleLine="true"
 
-        />
     <Button
         android:id="@+id/buttonFiltreCommentedOnly"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/logoPhoto"
+        android:layout_below="@+id/logoPhoto1"
         android:layout_marginRight="6dip"
         android:text="@string/labeFiltreCommmnentedOnly"
         android:singleLine="true"
@@ -75,7 +66,7 @@
         android:id="@+id/buttonPhoneCall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/logoPhoto"
+        android:layout_below="@+id/logoPhoto1"
         android:layout_toRightOf="@+id/buttonFiltreCommentedOnly"
         android:text="@string/Call"
         android:singleLine="true"
@@ -86,7 +77,7 @@
         android:id="@+id/buttonSendMessage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/logoPhoto"
+        android:layout_below="@+id/logoPhoto1"
         android:layout_toRightOf="@+id/buttonPhoneCall"
 
         android:text="@string/labelSendMessage"
@@ -110,7 +101,7 @@
         android:id="@+id/buttonSearchContact"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/logoPhoto"
+        android:layout_below="@+id/logoPhoto1"
         android:text="@string/buttonSearchContact"
         android:singleLine="true"
         android:textSize="12sp"

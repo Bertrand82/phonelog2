@@ -16,7 +16,6 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.ListFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +26,6 @@ import phone.crm2.model.ContactExtra;
 import phone.crm2.model.Event;
 import phone.crm2.model.EventCRM;
 import phone.crm2.model.PhoneCall;
-import phone.crm2.receivers.CallManager;
 
 
 public class FragmentLogDetail extends Fragment implements AdapterView.OnItemClickListener {
@@ -121,12 +119,13 @@ public class FragmentLogDetail extends Fragment implements AdapterView.OnItemCli
 		TextView textViewDetailNumber = view.findViewById(R.id.labelNumber);
 		textViewDetailNumber.setText(normalisedNumber);
 
-		ImageView imageViewPhoto_ = view.findViewById(R.id.logoPhoto);
-		TextView  textViewPhoto = view.findViewById(R.id.logoPhotoText);
+		ImageView imageViewPhoto_ = view.findViewById(R.id.logoPhoto1);
+		TextView  textViewPhoto = view.findViewById(R.id.logoPhotoText1);
 		OnClickListener listenerPhoto = new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
+				Log.i("bg2","FragmentLogDetail onClick");
 				UtilContact.updateContact(FragmentLogDetail.this.getActivity(), contact);
 			}
 		};

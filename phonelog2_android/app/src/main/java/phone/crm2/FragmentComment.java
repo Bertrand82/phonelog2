@@ -93,8 +93,8 @@ public class FragmentComment extends Fragment {
 
 
 
-		ImageView imageViewPhoto = this.getActivity().findViewById(R.id.logoPhoto);
-		TextView textViewPhoto = this.getActivity().findViewById(R.id.logoPhotoText);
+		ImageView imageViewPhoto = this.getActivity().findViewById(R.id.logoPhoto2);
+		TextView textViewPhoto = this.getActivity().findViewById(R.id.logoPhotoText2);
 
 		UtilLogoPhoto.init(this.getActivity(), textViewPhoto, imageViewPhoto, phoneCall.getContact());
 		Log.d("bg2","FragmentComment AAAAA");

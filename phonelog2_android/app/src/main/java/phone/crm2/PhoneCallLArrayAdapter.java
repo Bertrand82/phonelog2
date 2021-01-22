@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.beardedhen.androidbootstrap.AwesomeTextView;
@@ -45,21 +46,22 @@ public class PhoneCallLArrayAdapter extends ArrayAdapter<Event> {
 
 		LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View rowView = inflater.inflate(R.layout.item_list_phonecall, parent, false);
-
-		TextView textViewName = rowView.findViewById(R.id.labelName);
+		RelativeLayout relativeLayout = (RelativeLayout) rowView.findViewById(R.id.layout0);
+		relativeLayout.setTag(event.getContact());
+		TextView textViewName = rowView.findViewById(R.id.labelName0);
 		textViewName.setText(event.getContact().getExtra(context).getDisplayName());
-		textViewName.setTag(event.getContact());
 
 
-		TextView textViewNumber = rowView.findViewById(R.id.labelNumber);
+
+		TextView textViewNumber = rowView.findViewById(R.id.labelNumber0);
 		textViewNumber.setText(event.getContact().getNumber());
 		textViewNumber.setTag(event.getContact());
 
-		TextView textViewDate = rowView.findViewById(R.id.labelDDate);
+		TextView textViewDate = rowView.findViewById(R.id.labelDDate0);
 		String dateAsHour  = ""+event.getDateAsHour();
 		textViewDate.setText(dateAsHour);
 
-		TextView textViewDay = rowView.findViewById(R.id.labelDay);
+		TextView textViewDay = rowView.findViewById(R.id.labelDay0);
 		String dateDay = event.getDateAsDay();
 		
 		if (dateDay.equals(this.dateDay__) && (position > 0)) {
@@ -71,7 +73,7 @@ public class PhoneCallLArrayAdapter extends ArrayAdapter<Event> {
 		}
 		
 
-		TextView textViewComment = rowView.findViewById(R.id.labelComment);
+		TextView textViewComment = rowView.findViewById(R.id.labelComment0);
 		if (event instanceof SMS) {
 			SMS sms = (SMS) event;
 			textViewComment.setText(sms.getMessage());
@@ -80,15 +82,15 @@ public class PhoneCallLArrayAdapter extends ArrayAdapter<Event> {
 			textViewComment.setText(phoneCall.getComment());
 		}
 
-		TextView textViewPhoto = rowView.findViewById(R.id.logoPhotoText);
-		ImageView imageViewPhoto = rowView.findViewById(R.id.logoPhoto);
+		TextView textViewPhoto = rowView.findViewById(R.id.logoPhotoText0);
+		ImageView imageViewPhoto = rowView.findViewById(R.id.logoPhoto0);
 		textViewPhoto.setTag(event.getContact());
 		UtilLogoPhoto.init(context, textViewPhoto,imageViewPhoto,event.getContact());
 
-		AwesomeTextView imageViewType = rowView.findViewById(R.id.logoType);
+		AwesomeTextView imageViewType = rowView.findViewById(R.id.logoType0);
 		UtilActivitiesCommon.setImage(event.getType(), imageViewType);
 
-		AwesomeTextView imagePhoneOuMessage = rowView.findViewById(R.id.logoPhoneOuMessage);
+		AwesomeTextView imagePhoneOuMessage = rowView.findViewById(R.id.logoPhoneOuMessage0);
 		UtilActivitiesCommon.setImagePhoneOuMessage(event.getType(), imagePhoneOuMessage);
 
 		

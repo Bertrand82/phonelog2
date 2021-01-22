@@ -56,7 +56,7 @@ public class UtilContact {
 				} while (cursor.moveToNext());
 			}
 
-
+			cursor.close();
 			return;
 		} catch (Exception e) {
 			Log.w(TAG, "UtilContact excep", e);

@@ -90,6 +90,7 @@ public class ContactTable {
 		contact.setNumber(c.getString(c.getColumnIndex(KEY_NUMBER)));
 		contact.setPrivate(c.getInt(c.getColumnIndex(KEY_IS_PRIVATE)) == 1);
 		// return contact
+		c.close();
 		return contact;
 	}
 
@@ -114,7 +115,7 @@ public class ContactTable {
 		}
 		// return contact
 		Log.i("bg2", "ContactTable getByNumber done contact : " + contact);
-
+		c.close();
 		return contact;
 	}
 
@@ -143,7 +144,7 @@ public class ContactTable {
 				contactList.add(contact);
 			} while (c.moveToNext());
 		}
-
+		c.close();
 		// return contact list
 		return contactList;
 	}

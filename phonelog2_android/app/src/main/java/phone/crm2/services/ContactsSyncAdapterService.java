@@ -36,7 +36,7 @@ import phone.crm2.model.PhoneCall;
 
 public class ContactsSyncAdapterService extends Service {
 	private static final String TAG = "ContactsSyncAdapterService";
-	private static SyncAdapterImpl sSyncAdapter = null;
+	private  SyncAdapterImpl sSyncAdapter = null;
 	private static ContentResolver mContentResolver = null;
 	private static final String PhoneNumberColumn = RawContacts.SYNC1;
 
@@ -238,6 +238,7 @@ public class ContactsSyncAdapterService extends Service {
 //			if (operationList.size() > 0){
 //				mContentResolver.applyBatch(ContactsContract.AUTHORITY, operationList);
 //			}
+			c1.close();
 		} catch (Exception e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();

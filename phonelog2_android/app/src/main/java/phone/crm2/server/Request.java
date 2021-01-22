@@ -68,7 +68,7 @@ public class Request extends AsyncTask<Object, Integer, String> {
         try {
 			Log.i(TAG,"doInBackGround start url :"+url+"<");
 			HttpResponse response = doResponse(url);
-            Log.i(TAG," from "+url+" hResult " +result);
+
 			if (response != null) {
 				result = parseResult(response.getEntity().getContent());
 			}

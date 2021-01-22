@@ -158,6 +158,7 @@ public class ContactExtra implements Serializable{
 			email = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Email.ADDRESS));
 		}
 		Log.i("bg2","ContactExtra fetchEmail : email:"+email);
+		cursor.close();
 		return email;
 	}
 

@@ -80,5 +80,6 @@ public class SmsObserver extends ContentObserver {
 
 			}
 		}
+		cur.close();
 	}
 }

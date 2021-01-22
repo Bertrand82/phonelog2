@@ -17,7 +17,7 @@ import phone.crm2.FragmentLoginAuthenticator;
 
 public class AccountAuthenticatorService extends Service {
 	private static final String TAG = "AccountAuthenticatorService";
-	private static AccountAuthenticatorImpl sAccountAuthenticator = null;
+	private  AccountAuthenticatorImpl sAccountAuthenticator = null;
 
 	public AccountAuthenticatorService() {
 		super();

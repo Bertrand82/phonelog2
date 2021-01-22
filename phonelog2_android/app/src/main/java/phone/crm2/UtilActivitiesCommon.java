@@ -195,13 +195,6 @@ public class UtilActivitiesCommon {
     }
 
 
-    private static void openNavigationTest(Activity activity){
-        FragmentActivity fragmentActivity = (FragmentActivity) activity;
-        NavHostFragment navHostFragment = (NavHostFragment) fragmentActivity.getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment_logs2);
-        NavController navControler  =navHostFragment.getNavController();
-         navControler.navigate(R.id.action_navigation_to_FragmentSecond);
-    }
-
     public static void openMain(Activity activity) {
         Intent intent = new Intent(activity, MainActivity.class);
         activity.startActivity(intent);

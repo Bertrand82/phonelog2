@@ -5,9 +5,7 @@
     android:id="@+id/nav_graph_bg"
     app:startDestination="@id/FragmentMain">
 
-    <action
-        android:id="@+id/action_navigation_to_FragmentSecond"
-        app:destination="@id/FragmentSecond2" />
+
     <action
         android:id="@+id/action_navigation_to_FragmentListCalendars"
         app:destination="@id/FragmentListCalendars" />
@@ -36,9 +34,9 @@
         app:destination="@id/FragmentComment" />
     <fragment
         android:id="@+id/FragmentLogs"
-        android:name="phone.crm2.FragmentLogsFirst"
+        android:name="phone.crm2.FragmentLogsMain"
         android:label="fragment_logs1"
-        tools:layout="@layout/fragment_logs_first">
+        tools:layout="@layout/fragment_logs_main">
     </fragment>
     <fragment
         android:id="@+id/FragmentListCalendars"
@@ -47,12 +45,7 @@
         tools:layout="@layout/fragment_list_calendars"
         >
     </fragment>
-    <fragment
-        android:id="@+id/FragmentSecond2"
-        android:name="phone.crm2.FragmentLogsSecond"
-        android:label="second_fragment_labelAAAa"
-        tools:layout="@layout/fragment_logs_second">
-    </fragment>
+
     <fragment
         android:id="@+id/FragmentAbout"
         android:name="phone.crm2.FragmentAbout"

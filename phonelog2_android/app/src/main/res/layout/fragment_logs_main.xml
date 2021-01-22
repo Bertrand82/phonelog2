@@ -23,11 +23,5 @@
         android:layout_below="@android:id/list"
         />
 
-    <Button
-        android:id="@+id/button_first"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Fragment.first.buttonAAA"
-        android:layout_below="@+id/comment_first"
-        />
+
 </RelativeLayout>

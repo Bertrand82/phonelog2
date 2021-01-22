@@ -10,13 +10,12 @@ import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.ListFragment;
-import androidx.navigation.fragment.NavHostFragment;
 
 import java.util.List;
 
 import phone.crm2.model.Event;
 
-public class FragmentLogsFirst extends ListFragment {
+public class FragmentLogsMain extends ListFragment {
 
     private PhoneCallLArrayAdapter adapter;
     private Spinner spinner;
@@ -26,12 +25,12 @@ public class FragmentLogsFirst extends ListFragment {
             Bundle savedInstanceState
     ) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_logs_first, container, false);
+        return inflater.inflate(R.layout.fragment_logs_main, container, false);
     }
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        initNavigation(view);
+
         //final String[] items = {"aaaa","bbbb","cccc"};
         //final ArrayAdapter<String> aa = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_list_item_1, items);
         initSpinner();
@@ -105,13 +104,5 @@ public class FragmentLogsFirst extends ListFragment {
     }
 
 
-    private void initNavigation(View view) {
-        view.findViewById(R.id.button_first).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                NavHostFragment.findNavController(FragmentLogsFirst.this)
-                        .navigate(R.id.action_navigation_to_FragmentSecond);
-            }
-        });
-    }
+
 }

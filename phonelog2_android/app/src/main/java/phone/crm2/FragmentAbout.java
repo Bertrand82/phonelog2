@@ -9,7 +9,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.navigation.fragment.NavHostFragment;
 
 public class FragmentAbout extends Fragment {
 
@@ -51,7 +54,11 @@ public class FragmentAbout extends Fragment {
                 sendMail();// Ouvre le sender de mail par defaut de l'user
             }
         });
+
+
     }
+
+
 
 
     private void sendMail() {

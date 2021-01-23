@@ -16,10 +16,12 @@ public class PhoneStateListener2 extends android.telephony.PhoneStateListener {
     private ApplicationBg applicationBg;
 
     private HashMap<String,Appel> hIdNotification=new HashMap<>();
+    private final UtilNotifications utilNotifications;
 
     public PhoneStateListener2(ApplicationBg appBg) {
         Log.v("bg2 PhoneStateListener2 ","constructeur");
         this.applicationBg =appBg;
+        this.utilNotifications = new UtilNotifications(appBg);
 
     }
 
@@ -30,21 +32,21 @@ public class PhoneStateListener2 extends android.telephony.PhoneStateListener {
         boolean isRinging = TelephonyManager.CALL_STATE_RINGING==state;
         boolean isOffHook = TelephonyManager.CALL_STATE_OFFHOOK==state;
         boolean isIdle = TelephonyManager.CALL_STATE_IDLE==state;
-        Log.v("bg2 PhoneStateListener2 ","state :"+state+"::::::::::::::::::::   Number :>"+number+"<  state " +state+"| isRinging : "+isRinging+" | isOffHook: "+isOffHook+"| isIdle : "+isIdle+"   hashCode : "+hashCode()+" ");
+        Log.v("bg2 PhoneStateListener2 ","state :"+state+" Number:>"+number+"< state:" +state+"|isRinging:"+isRinging+"|isOffHook:"+isOffHook+"|isIdle:"+isIdle+"hashCode : "+hashCode()+" ");
         if(isRinging){
             Log.i("bg2 PhoneStateListener2 ", "isRinging!  caller number : " + number);
             if (isNotified(number)){
                 Log.i("bg2 PhoneStateListener2 ", "isAlreadyNotified !"+number );
             }else {
 
-                int idNotification = UtilNotifications.notificationSonneries(applicationBg, number);
+                int idNotification = this.utilNotifications.notificationSonneries( number);
                 setIdNotification(number, idNotification);
             }
         }else {
             int idNotification = getIdNotification(number);
             removeIdNotification(number);
             if (idNotification!= 0) {
-                UtilNotifications.cancelNotification(applicationBg, idNotification);
+                utilNotifications.cancelNotification( idNotification);
             }
             // Decrochage : On supprime la notification
             // C'est gérer par le service PhoneCallService qui observe la basse de données des appels .

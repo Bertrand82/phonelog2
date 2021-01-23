@@ -15,13 +15,7 @@
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/bdd_spinner2" />
 
-    <TextView
-        android:id="@+id/comment_first___DEPRECATED"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextViewFramentFirstZZZ"
-        android:layout_below="@android:id/list"
-        />
+
 
 
 </RelativeLayout>

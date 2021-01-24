@@ -51,7 +51,6 @@ public class UtilContact {
 					tc.lk = cursor.getString(cursor.getColumnIndex(PhoneLookup.LOOKUP_KEY));
 					tc.nn = cursor.getString(cursor.getColumnIndex(PhoneLookup.NORMALIZED_NUMBER));
 					// Adding PhoneCall to list
-					Log.i(TAG, tc.toString());
 					list.add(tc);
 				} while (cursor.moveToNext());
 			}
@@ -69,7 +68,6 @@ public class UtilContact {
 		if (contact == null) {
 			return;
 		}
-		Log.i("bg2", " ------------------------------------------ updateContact  isInContacts : " + contact.isInContacts(context) + "  " + contact);
 
 		if (!contact.isInContacts(context)) {
 
@@ -86,7 +84,6 @@ public class UtilContact {
 		// Gets values from the UI tact phone : " + phone + " | name :
 		// " + name+" lookup "+lookup);
 		// A content URI pointing to the contact
-		Log.i("bg2", "editContact_ " + contact);
 
 		// Intent editIntent = new Intent(Intents.Insert.ACTION);
 		Uri mSelectedContactUri = Contacts.getLookupUri(contact.getId(), "" + contact.getExtra(activity).getLookup_key());
@@ -111,7 +108,6 @@ public class UtilContact {
 
 	private static void insertNewContact(Activity activity, Contact contact) {
 		// Gets values from the UI
-		Log.i("bg", "insertNewContact phone : " + contact.getNumber());
 
 		// Gets values from the UI
 

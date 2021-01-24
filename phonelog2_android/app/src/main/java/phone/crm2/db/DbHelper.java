@@ -33,9 +33,7 @@ public class DbHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        Log.w(TAG, "Upgrading database from version "
-                + oldVersion + " to " + newVersion
-                + ", which will destroy all old data");
+
         this.contact.onUpgrade(db,oldVersion,newVersion);
         this.calendarsSelected.onUpgrade(db, oldVersion, newVersion);
     }

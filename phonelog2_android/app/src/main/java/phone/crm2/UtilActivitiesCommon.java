@@ -41,9 +41,8 @@ import com.beardedhen.androidbootstrap.font.Typicon;
 public class UtilActivitiesCommon {
     static {
         TypefaceProvider.registerDefaultIconSets();
-        Log.i("bg2", "IconSet logIconSet TypefaceProvider.getRegisteredIconSets().size "+TypefaceProvider.getRegisteredIconSets().size());
         for(IconSet iconSet : TypefaceProvider.getRegisteredIconSets()){
-            Log.i("bg2", "logIconSet "+iconSet);
+           // Log.d("bg2", "logIconSet "+iconSet);
         }
     }
     final static boolean editMode = true;
@@ -142,25 +141,20 @@ public class UtilActivitiesCommon {
 
 
     public static void openPrivateList(Activity activity) {
-        Log.i("bg2","UtilActivitiesCommon openPrivateList  activity : "+activity);
         FragmentActivity fragmentActivity = (FragmentActivity) activity;
         NavHostFragment navHostFragment = (NavHostFragment) fragmentActivity.getSupportFragmentManager()
                 .findFragmentById(R.id.nav_host_fragment_logs2);
         NavController navControler  =navHostFragment.getNavController();
-        Log.i("bg2","openAbout Test activity navControler "+navControler);
-
         navControler.navigate(R.id.action_navigation_to_DisplayPrivateList);
 
     }
 
 
     private static void openAbout(Activity activity) {
-        Log.i("bg2","openAbout Test activity : "+activity);
         FragmentActivity fragmentActivity = (FragmentActivity) activity;
         NavHostFragment navHostFragment = (NavHostFragment) fragmentActivity.getSupportFragmentManager()
                 .findFragmentById(R.id.nav_host_fragment_logs2);
        NavController navControler  =navHostFragment.getNavController();
-        Log.i("bg2","openAbout Test activity navControler "+navControler);
 
         navControler.navigate(R.id.action_navigation_to_FragmentAbout);
 
@@ -203,7 +197,6 @@ public class UtilActivitiesCommon {
 
 
     public static boolean onOptionsItemSelected(MenuItem item, Activity activity) {
-        Log.i("bg2", "UtilActivitiesCommon.onOptionsItemSelected ");
         if (item.getItemId() == R.id.action_display_private_list) {
             UtilActivitiesCommon.openPrivateList(activity);
             return true;
@@ -228,14 +221,12 @@ public class UtilActivitiesCommon {
             return true;
 
         } else {
-            Log.i("bg2", "onOptionsItemSelected  false");
             return false;
         }
 
     }
 
     private static void sendSms(String msg) {
-        Log.e("bg2","Send sms no implemented yet");
         SmsManager sm = SmsManager.getDefault();
         sm.sendTextMessage(null, null, msg, null, null);
     }
@@ -279,13 +270,10 @@ public class UtilActivitiesCommon {
 
     private static void initButtonNavigation(final Activity activity, Button buttonLogs, Button buttonPrivateList, Button buttonOptions, Button buttonLastCall, Button buttonAndroidPhoneSystem) {
         if (buttonLogs == null) {
-            Log.i(TAG, "initButtonNavigation buttonLogs is null !!!!");
         } else {
-            Log.i(TAG, "initButtonNavigation buttonLogs " + buttonLogs);
             buttonLogs.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Log.i(TAG, "initButtonNavigation buttonLogs onClick");
                     UtilActivitiesCommon.startLogsActivity(activity);
                 }
             });
@@ -327,7 +315,6 @@ public class UtilActivitiesCommon {
     }
 
     public static void callNumber(Activity activity, String number) {
-        Log.i(TAG, "Call Number");
         String url = "tel:" + number;
         Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse(url));
         activity.startActivity(intent);
@@ -385,7 +372,6 @@ public class UtilActivitiesCommon {
     }
 
     public static void popUp(Context context, String title, String message) {
-        Log.i("bg2", "Pop up "+title+" message "+message);
         AlertDialog alertDialog = new AlertDialog.Builder(context).create();
         alertDialog.setTitle(title);
         alertDialog.setMessage(message);
@@ -466,14 +452,10 @@ public class UtilActivitiesCommon {
 
 
     private static void displayActivity_(Context context, Contact contact, Serializable storage, boolean newActivity, @SuppressWarnings("rawtypes") Class clazz) {
-
-        Log.i("bg2", "ActivityPhoneLog.displayActivityLogDetail " + contact + "  Storage:" + storage + "   class: " + clazz);
-
         Intent intent = new Intent(context, clazz);
         Bundle b = new Bundle();
         b.putSerializable("contact", contact);
         b.putSerializable("storage", storage);
-        Log.i(TAG, "Start ----  " + b.getSerializable("contact"));
         intent.putExtras(b);
         if (newActivity) {
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

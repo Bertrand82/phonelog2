@@ -43,13 +43,10 @@ public class AppAccountTable {
 	}
 
 	public void onCreate(SQLiteDatabase database) {
-		Log.i(TAG, "AppAccount OnCreate");
-		Log.i(TAG, REQUEST_CREATE);
 		database.execSQL(REQUEST_CREATE);
 	}
 
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-		Log.i(TAG, "OnUpgrade");
 		db.execSQL(REQUEST_DELETE);
 		onCreate(db);
 	}
@@ -116,10 +113,6 @@ public class AppAccountTable {
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	private AppAccount hydrate(Cursor cursor) {
 		AppAccount appAccount = new AppAccount();
-		Log.i(TAG, "cursor before hydrate, type for KEY_ID  cursor.getPosition : " + cursor.getPosition());
-		Log.i(TAG, "cursor before hydrate, type for KEY_ID  cursor.getCount : " + cursor.getCount());
-	
-		Log.i(TAG, "cursor before hydrate, type for KEY_ID column: " + cursor.getType(cursor.getColumnIndex(KEY_ID)));
 		appAccount.setId(cursor.getLong(cursor.getColumnIndex(KEY_ID)));
         appAccount.setMail(cursor.getString(cursor.getColumnIndex(KEY_MAIL))); 
         appAccount.setPassword(cursor.getString(cursor.getColumnIndex(KEY_PASSWORD)));

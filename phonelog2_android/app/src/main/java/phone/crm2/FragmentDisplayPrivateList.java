@@ -54,12 +54,9 @@ public class FragmentDisplayPrivateList extends ListFragment {
     }
 
     public void clear() {
-        Log.i("bg2","FragmentDisplayPrivateList clear  size: "+listPrivateContacts.size());
-
         for(Contact c : this.listPrivateContacts){
             c.setPrivate(false);
             Contact c2 = applicationBg.getDb().getContact().update(c);
-            Log.i("bg2","FragmentDisplayPrivateList   clear "+c2);
         }
 
         this.initList();
@@ -115,14 +112,11 @@ public class FragmentDisplayPrivateList extends ListFragment {
         }
 
         private void remove(int position){
-            Log.i("bg2","Remove position"+position+"  ");
             Contact contact = listPrivateContacts.get(position);
             contact.setPrivate(false);
             Contact c2 = applicationBg.getDb().getContact().update(contact);
-            Log.i("bg2","Remove"+c2);
 
             initList();
-            Log.i("bg2","Remove listPrivateContacts.size "+listPrivateContacts.size());
             updateNb();
             super.notifyDataSetChanged();
         }

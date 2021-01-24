@@ -57,10 +57,8 @@ public class FragmentComment extends Fragment {
 
 	private void initFragmentComment() {
 
-		Log.i("bg2","FragmentComment onCreate");
 		this.applicationBg = this.getApplicationBg();
 		Bundle bundle = getArguments();
-		Log.i("bg2","FragmentComment onCreate bundle : "+bundle);
 		if (bundle == null) {
 			this.storage = null;
 		} else {
@@ -71,33 +69,23 @@ public class FragmentComment extends Fragment {
 
 
 		if (phoneCallFromExtra != null) {
-			Log.i("bg2","FragmentComment phoneCall In extra arguments");
 			this.phoneCall = phoneCallFromExtra;
 		} else {
 			// TODO on ne doit plus gerer le phoneCAll dans applicationBg.
-			Log.i("bg2","FragmentComment phoneCall In applicationBg");
 			this.phoneCall = applicationBg.getPhoneCall();
 		}
 
 		if (this.phoneCall == null){
-			Log.e("bg2", "FragmentComment no phoneCall in extra, i get celui de applicationBg . PAs Normal");
 			this.phoneCall =applicationBg.getPhoneCall();
 		}
 		if (phoneCall == null) {
-			Log.i("bg2", "FragmentComment No last PhoneCall redirect on logs fragment");
 			UtilActivitiesCommon.openLogs(this.getActivity());
 			return;
 		}
-
-		Log.d("bg2","FragmentComment isForeground "+this.applicationBg.isForeground());
-
-
-
 		ImageView imageViewPhoto = this.getActivity().findViewById(R.id.logoPhoto2);
 		TextView textViewPhoto = this.getActivity().findViewById(R.id.logoPhotoText2);
 
 		UtilLogoPhoto.init(this.getActivity(), textViewPhoto, imageViewPhoto, phoneCall.getContact());
-		Log.d("bg2","FragmentComment AAAAA");
 		// imageViewPhoto.setImageURI(phoneCall.getContact().getExtra(this.applicationBg).getPhotoUri());
 		OnClickListener listenerEditContact = new OnClickListener() {
 
@@ -106,7 +94,6 @@ public class FragmentComment extends Fragment {
 				editContact();
 			}
 		};
-		Log.d("bg2","FragmentComment BBBBB");
 
 		if (imageViewPhoto.getVisibility() == View.VISIBLE) {
 			imageViewPhoto.setOnClickListener(listenerEditContact);
@@ -116,15 +103,11 @@ public class FragmentComment extends Fragment {
 		}
 		textViewContact = this.getActivity().findViewById(R.id.labelContact3);
 		String nameContact = phoneCall.getContact().getExtra(this.applicationBg).getDisplayName();
-		Log.d("bg2","FragmentComment BBBBBB nameContact:"+nameContact);
 
-		Log.v(TAG,"FragmentComment nameContact :"+nameContact);
 		textViewContact.setText(nameContact);
 
 		textViewNumber = this.getActivity().findViewById(R.id.labelNumber2);
 		String number = phoneCall.getContact().getNumber();
-		Log.v(TAG,"FragmentComment number :"+number);
-		Log.v(TAG,"FragmentComment textViewNumber getTextColors :"+textViewNumber.getTextColors());
 		textViewNumber.setText(number);
 		AwesomeTextView imagePhoneOuMessage = this.getActivity().findViewById(R.id.logoPhoneOuMessage);
 		UtilActivitiesCommon.setImagePhoneOuMessage(phoneCall.getType(), imagePhoneOuMessage);
@@ -145,7 +128,6 @@ public class FragmentComment extends Fragment {
 			@Override
 			public void onClick(View arg0) {
 				//UtilEmail.sendMessage(FragmentComment.this.getActivity(),phoneCall);
-				Log.i("bg2", "FragmentComment buttonDeleteEnregistrement  delete  ");
 
 				//FragmentComment.this.finish();// Empeche la navigation arriere
 			}
@@ -156,10 +138,7 @@ public class FragmentComment extends Fragment {
 		OnClickListener listenerButtoncallAgain = new OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
-				Log.i("bg2", "buttonBackToDetail Contact start");
-
 				if (phoneCall != null) {
-					Log.i("bg2", "Edit Contact : " + phoneCall.getContact());
 					UtilActivitiesCommon.displayActivityLogDetail(FragmentComment.this.getActivity(), phoneCall.getContact(),storage);
 				}
 			}
@@ -175,7 +154,6 @@ public class FragmentComment extends Fragment {
 
 				if (phoneCall != null) {
 					phoneCall.setComment(comment);
-					Log.i(TAG, "comment :" + comment);
 					// Send to ground
 					UpdateResult result = UtilCalendar.update(applicationBg, phoneCall);
 
@@ -197,7 +175,6 @@ public class FragmentComment extends Fragment {
 				}
 
 				Contact contact = phoneCall.getContact();
-				Log.i(TAG, "Change contact privacy :" + contact);
 				contact.setPrivate(!contact.isPrivate(applicationBg));
 				applicationBg.getDb().getContact().update(contact);
 				setButtonLabel();
@@ -205,13 +182,11 @@ public class FragmentComment extends Fragment {
 		};
 
 		buttonAddRemoveToPrivateList.setOnClickListener(buttonListenerRemoveFromPrivateList);
-		Log.v(TAG,"FragmentComment init done!!");
 	}
 
 	private void setButtonLabel() {
 		if (phoneCall == null) {
 		}else if (phoneCall.getContact()==null){
-			Log.i(TAG,"fragmentComment No Contact for this number!! ");
 		} else if (phoneCall.getContact().isPrivate(applicationBg)) {
 			buttonAddRemoveToPrivateList.setText(getString(R.string.activity_comment_remove_from_private_list));
 			//buttonAddRemoveToPrivateList.setBootstrapType("success");
@@ -222,7 +197,6 @@ public class FragmentComment extends Fragment {
 	}
 
 	public void editContact() {
-		Log.i(TAG, "editContact from log detail Contact_LEGACY_DEPRECATED :" + phoneCall.getContact());
 		UtilContact.updateContact(this.getActivity(), phoneCall.getContact());
 	}
 

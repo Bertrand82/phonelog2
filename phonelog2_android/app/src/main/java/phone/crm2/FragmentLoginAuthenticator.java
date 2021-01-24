@@ -57,15 +57,12 @@ public class FragmentLoginAuthenticator extends Fragment {
 	/** Called when the activity is first created. */
 
 	public void init() {
-		Log.i(TAG, "FragmentLogin 1 init ");
-
 		context = (ApplicationBg) this.getActivity().getApplication();
 		AccountManager accountManager = AccountManager.get(context);
 		Account[] accounts = accountManager.getAccountsByType(ApplicationBg.ACCOUNT_TYPE);
 		TagManager tagManager = TagManager.getInstance(this.getActivity());
 		tagManager.setVerboseLoggingEnabled(true);
 		//ContainerOpener.openContainer(tagManager, CONTAINER_ID, OpenType.PREFER_NON_DEFAULT, null);
-		Log.i(TAG, "FragmentLoginAuth 2 accounts.length  "+accounts.length);
 		if (accounts.length == 0) {
 
 			editTextAccountName = getActivity().findViewById(R.id.accountName);
@@ -85,8 +82,6 @@ public class FragmentLoginAuthenticator extends Fragment {
 			mLoginButton.setOnClickListener(new OnClickListener() {
 				public void onClick(View v) {
 					boolean isValidLogin = isValidLogin(("" + editTextAccountName.getText()).trim());
-					Log.i(TAG, "FragmentLoginAuth On Click  isValidEmail >" + editTextAccountName.getText());
-					Log.i(TAG, "FragmentLoginAuth  On Click  isValidEmail " + isValidLogin);
 					if (isValidLogin) {
 						String mail = editTextAccountName.getText().toString().trim();
 						String password = "xxx";
@@ -105,7 +100,6 @@ public class FragmentLoginAuthenticator extends Fragment {
 					}
 				}
 			});
-			Log.i(TAG, "FragmentLoginAuth 3 ");
 		} else {// accounts.length != 0
 			CharSequence text = "You already have an account on this phone!";
 			int duration = Toast.LENGTH_LONG;
@@ -116,7 +110,6 @@ public class FragmentLoginAuthenticator extends Fragment {
 	}
 
 	private Boolean createAccountOnDevice(AppAccount appAccount) {
-		Log.i(TAG, "FragmentLoginAuth createAccountOnDevice appAccount :" + appAccount);
 		appAccount = context.getDb().getAppAccount().insert(appAccount);
 		Bundle result = null;
 		Account account = new Account(appAccount.getMail(), context.getString(R.string.ACCOUNT_TYPE));
@@ -134,7 +127,6 @@ public class FragmentLoginAuthenticator extends Fragment {
 		} else {
 			isAccountAdded = false;
 		}
-		Log.i(TAG, "FragmentLoginAuth isAccountAdded " + isAccountAdded);
 		return isAccountAdded;
 	}
 

@@ -40,13 +40,10 @@ public class ContactTable {
 	}
 
 	public void onCreate(SQLiteDatabase database) {
-		Log.i(TAG, "ContactTAble OnCreate");
-		Log.i(TAG, "ContactTAble OnCreate " + REQUEST_CREATE);
 		database.execSQL(REQUEST_CREATE);
 	}
 
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-		Log.i(TAG, "ContactTAble OnUpgrade " + oldVersion + " " + newVersion);
 		db.execSQL(REQUEST_DROP_TABLE_IF_E);
 		onCreate(db);
 	}
@@ -72,7 +69,6 @@ public class ContactTable {
 		// Inserting Row
 		long id = db.insert(TABLE_NAME, null, values);
 		contact.setId(id);
-		Log.i("bg2", "insert contact  done " + id);
 		db.close(); // Closing database connection
 		return contact;
 	}
@@ -97,7 +93,6 @@ public class ContactTable {
 	public Contact getByNumber(String number) {
 
 		Contact contact = null;
-		Log.i("bg2", "ContactTable getByNumber contact number: " + number);
 		SQLiteDatabase db = this.dbHelper.getReadableDatabase();
 
 		Cursor c = db.query(TABLE_NAME, ALL_KEYS, KEY_NUMBER + "=?", new String[] { number }, null, null, null, null);
@@ -114,7 +109,6 @@ public class ContactTable {
 			contact.setPrivate(c.getInt(c.getColumnIndex(KEY_IS_PRIVATE)) == 1);
 		}
 		// return contact
-		Log.i("bg2", "ContactTable getByNumber done contact : " + contact);
 		c.close();
 		return contact;
 	}
@@ -151,7 +145,6 @@ public class ContactTable {
 
 	public Contact update(Contact contact) {
 		try {
-			Log.i("bg2", "update Contact start ----- contact.getId "+contact.getId());
 			if (contact.getId() == 0) {
 				Contact contactByNumber = this.getByNumber(contact.getNumber());
 				contact.setId(contactByNumber.getId());
@@ -175,11 +168,9 @@ public class ContactTable {
 			int result = db.update(TABLE_NAME, values, KEY_ID + " = ?", new String[] { String.valueOf(contact.getId()) });
 
 			if (result != 1) {
-				Log.e(TAG, "Contact No row or more than one row modified");
 				throw new Exception("Contact No row or more than one row modified " + contact);
 			}else {
-				Log.i("bg2", "update contact done "+contact);
-				
+		//
 			}
 
 		} catch (Exception e) {
@@ -219,13 +210,11 @@ public class ContactTable {
 			cursor = cr.query(Data.CONTENT_URI, projection, selection, selectionParams, null);
 			r = null;
 			boolean hasResult = cursor.moveToFirst();
-			Log.i("bg2", "getCustomField2 hasResult " + hasResult);
 			if (hasResult) {
 				// DATA1 : Nom du champs (ClienId par exemple ...)
 				int columnIndex = cursor.getColumnIndex(Data.DATA2);
 				r = cursor.getString(columnIndex);
-				Log.i("bg2", "getCustomField raw_contact_id  :" + raw_contact_id + " custom field : " + r);
-			}
+		}
 		} catch (Exception e) {
 			Log.w("bg2", "getCustomField2 ", e);
 		} finally {

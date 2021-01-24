@@ -42,15 +42,11 @@ public class PhoneCallObserver extends ContentObserver {
 	public void onChange(boolean selfChange) {
 		super.onChange(selfChange);
 		
-		Log.w(TAG, "PhoneCallObserver onchange selfChange: "+selfChange);
-		Log.w(TAG, "PhoneCallObserver queryPhoneCall A number_Z_1 : "+number_Z_1);
 		if (selfChange){
-			Log.w(TAG, "PhoneCallObserver onchange selfChange NO Processing !!  ");
 			return;
 		}
 		// Uri uriSMS = Uri.parse("content://sms/");
 		PhoneCall phoneCall = lastOutGoingPhoneCall();
-		Log.w(TAG, "PhoneCallObserver queryPhoneCall B  lastOutGoingPhoneCall : " + phoneCall);
 		if (phoneCall == null) {
 			return;
 		} 
@@ -59,17 +55,15 @@ public class PhoneCallObserver extends ContentObserver {
 			return;
 		}
         if ((phoneCall.getId() == -1 )) {
-			Log.w(TAG, "PhoneCallObserver YY queryPhoneCall phoneCall No valid id==-1 " + phoneCall);
+			//Log.i(TAG, "PhoneCallObserver YY queryPhoneCall phoneCall No valid id==-1 " + phoneCall);
         }else if ((phoneCall.getId()==id_Z_1 )) {
-        	Log.w(TAG, "PhoneCallObserver ZZ same id "+phoneCall);
+        	//Log.i(TAG, "PhoneCallObserver ZZ same id "+phoneCall);
         }else if ((number.equals("-1") )) {
-    			Log.w(TAG, "PhoneCallObserver AA queryPhoneCall phoneCall numbrvNo -1 " + phoneCall);
+    		//	Log.i(TAG, "PhoneCallObserver AA queryPhoneCall phoneCall numbrvNo -1 " + phoneCall);
 		} else if (number.equals(number_Z_1) && (phoneCall.getDate() == timeStart_Z_1) && (phoneCall.getType()==type_Z_1)) {
-			Log.w(TAG, "PhoneCallObserver BB queryPhoneCall same number, time,  type,  processed " + phoneCall);
-		} else if (number.equals(number_Z_1) && (phoneCall.getDate() == timeStart_Z_1) ) {
-			Log.w(TAG, "PhoneCallObserver CC queryPhoneCall already processed " + phoneCall);
+			//Log.i(TAG, "PhoneCallObserver BB queryPhoneCall same number, time,  type,  processed " + phoneCall);
+		} else if (number.equals(number_Z_1) && (phoneCall.getDate() == timeStart_Z_1) ) { //Log.i(TAG, "PhoneCallObserver CC queryPhoneCall already processed " + phoneCall);
 		} else {
-			Log.w(TAG, "PhoneCallObserver DD queryPhoneCall ok process ");
 			phoneCall.setId(0);// Si Id !0, il ne sera pas inseré. // TODO
 								// Garder l'id de la table CALLS
 			processPhoneCall(phoneCall);
@@ -89,16 +83,15 @@ public class PhoneCallObserver extends ContentObserver {
 
 		String number = phoneCall.getContact().getNumber();
 		boolean  isPrivate = this.applicationBg_.getDb().getContact().isPrivateByNumber(number);
-		Log.i(TAG,"PhoneCallObserver processPhoneCall number :"+number+" isPrivate :"+isPrivate);
 		phoneCall.getContact().setPrivate(isPrivate);
 		long age = System.currentTimeMillis()  -(phoneCall.getDate()+phoneCall.getDuration_ms());
 		if (age >60L*1000L){
-			Log.i(TAG,"PhoneCallObserver processPhoneCall Fausse Alerte");
+			//Log.d(TAG,"PhoneCallObserver processPhoneCall Fausse Alerte");
 			// C'est un bug. Il ya des fausses  alertes parfois
 		} else if (phoneCall.getContact().isPrivate(this.applicationBg_)) {
-			Log.i(TAG,"PhoneCallObserver processPhoneCall isPrivate");
+			//Log.d(TAG,"PhoneCallObserver processPhoneCall isPrivate");
 		} else if (phoneCall.equals2(phoneCall_Z_1)) {
-			Log.i(TAG,"PhoneCallObserver processPhoneCall equals Z_1");
+			//Log.d(TAG,"PhoneCallObserver processPhoneCall equals Z_1");
 		}else{
 			//applicationBg_.getDb().getPhoneCall().insert(phoneCall);
 			HashMap<BgCalendar,  Long> hIds = UtilCalendar.insertEventInSelectedCalendars(applicationBg_, phoneCall);

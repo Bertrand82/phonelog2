@@ -48,14 +48,10 @@ public class CalendarSelectedTable {
 	}
 
 	public void onCreate(SQLiteDatabase database) {
-		Log.i(TAG, "CalendarSelectedTable OnCreate");
-		Log.i(TAG, REQUEST_CREATE_IF_NOT_EXISTS);
 		database.execSQL(REQUEST_CREATE_IF_NOT_EXISTS);
-	
 	}
 
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-		Log.i(TAG, "OnUpgrade oldVersion: "+oldVersion+"  newVersion :"+newVersion);
 		db.execSQL(REQUEST_DELETE);
 		onCreate(db);
 	}
@@ -114,8 +110,6 @@ public class CalendarSelectedTable {
 		Cursor c = db.rawQuery(request, null);
 		
 
-		Log.i(TAG,"cursor size : " + c.getCount());
-		Log.i(TAG,"cursor request : " + request);
 		// looping through all rows and adding to list
 		if (c.moveToFirst()) {
 			do {

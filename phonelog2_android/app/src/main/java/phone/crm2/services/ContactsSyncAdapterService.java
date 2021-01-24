@@ -57,7 +57,7 @@ public class ContactsSyncAdapterService extends Service {
 			try {
 				ContactsSyncAdapterService.performSync(mContext, account, extras, authority, provider, syncResult);
 			} catch (OperationCanceledException e) {
-				Log.i(TAG,"OperationCanceledException ",e);
+				Log.w(TAG,"OperationCanceledException ",e);
 			}
 		}
 	}
@@ -76,7 +76,6 @@ public class ContactsSyncAdapterService extends Service {
 	}
 
 	private static void addContact(Account account,Contact contact) {
-		Log.i(TAG, "Adding contact: " + contact.getNumber());
 		ArrayList<ContentProviderOperation> operationList = new ArrayList<ContentProviderOperation>();
 
 		int rawContactInsertIndex = operationList.size();
@@ -124,44 +123,11 @@ public class ContactsSyncAdapterService extends Service {
 //            toast.show();
 
             // Log exception
-            Log.e(TAG, "Exception encountered while inserting contact: " + e);
+            Log.e(TAG, "Exception encountered while inserting contact: " , e);
 		}
 	}
 
-	private static void updateContactStatus(ArrayList<ContentProviderOperation> operationList, long rawContactId, String status) {
-		Uri rawContactUri = ContentUris.withAppendedId(RawContacts.CONTENT_URI, rawContactId);
-		Uri entityUri = Uri.withAppendedPath(rawContactUri, Entity.CONTENT_DIRECTORY);
-		Cursor c = mContentResolver.query(entityUri, new String[] { RawContacts.SOURCE_ID, Entity.DATA_ID, Entity.MIMETYPE, Entity.DATA1 }, null, null, null);
-		try {
-			while (c.moveToNext()) {
-				if (!c.isNull(1)) {
-					String mimeType = c.getString(2);
 
-					if (mimeType.equals( R.string.MIMETYPE_PHONELOG)) {
-						ContentProviderOperation.Builder builder = ContentProviderOperation.newInsert(ContactsContract.StatusUpdates.CONTENT_URI);
-						builder.withValue(ContactsContract.StatusUpdates.DATA_ID, c.getLong(1));
-						builder.withValue(ContactsContract.StatusUpdates.STATUS, status);
-						builder.withValue(ContactsContract.StatusUpdates.STATUS_RES_PACKAGE, "org.c99.SyncProviderDemo");
-						builder.withValue(ContactsContract.StatusUpdates.STATUS_LABEL, R.string.app_name);
-						builder.withValue(ContactsContract.StatusUpdates.STATUS_ICON, R.drawable.ic_launcher);
-						builder.withValue(ContactsContract.StatusUpdates.STATUS_TIMESTAMP, System.currentTimeMillis());
-						operationList.add(builder.build());
-
-						//Only change the text of our custom entry to the status message pre-Honeycomb, as the newer contacts app shows
-						//statuses elsewhere
-						if(Integer.decode(Build.VERSION.SDK) < 11) {
-							builder = ContentProviderOperation.newUpdate(ContactsContract.Data.CONTENT_URI);
-							builder.withSelection(BaseColumns._ID + " = '" + c.getLong(1) + "'", null);
-							builder.withValue(ContactsContract.Data.DATA3, status);
-							operationList.add(builder.build());
-						}
-					}
-				}
-			}
-		} finally {
-			c.close();
-		}
-	}
 	
 	private static void updateContactPhoto(ArrayList<ContentProviderOperation> operationList, long rawContactId, byte[] photo) {
 		ContentProviderOperation.Builder builder = ContentProviderOperation.newDelete(ContactsContract.Data.CONTENT_URI);
@@ -181,7 +147,7 @@ public class ContactsSyncAdapterService extends Service {
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Log.e("bg"," Excep",e);
 		}
 	}
 	
@@ -194,7 +160,6 @@ public class ContactsSyncAdapterService extends Service {
 			throws OperationCanceledException {
 		HashMap<String, SyncEntry> localContacts = new HashMap<String, SyncEntry>();
 		mContentResolver = context.getContentResolver();
-		Log.i(TAG, "performSync: " + account.toString());
 
 		// Load the local contacts
 		Uri rawContactUri = RawContacts.CONTENT_URI.buildUpon().appendQueryParameter(RawContacts.ACCOUNT_NAME, account.name).appendQueryParameter(
@@ -240,8 +205,8 @@ public class ContactsSyncAdapterService extends Service {
 //			}
 			c1.close();
 		} catch (Exception e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+			Log.e("bg"," Excep",e1);
+
 		}
 	}
 }

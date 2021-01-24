@@ -19,8 +19,6 @@ public class UtilEmail {
 
 
 	public static boolean sendMessage(Context activity,Contact contact) {
-		Log.i("bg2","UtilMail sendMessage message simple 9999999999999999");
-
 		//intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		String destinataireMail = contact.getEmailFromContact(activity);
 		if (destinataireMail==null){
@@ -33,7 +31,6 @@ public class UtilEmail {
 	}
 
 	public static boolean sendMessage(Context activity, String phoneNumber, String destinataireEmail, String subject, String message){
-		Log.i("bg2","UtilMail sendMessage phoneNumber: "+phoneNumber);
 		Intent intent = new Intent(Intent.ACTION_SEND);//intent will do work of sending something
 		intent.putExtra(Intent.EXTRA_EMAIL  , new String[]{destinataireEmail});
 		intent.putExtra(Intent.EXTRA_TEXT, message);//send given message
@@ -53,7 +50,6 @@ public class UtilEmail {
 	public static boolean sendMessage___OLD(Context activity, String destinataire, String subject, String text){
 		String phoneNumber = "+15555555555";
 		Uri uri = Uri.parse("smsto:" + phoneNumber);
-		Log.i("bg2","UtilMail sendMessage mail simple v2 aaaaaabbbbbbbbbbbbb");
 		Intent i = new Intent(Intent.ACTION_SEND,uri);
 		//i.setData(Uri.parse("mailto:")); // only email apps should handle this
 
@@ -63,7 +59,6 @@ public class UtilEmail {
 		try {
 			activity.startActivity(Intent.createChooser(i, "Send ..."));
 		} catch (android.content.ActivityNotFoundException ex) {
-			Log.e("bg2","UtilMail sendMail mail simple 0000000"+ex);
 			Log.e("bg2","UtilMail sendMail mail simple 0000000",ex);
 			Toast.makeText(activity, "There are no sender clients installed.", Toast.LENGTH_SHORT).show();
 			return false;
@@ -75,7 +70,6 @@ public class UtilEmail {
 
 	public static boolean sendEmail(Context activity, String destinataire, String subject, String text){
 
-		Log.i("bg2","UtilMail sendMail mail simple v2");
 		Intent i = new Intent(Intent.ACTION_SENDTO);
 		i.setData(Uri.parse("mailto:")); // only email apps should handle this
 		//i.setType("message/rfc822");
@@ -85,7 +79,6 @@ public class UtilEmail {
 		try {
 			activity.startActivity(Intent.createChooser(i, "Send mail..."));
 		} catch (android.content.ActivityNotFoundException ex) {
-			Log.e("bg2","UtilMail sendMail mail simple 0000000"+ex);
 			Log.e("bg2","UtilMail sendMail mail simple 0000000",ex);
 			Toast.makeText(activity, "There are no sender clients installed.", Toast.LENGTH_SHORT).show();
 			return false;

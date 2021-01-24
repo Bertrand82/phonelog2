@@ -76,7 +76,7 @@ public class Adapter {
 			params.accumulate("emailUser", appAccount.getMail());
 			params.accumulate("passwordUser", appAccount.getPassword());
 		}catch(Exception e){
-			Log.w("bg","Exception17 "+e);
+			Log.w("bg","Exception17 ",e);
 		}
 		return params;
 	}

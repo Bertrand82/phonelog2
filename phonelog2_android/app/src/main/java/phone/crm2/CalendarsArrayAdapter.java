@@ -47,7 +47,6 @@ public class CalendarsArrayAdapter extends ArrayAdapter<BgCalendar>{
 				public void onClick(View v) {
 					boolean isSelected  = checkBox.isChecked();
 					calendar.setSelected(isSelected);
-					Log.i("bg2"," checkBox.isChecked "+checkBox.isChecked());
 					updateDb(calendar);
 				}
 

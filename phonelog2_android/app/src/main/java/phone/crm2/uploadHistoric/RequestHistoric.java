@@ -55,10 +55,8 @@ public class RequestHistoric extends AsyncTask<String, Integer, String> {
 	}
 
 	protected String doInBackground(String... args) {
-		Log.i(TAG, "doInBackGround fromIndex");
 		try {
-			Log.i(TAG, "doInBackGround historic fromIndex url :" + url + "<");
-			String urlFull = url+"?";
+			 String urlFull = url+"?";
 			 urlFull += "fromIndex="+fromIndex;
 			 urlFull += "&nbmax="+nbmax;
 			 urlFull += "&emailUser="+URLEncoder.encode(appAccount.getMail());
@@ -67,16 +65,12 @@ public class RequestHistoric extends AsyncTask<String, Integer, String> {
 			HttpResponse response = doResponse(url);
 
 			if (response == null) {
-				Log.i(TAG, " from " + url + " reponse is null " );
 				// return hResult;
 			} else if (response.getStatusLine()== null){
-				Log.i(TAG, " from " + url + " reponse status null" );
 			} else if (response.getStatusLine().getStatusCode()!= 200){
-				Log.i(TAG, " from " + url + " reponse status pb " +response.getStatusLine().getStatusCode());
 			} else {
 					// hResult =
 				parseResult(response.getEntity().getContent());
-				Log.i(TAG, " from " + url + " hResult " + response);
 			}
 		} catch (Exception e) {
 			Log.e(TAG, "exception " + e, e);
@@ -94,12 +88,10 @@ public class RequestHistoric extends AsyncTask<String, Integer, String> {
 				sb.append((char) c);
 			}
 			String s = sb.toString();
-			Log.i(TAG, "parseResult "+s);
 			JSONArray jsonArray = new JSONArray(s);
 			 for (int i = 0; i < jsonArray.length(); i++) {
 			        JSONObject jsonObject = jsonArray.getJSONObject(i);
-			        Log.i(TAG, jsonObject.getString("text"));
-			      }
+			 }
 		} catch (Exception e) {
 			Log.e(TAG, "parseResult "+sb.toString(),e);
 		}
@@ -107,7 +99,7 @@ public class RequestHistoric extends AsyncTask<String, Integer, String> {
 
 	@Override
 	protected void onPostExecute(String response) {
-		Log.i(TAG, "onPostExecute response " + response);
+		Log.d(TAG, "onPostExecute response " + response);
 	}
 
 	// Establish connection and socket (data retrieval) timeouts

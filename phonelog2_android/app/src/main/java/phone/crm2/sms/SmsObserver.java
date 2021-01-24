@@ -29,7 +29,6 @@ public class SmsObserver extends ContentObserver {
 	@Override
 	public void onChange(boolean selfChange) {
 		super.onChange(selfChange);
-		Log.i("bg2", "onchange selfChange :"+selfChange);
 		querySMS(this.context);
 	}
 
@@ -39,7 +38,6 @@ public class SmsObserver extends ContentObserver {
 	}
 
 	protected static void querySMS(ApplicationBg applicationBg_) {
-		Log.w("bg40", "querySMS ");
 		Uri uriSMS = Uri.parse("content://sms/");
 		Cursor cur = applicationBg_.getContentResolver().query(uriSMS, null, null, null, null);
 		cur.moveToNext(); // this will make it point to the first record, which
@@ -66,15 +64,12 @@ public class SmsObserver extends ContentObserver {
 			if (type== TYPE_SMS_RECEIVED){
 				// do nothing, already doine inside phone.crm2.receivers.IncomingCallReceiver
 			}else if (type == TYPE_SMS_SENT){
-				Log.i(TAG,"SMS sent");
 				AppAccount account = applicationBg_.getAppAccount();
 				
 				SMS sms = new SMS(SMS.TYPE_OUTGOING_SMS, date, contact, account);
 				sms.setMessage(message);
 				ApplicationBg applicationBg = (ApplicationBg) applicationBg_.getApplicationContext();
 				// Insert SMS inside BDD
-				Log.i(TAG,"the sms : " + sms.toString());
-				
 				// Write Sms in Calendar
 				UtilCalendar.insertEventInSelectedCalendars(applicationBg, sms);
 

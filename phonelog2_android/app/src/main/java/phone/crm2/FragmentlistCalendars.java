@@ -37,7 +37,6 @@ public class FragmentlistCalendars extends ListFragment {
 
             @Override
             public void onClick(View v) {
-                Log.i("bg2","Calendar selected : "+getApplication().getDefaultCalendar());
                 if (getApplication().getDefaultCalendar()==null) {
                     alertNoCalendarSelected();
                 }else {
@@ -52,12 +51,9 @@ public class FragmentlistCalendars extends ListFragment {
     }
 
     private void initListCalendars(){
-        Log.i("bg2","start list calendars2" );
         List<BgCalendar> listCalendar =this.getApplication().getListCalendars();
-        Log.i("bg2","start list calendars2 "+listCalendar );
         TextView textViewNbCalendars = this.getActivity().findViewById(R.id.comment_list_calendar_second);
          TextView textViewComment = this.getActivity().findViewById(R.id.comment_list_calendar_second);
-        Log.i("bg2",listCalendar.toString());
 
 
         CalendarsArrayAdapter  adapter =  new CalendarsArrayAdapter(this.getActivity(), listCalendar);

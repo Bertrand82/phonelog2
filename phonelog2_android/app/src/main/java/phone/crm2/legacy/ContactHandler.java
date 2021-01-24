@@ -33,8 +33,7 @@ public class ContactHandler {
     // Creating Tables
   
     public void onCreate(SQLiteDatabase db) {
-    	Log.i("bg", "ContactHandle OnCreate db table contact ");
-        String CREATE_CONTACTS_TABLE = "CREATE TABLE " + TABLE_CONTACTS + "("
+    	 String CREATE_CONTACTS_TABLE = "CREATE TABLE " + TABLE_CONTACTS + "("
                 + KEY_ID + " INTEGER PRIMARY KEY," 
         		+ KEY_NAME + " TEXT,"
                 + KEY_PHONE_NUMBER + " TEXT" + ")";
@@ -145,14 +144,12 @@ public class ContactHandler {
     }
 
 	public HashMap<String, String> getMap() {
-		Log.i("BG","getMap start");
 		List<Contact> list = getAllContacts();
 		HashMap<String, String> hMap = new HashMap<String, String>();
 		for(Contact contact : list){
 			hMap.put(contact.getNumber(),contact.getName());
 		}
-		Log.i("BG","getMap done "+hMap.size());
-		
+
 		return hMap;
 	}
 

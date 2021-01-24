@@ -147,7 +147,6 @@ public class ContactExtra implements Serializable{
 	private boolean emailFetched = false;
 	private String fetchEmail(Context context){
 		emailFetched = true;
-		Log.i("bg2","ContactExtra fetchEmail");
 		String email=null;
 		String[] params =  new String[] { ContactsContract.Data._ID, ContactsContract.Data.MIMETYPE,ContactsContract.CommonDataKinds.Email.ADDRESS};
 		Cursor cursor = context.getContentResolver().query(
@@ -157,7 +156,6 @@ public class ContactExtra implements Serializable{
 		if (cursor.moveToFirst()) {
 			email = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Email.ADDRESS));
 		}
-		Log.i("bg2","ContactExtra fetchEmail : email:"+email);
 		cursor.close();
 		return email;
 	}

@@ -54,7 +54,6 @@ public class MainActivity extends  AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // Gestion des permissions
-        Log.w(TAG,"MainActivity OnCreate ");
         String[] permissionsToRequest  = getListPermissionToRequest( permissions);
         ActivityCompat.requestPermissions(this, permissionsToRequest, REQUEST_RUNTIME_PERMISSION);
         setContentView(R.layout.activity_main);

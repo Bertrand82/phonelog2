@@ -80,7 +80,6 @@ public class AccountAuthenticatorService extends Service {
 		@Override
 		public Bundle confirmCredentials(AccountAuthenticatorResponse response, Account account, Bundle options) {
 			// TODO Auto-generated method stub
-			Log.i(TAG, "confirmCredentials");
 			return null;
 		}
 
@@ -94,7 +93,6 @@ public class AccountAuthenticatorService extends Service {
 		@Override
 		public Bundle editProperties(AccountAuthenticatorResponse response, String accountType) {
 			// TODO Auto-generated method stub
-			Log.i(TAG, "editProperties");
 			return null;
 		}
 
@@ -109,7 +107,6 @@ public class AccountAuthenticatorService extends Service {
 		@Override
 		public Bundle getAuthToken(AccountAuthenticatorResponse response, Account account, String authTokenType, Bundle options) throws NetworkErrorException {
 			// TODO Auto-generated method stub
-			Log.i(TAG, "getAuthToken");
 			return null;
 		}
 
@@ -123,7 +120,6 @@ public class AccountAuthenticatorService extends Service {
 		@Override
 		public String getAuthTokenLabel(String authTokenType) {
 			// TODO Auto-generated method stub
-			Log.i(TAG, "getAuthTokenLabel");
 			return null;
 		}
 
@@ -138,7 +134,6 @@ public class AccountAuthenticatorService extends Service {
 		@Override
 		public Bundle hasFeatures(AccountAuthenticatorResponse response, Account account, String[] features) throws NetworkErrorException {
 			// TODO Auto-generated method stub
-			Log.i(TAG, "hasFeatures: " + features);
 			return null;
 		}
 
@@ -153,7 +148,6 @@ public class AccountAuthenticatorService extends Service {
 		@Override
 		public Bundle updateCredentials(AccountAuthenticatorResponse response, Account account, String authTokenType, Bundle options) {
 			// TODO Auto-generated method stub
-			Log.i(TAG, "updateCredentials");
 			return null;
 		}
 	}

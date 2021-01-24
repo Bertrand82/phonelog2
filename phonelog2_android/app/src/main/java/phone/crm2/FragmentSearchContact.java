@@ -57,7 +57,6 @@ public class FragmentSearchContact extends Fragment {
 			@Override
 			public void onTextChanged(CharSequence s, int start, int before, int count) {
 				try {
-					Log.i("bg2", "FragmentSearchContact.searchChar");
 					initListContact();
 				
 				} catch (Exception e) {
@@ -125,22 +124,18 @@ public class FragmentSearchContact extends Fragment {
 		while (!cursor.isAfterLast() && (i < 12)) {
 			ContactLabelNumber c = new ContactLabelNumber(cursor);
 			listContacts.add(c);
-			Log.w("bg2", "Contact " + c);
 			i++;
 			cursor.moveToNext();
 		}
-		Log.w("bg2", "Contact size : " + listContacts.size() + " phoneNumber: "	);
 		cursor.close();
 	}
 
 	
 	public void search(View v) {
-		Log.i("bg2", "FragmentSearchContact.search : >" + editText.getText()+"<");
 		try {
 			initListContact();
 		} catch (Exception e) {
 			Log.w("bg2", "ActivitySeaarch Exception",e);
-			e.printStackTrace();
 		}
 	}
 
@@ -174,9 +169,7 @@ public class FragmentSearchContact extends Fragment {
 		
 	
 		private void select_(int position) {
-			Log.d("bg2", "FragmentSearchContact select position :" + position + "  ");
 			ContactLabelNumber contactLabelNumber = listContacts.get(position);
-			Log.i("bg2", "FragmentSearchContact select contact :" + contactLabelNumber);
 			Contact contact = new Contact(contactLabelNumber.displayName, contactLabelNumber.number);
 			if (contactLabelNumber.number == null){
 				// Quoi faire ?

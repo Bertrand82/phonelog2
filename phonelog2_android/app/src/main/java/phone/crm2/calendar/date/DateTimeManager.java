@@ -31,28 +31,22 @@ public class DateTimeManager  implements DatePickerDialog.OnDateSetListener, OnT
 	}
 	
 	public void show(FragmentManager sf) {
-		Log.i("bg2", "DateTimeManager  show");
 		fragmentTime.show(sf, "timePicker");
-		Log.i("bg2", "DateTimeManager   show midle");
 		fragmentDate.show(sf, "datePicker");
-		Log.i("bg2", "DateTimeManager show end ");
-	}
+		}
 
 	
 	@Override
 	public void onDateSet(DatePicker view, int year, int month, int day) {
-	  	Log.i("bg2", "onTimeSet year :"+year+"  month :"+month+" day :"+day);
-	    c.set(Calendar.YEAR, year);
+	  	c.set(Calendar.YEAR, year);
 	    c.set(Calendar.MONTH, month);
 	    c.set(Calendar.DAY_OF_MONTH, day);
 	}
 
 	@Override
 	public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-		Log.i("bg2", "onTimeSet hourOfDay :"+hourOfDay+"  minute :"+minute);
 		c.set(Calendar.HOUR_OF_DAY, hourOfDay);
 		c.set(Calendar.MINUTE, minute);
-		Log.i("bg2","  Date MAnager Terminated !!! ");
 		alert();
 	}
 

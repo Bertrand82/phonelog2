@@ -5,20 +5,12 @@ import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.view.ContextThemeWrapper;
 import androidx.core.app.NotificationCompat;
-import androidx.core.view.LayoutInflaterCompat;
 
 import java.util.List;
 
@@ -34,7 +26,6 @@ public class UtilNotifications {
 
     private  NotificationManager notificationManager;
     private ApplicationBg applicationBg;
-    private long[] patternVibrate = {1000l, 1000l, 1000l};
     public UtilNotifications(ApplicationBg applicationBg){
         this.applicationBg = applicationBg;
         createNotificationChannel(applicationBg);
@@ -62,6 +53,13 @@ public class UtilNotifications {
     public  void cancelNotification(int notificationId){
         notificationManager.cancel(tagNotification,notificationId);
     }
+    /*
+    Ne marche pas : ne s'affiche pas lors de la sonnerie
+    J'ai essyé AlertDialog , Dialog et là Notification. MAis la notification est ecrasée par celle du telephone
+    TODO
+     */
+
+    @Deprecated
     public  int notificationSonneries( String number) {
          List<Event> listEvents = UtilCalendar.getListEventByNumberAndCommentNotNull(applicationBg,applicationBg.getDefaultCalendar(),number,0);
         String displayed ;
@@ -82,21 +80,12 @@ public class UtilNotifications {
                  ;
 
         Notification notification = mBuilder.build();
-        Log.i(TAG,"UtilNotifications notificationSonnerie notification.getTimeoutAfter :"+notification.getTimeoutAfter());
         int id = (int) (System.currentTimeMillis() &  0xFFFFFFFF);
-        Log.i(TAG,"UtilNotifications notificationSonnerie id:"+id);
         notificationManager.notify(tagNotification,id, notification);
-
-        Log.i(TAG,"UtilNotifications notificationSonnerie show Notification done");
         return id;
     }
 
     public  Notification notificationFinDappel( PhoneCall phoneCall) {
-        Log.i(TAG,"UtilNotifications notificationFinDappel debut isForeground :"+applicationBg.isForeground());
-        Log.v(TAG, "UtilNotifications notificationFinDappel PhoneCall :" + phoneCall);
-
-
-
         Intent intent = new Intent(applicationBg, ActivityPhoneLog.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
@@ -117,12 +106,8 @@ public class UtilNotifications {
 
         Notification notification = mBuilder.build();
 
-        Log.i(TAG,"UtilNotifications notificationFinDappel notification.getTimeoutAfter :"+notification.getTimeoutAfter());
         int id = (int) (System.currentTimeMillis() &  0xFFFFFF);
         notificationManager.notify(tagNotification, id, notification);
-        Log.i(TAG,"UtilNotifications isNotificationPolicyAccessGranted :"+notificationManager.isNotificationPolicyAccessGranted());
-
-        Log.i(TAG,"UtilNotifications notificationFinDappel show Notification done");
         return notification;
     }
 

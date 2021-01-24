@@ -18,9 +18,7 @@ import androidx.lifecycle.LifecycleObserver;
 import androidx.lifecycle.OnLifecycleEvent;
 import androidx.lifecycle.ProcessLifecycleOwner;
 
-import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import phone.crm2.db.AppAccountTable;
@@ -76,10 +74,8 @@ public class ApplicationBg extends Application  implements LifecycleObserver {
 		telephonyManager.listen(phoneListener, PhoneStateListener2.LISTEN_CALL_STATE);
 		ComponentName componentNameSms = startService(new Intent(this, SmsSendService.class));
 		ComponentName componentNamePhoneCall =startService(new Intent(this, PhoneCallService.class));
-		Log.i(TAG,"OnCreate PhoneCallService started   componentNamePhoneCall :"+componentNamePhoneCall);
 		// Recupere la liste des Calendar du Telephone
 		UtilCalendar.runQueryListCalendar(listCalendars, getContentResolver());
-		Log.i(TAG,"listCalendars size : "+listCalendars.size());
 		// Regarde si dans cette liste des calendars sont selected
 		this.db.getCalendarsSelected().setSelectedParam(this.listCalendars);
 		this.initStoragePreference();
@@ -91,7 +87,6 @@ public class ApplicationBg extends Application  implements LifecycleObserver {
 			String calendarSelectedStr =   sharedPrefs.getString("list_calendars", "000");
 			Boolean modeDebug =   sharedPrefs.getBoolean("mode_debug", false);
 
-			Log.i(TAG,"sharedPrefs CalendarSelected  :"+calendarSelectedStr);
 			if (calendarSelectedStr == null){
 				calendarSelectedStr="";
 			}
@@ -107,7 +102,6 @@ public class ApplicationBg extends Application  implements LifecycleObserver {
 		} catch (Exception e) {
 			Log.e(TAG," initStoragePreference Exception "+e.getMessage());
 		}finally{
-			Log.i(TAG," initStoragePreference storage "+storage);
 			if (storage==null){
 				Log.e(TAG,"ApplicationBg initStoragePreference Storage is Null!!!!!!!");
 			}
@@ -225,8 +219,6 @@ public class ApplicationBg extends Application  implements LifecycleObserver {
 		try {
 			SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
 			String calendarSelectedStr =   sharedPrefs.getString("list_calendars", "000");
-			Log.i(TAG,"sharedPrefs calendarSelectedStr  :"+calendarSelectedStr);
-
 			for(BgCalendar bgCalendar : this.getListCalendars()){
 				if (calendarSelectedStr.equals(bgCalendar.toString())){
 					return bgCalendar;

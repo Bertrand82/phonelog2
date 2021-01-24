@@ -63,12 +63,10 @@ public class FragmentLogsDetail extends Fragment implements AdapterView.OnItemCl
 		Bundle b = getArguments();
 
 		// long contactId = b.getLong("contactId");
-		Log.i("bg2","Bundle  : " +b);
 		this.contact = (Contact) b.getSerializable("contact");//contact
 		this.contact.getExtra(this.getActivity());
 		applicationBg.setContactCurrent(contact);
 		this.storage = (BgCalendar) b.getSerializable("storage");
-		Log.i("bg2", "FragmentLogsDetail    contact : " + contact + "  storage " + storage);
 
 		TextView textViewClientId = view.findViewById(R.id.textViewClientId);
 		textViewClientId.setText("");
@@ -97,7 +95,6 @@ public class FragmentLogsDetail extends Fragment implements AdapterView.OnItemCl
 
 			@Override
 			public void onClick(View v) {
-				Log.i("bg2", "sendMessage2");
 				UtilEmail.sendMessage(FragmentLogsDetail.this.getActivity(), FragmentLogsDetail.this.contact);
 			}
 		});
@@ -125,7 +122,6 @@ public class FragmentLogsDetail extends Fragment implements AdapterView.OnItemCl
 
 			@Override
 			public void onClick(View v) {
-				Log.i("bg2","FragmentLogsDetail onClick");
 				UtilContact.updateContact(FragmentLogsDetail.this.getActivity(), contact);
 			}
 		};
@@ -135,11 +131,10 @@ public class FragmentLogsDetail extends Fragment implements AdapterView.OnItemCl
 		textViewPhoto.setOnClickListener(listenerPhoto);
 		setListEvents(displayed);
 
-		Log.i("bg2", "FragmenLogDetail events size" + events.size());
 		adapter = new PhoneCallLDetailArrayAdapter(this.getContext(),  events);
 		// Assign adapter to List
 		//setListAdapter(adapter);
-		ListView listView = (ListView)  this.getActivity().findViewById(R.id.listDetail0);
+		ListView listView =  this.getActivity().findViewById(R.id.listDetail0);
 		listView.setAdapter(adapter);
 
 		AbsListView.OnScrollListener onScrollListener = new AbsListView.OnScrollListener() {
@@ -153,7 +148,6 @@ public class FragmentLogsDetail extends Fragment implements AdapterView.OnItemCl
 			public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
 				int n = firstVisibleItem + visibleItemCount;
 				if (n >= totalItemCount){
-					Log.i("bg2","FragmentLogsDetail.onScroll firstItem "+firstVisibleItem+" visibleItemCount "+visibleItemCount+"  "+(firstVisibleItem+visibleItemCount)+" totalItemCount :"+totalItemCount);
 					appendNexPage();
 				}
 			}
@@ -168,7 +162,6 @@ public class FragmentLogsDetail extends Fragment implements AdapterView.OnItemCl
 
 	@Override
 	public void onResume() {
-		Log.i(TAG, " FragmentLogsDetail  onResume");
 		super.onResume();
 		adapter.notifyDataSetChanged();
 	}
@@ -180,7 +173,6 @@ public class FragmentLogsDetail extends Fragment implements AdapterView.OnItemCl
 	public void onListItemClickBg( View v, int position) {
 
 		try {
-			Log.i(TAG, "FragmentLogsDetail.onListItemClick AAA  start");
 			//super.onListItemClick(l, v, position, id);
 
 			// ListView Clicked item index
@@ -189,7 +181,6 @@ public class FragmentLogsDetail extends Fragment implements AdapterView.OnItemCl
 			// ListView Clicked item value
 			Event itemValue = events.get(position);
 
-			Log.i(TAG, "FragmentLogsDetail.onListItemClick    Position :" + itemPosition + "   ListItem : " + itemValue);
 			if (itemValue == null) {
 			} else if (itemValue instanceof EventCRM) {
 				// Select an eventCRM . What do ?
@@ -197,14 +188,13 @@ public class FragmentLogsDetail extends Fragment implements AdapterView.OnItemCl
 				displayCommentPhoneCall((PhoneCall) itemValue);
 			}
 		} catch (Throwable e) {
-			Log.i(TAG, "FragmentLogsDetail.onListItemClick :   Position :" + position , e);
+			Log.w(TAG, "FragmentLogsDetail.onListItemClick :   Position :" + position , e);
 		}
 
 	}
 
 	private void displayCommentPhoneCall(PhoneCall phoneCall) {
 
-		Log.i(TAG, "displayCommentPhoneCall " + phoneCall + "   " + this.getActivity().getApplication());
 		((ApplicationBg) this.getActivity().getApplication()).setPhoneCall(phoneCall);
 		UtilActivitiesCommon.openComment(this.getActivity(),phoneCall,storage);
 
@@ -212,18 +202,14 @@ public class FragmentLogsDetail extends Fragment implements AdapterView.OnItemCl
 
 
 	private void callNumber() {
-		Log.i(TAG, "Call Number");
 		UtilActivitiesCommon.callNumber(this.getActivity(), contact.getNumber());
-
 	}
 
 	public void editContact() {
-		Log.i(TAG, "editContact from log detail Contact_LEGACY_DEPRECATED :" + contact);
 		UtilContact.updateContact(this.getActivity(), contact);
 	}
 
 	private void setListEvents(DISPLAY_F displayed) {
-		Log.i("bg2","setListEvents displayed :"+displayed);
 		this.events.clear();
 		if (displayed == DISPLAY_F.PHONE_LIST) {
 
@@ -233,12 +219,8 @@ public class FragmentLogsDetail extends Fragment implements AdapterView.OnItemCl
 
 		} else if (displayed == DISPLAY_F.DISPLAY_CRM) {
 
-			Log.i("bg2", "setListEvents AAA  Bdd Calendar!");
 			BgCalendar bgCalendar = storage;
-			Log.i("bg2", "setListEvents BBB  bgCalendar "+bgCalendar);
 			String clientId = contact.getClientId(this.getActivity());
-			Log.i("bg2", "setListEvents CCC  clientId "+clientId);
-
 			if (clientId == null) {
 
 			} else {
@@ -262,8 +244,6 @@ public class FragmentLogsDetail extends Fragment implements AdapterView.OnItemCl
 
 
 	private void showMessageCommentedOnly(View view) {
-		Log.i("bg2", "FragmentLogsDetail showMessageCommentedOnly A" + contact);
-		Log.i("bg2", "FragmentLogsDetail showMessageCommentedOnly B" + displayed);
 		Button buttonDisplayPhoneCAllCommentedOnly = view. findViewById(R.id.buttonFiltreCommentedOnly);
 		if (displayed== FragmentLogsDetail.DISPLAY_F.PHONE_LIST_COMMENTED_ONLY){
 			displayed = DISPLAY_F.PHONE_LIST;
@@ -291,12 +271,10 @@ public class FragmentLogsDetail extends Fragment implements AdapterView.OnItemCl
 		return email;
 	}
 	private void showMAils() {
-		Log.i("bg2", "ActivityLogDetails showMAils contact:" + contact);
 		String email = null;
 		ContactExtra contactExtra_ = this.contact.getExtra(this.getActivity());
 		if (contactExtra_ == null) {
 		} else {
-			Log.i("bg2", "ActivityLogDetails Contact Extra " + contactExtra_);
 			Long raw_contact_id = contactExtra_.getRaw_contact_id(this.getActivity());
 			if (raw_contact_id != null) {
 				email = contactExtra_.getMail( this.getActivity());
@@ -317,7 +295,6 @@ public class FragmentLogsDetail extends Fragment implements AdapterView.OnItemCl
 	
 	private void appendNexPage() {
 		page++;
-		Log.i("bg2","Frqagment.logDetail.appendNexPage "+page);
 		List<Event> list = UtilCalendar.getListEventByNumeroClient(this.getActivity(), this.storage, contact, page);
 		this.adapter.getEvents().addAll(list);
 		this.adapter.notifyDataSetChanged();

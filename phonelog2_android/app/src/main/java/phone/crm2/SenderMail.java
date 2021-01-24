@@ -51,7 +51,6 @@ public class SenderMail extends AsyncTask<String, String, String> {
 	}
 
 	private void sendMail3() {
-		Log.i("bg2", "sendMail3");
 		GMailSender2 sender = null;
 		try {
 			sender = new GMailSender2(context);
@@ -89,7 +88,6 @@ class GMailSender2 extends javax.mail.Authenticator {
 		this.user = mailSender;
 		this.mailPort = sharedPrefs.getString("mailPort", "465");
 		this.mailRecipient = sharedPrefs.getString("mailTo", user);
-		Log.w("bg2", ""+this);
 		Properties props = new Properties();
 		props.setProperty("mail.transport.protocol", "smtp");
 		props.setProperty("mail.host", mailhost);
@@ -101,7 +99,6 @@ class GMailSender2 extends javax.mail.Authenticator {
 		props.setProperty("mail.smtp.quitwait", "false");
 
 		session = Session.getDefaultInstance(props, this);
-		Log.i("bg2", "testMail_3 constructeur done");
 	}
 
 	
@@ -111,7 +108,6 @@ class GMailSender2 extends javax.mail.Authenticator {
 	}
 
 	public synchronized void sendMail(String subject, String body) throws Exception {
-		Log.w("bg2", "testMail_3 sendMail start mailRecipient: "+mailRecipient+" mailhost "+mailhost+"   "+password_);
 		MimeMessage message = new MimeMessage(session);
 		DataHandler handler = new DataHandler(new ByteArrayDataSource(body.getBytes(), "text/plain"));
 		message.setSender(new InternetAddress(mailSender));
@@ -119,7 +115,6 @@ class GMailSender2 extends javax.mail.Authenticator {
 		message.setDataHandler(handler);
 		message.setRecipient(Message.RecipientType.TO, new InternetAddress(mailRecipient));
 		Transport.send(message);
-		Log.i("bg2", "sendMail  done subject :"+subject);
 	}
 
 	public static class ByteArrayDataSource implements DataSource {

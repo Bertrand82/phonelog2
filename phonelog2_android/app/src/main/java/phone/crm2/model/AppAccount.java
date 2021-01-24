@@ -1,5 +1,7 @@
 package phone.crm2.model;
 
+import android.util.Log;
+
 import java.io.Serializable;
 import java.security.MessageDigest;
 
@@ -59,8 +61,8 @@ public class AppAccount implements Serializable {
         try {
             this.password = sha512(password);
         } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            Log.e("bg"," Excep",e);
+
         }
     }
 

@@ -46,9 +46,7 @@ public class UtilCalendar {
 		ops.add(ContentProviderOperation.newInsert(Events.CONTENT_URI).withValue(Events.DTSTART, startMillis).withValue(Events.DTEND, endMillis).withValue(Events.TITLE, title_).withValue(Events.DESCRIPTION, description).withValue(Events.CALENDAR_ID, calendarId).withValue(Events.EVENT_TIMEZONE, timeZone.getID()).build());
 
 		ContentProviderResult[] cp = cr.applyBatch(CalendarContract.AUTHORITY, ops);
-		Log.w("bg2", "UtilCalendar insertEventTransactionnel cp.length :" + cp.length);
 		if (cp.length > 0) {
-			Log.w("bg2", "UtilCalendar insertEventTransactionnel cp.length :" + cp[0].uri);
 			Uri myContactUri = cp[0].uri;
 			int lastSlash = myContactUri.toString().lastIndexOf("/");
 			int length = myContactUri.toString().length();
@@ -70,7 +68,6 @@ public class UtilCalendar {
 	private static long insertEventNoTransactionnel(ContentResolver cr, long startMillis, long endMillis, BgCalendar calendar, String title, String description) {
 		long calendarId = calendar.getCalID();
 		TimeZone timeZone = TimeZone.getDefault();
-		Log.i("bg2", "insertEvent_22 timeZone: " + timeZone.getDisplayName() + " timeZone id:" + timeZone.getID() + "| title " + title + "| description :" + description);
 		ContentValues values = new ContentValues();
 		values.put(Events.DTSTART, startMillis);
 		values.put(Events.DTEND, endMillis);
@@ -83,7 +80,6 @@ public class UtilCalendar {
 		// get the event ID that is the last element in the Uri
 		long eventID = Long.parseLong(uri.getLastPathSegment());
 
-		Log.i("bg2", "insertEvent22 eventID " + eventID + "  calendarId :" + calendarId + "  startMillis : " + startMillis);
 		calendar.setEventId(startMillis, eventID);
 		return eventID;
 	}
@@ -114,11 +110,10 @@ public class UtilCalendar {
 			String description = cur.getString(4);
 
 			// Do something with the values...
-			// Log.i("bg2", "listEvent_az | i : " + i + " | displayName: " +
+			// Log.d("bg2", "listEvent_az | i : " + i + " | displayName: " +
 			// eventID + " " + dstart + " " + dEnd + " " + title + " " +
 			// description);
 		}
-		Log.i("bg2", "listEvent_b | nb event " + i);
 		cur.close();
 	}
 
@@ -163,7 +158,6 @@ public class UtilCalendar {
 				String accountName = cur.getString(PROJECTION_ACCOUNT_NAME_INDEX);
 				String ownerName = cur.getString(PROJECTION_OWNER_ACCOUNT_INDEX);
 				String accountType = cur.getString(PROJECTION_ACCOUNT_TYPE);
-				Log.i("bg2","runQueryListCalendar i:"+i+" displayName :"+displayName+"  accountName :"+accountName+" ownerName :"+ownerName+"  accountType: " +accountType);
 				// Do something with the values...
 				if (CalendarContract.ACCOUNT_TYPE_LOCAL.equals(accountType)) {
 					// A priori on elimine ce type de calendar. (Voir javadoc sur ACCOUNT_TYPE_LOCAL)
@@ -173,7 +167,6 @@ public class UtilCalendar {
 				}
 			}
 			cur.close();
-			Log.i("bg2","runQueryListCalendar nb de result :"+i);
 		} catch (Exception e) {
 			Log.w("bg2", "runQueryListCalendar Exception", e);
 		}
@@ -284,7 +277,6 @@ public class UtilCalendar {
 				events.add(phoneCall);
 			}
 		}
-		Log.i("bg2", "listEvent_b | nb event " + i);
 
 		cur.close();
 
@@ -422,7 +414,6 @@ public class UtilCalendar {
 				events.add(phoneCall);
 			}
 		}
-		Log.i("bg2", "getEvent | nb event " + i);
 
 		cur.close();
 		if (events.size() == 0) {
@@ -434,7 +425,6 @@ public class UtilCalendar {
 	}
 
 	public static UpdateResult update(ApplicationBg applicationBg, PhoneCall phoneCall) {
-		Log.w("bg2", "update " + phoneCall.gethIds());
 		ContentResolver cr = applicationBg.getContentResolver();
 		List<BgCalendar> listCAlendars = applicationBg.getListCalendarsSelected();
 		long startMillis = phoneCall.getDate();
@@ -487,7 +477,6 @@ public class UtilCalendar {
 			}
 			if (eventID != 0) {
 				TimeZone timeZone = TimeZone.getDefault();
-				Log.w("bg2", "updateEvent_22  timeZone: " + timeZone.getDisplayName() + " timeZone id:" + timeZone.getID() + "| title " + title + "| description :" + description + " event id" + eventID);
 				ContentValues values = new ContentValues();
 				values.put(Events.DTSTART, startMillis);
 				values.put(Events.DTEND, endMillis);

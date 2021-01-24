@@ -38,23 +38,17 @@ public class PhoneCallHandler {
 
 	public PhoneCallHandler(DataBaseHandlerBg dataBaseHandlerBg) {
 		this.dataBaseHandlerBg = dataBaseHandlerBg;
-		Log.i("bg", "phoneCall PhoneCallHandler construct !!! ");
 	}
 
 	// Creating Tables
 
 	public void onCreate(SQLiteDatabase db) {
-		Log.i("bg", "PhoneCallHandler OnCreate db table contact ");
-
-		Log.i("bg", "OnCreate db table create  start!!! ");
 		db.execSQL(CREATE_PHONECALL_TABLE);
-		Log.i("bg", "OnCreate db table create  done!!! ");
 	}
 
 	// Upgrading database
 
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-		Log.i("bg", "onUpgrade newVersion " + newVersion + "  oldVersion " + oldVersion);
 		// Drop older table if existed
 		db.execSQL("DROP TABLE IF EXISTS " + TABLE_PHONE_CALL);
 		// Create tables again
@@ -176,7 +170,6 @@ public class PhoneCallHandler {
 
 	// Updating single PhoneCall
 	public int updatePhoneCall(PhoneCall phoneCall) {
-		Log.i("bg", "update phonecall in db | id :" + phoneCall.getId() + " | comment :" + phoneCall.getComment());
 		SQLiteDatabase db = this.dataBaseHandlerBg.getWritableDatabase();
 		ContentValues values = getContentValues(phoneCall);
 		// updating row
@@ -211,15 +204,13 @@ public class PhoneCallHandler {
 
 	public void checkMax() {
 		int count = this.getPhoneCallsCount_();
-		Log.i("bg"," start checkMax ... count : "+count+"  MAX_PHONECAL "+MAX_PHONECAL);
-		
+
 		if (count >= MAX_PHONECAL) {
 			int n = MAX_PHONECAL / 2;
 			String query ="DELETE FROM "+TABLE_PHONE_CALL+" WHERE "+KEY_ID+"= (SELECT "+KEY_ID+" FROM "+TABLE_PHONE_CALL+" ORDER BY "+KEY_date+" ASC LIMIT "+n+")";
 					
 			SQLiteDatabase db = this.dataBaseHandlerBg.getWritableDatabase();
 			db.execSQL(query);
-			Log.i("bg",query);
 		}
 	}
 	

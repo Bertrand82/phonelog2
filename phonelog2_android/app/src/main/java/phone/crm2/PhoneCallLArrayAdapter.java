@@ -37,7 +37,6 @@ public class PhoneCallLArrayAdapter extends ArrayAdapter<Event> {
 	public View getView(int position, View convertView, ViewGroup parent) {
 
 		if (position >= listEvents.size()) {
-			Log.w(TAG, "PhoneCallArrayAdapter getView position>= listEvents.size !!! position: " + position + "  listEvents.size :" + listEvents.size() + " " + listEvents);
 			TextView textView = new TextView(context);
 			textView.setText("Error !! " + position);
 			return textView;

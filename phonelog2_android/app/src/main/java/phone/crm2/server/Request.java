@@ -63,10 +63,8 @@ public class Request extends AsyncTask<Object, Integer, String> {
     }
 
     protected String doInBackground(Object... args) {
-    	Log.i(TAG,"doInBackGround start");
-        String result = null;
+    	String result = null;
         try {
-			Log.i(TAG,"doInBackGround start url :"+url+"<");
 			HttpResponse response = doResponse(url);
 
 			if (response != null) {
@@ -81,7 +79,7 @@ public class Request extends AsyncTask<Object, Integer, String> {
 
     @Override
     protected void onPostExecute(String response) {
-        Log.i(TAG,"onPostExecute response "+response) ;
+        Log.d(TAG,"onPostExecute response "+response) ;
     }
      
     // Establish connection and socket (data retrieval) timeouts

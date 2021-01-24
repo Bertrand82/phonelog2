@@ -13,7 +13,6 @@ import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.ListFragment;
 
 import java.util.List;
 
@@ -117,7 +116,6 @@ public class FragmentLogsMain extends Fragment implements AdapterView.OnItemClic
             public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
                 int n = firstVisibleItem + visibleItemCount;
                 if (n >= totalItemCount){
-                    Log.i("bg2","FragmentLogsDetail.onScroll firstItem "+firstVisibleItem+" visibleItemCount "+visibleItemCount+"  "+(firstVisibleItem+visibleItemCount)+" totalItemCount :"+totalItemCount);
                     appendNexPageLog();
                 }
             }
@@ -140,10 +138,7 @@ public class FragmentLogsMain extends Fragment implements AdapterView.OnItemClic
     private int page =0;
     private void appendNexPageLog(){
         page++;
-        Log.i("bg2","Frqagment.logsMain.appendNexPage "+page);
         List<Event> listNextPAge = UtilCalendar.getListEvent(this.getActivity(), bgCalendar, page);
-        Log.i("bg2","Frqagment.logsMain.appendNexPage adapter "+this.adapter);
-        Log.i("bg2","Frqagment.logsMain.appendNexPage adapter "+this.adapter.getListEvents());
         this.adapter.getListEvents().addAll(listNextPAge);
         this.adapter.notifyDataSetChanged();
     }

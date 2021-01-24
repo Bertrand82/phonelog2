@@ -21,15 +21,13 @@ public class AbstractActivityCrm extends AppCompatActivity {
 	@Override
 	public final boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu items for use in the action bar
-		Log.v(TAG,"onCreateOptionsMenu 1");
-		MenuInflater inflater = getMenuInflater(); 
+		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.main_menu, menu);
 		return true;
 	}
 	
 	@Override
 	public  boolean onOptionsItemSelected(MenuItem item) {
-		Log.v(TAG,"AbstractActivityCrm.onOptionsItemSelected ");
 		if (UtilActivitiesCommon.onOptionsItemSelected(item, this)) {
 			return true;
 		} else {

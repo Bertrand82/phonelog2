@@ -30,7 +30,6 @@ public class CallManager {
 	@Deprecated
 	public void processTelephone(Context context, Intent intent) {
 		String stateTelephonyManager = intent.getStringExtra(TelephonyManager.EXTRA_STATE);
-		//Log.i(TAG, "CallManager.stateTelephonyManager  :  " + stateTelephonyManager + "   Z_1 : " + stateTelephonyManager_Z_1);
 		if (stateTelephonyManager == null) {
 			// we do nothing
 		} else if (stateTelephonyManager.equals(TelephonyManager.EXTRA_STATE_RINGING)) { // sonnerie
@@ -38,14 +37,11 @@ public class CallManager {
 			// Lors de la sonnerie , on envoie une alerte au sol pour un suivi
 			// de l'appel sur un ordi
 			number = intent.getStringExtra(TelephonyManager.EXTRA_INCOMING_NUMBER);
-			Log.i(TAG, "CallManager RINGiNG  caller number : " + number+"   ");
-			
+
 		} else if (stateTelephonyManager.equals("OFFHOOK")) { // Decrochage On affiche un ecran du contact
-			Log.i(TAG, "CallManager OFFHOOK!!  caller number : " + number+"   stat_Z_1 "+stateTelephonyManager_Z_1);
 			if (number != null) {
 				//if (!stateTelephonyManager.equals(stateTelephonyManager_Z_1)) {
 				if (TelephonyManager.EXTRA_STATE_RINGING.equals(stateTelephonyManager_Z_1)) {
-					Log.i(TAG,"CallManager Decrovhage Bingo !!! ");
 					Contact contact = applicationBg.getDb().getContact().getByNumberOrCreate(number);
 					//delayProcessCall(context,this.contact);
 					processCall(context,contact);
@@ -64,13 +60,11 @@ public class CallManager {
 			public void run() {
 				try {
 					long delay = 2000;
-					Log.i("bg2","CallManager.delayProcess wait "+delay);
 					Thread.sleep(delay);
 				} catch (InterruptedException e) {
-					Log.i("TAG","InterruptedException"); // Useless!
+					Log.d("TAG","InterruptedException"); // Useless!
 				}
 				processCall(context, contact);
-				Log.i("bg2","CallManager.delayProcess CCCC ");
 			}
 		};
 		Thread t = new Thread(runnable);
@@ -79,7 +73,6 @@ public class CallManager {
 	}
 	
 	private void processCall( Context context,  Contact contact){
-		Log.i("bg2","CallManager.ProcessCall BBBB ");
 		Serializable storage = applicationBg.getStorageCalendar();
 		// Bug Majeur : Masque l'ecran permettant de terminer l'appel
 		
@@ -96,22 +89,17 @@ public class CallManager {
 		for(int i = 0;i < sizeStack;i++){
 			//com.android.phone.InCallScreen
 		    ComponentName cn = am.getRunningTasks(2).get(i).topActivity;
-		    Log.d("bg2", "CallManager.ComponentName "+cn.getClassName()+" "+cn.flattenToString()+" "+cn.describeContents()+"  ");
 		}
-		Log.i("bg2","CallManager.listTask getRunningAppProcesses().size "+am.getRunningAppProcesses().size());
-		Log.i("bg2","CallManager.listTask end ");
 	}
 	
 	public static int getPID_PHONE(Context context){
 		int pid = getPID(context, "com.android.phone");
-		Log.i("bg2","CallManager.getPID_PHONE "+pid);
 		return pid;
 	}
 	
 	public static int getPID(Context context,String processName){
 		ActivityManager am = (ActivityManager)context.getSystemService(Context.ACTIVITY_SERVICE);
 		for(RunningAppProcessInfo rInfo : am.getRunningAppProcesses()){
-			Log.d("bg2", "CallManager.RunningAppProcessInfo PID:"+rInfo.pid+" "+rInfo.processName);
 			if (rInfo.processName.equals(processName)){
 				return rInfo.pid;
 			}
@@ -120,12 +108,10 @@ public class CallManager {
 	}
 	
 	public static void moveTaskPhoneToFront(Context context) {
-		Log.i("bg2","CallManager.moveTaskPhoneToFront start");
 		try {
 			ActivityManager am = (ActivityManager)context.getSystemService(Context.ACTIVITY_SERVICE);
 			int pidPhone = getPID_PHONE(context);
 			am.moveTaskToFront(pidPhone, ActivityManager.MOVE_TASK_WITH_HOME);
-			Log.i("bg2","CallManager.moveTaskPhoneToFront done");
 		} catch (Exception e) {
 			Log.w("bg2","CallManager.moveTaskPhoneToFront Exception",e);
 		}

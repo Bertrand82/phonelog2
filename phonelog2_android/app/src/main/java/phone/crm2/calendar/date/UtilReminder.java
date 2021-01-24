@@ -26,14 +26,12 @@ public class UtilReminder {
 		String description = "Cela est un test description!!";
 		long calendarId = listCalendars.get(0).getCalID();
 		Long eventId = insertEvent( cr, startMillis,endMillis, calendarId, title, description) ;
-		Log.i("bg2"," insert event "+eventId);
 	}
 	
 	
 	
 	public static long insertEvent(ContentResolver cr,  long startMillis,  long endMillis, long calendarId,String title, String description) {
 		TimeZone timeZone = TimeZone.getDefault();
-		Log.i("bg2","insertEvent displayName : "+timeZone.getDisplayName()+"  id:" +timeZone.getID());
 		ContentValues values = new ContentValues();
 		values.put(Events.DTSTART, startMillis);
 		values.put(Events.DTEND, endMillis);
@@ -65,7 +63,6 @@ public class UtilReminder {
 
 
 	public static void setReminder(ContentResolver cr, BgCalendar bgCalendar, Date date, String eventStr) {
-		Log.i("bg2","set Reminder : "+bgCalendar+" eventStr:" +eventStr);
 		long startMillis = date.getTime();
 		long endMillis = startMillis+1000;
 		long idEvent = insertEvent(cr, startMillis, endMillis, bgCalendar.getCalID(), eventStr,eventStr);

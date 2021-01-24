@@ -12,10 +12,8 @@ public class PhoneCallService extends Service{
     public void onCreate() {
         observer = new PhoneCallObserver(this);
          // REGISTER ContetObserver 
-         Log.i("bg2","PhoneCallService registerContentObserver");
          Uri uri = android.provider.CallLog.Calls.CONTENT_URI;
          this.getContentResolver().registerContentObserver(uri, true, observer);
-        Log.i("bg2","PhoneCallService registerContentObserver done");
     }
 
     @Override
@@ -24,7 +22,7 @@ public class PhoneCallService extends Service{
             try {
                 this.getContentResolver().unregisterContentObserver(observer);
             } catch(Exception e){
-                Log.i("bg2","onDestroy Unregister exception ",e);
+                Log.w("bg2","onDestroy Unregister exception ",e);
             }
         }
     }

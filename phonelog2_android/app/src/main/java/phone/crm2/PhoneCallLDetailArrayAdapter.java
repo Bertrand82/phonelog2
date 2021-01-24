@@ -12,8 +12,6 @@ import com.beardedhen.androidbootstrap.AwesomeTextView;
 
 import java.util.List;
 
-import phone.crm2.model.AppAccount;
-import phone.crm2.model.Contact;
 import phone.crm2.model.Event;
 import phone.crm2.model.EventCRM;
 import phone.crm2.model.PhoneCall;
@@ -79,7 +77,6 @@ public class PhoneCallLDetailArrayAdapter extends ArrayAdapter<Event>{
 
 	@Override
 	public void notifyDataSetChanged() {
-		Log.i("bg2", "PhoneCallDetailArrayAdapter.notifyDataSetChanged  BBB events "+toStringList(events));
 		super.notifyDataSetChanged();
 	}
 

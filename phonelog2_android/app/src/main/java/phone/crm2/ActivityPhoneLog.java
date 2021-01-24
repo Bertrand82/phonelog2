@@ -31,8 +31,7 @@ public class ActivityPhoneLog extends AbstractActivityCrm{
      * @param view
      */
     public void perform_action_click_select_contact(View view){
-         Log.v("bg2","ActivityPhoneLog click   AAA TAG: "+view.getTag());
-        try {
+         try {
             Contact contact = (Contact) view.getTag();
             Serializable storage = ((ApplicationBg) getApplication()).getStorageCalendar();
             UtilActivitiesCommon.displayActivityLogDetail(this,contact,storage);
@@ -45,10 +44,8 @@ public class ActivityPhoneLog extends AbstractActivityCrm{
     public void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
        Bundle bundle = intent.getExtras();
-       Log.i("bg2","ActivityPhoneLog onNewIntent "+bundle);
        if (bundle != null){
            String gotoFragment = bundle.getString(ActivityPhoneLog.KEY_DISPLAY);
-           Log.i("bg2", "FragmentMain  gotoFragment : " + gotoFragment);
            PhoneCall phoneCall = (PhoneCall) bundle.getSerializable(PhoneCall.KEY_PHONE_CALL_EXTRA);
       }
     }

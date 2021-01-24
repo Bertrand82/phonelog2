@@ -27,7 +27,6 @@ public class IncomingCallReceiver extends BroadcastReceiver {
 
 	@Override
 	public void onReceive(Context context, Intent intent) {
-		Log.v("bg2","IncomingCallReceiver.onReceive ----------- Start");
 		this.applicationBg = (ApplicationBg) context.getApplicationContext();
 		if ("android.provider.Telephony.SMS_RECEIVED".equals(intent.getAction())) {
 			processSmsReceived(context, intent);
@@ -35,13 +34,12 @@ public class IncomingCallReceiver extends BroadcastReceiver {
 		if ("android.intent.action.PHONE_STATE".equals(intent.getAction())) {
 			this.applicationBg.getCallManager().processTelephone(context,intent);
 		}
-		Log.v("bg2","IncomingCallReceiver.onReceive ----------- End");
+
 	}
 
 	
 
 	private void processSmsReceived(Context context, Intent intent) {
-		Log.i(TAG, "SMS_RECEIVED");
 		Bundle bundle = intent.getExtras(); // ---get the SMS message passed
 											// in---
 		SmsMessage[] msgs = null;
@@ -55,7 +53,6 @@ public class IncomingCallReceiver extends BroadcastReceiver {
 					msgs[i] = SmsMessage.createFromPdu((byte[]) pdus[i]);
 					number = msgs[i].getOriginatingAddress();
 					String message = msgs[i].getMessageBody();
-					Log.i(TAG, "msg : " + message + " from : " + number);
 					Contact contact = applicationBg.getDb().getContact().getByNumber(number);
 					if(contact == null){
 						contact = new Contact();
@@ -73,7 +70,7 @@ public class IncomingCallReceiver extends BroadcastReceiver {
 					}
 				}
 			} catch (Exception e) {
-				Log.i(TAG, ""+e.getMessage());
+				Log.w(TAG, "IncomingCall Excep",e);
 			}
 		}
 	}

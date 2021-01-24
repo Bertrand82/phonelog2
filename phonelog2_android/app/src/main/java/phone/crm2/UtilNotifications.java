@@ -25,7 +25,7 @@ public class UtilNotifications {
     public static String CHANNEL_ID_1____________ ="ptit-crm-notification-bg-1";
 
     private  NotificationManager notificationManager;
-    private ApplicationBg applicationBg;
+    private final ApplicationBg applicationBg;
     public UtilNotifications(ApplicationBg applicationBg){
         this.applicationBg = applicationBg;
         createNotificationChannel(applicationBg);

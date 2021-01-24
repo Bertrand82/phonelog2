@@ -31,7 +31,7 @@ public class PhoneCallObserver extends ContentObserver {
 	private static int type_Z_1=-1;
 	private final ApplicationBg applicationBg_;
 	private static PhoneCall phoneCall_Z_1;
-	private UtilNotifications utilNotifications;
+	private final UtilNotifications utilNotifications;
 	public PhoneCallObserver(Context context_) {
 		super(new Handler(Looper.getMainLooper()));
 		this.applicationBg_ = ((ApplicationBg) context_.getApplicationContext());

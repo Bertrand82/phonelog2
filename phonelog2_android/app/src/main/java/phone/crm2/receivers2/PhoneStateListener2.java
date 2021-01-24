@@ -12,9 +12,9 @@ import phone.crm2.UtilNotifications;
 // Useless gerer par PhoneCallService
 // TODO utiliser cette info pour montrer l'historique ou la dernière annotation ?
 public class PhoneStateListener2 extends android.telephony.PhoneStateListener {
-    private ApplicationBg applicationBg;
+    private final ApplicationBg applicationBg;
 
-    private HashMap<String,Appel> hIdNotification=new HashMap<>();
+    private final HashMap<String,Appel> hIdNotification=new HashMap<>();
     private final UtilNotifications utilNotifications;
 
     public PhoneStateListener2(ApplicationBg appBg) {

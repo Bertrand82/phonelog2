@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="phone.crm2">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -99,9 +100,10 @@
         <service android:name=".services.call.PhoneCallService" />
         <service
             android:name=".services.AccountAuthenticatorService"
-            android:exported="true"
+            android:exported="false"
             android:process=":auth"
-            android:permission="TODO">
+            android:permission="TODO"
+            tools:ignore="ExportedService">
             <intent-filter>
                 <action android:name="android.accounts.AccountAuthenticator" >
                 </action>
@@ -114,7 +116,7 @@
         </service>
         <service
             android:name=".services.ContactsSyncAdapterService"
-            android:exported="true"
+            android:exported="false"
             android:process=":contacts"
             android:permission="TODO">
             <intent-filter>
